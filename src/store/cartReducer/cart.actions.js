@@ -1,4 +1,4 @@
-import actionCreator from "../createAction";
+import actionCreator from "../../utils/store/store.utils";
 import CART_ACTION_TYPES from "./cart.types";
 
 /*

@@ -1,0 +1,4 @@
+.CategoriesContainer{
+    display: flex;
+    flex-direction: row;
+}

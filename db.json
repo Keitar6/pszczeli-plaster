@@ -1,3 +1,49 @@
 {
-  "item": { "name": "test" }
+  "categories": [
+    {
+      "title": "Miody",
+      "items": [
+        {
+          "name": "Miód lipowy",
+          "dodatki": false,
+          "image": "./z_db_images/Miody/lipa",
+          "price": 25
+        },
+        {
+          "name": "Miód rzepakowy",
+          "dodatki": false,
+          "image": "./z_db_images/Miody/rzepak",
+          "price": 25
+        },
+        {
+          "name": "Miód wielokwiatowy",
+          "dodatki": false,
+          "image": "./z_db_images/Miody/wielokwiat",
+          "price": 20
+        }
+      ]
+    },
+    {
+      "title": "Miody pitne",
+      "items": [
+        {
+          "name": "Miód pitny trójniak",
+          "dodatki": false,
+          "image": "./z_db_images/MiodyPitne/rogDoMiodu",
+          "price": 35
+        }
+      ]
+    },
+    {
+      "title": "Produkty pszczele",
+      "items": [
+        {
+          "name": "Pyłek pszczeli",
+          "dodatki": false,
+          "image": "./z_db_images/ProduktyPszczele/PylekPszczeli",
+          "price": 48
+        }
+      ]
+    }
+  ]
 }

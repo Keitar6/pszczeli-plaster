@@ -1,0 +1,14 @@
+.MojeKontoLinks {
+    display: flex;
+    flex-direction: column;
+  }
+  .MojeKontoTitle {
+      margin: 1rem 0 1rem 0;
+  }
+  .MojeKontoContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+
+  }
+  

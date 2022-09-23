@@ -1,10 +1,20 @@
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
-import CartIcon from "../../components/cart-icon/cart-icon.component";
+
 import { selectTheme } from "../../store/generalPropReducer/generalProp.selector";
-import "./navigation.styles.css";
-import Hamburger from "hamburger-react";
 import { selectIsUserMenuOpened } from "../../store/userReducer/user.selector";
+
+import CartIcon from "../../components/cart-icon/cart-icon.component";
+import Hamburger from "hamburger-react";
+import { Icon } from "@iconify/react";
+import {
+  BrandName,
+  IconsContainer,
+  Logo,
+  NavigationContainer
+} from "./navigation.styles";
+import { Fragment } from "react";
+import { Footer } from "../../components/footer/footer.component";
 
 const Navigation = () => {
   const theme = useSelector(selectTheme);
@@ -12,24 +22,26 @@ const Navigation = () => {
   console.log(theme);
 
   return (
-    <div>
-      <nav className="navigation-container">
-        <div to="/">Cool Logo</div>
-        <h2>Very cool name of the Application</h2>
-        <nav className="nav-container">
-          {/* {currentUser ? (
-            <NavLink as="span" onClick={signOutHandler}>
-              SIGN OUT
-            </NavLink>
-          ) : (
-            <NavLink to="/authentication">SIGN IN</NavLink>
-          )} */}
+    <Fragment>
+      <NavigationContainer>
+        <Logo>
+          <Icon icon="noto:honeybee" width="42" height="42" />
+        </Logo>
+        <BrandName>Pszczeli Plaster</BrandName>
+        <IconsContainer>
+          <Icon
+            icon="fluent:inprivate-account-20-filled"
+            width="42"
+            height="42"
+          />
+          <Icon icon="fa:language" width="42" height="42"/>
           <CartIcon />
           <Hamburger rounded toggled={isUserMenuOpened} />
-        </nav>
-      </nav>
+        </IconsContainer>
+      </NavigationContainer>
       <Outlet />
-    </div>
+      <Footer/>
+    </Fragment>
   );
 };
 export default Navigation;
