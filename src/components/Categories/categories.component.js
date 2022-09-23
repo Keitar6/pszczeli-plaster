@@ -6,6 +6,7 @@ import "./categories.styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategoriesAsync } from "../../store/categories/category.action";
 import { selectCategories } from "../../store/categories/category.selector";
+import { Icon } from "@iconify/react";
 
 export const CategoriesHP = () => {
   const categories = useSelector(selectCategories);
@@ -19,9 +20,10 @@ export const CategoriesHP = () => {
   return (
     <div className="CategoriesContainer">
       {categories.map((category) => {
-        console.log(category);
         return (
-          <CategoryCard key={category.title} category={category}></CategoryCard>
+          <CategoryCard key={category.title} category={category}>
+            <Icon icon={category.icon} color="#ffb703" width="96" height="96" />
+          </CategoryCard>
         );
       }, [])}
     </div>

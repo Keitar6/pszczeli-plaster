@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
-import { selectTheme } from "../../store/generalPropReducer/generalProp.selector";
 import { selectIsUserMenuOpened } from "../../store/userReducer/user.selector";
 
 import CartIcon from "../../components/cart-icon/cart-icon.component";
@@ -17,14 +16,11 @@ import { Fragment } from "react";
 import { Footer } from "../../components/footer/footer.component";
 
 const Navigation = () => {
-  const theme = useSelector(selectTheme);
   const isUserMenuOpened = useSelector(selectIsUserMenuOpened);
-  console.log(theme);
-
   return (
     <Fragment>
       <NavigationContainer>
-        <Logo>
+        <Logo to="/">
           <Icon icon="noto:honeybee" width="42" height="42" />
         </Logo>
         <BrandName>Pszczeli Plaster</BrandName>
@@ -34,13 +30,13 @@ const Navigation = () => {
             width="42"
             height="42"
           />
-          <Icon icon="fa:language" width="42" height="42"/>
+          <Icon icon="fa:language" width="42" height="42" />
           <CartIcon />
           <Hamburger rounded toggled={isUserMenuOpened} />
         </IconsContainer>
       </NavigationContainer>
       <Outlet />
-      <Footer/>
+      <Footer />
     </Fragment>
   );
 };

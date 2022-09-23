@@ -2,20 +2,24 @@
   "categories": [
     {
       "title": "Miody",
+      "icon": "emojione:honey-pot",
       "items": [
         {
+          "id": "001M",
           "name": "Miód lipowy",
           "dodatki": false,
           "image": "./z_db_images/Miody/lipa",
           "price": 25
         },
         {
+          "id": "002M",
           "name": "Miód rzepakowy",
           "dodatki": false,
           "image": "./z_db_images/Miody/rzepak",
           "price": 25
         },
         {
+          "id": "003M",
           "name": "Miód wielokwiatowy",
           "dodatki": false,
           "image": "./z_db_images/Miody/wielokwiat",
@@ -25,10 +29,11 @@
     },
     {
       "title": "Miody pitne",
+      "icon": "icon-park-solid:honey-one",
       "items": [
         {
+          "id": "001MP",
           "name": "Miód pitny trójniak",
-          "dodatki": false,
           "image": "./z_db_images/MiodyPitne/rogDoMiodu",
           "price": 35
         }
@@ -36,14 +41,25 @@
     },
     {
       "title": "Produkty pszczele",
+      "icon": "noto-v1:honeybee",
       "items": [
         {
+          "id": "001PP",
           "name": "Pyłek pszczeli",
-          "dodatki": false,
           "image": "./z_db_images/ProduktyPszczele/PylekPszczeli",
           "price": 48
         }
       ]
+    },
+    {
+      "title": "Bio",
+      "icon": "ri:plant-fill",
+      "items": []
+    },
+    {
+      "title": "Giftcards",
+      "icon": "ic:baseline-card-giftcard",
+      "items": []
     }
   ]
 }

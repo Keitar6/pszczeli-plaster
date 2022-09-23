@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { Colors } from "../../global.styles";
@@ -29,6 +30,9 @@ export const BrandName = styled.h1`
   text-align: center;
 `;
 
-export const Logo = styled.div`
+export const Logo = styled(Link)`
   margin-left: 1rem;
+  cursor: pointer;
+  border: 2px solid red;
+  z-index: 10;
 `;

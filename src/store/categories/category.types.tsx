@@ -2,12 +2,12 @@ export type CategoryItem = {
   id: number;
   name: string;
   price: number;
-  imageUrl: string;
+  image: string;
 };
 
 export type Category = {
   title: string;
-  imageUrl: string;
+  image: string;
   items: CategoryItem[];
 };
 
