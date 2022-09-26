@@ -4,7 +4,7 @@ import {
   IsModal,
   IsRefNotNull,
   IsRefNull,
-} from "../../checkTypes/modalCheck.typeGuards";
+} from "../../types/checkTypes/modalCheck.typeGuards";
 
 type ModalChildren = { children: ReactNode };
 

@@ -7,7 +7,7 @@ export type CategoryItem = {
 
 export type Category = {
   title: string;
-  image: string;
+  icon: string;
   items: CategoryItem[];
 };
 

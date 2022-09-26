@@ -3,7 +3,8 @@ import { CATEGORIES_ACTION_TYPES, Category } from "./category.types";
 import { Action, ActionWithPayload } from "../../utils/store/store.utils";
 import { readCategories } from "../../service/service";
 import { Dispatch } from "react";
-import { AnyAction } from "redux";
+import { ActionCreator, AnyAction } from "redux";
+import { ThunkAction } from "redux-thunk";
 
 export type FetchCategoriesStart =
   Action<CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START>;
@@ -42,8 +43,15 @@ export const fetchCategoriesFailed = withMatch(
     actionCreator(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error)
 );
 
-export const fetchCategoriesAsync =
-  () => async (dispatch: Dispatch<AnyAction>) => {
+type CategoriesActions =
+  | FetchCategoriesStart
+  | FetchCategoriesSuccess
+  | FetchCategoriesFailed;
+
+export const fetchCategoriesAsync: ActionCreator<
+  ThunkAction<Promise<any>, {}, {}, CategoriesActions>
+> = () => {
+  return async (dispatch: Dispatch<AnyAction>): Promise<void> => {
     dispatch(fetchCategoriesStart());
     try {
       const categories = await readCategories("categories");
@@ -52,3 +60,4 @@ export const fetchCategoriesAsync =
       dispatch(fetchCategoriesFailed(error as Error));
     }
   };
+};

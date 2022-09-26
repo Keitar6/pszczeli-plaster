@@ -10,4 +10,6 @@ const composedEnhancer = compose(applyMiddleware(...middleWares));
 
 const store = createStore(rootReducer, undefined, composedEnhancer);
 
+export type AppDispatch = typeof store.dispatch
+
 export default store;

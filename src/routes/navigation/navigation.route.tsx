@@ -14,9 +14,12 @@ import {
 } from "./navigation.styles";
 import { Fragment } from "react";
 import { Footer } from "../../components/footer/footer.component";
+// import { useAppDispatch } from "../../types/hooks/hooks";
 
 const Navigation = () => {
   const isUserMenuOpened = useSelector(selectIsUserMenuOpened);
+  // const dispatch = useAppDispatch();
+
   return (
     <Fragment>
       <NavigationContainer>
@@ -33,6 +36,9 @@ const Navigation = () => {
           <Icon icon="fa:language" width="42" height="42" />
           <CartIcon />
           <Hamburger rounded toggled={isUserMenuOpened} />
+          {/* {showModal ? (
+            <AuthModal/>
+          ) : null} */}
         </IconsContainer>
       </NavigationContainer>
       <Outlet />
