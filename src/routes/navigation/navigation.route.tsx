@@ -1,24 +1,28 @@
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
-
-import { selectIsUserMenuOpened } from "../../store/userReducer/user.selector";
+import { Fragment } from "react";
+import { useAppDispatch } from "../../types/hooks/hooks";
 
 import CartIcon from "../../components/cart-icon/cart-icon.component";
-import Hamburger from "hamburger-react";
 import { Icon } from "@iconify/react";
 import {
   BrandName,
   IconsContainer,
   Logo,
-  NavigationContainer
+  NavigationContainer,
+  HamburgerIcon
 } from "./navigation.styles";
-import { Fragment } from "react";
+
 import { Footer } from "../../components/footer/footer.component";
-// import { useAppDispatch } from "../../types/hooks/hooks";
+
+import { toggleUserMenu } from "../../store/userReducer/user.actions";
+import { selectIsUserMenuOpened } from "../../store/userReducer/user.selector";
 
 const Navigation = () => {
   const isUserMenuOpened = useSelector(selectIsUserMenuOpened);
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
+
+  const userMenuHandler = () => dispatch(toggleUserMenu());
 
   return (
     <Fragment>
@@ -32,13 +36,16 @@ const Navigation = () => {
             icon="fluent:inprivate-account-20-filled"
             width="42"
             height="42"
+            cursor="pointer"
           />
-          <Icon icon="fa:language" width="42" height="42" />
+          <Icon icon="fa:language" width="42" height="42" cursor="pointer" />
           <CartIcon />
-          <Hamburger rounded toggled={isUserMenuOpened} />
-          {/* {showModal ? (
-            <AuthModal/>
-          ) : null} */}
+          <HamburgerIcon
+            label="Show user menu"
+            rounded
+            toggle={userMenuHandler}
+            toggled={isUserMenuOpened}
+          />
         </IconsContainer>
       </NavigationContainer>
       <Outlet />

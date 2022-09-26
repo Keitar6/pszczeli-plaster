@@ -1,6 +1,5 @@
 import { AnyAction } from "redux";
-import { setUser, toggleUserMenu } from "./user.actions";
-import USER_ACTION_TYPES from "./user.types";
+import { toggleUserMenu } from "./user.actions";
 
 export type UserState = {
   readonly currentUser: {};
@@ -9,7 +8,7 @@ export type UserState = {
   readonly isUserMenuOpened: boolean;
 };
 
-const USER_INITIAL_STATE = {
+const USER_INITIAL_STATE: UserState = {
   currentUser: {},
   isLoading: false,
   error: null,
@@ -17,30 +16,6 @@ const USER_INITIAL_STATE = {
 };
 
 export const userReducer = (
-  state = USER_INITIAL_STATE,
-  action = {} as AnyAction
-) => {
-  switch (action.type) {
-    case USER_ACTION_TYPES.SET_USER:
-      return {
-        ...state,
-        user: action.payload
-      };
-
-    case USER_ACTION_TYPES.TOGGLE_USER_MENU:
-      return {
-        ...state,
-        isUserMenuOpened: !state.isUserMenuOpened
-      };
-
-    default:
-      return {
-        ...state
-      };
-  }
-};
-
-export const categoriesReducer = (
   state = USER_INITIAL_STATE,
   action = {} as AnyAction
 ): UserState => {

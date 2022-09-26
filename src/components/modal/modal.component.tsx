@@ -1,18 +1,15 @@
-import { FC, ReactNode, useEffect, useRef } from "react";
+import { FC, PropsWithChildren, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import {
   IsModal,
   IsRefNotNull,
-  IsRefNull,
+  IsRefNull
 } from "../../types/checkTypes/modalCheck.typeGuards";
 
-type ModalChildren = { children: ReactNode };
-
-const Modal: FC<ModalChildren> = ({ children }) => {
+const Modal: FC<PropsWithChildren> = ({ children }) => {
   const elRef = useRef<null | HTMLElement>(null);
 
   if (IsRefNull(elRef)) {
-    console.log("MODAL - ELREF GIT");
     elRef.current = document.createElement("div");
   }
 
@@ -21,12 +18,12 @@ const Modal: FC<ModalChildren> = ({ children }) => {
 
     if (IsModal(modalRoot) && IsRefNotNull(elRef)) {
       modalRoot.appendChild(elRef.current);
-      return () => {modalRoot.removeChild(elRef.current)};
+      return () => {
+        modalRoot.removeChild(elRef.current);
+      };
     } else return;
   }, []);
 
-
-  
   return createPortal(<div>{children}</div>, elRef.current as HTMLElement);
 };
 

@@ -1,14 +1,21 @@
-import React from "react";
-import "./footer-Platnosc_I_Dostawa.styles.css";
-export const PlatnosciIDostawa = () => {
+import { FC } from "react";
+
+import { TextLink } from "../../../../global.styles";
+import {
+  PlatnosciIDostawaContainer,
+  PlatnosciIDostawaLinks,
+  PlatnosciIDostawaTitle
+} from "./footer-Platnosc_I_Dostawa.styles";
+
+export const PlatnosciIDostawa: FC = () => {
   return (
-    <div className="PlatnosciIDostawaContainer">
-      <h4 className="PlatnosciIDostawaTitle">Płatności i dostawa</h4>
-      <div className="PlatnosciIDostawaLinks">
-        <span>Czas realizacji zamówień</span>
-        <span>Faktury i paragony</span>
-        <span>Opcje dostawy</span>
-      </div>
-    </div>
+    <PlatnosciIDostawaContainer>
+      <PlatnosciIDostawaTitle>Płatności i dostawa</PlatnosciIDostawaTitle>
+      <PlatnosciIDostawaLinks>
+        <TextLink>Czas realizacji zamówień</TextLink>
+        <TextLink>Faktury i paragony</TextLink>
+        <TextLink>Opcje dostawy</TextLink>
+      </PlatnosciIDostawaLinks>
+    </PlatnosciIDostawaContainer>
   );
 };

@@ -1,3 +1,4 @@
+import Hamburger from "hamburger-react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -21,6 +22,7 @@ export const IconsContainer = styled.div`
   gap: 1rem;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 `;
 
 export const BrandName = styled.h1`
@@ -33,6 +35,8 @@ export const BrandName = styled.h1`
 export const Logo = styled(Link)`
   margin-left: 1rem;
   cursor: pointer;
-  border: 2px solid red;
-  z-index: 10;
+  // border: 2px solid red;
+  z-index: 20;
 `;
+
+export const HamburgerIcon = styled(Hamburger)``;
