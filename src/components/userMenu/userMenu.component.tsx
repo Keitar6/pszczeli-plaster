@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
 import { H2, TextLink } from "../../global.styles";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+
 import Modal from "../modal/modal.component";
 import {
   UserMenu,
@@ -12,14 +13,38 @@ import {
   UserMenuContainer
 } from "./userMenu.styles";
 
-export const AuthModal = () => {
-  const userMenuOnClickHandler = ()=>{
+import { toggleUserMenu } from "../../store/userReducer/user.actions";
+import { useAppDispatch } from "../../types/hooks/hooks";
+import React from "react";
 
-  }
-  
+type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
+  T,
+  MouseEvent
+> & {
+  target: T;
+};
+
+export const AuthModal = () => {
+  const dispatch = useAppDispatch();
+
+  const userMenuOnClickHandler = (
+    event: UserMenuClosingHandlerType<HTMLDivElement>
+  ): void => {
+    if (event.target.id === "UserMenuContainer") {
+      dispatch(toggleUserMenu());
+    }
+  };
+
   return (
     <Modal>
-      <UserMenu>
+      <UserMenu
+        id="UserMenuContainer"
+        onClick={(e) => {
+          userMenuOnClickHandler(
+            e as UserMenuClosingHandlerType<HTMLDivElement>
+          );
+        }}
+      >
         <UserMenuContainer>
           <UserMenuLogoContainer>
             <Icon
@@ -29,7 +54,7 @@ export const AuthModal = () => {
               height="64"
             />
             <UserMenuLogoText>
-              <H2>Cześć imie użytkownika</H2>
+              <H2>Cześć (imie użytkownika)</H2>
               <TextLink>Moje konto</TextLink>
             </UserMenuLogoText>
           </UserMenuLogoContainer>

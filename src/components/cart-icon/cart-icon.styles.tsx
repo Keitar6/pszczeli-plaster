@@ -3,7 +3,7 @@ import { ReactComponent as CartIcon } from "../../assets/shopping-bag.svg";
 import { PLarge } from "../../global.styles";
 
 export const CartIconContainer = styled.div`
-  width: 45px;
+  width: 38px;
   height: 45px;
   position: relative;
   display: flex;

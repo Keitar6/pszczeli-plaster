@@ -8,11 +8,9 @@ import {
 
 const Modal: FC<PropsWithChildren> = ({ children }) => {
   const elRef = useRef<null | HTMLElement>(null);
-  console.log(elRef.current);
-  
+
   if (IsRefNull(elRef)) {
     elRef.current = document.createElement("div");
-    console.log(elRef.current);
   }
 
   useEffect(() => {

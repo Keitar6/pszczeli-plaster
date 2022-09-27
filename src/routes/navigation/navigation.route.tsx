@@ -10,13 +10,15 @@ import {
   IconsContainer,
   Logo,
   NavigationContainer,
-  HamburgerIcon
+  HamburgerIcon,
+  naviIcons
 } from "./navigation.styles";
 
 import { Footer } from "../../components/footer/footer.component";
 
 import { toggleUserMenu } from "../../store/userReducer/user.actions";
 import { selectIsUserMenuOpened } from "../../store/userReducer/user.selector";
+import { InputBar } from "../../components/inputBar/inputBar.component";
 
 const Navigation = () => {
   const isUserMenuOpened = useSelector(selectIsUserMenuOpened);
@@ -25,20 +27,14 @@ const Navigation = () => {
   const userMenuHandler = () => dispatch(toggleUserMenu());
 
   return (
-    <Fragment>
+    <>
       <NavigationContainer>
         <Logo to="/">
-          <Icon icon="noto:honeybee" width="42" height="42" />
+          <Icon icon={naviIcons.honeyBee} width="42" height="42" />
         </Logo>
         <BrandName>Pszczeli Plaster</BrandName>
         <IconsContainer>
-          <Icon
-            icon="fluent:inprivate-account-20-filled"
-            width="42"
-            height="42"
-            cursor="pointer"
-          />
-          <Icon icon="fa:language" width="42" height="42" cursor="pointer" />
+          <InputBar />
           <CartIcon />
           <HamburgerIcon
             label="Show user menu"
@@ -50,7 +46,7 @@ const Navigation = () => {
       </NavigationContainer>
       <Outlet />
       <Footer />
-    </Fragment>
+    </>
   );
 };
 export default Navigation;

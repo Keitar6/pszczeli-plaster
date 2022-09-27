@@ -5,11 +5,9 @@ export const BaseButton = styled.button`
   min-width: 10rem;
   width: auto;
   letter-spacing: 0.5px;
-  // line-height: 3.1rem;
   padding: 1rem 3rem;
   font-size: 1rem;
   background-color: ${Colors.light};
-  // text-transform: uppercase;
   font-family: "Open Sans Condensed";
   font-weight: bolder;
   border: none;
@@ -17,12 +15,15 @@ export const BaseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  // border: 1px solid ${Colors.primary};
 
   &:hover {
     background-color: ${Colors.dark};
     color: ${Colors.primary};
-    // border: 1px solid black;
+  }
+
+  &:focus {
+    transform: scale(1.05);
+    transition: all 0.6s ease;
   }
 `;
 
@@ -39,10 +40,10 @@ export const GoogleSignInButton = styled(BaseButton)`
 export const LoginButton = styled(BaseButton)`
   background-color: ${Colors.primary};
   color: ${Colors.dark};
-  border: 1px solid none;
+  border: none;
   border-radius: 0.6rem;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.75));
-  
+
   &:hover {
     background-color: ${Colors.dark};
     color: ${Colors.primary};
@@ -60,8 +61,20 @@ export const InvertedButton = styled(LoginButton)`
   }
 `;
 
+export const InputBar = styled(BaseButton)`
+  background-color: ${Colors.dark};
+  color: ${Colors.primary};
+  border-radius: 0 0.6rem 0.6rem 0;
+  padding: 0.5rem 0;
+
+  &:hover {
+    color: ${Colors.white};
+    border: none;
+  }
+`;
+
 export const UserMenuFuncButton = styled(BaseButton)`
-  background-color: white;
+  background-color: ${Colors.light};
   border: 1px solid ${Colors.dark};
   &:hover {
     background-color: ${Colors.dark};

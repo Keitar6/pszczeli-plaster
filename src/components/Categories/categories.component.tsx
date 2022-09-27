@@ -1,9 +1,7 @@
-import { useEffect } from "react";
-
 import { CategoryCard } from "./categoriesCards/categoriesCards.component";
 
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCategoriesAsync } from "../../store/categories/category.action";
+import { useSelector } from "react-redux";
+
 import { selectCategories } from "../../store/categories/category.selector";
 import { Icon } from "@iconify/react";
 import { CategoriesContainer } from "./categories.styles";
@@ -11,7 +9,9 @@ import { CategoriesContainer } from "./categories.styles";
 export const CategoriesHP = () => {
   const categories = useSelector(selectCategories);
 
+  
   return (
+
     <CategoriesContainer>
       {categories.map((category) => {
         return (

@@ -1,4 +1,3 @@
-
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Spinner from "./components/spinner/spinner.component";
@@ -6,6 +5,7 @@ import { GlobalStyle } from "./global.styles";
 import { AuthModal } from "./components/userMenu/userMenu.component";
 import { useAppSelector } from "./types/hooks/hooks";
 import { selectIsUserMenuOpened } from "./store/userReducer/user.selector";
+import { NaviPath } from "./components/ShopDirectory/shopNavi/NaviPath.component";
 
 const Navigation = lazy(() => import("./routes/navigation/navigation.route"));
 const Home = lazy(() => import("./routes/home/homePage.route"));
@@ -23,7 +23,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigation />}>
             <Route index element={<Home />} />
-            <Route path="shop/*" element={<Shop />} />
+
+            <Route path="shop" element={<NaviPath />}>
+              <Route index element={<Shop />} />
+              <Route path="/shop/:id" element={<Shop />} />
+            </Route>
             <Route path="checkout" element={<Checkout />} />
           </Route>
         </Routes>

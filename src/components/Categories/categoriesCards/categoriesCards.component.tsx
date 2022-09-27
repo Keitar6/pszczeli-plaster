@@ -1,4 +1,5 @@
 import { FC, PropsWithChildren } from "react";
+import { useNavigate } from "react-router-dom";
 import { Category } from "../../../store/categories/category.types";
 import {
   CategoryCardIcon,
@@ -15,8 +16,15 @@ export const CategoryCard: FC<PropsWithChildren<CategoryCardProps>> = ({
   children
 }) => {
   const { title } = category;
+  const path = title.replace(/\s/g, "");
+  console.log(path);
+  const navigate = useNavigate();
+  const CategoriesCardOnClickHandler = () => {
+    navigate(`/shop/${path}`);
+  };
+
   return (
-    <CategoryCardContainer>
+    <CategoryCardContainer onClick={CategoriesCardOnClickHandler}>
       <CategoryCardIcon>{children}</CategoryCardIcon>
       <CategoryCardTitle>{title}</CategoryCardTitle>
     </CategoryCardContainer>

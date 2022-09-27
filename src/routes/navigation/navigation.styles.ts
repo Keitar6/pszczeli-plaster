@@ -4,6 +4,14 @@ import styled from "styled-components";
 
 import { Colors } from "../../global.styles";
 
+export enum naviIcons {
+  search = "fa-solid:search",
+  language="fa:language",
+  honeyBee="noto:honeybee",
+  myAcc="fluent:inprivate-account-20-filled",
+
+}
+
 export const NavigationContainer = styled.nav`
   display: flex;
   flex: 1 1 0;
@@ -13,6 +21,7 @@ export const NavigationContainer = styled.nav`
   padding: 1rem 2rem 1rem 0;
   position: relative;
   background-color: ${Colors.primary};
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.75));
 `;
 
 export const IconsContainer = styled.div`

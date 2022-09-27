@@ -1,9 +1,13 @@
+import { Outlet } from "react-router-dom";
+import ShopDirectory from "../../components/ShopDirectory/ShopDirectory.component";
+
 const ShopPage = () => {
   return (
-    <h2>
-      SHOP PAGE
-    </h2>
+    <>
+      <Outlet />
+      <ShopDirectory />
+    </>
   );
 };
 
-export default ShopPage
+export default ShopPage;

@@ -10,10 +10,10 @@ const HomePage = () => {
     dispatch(fetchCategoriesAsync());
   }, []);
   return (
-    <div className="HomePage">
+    <>
       <Outlet />
       <Directory />
-    </div>
+    </>
   );
 };
 export default HomePage;

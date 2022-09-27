@@ -5,7 +5,8 @@ import {
   GoogleSignInButton,
   InvertedButton,
   UserMenuFuncButton,
-  LoginButton
+  LoginButton,
+  InputBar
 } from "./button.styles";
 
 export enum BUTTON_TYPE_CLASSES {
@@ -13,7 +14,8 @@ export enum BUTTON_TYPE_CLASSES {
   google = "google-sign-in",
   inverted = "inverted",
   userMenuFuncButton = "userMenuFuncButton",
-  login = "LoginButton"
+  login = "LoginButton",
+  InputBar = "InputBar"
 }
 
 type ButtonProps = {
@@ -27,7 +29,8 @@ const getButton = (buttonType = BUTTON_TYPE_CLASSES.base): typeof BaseButton =>
     [BUTTON_TYPE_CLASSES.google]: GoogleSignInButton,
     [BUTTON_TYPE_CLASSES.login]: LoginButton,
     [BUTTON_TYPE_CLASSES.inverted]: InvertedButton,
-    [BUTTON_TYPE_CLASSES.userMenuFuncButton]: UserMenuFuncButton
+    [BUTTON_TYPE_CLASSES.userMenuFuncButton]: UserMenuFuncButton,
+    [BUTTON_TYPE_CLASSES.InputBar]: InputBar
   }[buttonType]);
 
 const Button: FC<ButtonProps> = ({

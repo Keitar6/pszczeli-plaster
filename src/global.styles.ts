@@ -57,12 +57,12 @@ export const PLarge = styled.p`
 `;
 
 export const StandardFlexContainer = styled.div`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 `;
 
-export const TextLink = styled.a`
+export const TextLink = styled.div`
   cursor: pointer;
   &:hover {
     text-decoration: underline;
