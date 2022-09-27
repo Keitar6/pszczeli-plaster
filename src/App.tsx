@@ -1,3 +1,4 @@
+
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Spinner from "./components/spinner/spinner.component";
@@ -12,13 +13,13 @@ const Shop = lazy(() => import("./routes/shopPage/shopPage.route"));
 const Checkout = lazy(() => import("./routes/checkout/checkoutPage.route"));
 
 function App() {
-  const isUserMenuOpened = useAppSelector(selectIsUserMenuOpened)
+  const isUserMenuOpened = useAppSelector(selectIsUserMenuOpened);
   return (
     <Suspense fallback={<Spinner />}>
       <GlobalStyle />
       <BrowserRouter>
-      <div id="modal"></div>
-      {isUserMenuOpened ? <AuthModal /> : null}
+        <div id="modal"></div>
+        {isUserMenuOpened ? <AuthModal /> : null}
         <Routes>
           <Route path="/" element={<Navigation />}>
             <Route index element={<Home />} />

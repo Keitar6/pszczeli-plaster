@@ -13,6 +13,9 @@ import {
 } from "./userMenu.styles";
 
 export const AuthModal = () => {
+  const userMenuOnClickHandler = ()=>{
+
+  }
   
   return (
     <Modal>

@@ -5,6 +5,7 @@ import { readCategories } from "../../service/service";
 import { Dispatch } from "react";
 import { ActionCreator, AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
+import { ReduxState } from "../rootReducer.redux";
 
 export type FetchCategoriesStart =
   Action<CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START>;
@@ -49,7 +50,7 @@ type CategoriesActions =
   | FetchCategoriesFailed;
 
 export const fetchCategoriesAsync: ActionCreator<
-  ThunkAction<Promise<any>, {}, {}, CategoriesActions>
+  ThunkAction<Promise<void>, ReduxState, Record<string, unknown>, CategoriesActions>
 > = () => {
   return async (dispatch: Dispatch<AnyAction>): Promise<void> => {
     dispatch(fetchCategoriesStart());

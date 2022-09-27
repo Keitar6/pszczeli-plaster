@@ -2,7 +2,7 @@ import { AnyAction } from "redux";
 import { toggleUserMenu } from "./user.actions";
 
 export type UserState = {
-  readonly currentUser: {};
+  readonly currentUser: Record<string, unknown>;
   readonly isLoading: boolean;
   readonly error: Error | null;
   readonly isUserMenuOpened: boolean;

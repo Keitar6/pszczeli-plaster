@@ -8,9 +8,11 @@ import {
 
 const Modal: FC<PropsWithChildren> = ({ children }) => {
   const elRef = useRef<null | HTMLElement>(null);
-
+  console.log(elRef.current);
+  
   if (IsRefNull(elRef)) {
     elRef.current = document.createElement("div");
+    console.log(elRef.current);
   }
 
   useEffect(() => {
@@ -18,13 +20,14 @@ const Modal: FC<PropsWithChildren> = ({ children }) => {
 
     if (IsModal(modalRoot) && IsRefNotNull(elRef)) {
       modalRoot.appendChild(elRef.current);
+
       return () => {
         modalRoot.removeChild(elRef.current);
       };
     } else return;
   }, []);
 
-  return createPortal(<div>{children}</div>, elRef.current as HTMLElement);
+  return createPortal(<>{children}</>, elRef.current as HTMLElement);
 };
 
 export default Modal;

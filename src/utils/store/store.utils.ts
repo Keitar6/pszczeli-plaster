@@ -4,6 +4,8 @@ export type ActionWithPayload<T, P> = { type: T; payload: P };
 
 export type Action<T> = { type: T };
 
+export type SomeAction<T, P> = Action<T> | ActionWithPayload<T, P>;
+
 export function actionCreator<T extends string, P>(
   type: T,
   payload: P
@@ -39,7 +41,9 @@ export function withMatch<AC extends () => AnyAction & { type: string }>(
   actionCreator: AC
 ): Matchable<AC>;
 
-export function withMatch(actionCreator: Function) {
+export function withMatch<AC extends () => AnyAction & { type: string }>(
+  actionCreator: AC
+) {
   return Object.assign(actionCreator, {
     match(action: AnyAction) {
       return action.type === actionCreator().type;

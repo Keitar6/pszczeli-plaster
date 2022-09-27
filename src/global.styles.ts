@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+
 export enum Colors {
   primary = "#FFB703",
   secondary = "#FB8500",
@@ -19,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
 body {
 	font-family: "Tapestry", "Dancing Script", cursive;
 	color:${Colors.dark};
-  background-color:${Colors.light}
+  background-color:${Colors.light};
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 
