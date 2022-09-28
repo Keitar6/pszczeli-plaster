@@ -20,16 +20,19 @@ import { toggleUserMenu } from "../../store/userReducer/user.actions";
 import { selectIsUserMenuOpened } from "../../store/userReducer/user.selector";
 import { InputBar } from "../../components/inputBar/inputBar.component";
 
+import { refresh } from "reusableFunctions/refresh.function";
+
 const Navigation = () => {
   const isUserMenuOpened = useSelector(selectIsUserMenuOpened);
   const dispatch = useAppDispatch();
 
   const userMenuHandler = () => dispatch(toggleUserMenu());
+  const logoClickHandler = () => refresh();
 
   return (
     <>
       <NavigationContainer>
-        <Logo to="/">
+        <Logo to="/" onClick={logoClickHandler}>
           <Icon icon={naviIcons.honeyBee} width="42" height="42" />
         </Logo>
         <BrandName>Pszczeli Plaster</BrandName>

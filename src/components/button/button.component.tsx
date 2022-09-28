@@ -6,7 +6,8 @@ import {
   InvertedButton,
   UserMenuFuncButton,
   LoginButton,
-  InputBar
+  InputBar,
+  ProductCard
 } from "./button.styles";
 
 export enum BUTTON_TYPE_CLASSES {
@@ -15,7 +16,8 @@ export enum BUTTON_TYPE_CLASSES {
   inverted = "inverted",
   userMenuFuncButton = "userMenuFuncButton",
   login = "LoginButton",
-  InputBar = "InputBar"
+  InputBar = "InputBar",
+  productCard = "ProductCard"
 }
 
 type ButtonProps = {
@@ -30,7 +32,8 @@ const getButton = (buttonType = BUTTON_TYPE_CLASSES.base): typeof BaseButton =>
     [BUTTON_TYPE_CLASSES.login]: LoginButton,
     [BUTTON_TYPE_CLASSES.inverted]: InvertedButton,
     [BUTTON_TYPE_CLASSES.userMenuFuncButton]: UserMenuFuncButton,
-    [BUTTON_TYPE_CLASSES.InputBar]: InputBar
+    [BUTTON_TYPE_CLASSES.InputBar]: InputBar,
+    [BUTTON_TYPE_CLASSES.productCard]: ProductCard,
   }[buttonType]);
 
 const Button: FC<ButtonProps> = ({

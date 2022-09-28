@@ -1,10 +1,14 @@
 import styled, { createGlobalStyle } from "styled-components";
 
+export const homePath = "http://localhost:3005/";
+
 export enum Colors {
   primary = "#FFB703",
+  primaryRGBA = "#FFB7033e",
   secondary = "#FB8500",
   tertiary = "#219EBC",
   dark = "#023047",
+  darkRGBA = "#0230473e",
   light = "#faeff0",
   white = "#FFFFFF",
   googleButtonBCKG = "#4285f4",
@@ -58,6 +62,7 @@ export const PLarge = styled.p`
 
 export const StandardFlexContainer = styled.div`
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 `;
@@ -68,3 +73,4 @@ export const TextLink = styled.div`
     text-decoration: underline;
   }
 `;
+

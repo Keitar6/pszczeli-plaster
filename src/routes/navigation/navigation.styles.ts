@@ -6,10 +6,9 @@ import { Colors } from "../../global.styles";
 
 export enum naviIcons {
   search = "fa-solid:search",
-  language="fa:language",
-  honeyBee="noto:honeybee",
-  myAcc="fluent:inprivate-account-20-filled",
-
+  language = "fa:language",
+  honeyBee = "noto:honeybee",
+  myAcc = "fluent:inprivate-account-20-filled"
 }
 
 export const NavigationContainer = styled.nav`
@@ -44,7 +43,10 @@ export const BrandName = styled.h1`
 export const Logo = styled(Link)`
   margin-left: 1rem;
   cursor: pointer;
-  // border: 2px solid red;
+  border: 1px solid ${Colors.dark};
+  border-radius: 50%;
+  background-color: ${Colors.light};
+  padding: 0.1rem 0.4rem;
   z-index: 20;
 `;
 

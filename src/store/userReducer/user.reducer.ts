@@ -1,4 +1,4 @@
-import { AnyAction } from "redux";
+import type { AnyAction } from "redux";
 import { toggleUserMenu } from "./user.actions";
 
 export type UserState = {
@@ -6,13 +6,15 @@ export type UserState = {
   readonly isLoading: boolean;
   readonly error: Error | null;
   readonly isUserMenuOpened: boolean;
+  readonly sortType: string;
 };
 
 const USER_INITIAL_STATE: UserState = {
   currentUser: {},
   isLoading: false,
   error: null,
-  isUserMenuOpened: false
+  isUserMenuOpened: false,
+  sortType: "default"
 };
 
 export const userReducer = (

@@ -17,5 +17,5 @@ export const NaviPathText = styled.div`
   flex-direction: row;
   padding: 0.8rem 0 0.5rem 0rem;
   margin: 0rem 0 0rem 0.8rem;
-  border-bottom: 2px solid ${Colors.dark};
+  border-bottom: 1px solid ${Colors.darkRGBA};
 `;

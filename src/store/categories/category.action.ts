@@ -3,8 +3,8 @@ import { CATEGORIES_ACTION_TYPES, Category } from "./category.types";
 import { Action, ActionWithPayload } from "../../utils/store/store.utils";
 import { readCategories } from "../../service/service";
 import { Dispatch } from "react";
-import { ActionCreator, AnyAction } from "redux";
-import { ThunkAction } from "redux-thunk";
+import type { ActionCreator, AnyAction } from "redux";
+import type { ThunkAction } from "redux-thunk";
 import { ReduxState } from "../rootReducer.redux";
 
 export type FetchCategoriesStart =

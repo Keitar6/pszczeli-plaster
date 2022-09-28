@@ -17,7 +17,6 @@ export const CategoryCard: FC<PropsWithChildren<CategoryCardProps>> = ({
 }) => {
   const { title } = category;
   const path = title.replace(/\s/g, "");
-  console.log(path);
   const navigate = useNavigate();
   const CategoriesCardOnClickHandler = () => {
     navigate(`/shop/${path}`);

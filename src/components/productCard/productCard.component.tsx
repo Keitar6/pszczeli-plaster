@@ -1,4 +1,12 @@
 import { FC, PropsWithChildren } from "react";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import {
+  ProductCardPrice,
+  ProductCardComponent,
+  ProductCardDescription,
+  ProductCardName,
+  ProductCardImageContainer
+} from "./productCard.styles";
 
 type ProductCardProps = {
   id: string;
@@ -7,7 +15,6 @@ type ProductCardProps = {
   image: string;
   price: number;
 };
-
 export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = ({
   id,
   name,
@@ -15,10 +22,23 @@ export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = ({
   image,
   price
 }) => {
+  
   return (
-    <div>
-      <span>Product Card</span>
-      <div></div>
-    </div>
+    <ProductCardComponent>
+      <ProductCardImageContainer>
+        <img src={require(`./lipa.jpg`)} alt={`Obraz: ${name}`} />
+        <Button
+          buttonType={BUTTON_TYPE_CLASSES.productCard}
+          // onClick={addProductHandler}
+        >
+          Add to cart
+        </Button>
+      </ProductCardImageContainer>
+
+      <ProductCardDescription>
+        <ProductCardName>{name}</ProductCardName>
+        <ProductCardPrice>{`$${price}`}</ProductCardPrice>
+      </ProductCardDescription>
+    </ProductCardComponent>
   );
 };

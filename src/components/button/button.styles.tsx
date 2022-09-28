@@ -60,15 +60,28 @@ export const InvertedButton = styled(LoginButton)`
     color: ${Colors.dark};
   }
 `;
+export const ProductCard = styled(LoginButton)`
+  background-color: ${Colors.darkRGBA};
+  color: ${Colors.primary};
+  min-width: 5rem;
+  padding: 1rem 2rem;
+
+  &:hover {
+    border: none;
+    background-color: ${Colors.primaryRGBA};
+    color: ${Colors.dark};
+  }
+`;
 
 export const InputBar = styled(BaseButton)`
+  min-width: 1rem;
   background-color: ${Colors.dark};
   color: ${Colors.primary};
   border-radius: 0 0.6rem 0.6rem 0;
-  padding: 0.5rem 0;
+  padding: 0.5rem 1rem;
 
   &:hover {
-    color: ${Colors.white};
+    color: ${Colors.light};
     border: none;
   }
 `;
