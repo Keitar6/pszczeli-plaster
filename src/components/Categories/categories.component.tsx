@@ -1,17 +1,14 @@
 import { CategoryCard } from "./categoriesCards/categoriesCards.component";
 
-import { useSelector } from "react-redux";
-
 import { selectCategories } from "../../store/categories/category.selector";
 import { Icon } from "@iconify/react";
 import { CategoriesContainer } from "./categories.styles";
+import { useAppSelector } from "types/hooks/hooks";
 
 export const CategoriesHP = () => {
-  const categories = useSelector(selectCategories);
+  const categories = useAppSelector(selectCategories);
 
-  
   return (
-
     <CategoriesContainer>
       {categories.map((category) => {
         return (
@@ -19,7 +16,7 @@ export const CategoriesHP = () => {
             <Icon icon={category.icon} color="#ffb703" width="96" height="96" />
           </CategoryCard>
         );
-      }, [])}
+      }, {})}
     </CategoriesContainer>
   );
 };

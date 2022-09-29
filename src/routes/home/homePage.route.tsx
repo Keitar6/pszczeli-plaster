@@ -10,7 +10,7 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(fetchCategoriesAsync());
   }, []);
-  
+
   return (
     <>
       <Outlet />

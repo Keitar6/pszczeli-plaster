@@ -1,6 +1,7 @@
 import { H1 } from "global.styles";
 import { FC } from "react";
 import { refresh } from "reusableFunctions/refresh.function";
+
 import { selectPath } from "store/generalPropReducer/generalProp.selector";
 import { selectCategories } from "../../store/categories/category.selector";
 import { useAppSelector } from "../../types/hooks/hooks";
