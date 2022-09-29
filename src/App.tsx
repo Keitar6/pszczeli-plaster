@@ -5,7 +5,7 @@ import { GlobalStyle } from "./global.styles";
 import { AuthModal } from "./components/userMenu/userMenu.component";
 import { useAppSelector } from "./types/hooks/hooks";
 import { selectIsUserMenuOpened } from "./store/userReducer/user.selector";
-import { NaviPath } from "./components/ShopDirectory/shopNavi/NaviPath.component";
+import { NaviPath } from "./components/ShopDirectory/shopNavi/naviPath.component";
 
 const Navigation = lazy(() => import("./routes/navigation/navigation.route"));
 const Home = lazy(() => import("./routes/home/homePage.route"));

@@ -1,6 +1,5 @@
 import { H1 } from "global.styles";
 import { FC } from "react";
-import { Link } from "react-router-dom";
 import { refresh } from "reusableFunctions/refresh.function";
 import { selectPath } from "store/generalPropReducer/generalProp.selector";
 import { selectCategories } from "../../store/categories/category.selector";
@@ -15,7 +14,7 @@ import {
   ShopDirectoryContentHeader,
   ShopMenuItem,
   ShopMenuItems
-} from "./ShopDirectory.styles";
+} from "./shopDirectory.styles";
 
 const ShopDirectory: FC = () => {
   const categories = useAppSelector(selectCategories);

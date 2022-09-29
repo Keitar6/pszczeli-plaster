@@ -1,9 +1,10 @@
 import { FC, useEffect } from "react";
 import { Outlet, useParams } from "react-router-dom";
+import { refresh } from "reusableFunctions/refresh.function";
 import { setPath } from "store/generalPropReducer/generalProp.actions";
 import { useAppDispatch } from "types/hooks/hooks";
 import { TextLink } from "../../../global.styles";
-import { NaviPathText, PathWebPage, ShopInsidePath } from "./NaviPath.style";
+import { NaviPathText, PathWebPage, ShopInsidePath } from "./naviPath.style";
 
 export const NaviPath: FC = () => {
   const dispatch = useAppDispatch();
@@ -16,8 +17,12 @@ export const NaviPath: FC = () => {
   const fullPath = Object.values(paths);
   const pathHandler = () => (params.id ? `${paths.path}` : "");
 
+  const refresHandler = (path: string) => {
+    console.log(path)
+    refresh(path);
+  };
+
   useEffect(() => {
-    console.log(params.id);
     if (params.id && params.id != "/undefined") dispatch(setPath(params.id));
     else dispatch(setPath("shop"));
   }, [params]);
@@ -29,11 +34,11 @@ export const NaviPath: FC = () => {
           <TextLink>{`${paths.homePath}home`}</TextLink>
         </PathWebPage>
 
-        <PathWebPage to={`/${paths.shopPath}`}>
+        <PathWebPage to={`/${paths.shopPath}`} onClick={() => refresHandler(paths.shopPath)}>
           <TextLink> {`/${paths.shopPath}`} </TextLink>
         </PathWebPage>
 
-        <ShopInsidePath to={fullPath.join("")}>
+        <ShopInsidePath to={fullPath.join("")} onClick={()=>refresHandler(`${paths.shopPath}${paths.path}`)}>
           <TextLink>{`${pathHandler()}`}</TextLink>
         </ShopInsidePath>
       </NaviPathText>

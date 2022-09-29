@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import ShopDirectory from "../../components/ShopDirectory/ShopDirectory.component";
+import ShopDirectory from "../../components/ShopDirectory/shopDirectory.component";
 
 const ShopPage = () => {
   return (
