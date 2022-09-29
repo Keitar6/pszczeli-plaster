@@ -17,13 +17,15 @@ export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
   category
 ) => {
   const { id, name, dodatki, image, price } = category;
-  const productToAdd={id,name,price}
+
   const cartItems = useAppSelector(selectCartItems);
   const dispatch = useAppDispatch();
 
   const addProductHandler = () => {
-    dispatch(addItemToCart(cartItems, category));
+    const productToAdd = { id, dodatki, image, name, price };
+    dispatch(addItemToCart(cartItems, productToAdd));
   };
+
   return (
     <ProductCardComponent>
       <ProductCardImageContainer>
@@ -40,7 +42,7 @@ export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
       </ProductCardImageContainer>
 
       <ProductCardDescription>
-        <ProductCardName>{name}</ProductCardName>
+        <ProductCardName>{`${name}`}</ProductCardName>
         <ProductCardPrice>{`$${price}`}</ProductCardPrice>
       </ProductCardDescription>
     </ProductCardComponent>

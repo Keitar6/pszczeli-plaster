@@ -40,13 +40,6 @@ export const ProductCardsContainer = styled(StandardFlexContainer)`
   flex-direction: row;
   gap: 0.5rem;
 `;
-export const ProductsSorting = styled.div`
-  // border: 1px solid blue;
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  padding: 0.5rem 0 0.5rem 0;
-`;
 
 export const ShopMenuContainer = styled.div`
   border-right: 1px solid ${Colors.darkRGBA};

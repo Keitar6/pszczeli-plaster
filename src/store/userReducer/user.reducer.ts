@@ -1,12 +1,26 @@
 import type { AnyAction } from "redux";
-import { toggleUserMenu } from "./user.actions";
+import { toggleSortingAscending, toggleUserMenu } from "./user.actions";
+
+export type SortingTypes = {
+  [key: string]: string | boolean;
+};
+
+export const SORTING_TYPES: SortingTypes = {
+  DEFAULT: "default",
+  PRICE: "price",
+  INPUT_STRING: "inputString",
+  ASCENDING: true
+};
 
 export type UserState = {
   readonly currentUser: Record<string, unknown>;
   readonly isLoading: boolean;
   readonly error: Error | null;
   readonly isUserMenuOpened: boolean;
-  readonly sortType: string;
+  readonly sort: {
+    sorType: string;
+    ascending: boolean;
+  };
 };
 
 const USER_INITIAL_STATE: UserState = {
@@ -14,7 +28,10 @@ const USER_INITIAL_STATE: UserState = {
   isLoading: false,
   error: null,
   isUserMenuOpened: false,
-  sortType: "default"
+  sort: {
+    sorType: "default",
+    ascending: true
+  }
 };
 
 export const userReducer = (
@@ -23,6 +40,16 @@ export const userReducer = (
 ): UserState => {
   if (toggleUserMenu.match(action)) {
     return { ...state, isUserMenuOpened: !state.isUserMenuOpened };
+  }
+
+  if (toggleSortingAscending.match(action)) {
+    return {
+      ...state,
+      sort: {
+        ...state.sort,
+        ascending: !state.sort.ascending
+      }
+    };
   }
 
   // if (setUser.match(action)) {

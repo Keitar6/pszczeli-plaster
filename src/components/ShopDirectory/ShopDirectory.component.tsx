@@ -1,6 +1,7 @@
 import { H1 } from "global.styles";
 import { FC } from "react";
 import { refresh } from "reusableFunctions/refresh.function";
+import { alphaSort } from "reusableFunctions/alphaSorting.function";
 
 import { selectPath } from "store/generalPropReducer/generalProp.selector";
 import { selectCategories } from "../../store/categories/category.selector";
@@ -11,14 +12,17 @@ import {
   ShopDirectoryContainer,
   ShopDirectoryContent,
   ProductCardsContainer,
-  ProductsSorting,
   ShopDirectoryContentHeader,
   ShopMenuItem,
   ShopMenuItems
 } from "./shopDirectory.styles";
 
+import { selectSort } from "store/userReducer/user.selector";
+import { ShopSorting } from "./shopSorting/shopSorting.component";
+
 const ShopDirectory: FC = () => {
   const categories = useAppSelector(selectCategories);
+  const { ascending, sorType } = useAppSelector(selectSort);
   const path = useAppSelector(selectPath);
 
   function ItemOnClickHandler(categoryPath: string) {
@@ -51,23 +55,29 @@ const ShopDirectory: FC = () => {
       <ShopDirectoryContent>
         <ShopDirectoryContentHeader>
           <H1>{path}</H1>
-          <ProductsSorting>Sorting</ProductsSorting>
+          Sorting
+          <ShopSorting />
         </ShopDirectoryContentHeader>
 
         <ProductCardsContainer>
-          {categories.map(({ items }) => {
-            return items.map(
-              ({ id, name, image, price }) => (
-                <ProductCard
-                  key={id}
-                  id={id}
-                  name={name}
-                  image={image}
-                  price={price}
-                />
-              ),
-              {}
-            );
+          {categories.map((category) => {
+            if (category.title === path) {
+              const { items } = category;
+              const sortedItems = alphaSort(items, ascending);
+
+              return sortedItems.map(
+                ({ id, name, image, price }) => (
+                  <ProductCard
+                    key={id}
+                    id={id}
+                    name={name}
+                    image={image}
+                    price={price}
+                  />
+                ),
+                {}
+              );
+            }
           }, {})}
         </ProductCardsContainer>
       </ShopDirectoryContent>
