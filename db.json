@@ -8,21 +8,21 @@
           "id": "001M",
           "name": "Miód lipowy",
           "dodatki": false,
-          "image": "../../assets/dataBaseImages/Miody/lipa.jpg",
+          "image": "Miody/lipa.jpg",
           "price": 25
         },
         {
           "id": "002M",
           "name": "Miód rzepakowy",
           "dodatki": false,
-          "image": "../../assets/dataBaseImages/Miody/rzepak.jpg",
+          "image": "Miody/rzepak.jpg",
           "price": 25
         },
         {
           "id": "003M",
           "name": "Miód wielokwiatowy",
           "dodatki": false,
-          "image": "../../assets/dataBaseImages/Miody/wielokwiat.jpg",
+          "image": "Miody/wielokwiat.jpg",
           "price": 20
         }
       ]
@@ -34,7 +34,7 @@
         {
           "id": "001MP",
           "name": "Miód pitny trójniak",
-          "image": "../../assets/dataBaseImages/MiodyPitne/rogDoMiodu.jpg",
+          "image": "MiodyPitne/rogDoMiodu.jpg",
           "price": 35
         }
       ]
@@ -46,7 +46,7 @@
         {
           "id": "001PP",
           "name": "Pyłek pszczeli",
-          "image": "../../assets/dataBaseImages/ProduktyPszczele/PylekPszczeli.jpg",
+          "image": "ProduktyPszczele/PylekPszczeli.jpg",
           "price": 48
         }
       ]
@@ -54,13 +54,13 @@
     {
       "title": "Bio",
       "icon": "ri:plant-fill",
-      "image": "../../assets/dataBaseImages/ProduktyPszczele/PylekPszczeli.jpg",
+      "image": "ProduktyPszczele/PylekPszczeli.jpg",
       "items": []
     },
     {
       "title": "Giftcards",
       "icon": "ic:baseline-card-giftcard",
-      "image": "../../assets/dataBaseImages/ProduktyPszczele/PylekPszczeli.jpg",
+      "image": "ProduktyPszczele/PylekPszczeli.jpg",
       "items": []
     }
   ]
