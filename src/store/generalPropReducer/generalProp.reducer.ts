@@ -20,7 +20,7 @@ const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
 
 export const generalPropReducer = (
   state = GENERAL_PROPS_INITIAL_STATE,
-  action: AnyAction
+  action={} as AnyAction
 ) => {
   if (setPath.match(action))
     return {

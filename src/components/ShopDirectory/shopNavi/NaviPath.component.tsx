@@ -18,7 +18,7 @@ export const NaviPath: FC = () => {
   const pathHandler = () => (params.id ? `${paths.path}` : "");
 
   const refresHandler = (path: string) => {
-    console.log(path)
+    console.log(path);
     refresh(path);
   };
 
@@ -34,11 +34,17 @@ export const NaviPath: FC = () => {
           <TextLink>{`${paths.homePath}home`}</TextLink>
         </PathWebPage>
 
-        <PathWebPage to={`/${paths.shopPath}`} onClick={() => refresHandler(paths.shopPath)}>
+        <PathWebPage
+          to={`/${paths.shopPath}`}
+          onClick={() => refresHandler(paths.shopPath)}
+        >
           <TextLink> {`/${paths.shopPath}`} </TextLink>
         </PathWebPage>
 
-        <ShopInsidePath to={fullPath.join("")} onClick={()=>refresHandler(`${paths.shopPath}${paths.path}`)}>
+        <ShopInsidePath
+          to={fullPath.join("")}
+          onClick={() => refresHandler(`${paths.shopPath}${paths.path}`)}
+        >
           <TextLink>{`${pathHandler()}`}</TextLink>
         </ShopInsidePath>
       </NaviPathText>

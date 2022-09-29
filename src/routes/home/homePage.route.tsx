@@ -7,9 +7,10 @@ import { useAppDispatch } from "../../types/hooks/hooks";
 const HomePage = () => {
   const dispatch = useAppDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchCategoriesAsync());
-  // }, []);
+  useEffect(() => {
+    dispatch(fetchCategoriesAsync());
+  }, []);
+  
   return (
     <>
       <Outlet />

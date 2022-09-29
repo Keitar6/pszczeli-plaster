@@ -3,10 +3,11 @@ import { CATEGORIES_ACTION_TYPES, Category } from "./category.types";
 import { Action, ActionWithPayload } from "../../utils/store/store.utils";
 import { readCategories } from "../../service/service";
 
-import { Dispatch } from "react";
 import type { ActionCreator, AnyAction } from "redux";
 import type { ThunkAction } from "redux-thunk";
 import { ReduxState } from "store/rootReducer.redux";
+import { useAppDispatch } from "types/hooks/hooks";
+import { Dispatch } from "react";
 
 export type FetchCategoriesStart =
   Action<CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START>;
@@ -45,14 +46,13 @@ export const fetchCategoriesFailed = withMatch(
     actionCreator(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error)
 );
 
-type CategoriesActions =
-  | FetchCategoriesStart
-  | FetchCategoriesSuccess
-  | FetchCategoriesFailed;
+type CategoriesAction = FetchCategoriesFailed|FetchCategoriesStart|FetchCategoriesSuccess
 
-export type AppThunk<T = void> = ThunkAction<T, ReduxState, unknown, AnyAction>;
+export type AppThunk<T = void> = ActionCreator<
+  ThunkAction<Promise<T>, ReduxState, unknown, AnyAction>
+>;
 
-export const fetchCategoriesAsync = (): AppThunk<void> => {
+export const fetchCategoriesAsync: AppThunk<any> = () => {
   return async (dispatch) => {
     dispatch(fetchCategoriesStart());
     try {
@@ -63,3 +63,17 @@ export const fetchCategoriesAsync = (): AppThunk<void> => {
     }
   };
 };
+
+// const asyncThinkAction: ActionCreator<
+//   ThunkAction<Promise<Action>, IState, void>
+// > = () => {
+//   return async (dispatch: Dispatch<IState>): Promise<Action> => {
+//     try {
+//       const text = await Api.call();
+//       return dispatch({
+//         type: SET_TEXT,
+//         text
+//       });
+//     } catch (e) {}
+//   };
+// };

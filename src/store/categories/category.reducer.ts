@@ -6,13 +6,13 @@ import {
 } from "./category.action";
 import { Category } from "./category.types";
 
-export type CategoriestState = {
+export type CategoriesState = {
   readonly categories: Category[];
   readonly isLoading: boolean;
   readonly error: Error | null;
 };
 
-const CATEGORIES_INITIAL_STATE: CategoriestState = {
+const CATEGORIES_INITIAL_STATE: CategoriesState = {
   categories: [],
   isLoading: false,
   error: null,
@@ -21,7 +21,7 @@ const CATEGORIES_INITIAL_STATE: CategoriestState = {
 export const categoriesReducer = (
   state = CATEGORIES_INITIAL_STATE,
   action = {} as AnyAction
-): CategoriestState => {
+): CategoriesState => {
   
   if (fetchCategoriesStart.match(action)) {
     return { ...state, isLoading: true };
