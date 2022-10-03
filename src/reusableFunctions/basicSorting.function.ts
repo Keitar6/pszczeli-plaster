@@ -52,7 +52,7 @@ export const comparingDOWN = (
   return 0;
 };
 
-export const alphaSort = (items: CategoryItem[], sort: SortType) => {
+export const Sorting = (items: CategoryItem[], sort: SortType) => {
   const { ascending, sorType } = sort;
 
   items.sort((a, b) => {

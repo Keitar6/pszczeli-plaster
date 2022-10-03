@@ -1,10 +1,13 @@
 import { H1 } from "global.styles";
 import { FC } from "react";
 import { refresh } from "reusableFunctions/refresh.function";
-import { alphaSort } from "reusableFunctions/basicSorting.function";
+import { Sorting } from "reusableFunctions/basicSorting.function";
 
 import { selectPath } from "store/generalPropReducer/generalProp.selector";
-import { selectCategories } from "../../store/categories/category.selector";
+import {
+  selectCategories,
+  selectCategoriesMap
+} from "../../store/categories/category.selector";
 import { useAppSelector } from "../../types/hooks/hooks";
 import { ProductCard } from "../productCard/productCard.component";
 import {
@@ -25,10 +28,19 @@ const ShopDirectory: FC = () => {
   const categories = useAppSelector(selectCategories);
   const sort = useAppSelector(selectSort);
   const path = useAppSelector(selectPath);
+  const categoriesMap = useAppSelector(selectCategoriesMap);
 
-  function ItemOnClickHandler(categoryPath: string) {
+  const ItemOnClickHandler = (categoryPath: string) => {
     refresh(categoryPath);
-  }
+  };
+
+  const shopHPSorting = () => {
+    const tempAllItems: CategoryItem[] = [];
+    Object.values(categoriesMap).map((value) => {
+      tempAllItems.push(...value);
+    }, []);
+    return Sorting(tempAllItems, sort);
+  };
 
   return (
     <ShopDirectoryContainer>
@@ -61,29 +73,37 @@ const ShopDirectory: FC = () => {
         </ShopDirectoryContentHeader>
 
         <ProductCardsContainer>
-          {categories.map((category) => {
-            let sortedItems: CategoryItem[] = [];
-            console.log(category.title, path);
-
-            if (category.title === path) {
-              const { items } = category;
-              sortedItems = alphaSort(items, sort);
-            } else if (path === "shop") {
-              sortedItems = category.items;
-            }
-            return sortedItems.map(
-              ({ id, name, image, price }) => (
-                <ProductCard
-                  key={id}
-                  id={id}
-                  name={name}
-                  image={image}
-                  price={price}
-                />
-              ),
-              {}
-            );
-          }, {})}
+          {path !== "shop"
+            ? categories.map((category) => {
+                let sortedItems: CategoryItem[] = [];
+                const { items } = category;
+                if (category.title === path) {
+                  sortedItems = Sorting(items, sort);
+                  return sortedItems.map(
+                    ({ id, name, image, price }) => (
+                      <ProductCard
+                        key={id}
+                        id={id}
+                        name={name}
+                        image={image}
+                        price={price}
+                      />
+                    ),
+                    {}
+                  );
+                }
+              }, {})
+            : shopHPSorting().map(({ id, name, image, price }) => {
+                return (
+                  <ProductCard
+                    key={id}
+                    id={id}
+                    name={name}
+                    image={image}
+                    price={price}
+                  />
+                );
+              }, {})}
         </ProductCardsContainer>
       </ShopDirectoryContent>
     </ShopDirectoryContainer>
