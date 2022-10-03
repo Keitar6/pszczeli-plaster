@@ -23,6 +23,7 @@ import {
 import { selectSort } from "store/userReducer/user.selector";
 import { ShopSorting } from "./shopSorting/shopSorting.component";
 import { CategoryItem } from "store/categories/category.types";
+import { inputSorting } from "reusableFunctions/sortingWithInput.function";
 
 const ShopDirectory: FC = () => {
   const categories = useAppSelector(selectCategories);
@@ -39,7 +40,7 @@ const ShopDirectory: FC = () => {
     Object.values(categoriesMap).map((value) => {
       tempAllItems.push(...value);
     }, []);
-    return Sorting(tempAllItems, sort);
+    return inputSorting(tempAllItems, sort,true);
   };
 
   return (

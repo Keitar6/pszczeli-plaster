@@ -1,6 +1,7 @@
 import type { AnyAction } from "redux";
 import {
   setAlphabeticSorting,
+  setInputSorting,
   setPriceSorting,
   toggleSortingAscending,
   toggleUserMenu
@@ -22,6 +23,7 @@ export const SORTING_TYPES: SortingTypes = {
 
 export type SortType = {
   sorType: string;
+  inputSort: string;
   ascending: boolean;
 };
 
@@ -32,6 +34,7 @@ export type UserState = {
   readonly isUserMenuOpened: boolean;
   readonly sort: {
     sorType: string;
+    inputSort: string;
     ascending: boolean;
   };
 };
@@ -43,6 +46,7 @@ const USER_INITIAL_STATE: UserState = {
   isUserMenuOpened: false,
   sort: {
     sorType: "alphabetic",
+    inputSort: "",
     ascending: true
   }
 };
@@ -81,6 +85,16 @@ export const userReducer = (
       sort: {
         ...state.sort,
         sorType: SORTING_TYPES.PRICE
+      }
+    };
+  }
+
+  if (setInputSorting.match(action)) {
+    return {
+      ...state,
+      sort: {
+        ...state.sort,
+        inputSort: action.payload
       }
     };
   }
