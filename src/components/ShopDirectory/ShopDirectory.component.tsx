@@ -1,7 +1,7 @@
 import { H1 } from "global.styles";
 import { FC } from "react";
 import { refresh } from "reusableFunctions/refresh.function";
-import { alphaSort } from "reusableFunctions/alphaSorting.function";
+import { alphaSort } from "reusableFunctions/basicSorting.function";
 
 import { selectPath } from "store/generalPropReducer/generalProp.selector";
 import { selectCategories } from "../../store/categories/category.selector";
@@ -22,7 +22,8 @@ import { ShopSorting } from "./shopSorting/shopSorting.component";
 
 const ShopDirectory: FC = () => {
   const categories = useAppSelector(selectCategories);
-  const { ascending, sorType } = useAppSelector(selectSort);
+  const sort = useAppSelector(selectSort);
+  const { ascending, sorType } = sort;
   const path = useAppSelector(selectPath);
 
   function ItemOnClickHandler(categoryPath: string) {
@@ -55,7 +56,7 @@ const ShopDirectory: FC = () => {
       <ShopDirectoryContent>
         <ShopDirectoryContentHeader>
           <H1>{path}</H1>
-          Sorting
+
           <ShopSorting />
         </ShopDirectoryContentHeader>
 
@@ -63,7 +64,7 @@ const ShopDirectory: FC = () => {
           {categories.map((category) => {
             if (category.title === path) {
               const { items } = category;
-              const sortedItems = alphaSort(items, ascending);
+              const sortedItems = alphaSort(items, sort);
 
               return sortedItems.map(
                 ({ id, name, image, price }) => (

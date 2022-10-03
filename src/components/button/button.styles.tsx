@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { Colors } from "../../global.styles";
+import { Colors, Typhography } from "../../global.styles";
 
 export const BaseButton = styled.button`
   min-width: 10rem;
   width: auto;
   letter-spacing: 0.5px;
   padding: 1rem 3rem;
-  font-size: 1rem;
+  font-size: ${Typhography.fontSizes.H6};
   background-color: ${Colors.light};
   font-family: "Open Sans Condensed";
   font-weight: bolder;
@@ -115,5 +115,26 @@ export const ButtonSpiner = styled.div`
     to {
       -webkit-transform: rotate(360deg);
     }
+  }
+`;
+
+export const SortingTypes = styled(BaseButton)`
+  font-family: ${Typhography.fontType};
+  font-size: ${Typhography.fontSizes.H6};
+  font-weight: bold;
+
+  min-width: 5rem;
+  padding: 0.2rem 1rem;
+  border: 2px solid ${Colors.dark};
+  border-radius: 5rem;
+
+  &:hover {
+    color: ${Colors.dark};
+    background-color: ${Colors.darkRGBA};
+  }
+
+  &:focus {
+    transform: none;
+    transition: none;
   }
 `;

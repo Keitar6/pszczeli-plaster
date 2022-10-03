@@ -1,15 +1,28 @@
 import type { AnyAction } from "redux";
-import { toggleSortingAscending, toggleUserMenu } from "./user.actions";
+import {
+  setAlphabeticSorting,
+  setPriceSorting,
+  toggleSortingAscending,
+  toggleUserMenu
+} from "./user.actions";
 
 export type SortingTypes = {
-  [key: string]: string | boolean;
+  ALPHABETIC: string;
+  PRICE: string;
+  INPUT_STRING: string;
+  ASCENDING: boolean;
 };
 
 export const SORTING_TYPES: SortingTypes = {
-  DEFAULT: "default",
+  ALPHABETIC: "alphabetic",
   PRICE: "price",
   INPUT_STRING: "inputString",
   ASCENDING: true
+};
+
+export type SortType = {
+  sorType: string;
+  ascending: boolean;
 };
 
 export type UserState = {
@@ -29,7 +42,7 @@ const USER_INITIAL_STATE: UserState = {
   error: null,
   isUserMenuOpened: false,
   sort: {
-    sorType: "default",
+    sorType: "alphabetic",
     ascending: true
   }
 };
@@ -48,6 +61,26 @@ export const userReducer = (
       sort: {
         ...state.sort,
         ascending: !state.sort.ascending
+      }
+    };
+  }
+
+  if (setAlphabeticSorting.match(action)) {
+    return {
+      ...state,
+      sort: {
+        ...state.sort,
+        sorType: SORTING_TYPES.ALPHABETIC
+      }
+    };
+  }
+
+  if (setPriceSorting.match(action)) {
+    return {
+      ...state,
+      sort: {
+        ...state.sort,
+        sorType: SORTING_TYPES.PRICE
       }
     };
   }
