@@ -53,14 +53,28 @@ export const comparingDOWN = (
   return 0;
 };
 
-export const Sorting = (items: CategoryItem[], sort: SortType) => {
-  const { ascending, sorType } = sort;
+export const inputSorting = (
+  items: CategoryItem[],
+  sortType: SortType,
+  ifInputSort = false
+) => {
+  const { ascending, sorType } = sortType;
+  let sortedArray = items;
+  console.log("InputSorting START");
+  console.log(sortedArray);
 
-  items.sort((a, b) => {
+  sortedArray.sort((a, b) => {
     if (ascending) return comparingUP(a, b, sorType as string);
     else return comparingDOWN(a, b, sorType as string);
   });
 
-  
-  return items;
+  if (ifInputSort && sortType.inputSort !== "")
+    sortedArray = sortedArray.filter((a) => {
+      console.log(a.name.includes(sortType.inputSort) ? 1 : 0);
+      return a.name.includes(sortType.inputSort) ? 1 : 0;
+    });
+
+  console.log("InputSorting FINISH");
+  console.log(sortedArray);
+  return sortedArray;
 };

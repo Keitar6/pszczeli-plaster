@@ -37,7 +37,7 @@ const Navigation = () => {
         </Logo>
         <BrandName>Pszczeli Plaster</BrandName>
         <IconsContainer>
-          <InputBar />
+          <InputBar whereTo='shop'/>
           <CartIcon />
           <HamburgerIcon
             label="Show user menu"

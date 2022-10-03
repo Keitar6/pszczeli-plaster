@@ -44,11 +44,6 @@ export const fetchCategoriesFailed = withMatch(
     actionCreator(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error)
 );
 
-type CategoriesAction =
-  | FetchCategoriesFailed
-  | FetchCategoriesStart
-  | FetchCategoriesSuccess;
-
 export type AppThunk<T = void> = ActionCreator<
   ThunkAction<Promise<T>, ReduxState, unknown, AnyAction>
 >;
