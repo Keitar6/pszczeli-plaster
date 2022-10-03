@@ -10,6 +10,7 @@ import {
 } from "../../store/categories/category.selector";
 import { useAppSelector } from "../../types/hooks/hooks";
 import { ProductCard } from "../productCard/productCard.component";
+
 import {
   ShopMenuContainer,
   ShopDirectoryContainer,
@@ -18,6 +19,7 @@ import {
   ShopDirectoryContentHeader,
   ShopMenuItem,
   ShopMenuItems
+
 } from "./shopDirectory.styles";
 
 import { selectSort } from "store/userReducer/user.selector";
@@ -40,7 +42,7 @@ const ShopDirectory: FC = () => {
     Object.values(categoriesMap).map((value) => {
       tempAllItems.push(...value);
     }, []);
-    return inputSorting(tempAllItems, sort,true);
+    return inputSorting(tempAllItems, sort, true);
   };
 
   return (
