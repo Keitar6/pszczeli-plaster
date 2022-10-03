@@ -19,11 +19,11 @@ import {
 
 import { selectSort } from "store/userReducer/user.selector";
 import { ShopSorting } from "./shopSorting/shopSorting.component";
+import { CategoryItem } from "store/categories/category.types";
 
 const ShopDirectory: FC = () => {
   const categories = useAppSelector(selectCategories);
   const sort = useAppSelector(selectSort);
-  const { ascending, sorType } = sort;
   const path = useAppSelector(selectPath);
 
   function ItemOnClickHandler(categoryPath: string) {
@@ -62,23 +62,27 @@ const ShopDirectory: FC = () => {
 
         <ProductCardsContainer>
           {categories.map((category) => {
+            let sortedItems: CategoryItem[] = [];
+            console.log(category.title, path);
+
             if (category.title === path) {
               const { items } = category;
-              const sortedItems = alphaSort(items, sort);
-
-              return sortedItems.map(
-                ({ id, name, image, price }) => (
-                  <ProductCard
-                    key={id}
-                    id={id}
-                    name={name}
-                    image={image}
-                    price={price}
-                  />
-                ),
-                {}
-              );
+              sortedItems = alphaSort(items, sort);
+            } else if (path === "shop") {
+              sortedItems = category.items;
             }
+            return sortedItems.map(
+              ({ id, name, image, price }) => (
+                <ProductCard
+                  key={id}
+                  id={id}
+                  name={name}
+                  image={image}
+                  price={price}
+                />
+              ),
+              {}
+            );
           }, {})}
         </ProductCardsContainer>
       </ShopDirectoryContent>

@@ -10,6 +10,13 @@ import {
 } from "./InputBar.styles";
 
 export const InputBar: FC = () => {
+
+  const onSearchHandler = () => {
+
+    console.log("asd");
+
+  };
+
   return (
     <InputBarContainer>
       <Inputcontainer>
@@ -18,7 +25,12 @@ export const InputBar: FC = () => {
         </InputIcon>
         <Input placeholder="Czego szukasz?" />
       </Inputcontainer>
-      <Button buttonType={BUTTON_TYPE_CLASSES.InputBar}>Search</Button>
+      <Button
+        onClick={onSearchHandler}
+        buttonType={BUTTON_TYPE_CLASSES.InputBar}
+      >
+        Search
+      </Button>
     </InputBarContainer>
   );
 };
