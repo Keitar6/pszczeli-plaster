@@ -22,11 +22,13 @@ export const InputBar: FC<InputBarProps> = ({ whereTo }) => {
   const dispatch = useAppDispatch();
 
   const onSearchHandler = () => {
-    const input = document.getElementById("inputBar");
+    navigate(`/${whereTo}`);
+  };
 
+  const onInputChangeHandler = () => {
+    const input = document.getElementById("inputBar");
     if (IsInputNull(input)) {
       dispatch(setInputSorting(input.value));
-      navigate(`/${whereTo}`);
     }
   };
 
@@ -36,7 +38,11 @@ export const InputBar: FC<InputBarProps> = ({ whereTo }) => {
         <InputIcon>
           <Icon icon={naviIcons.search} color="#023047" width="24" />
         </InputIcon>
-        <Input id="inputBar" placeholder="Czego szukasz?" />
+        <Input
+          onChange={onInputChangeHandler}
+          id="inputBar"
+          placeholder="Czego szukasz?"
+        />
       </Inputcontainer>
       <Button
         onClick={onSearchHandler}
