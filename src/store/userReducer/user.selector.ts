@@ -13,7 +13,7 @@ export const selectIsUserMenuOpened = createSelector(
   (userReducer) => userReducer.isUserMenuOpened
 );
 
-export const selectSortType = createSelector(
+export const selectSort = createSelector(
   [selectUserReducer],
-  (userReducer) => userReducer.sortType
+  (userReducer) => userReducer.sort
 );

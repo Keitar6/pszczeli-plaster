@@ -2,6 +2,19 @@ import styled, { createGlobalStyle } from "styled-components";
 
 export const homePath = "http://localhost:3005/";
 
+export const Typhography = {
+  fontType: '"Tapestry", "Dancing Script", cursive',
+  fontSizes: {
+    H1: "3.05 rem",
+    H2: "2.44 rem",
+    H3: "1.95 rem",
+    H4: "1.56 rem",
+    H5: "1.25 rem",
+    H6: "1 rem",
+    PLarge: "2.25 rem"
+  }
+};
+
 export enum Colors {
   primary = "#FFB703",
   primaryRGBA = "#FFB7033e",
@@ -22,7 +35,7 @@ export const GlobalStyle = createGlobalStyle`
 	padding: 0;
 }
 body {
-	font-family: "Tapestry", "Dancing Script", cursive;
+	font-family: ${Typhography.fontType};
 	color:${Colors.dark};
   background-color:${Colors.light};
 	-webkit-font-smoothing: antialiased;
@@ -34,30 +47,30 @@ body {
 }
 `;
 export const H1 = styled.h1`
-  font-size: 3.05 rem;
+  font-size: ${Typhography.fontSizes.H1};
 `;
 export const H2 = styled.h2`
-  font-size: 2.44 rem;
+  font-size: ${Typhography.fontSizes.H2};
 `;
 
 export const H3 = styled.h3`
-  font-size: 1.95 rem;
+  font-size: ${Typhography.fontSizes.H3};
 `;
 
 export const H4 = styled.h4`
-  font-size: 1.56 rem;
+  font-size: ${Typhography.fontSizes.H4};
 `;
 
 export const H5 = styled.h5`
-  font-size: 1.25 rem;
+  font-size: ${Typhography.fontSizes.H5};
 `;
 
 export const H6 = styled.h6`
-  font-size: 1 rem;
+  font-size: ${Typhography.fontSizes.H6};
 `;
 
 export const PLarge = styled.p`
-  font-size: 2.25 rem;
+  font-size: ${Typhography.fontSizes.PLarge};
 `;
 
 export const StandardFlexContainer = styled.div`
@@ -73,4 +86,3 @@ export const TextLink = styled.div`
     text-decoration: underline;
   }
 `;
-

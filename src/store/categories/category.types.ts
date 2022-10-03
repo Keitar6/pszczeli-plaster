@@ -3,6 +3,7 @@ export type CategoryItem = {
   name: string;
   price: number;
   image: string;
+  dodatki?: boolean;
 };
 
 export type Category = {

@@ -7,6 +7,7 @@ export const ShopDirectoryContainer = styled(StandardFlexContainer)`
   align-items: start;
   flex-direction: row;
   justify-content: space-between;
+  margin: 0rem 0 0 0;
   // border: 2px solid red;
 `;
 
@@ -24,7 +25,6 @@ export const ShopDirectoryContentHeader = styled.div`
   justify-content: space-between;
   flex-direction: row;
   padding: 0 0 0.6rem 0rem;
-
   H1 {
     width: 100%;
     color: ${Colors.primary};
@@ -40,13 +40,6 @@ export const ProductCardsContainer = styled(StandardFlexContainer)`
   flex-direction: row;
   gap: 0.5rem;
 `;
-export const ProductsSorting = styled.div`
-  // border: 1px solid blue;
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  padding: 0.5rem 0 0.5rem 0;
-`;
 
 export const ShopMenuContainer = styled.div`
   border-right: 1px solid ${Colors.darkRGBA};
@@ -57,6 +50,7 @@ export const ShopMenuContainer = styled.div`
   align-items: center;
   gap: 5rem;
   padding: 0 0 0.6rem 0rem;
+  
 `;
 
 export const ShopMenuItems = styled.ul``;

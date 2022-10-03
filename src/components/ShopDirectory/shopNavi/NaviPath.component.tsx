@@ -18,7 +18,6 @@ export const NaviPath: FC = () => {
   const pathHandler = () => (params.id ? `${paths.path}` : "");
 
   const refresHandler = (path: string) => {
-    console.log(path);
     refresh(path);
   };
 

@@ -18,9 +18,12 @@ export const NavigationContainer = styled.nav`
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2rem 1rem 0;
-  position: relative;
+
   background-color: ${Colors.primary};
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.75));
+  position: sticky;
+  top: 0;
+  z-index: 50;
 `;
 
 export const IconsContainer = styled.div`

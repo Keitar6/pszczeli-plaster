@@ -1,12 +1,39 @@
 import type { AnyAction } from "redux";
-import { toggleUserMenu } from "./user.actions";
+import {
+  setAlphabeticSorting,
+  setPriceSorting,
+  toggleSortingAscending,
+  toggleUserMenu
+} from "./user.actions";
+
+export type SortingTypes = {
+  ALPHABETIC: string;
+  PRICE: string;
+  INPUT_STRING: string;
+  ASCENDING: boolean;
+};
+
+export const SORTING_TYPES: SortingTypes = {
+  ALPHABETIC: "alphabetic",
+  PRICE: "price",
+  INPUT_STRING: "inputString",
+  ASCENDING: true
+};
+
+export type SortType = {
+  sorType: string;
+  ascending: boolean;
+};
 
 export type UserState = {
   readonly currentUser: Record<string, unknown>;
   readonly isLoading: boolean;
   readonly error: Error | null;
   readonly isUserMenuOpened: boolean;
-  readonly sortType: string;
+  readonly sort: {
+    sorType: string;
+    ascending: boolean;
+  };
 };
 
 const USER_INITIAL_STATE: UserState = {
@@ -14,7 +41,10 @@ const USER_INITIAL_STATE: UserState = {
   isLoading: false,
   error: null,
   isUserMenuOpened: false,
-  sortType: "default"
+  sort: {
+    sorType: "alphabetic",
+    ascending: true
+  }
 };
 
 export const userReducer = (
@@ -23,6 +53,36 @@ export const userReducer = (
 ): UserState => {
   if (toggleUserMenu.match(action)) {
     return { ...state, isUserMenuOpened: !state.isUserMenuOpened };
+  }
+
+  if (toggleSortingAscending.match(action)) {
+    return {
+      ...state,
+      sort: {
+        ...state.sort,
+        ascending: !state.sort.ascending
+      }
+    };
+  }
+
+  if (setAlphabeticSorting.match(action)) {
+    return {
+      ...state,
+      sort: {
+        ...state.sort,
+        sorType: SORTING_TYPES.ALPHABETIC
+      }
+    };
+  }
+
+  if (setPriceSorting.match(action)) {
+    return {
+      ...state,
+      sort: {
+        ...state.sort,
+        sorType: SORTING_TYPES.PRICE
+      }
+    };
   }
 
   // if (setUser.match(action)) {

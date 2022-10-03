@@ -1,4 +1,8 @@
 import { FC, PropsWithChildren } from "react";
+import { addItemToCart } from "store/cartReducer/cart.actions";
+import { selectCartItems } from "store/cartReducer/cart.selector";
+import { CategoryItem } from "store/categories/category.types";
+import { useAppDispatch, useAppSelector } from "types/hooks/hooks";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import {
   ProductCardPrice,
@@ -8,35 +12,37 @@ import {
   ProductCardImageContainer
 } from "./productCard.styles";
 
-type ProductCardProps = {
-  id: string;
-  name: string;
-  dodatki?: boolean;
-  image: string;
-  price: number;
-};
-export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = ({
-  id,
-  name,
-  dodatki,
-  image,
-  price
-}) => {
-  
+type ProductCardProps = CategoryItem;
+export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
+  category
+) => {
+  const { id, name, dodatki, image, price } = category;
+
+  const cartItems = useAppSelector(selectCartItems);
+  const dispatch = useAppDispatch();
+
+  const addProductHandler = () => {
+    const productToAdd = { id, dodatki, image, name, price };
+    dispatch(addItemToCart(cartItems, productToAdd));
+  };
+
   return (
     <ProductCardComponent>
       <ProductCardImageContainer>
-        <img src={require(`./lipa.jpg`)} alt={`Obraz: ${name}`} />
+        <img
+          src={require(`../../assets/dataBaseImages/${image}`)}
+          alt={`Obraz: ${name}`}
+        />
         <Button
           buttonType={BUTTON_TYPE_CLASSES.productCard}
-          // onClick={addProductHandler}
+          onClick={() => addProductHandler()}
         >
           Add to cart
         </Button>
       </ProductCardImageContainer>
 
       <ProductCardDescription>
-        <ProductCardName>{name}</ProductCardName>
+        <ProductCardName>{`${name}`}</ProductCardName>
         <ProductCardPrice>{`$${price}`}</ProductCardPrice>
       </ProductCardDescription>
     </ProductCardComponent>
