@@ -1,109 +1,75 @@
 import { Icon } from "@iconify/react";
-import { H2, TextLink } from "../../../global.styles";
-import Button, { BUTTON_TYPE_CLASSES } from "../../button/button.component";
+import { H2 } from "../../../global.styles";
 
 import Modal from "../modal.component";
 import {
-  UserMenu,
-  UserMenuLoginButtons,
-  UserMenuLogoContainer,
-  UserMenuLogoText,
-  UserMenuFuncButtons,
-  UserMenuFuncButton,
-  UserMenuContainer
+  Cart,
+  CartLogoContainer,
+  CartLogoText,
+  CartContainer,
+  CartGoToCheckout
 } from "./cart.styles";
 
-import { toggleUserMenu } from "store/generalPropReducer/generalProp.actions";
-import { useAppDispatch } from "../../../types/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
 import React from "react";
+import { toggleCartMenu } from "store/cartReducer/cart.actions";
+import {
+  selectCartItems,
+  selectCartTotal
+} from "store/cartReducer/cart.selector";
+import { CartCard } from "./cartCard/cartCard.component";
+import Button, { BUTTON_TYPE_CLASSES } from "components/button/button.component";
 
-type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
+type CartClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
   T,
   MouseEvent
 > & {
   target: T;
 };
 
-export const AuthModal = () => {
+export const CartModal = () => {
   const dispatch = useAppDispatch();
+  const cartItems = useAppSelector(selectCartItems);
+  const cartTotal = useAppSelector(selectCartTotal);
 
-  const userMenuOnClickHandler = (
-    event: UserMenuClosingHandlerType<HTMLDivElement>
+  const cartClosingHandler = (
+    event: CartClosingHandlerType<HTMLDivElement>
   ): void => {
-    if (event.target.id === "UserMenuContainer") {
-      dispatch(toggleUserMenu());
+    if (event.target.id === "CartContainer") {
+      dispatch(toggleCartMenu());
     }
   };
 
   return (
     <Modal>
-      <UserMenu
-        id="UserMenuContainer"
+      <Cart
+        id="CartContainer"
         onClick={(e) => {
-          userMenuOnClickHandler(
-            e as UserMenuClosingHandlerType<HTMLDivElement>
-          );
+          cartClosingHandler(e as CartClosingHandlerType<HTMLDivElement>);
         }}
       >
-        <UserMenuContainer>
-          <UserMenuLogoContainer>
+        <CartContainer>
+          <CartLogoContainer>
             <Icon
               icon="fluent-emoji-high-contrast:polar-bear"
               color="#ffb703"
               width="64"
               height="64"
             />
-            <UserMenuLogoText>
-              <H2>Cześć (imie użytkownika)</H2>
-              <TextLink>Moje konto</TextLink>
-            </UserMenuLogoText>
-          </UserMenuLogoContainer>
-          <UserMenuLoginButtons>
-            <Button buttonType={BUTTON_TYPE_CLASSES.login}>Zaloguj się</Button>
-            <Button buttonType={BUTTON_TYPE_CLASSES.inverted}>
-              Utwórz konto
-            </Button>
-          </UserMenuLoginButtons>
-          <UserMenuFuncButtons>
-            <UserMenuFuncButton buttonType={BUTTON_TYPE_CLASSES.base}>
-              <Icon
-                icon="icon-park-outline:history-query"
-                color="#ffb703"
-                width="32"
-                height="32"
-              />
-              Historia zamówień
-            </UserMenuFuncButton>
-            <UserMenuFuncButton buttonType={BUTTON_TYPE_CLASSES.base}>
-              <Icon
-                icon="eva:shopping-cart-outline"
-                color="#ffb703"
-                width="32"
-                height="32"
-              />
-              Koszyk
-            </UserMenuFuncButton>
-            <UserMenuFuncButton buttonType={BUTTON_TYPE_CLASSES.base}>
-              <Icon
-                icon="ic:outline-favorite-border"
-                color="#ffb703"
-                width="32"
-                height="32"
-              />
-              Ulubione
-            </UserMenuFuncButton>
-            <UserMenuFuncButton buttonType={BUTTON_TYPE_CLASSES.base}>
-              <Icon
-                icon="bytesize:work"
-                color="#ffb703"
-                width="32"
-                height="32"
-              />
-              Zostań jednym z nas
-            </UserMenuFuncButton>
-          </UserMenuFuncButtons>
-        </UserMenuContainer>
-      </UserMenu>
+            <CartLogoText>
+              <H2>Koszyk</H2>
+            </CartLogoText>
+          </CartLogoContainer>
+          {cartItems.map((cartItem) => {
+            return <CartCard key={cartItem.id} cartItem={cartItem} />;
+          })}
+          <CartGoToCheckout>
+
+          <Button buttonType={BUTTON_TYPE_CLASSES.userMenuFuncButton}>{`Do kasy`}</Button>
+          <span>{`W sumie: ${cartTotal}$`}</span>
+          </CartGoToCheckout>
+        </CartContainer>
+      </Cart>
     </Modal>
   );
 };

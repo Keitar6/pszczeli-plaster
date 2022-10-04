@@ -2,7 +2,7 @@ import { FC, PropsWithChildren } from "react";
 import { addItemToCart } from "store/cartReducer/cart.actions";
 import { selectCartItems } from "store/cartReducer/cart.selector";
 import { CategoryItem } from "store/categories/category.types";
-import { useAppDispatch, useAppSelector } from "types/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "hooks/hooks";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import {
   ProductCardPrice,

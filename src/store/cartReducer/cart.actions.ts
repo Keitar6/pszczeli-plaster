@@ -1,4 +1,5 @@
 import {
+  Action,
   actionCreator,
   ActionWithPayload,
   withMatch
@@ -47,6 +48,14 @@ const removeCartItem = (
 
   return updatedCartItemsRemove;
 };
+
+export type ToggleCartMenu =
+  Action<CART_ACTION_TYPES.TOGGLE_CART_MENU>;
+
+export const toggleCartMenu = withMatch(
+  (): ToggleCartMenu =>
+    actionCreator(CART_ACTION_TYPES.TOGGLE_CART_MENU)
+);
 
 export type SetCartItems = ActionWithPayload<
   CART_ACTION_TYPES.SET_CART_ITEMS,

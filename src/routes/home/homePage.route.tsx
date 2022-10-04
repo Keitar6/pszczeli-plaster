@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { Directory } from "../../components/directory/directory.component";
 import { fetchCategoriesAsync } from "../../store/categories/category.action";
-import { useAppDispatch } from "../../types/hooks/hooks";
+import { useAppDispatch } from "../../hooks/hooks";
 
 const HomePage = () => {
   const dispatch = useAppDispatch();

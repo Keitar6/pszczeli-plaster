@@ -12,20 +12,22 @@ export type CartItemProps = {
   cartItem: CartItem;
 };
 
-const CartMenuCard = ({ cartItem }: CartItemProps) => {
+export const CartCard = ({ cartItem }: CartItemProps) => {
   const { name, quantity, price, image } = cartItem;
 
   return (
     <CartItemContainer>
-      <Image src={image} alt={name} />
+      <Image
+        src={require(`../../../../assets/dataBaseImages/${image}`)}
+        alt={`Obraz: ${name}`}
+      />
       <ItemDetails>
         <Name>{name}</Name>
-        <Price className="price">{`${quantity} x ${price} = $${
+        <Price >{`${quantity} x ${price} = ${
           quantity * price
-        }`}</Price>
+        }$`}</Price>
       </ItemDetails>
+      
     </CartItemContainer>
   );
 };
-
-export default CartMenuCard;

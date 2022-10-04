@@ -1,5 +1,5 @@
 import type { AnyAction } from "redux";
-import { setCartItems } from "./cart.actions";
+import { setCartItems, toggleCartMenu } from "./cart.actions";
 import type { CartItem } from "./cart.types";
 
 export type CartState = {
@@ -16,6 +16,10 @@ export const cartReducer = (
   state = CART_INITIAL_STATE,
   action = {} as AnyAction
 ): CartState => {
+  if (toggleCartMenu.match(action)) {
+    return { ...state, isDropdownActive: !state.isDropdownActive };
+  }
+
   if (setCartItems.match(action))
     return {
       ...state,

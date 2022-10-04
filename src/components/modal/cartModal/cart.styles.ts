@@ -1,19 +1,31 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Colors, StandardFlexContainer } from "../../../global.styles";
-import Button from "../../button/button.component";
 
-export const UserMenu = styled.div`
+const slideIn = keyframes`
+{
+  100% { transform: translateY(0%); }
+}
+`;
+
+const slideOut = keyframes`
+{
+  0% { transform: translateY(0%); }
+  100% { transform: translateY(-100%); }
+}
+`;
+
+export const Cart = styled.div`
   background-color: rgba(0, 0, 0, 0.9);
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   top: 0;
-  z-index: 51;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: end;
   gap: 1rem;
 
   &:empty {
@@ -21,58 +33,34 @@ export const UserMenu = styled.div`
   }
 `;
 
-export const UserMenuContainer = styled(StandardFlexContainer)`
+export const CartContainer = styled(StandardFlexContainer)`
   flex-direction: column;
   gap: 2.4rem;
   max-width: 50rem;
   padding: 1rem 2rem 3rem 2rem;
-  text-align: center;
-  border-radius: 1.5rem;
-  background: ${Colors.light};
-`;
+  justify-content: start;
 
-export const UserMenuLogoContainer = styled(StandardFlexContainer)`
+  background: ${Colors.light};
+  height: 100%;
+
+  animation: ${slideIn} 0.5s forwards;
+  `;
+
+export const CartLogoContainer = styled(StandardFlexContainer)`
   flex-direction: row;
   gap: 1rem;
 `;
 
-export const UserMenuLogoText = styled(StandardFlexContainer)`
+export const CartLogoText = styled(StandardFlexContainer)`
   flex-direction: column;
   // border: 2px solid red;
   align-items: start;
 `;
 
-export const UserMenuLinks = styled.a`
-  display: inline-block;
-  margin-right: 15px;
-  text-decoration: none;
-  background-color: #ad343e;
-  padding: 5px 25px;
-  color: white;
-  font-size: 18px;
-  border: #333 1px solid;
-  border-radius: 5px;
-  display: block;
-  margin: 0 auto;
-  cursor: pointer;
-`;
-
-export const UserMenuLoginButtons = styled.button`
-  display: flex;
+export const CartGoToCheckout = styled(StandardFlexContainer)`
   flex-direction: row;
-  background-color: transparent;
-  border:none;
-  gap 2rem;
-`;
-
-export const UserMenuFuncButtons = styled(StandardFlexContainer)`
   width: 100%;
-  flex-direction: column;
-`;
-
-export const UserMenuFuncButton = styled(Button)`
-  width: 100%;
-  border-bottom: 2px solid ${Colors.dark};
-  flex-direction: row;
-  gap: 0.5rem;
+  justify-content: space-between;
+  // align-items: end;
+  // border: 2px solid red;
 `;

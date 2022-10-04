@@ -13,8 +13,8 @@ import {
   UserMenuContainer
 } from "./userMenu.styles";
 
-import { toggleUserMenu } from "store/generalPropReducer/generalProp.actions"; 
-import { useAppDispatch } from "../../types/hooks/hooks";
+import { toggleUserMenu } from "store/generalPropReducer/generalProp.actions";
+import { useAppDispatch } from "../../hooks/hooks";
 import React from "react";
 
 type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
@@ -24,7 +24,7 @@ type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
   target: T;
 };
 
-export const AuthModal = () => {
+export const UserMenuModal = () => {
   const dispatch = useAppDispatch();
 
   const userMenuOnClickHandler = (

@@ -8,6 +8,10 @@ export const selectCartItems = createSelector(
   (cart) => cart.cartItems
 );
 
+export const selectIsCartMenuOpened = createSelector(
+  [selectCartReducer],
+  (cartReducer) => cartReducer.isDropdownActive
+);
 
 export const selectCartTotal = createSelector([selectCartItems], (cartItems) =>
   cartItems.reduce(
