@@ -1,5 +1,5 @@
 import { selectCartCount } from "store/cartReducer/cart.selector";
-import { useAppSelector } from "types/hooks/hooks";
+import { useAppSelector } from "hooks/hooks";
 import { CartIconContainer, ItemCount, ShoppingIcon } from "./cart-icon.styles";
 
 const CartIcon = () => {

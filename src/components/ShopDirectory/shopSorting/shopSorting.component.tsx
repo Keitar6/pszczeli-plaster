@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "types/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "hooks/hooks";
 import { Icon } from "@iconify/react";
 
 import { Colors } from "global.styles";

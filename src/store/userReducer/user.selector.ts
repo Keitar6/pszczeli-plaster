@@ -8,11 +8,6 @@ export const selectCurrentUser = createSelector(
   (user) => user.currentUser
 );
 
-export const selectIsUserMenuOpened = createSelector(
-  [selectUserReducer],
-  (userReducer) => userReducer.isUserMenuOpened
-);
-
 export const selectSort = createSelector(
   [selectUserReducer],
   (userReducer) => userReducer.sort

@@ -4,7 +4,6 @@ import {
   setInputSorting,
   setPriceSorting,
   toggleSortingAscending,
-  toggleUserMenu
 } from "./user.actions";
 
 export type SortingTypes = {
@@ -31,7 +30,6 @@ export type UserState = {
   readonly currentUser: Record<string, unknown>;
   readonly isLoading: boolean;
   readonly error: Error | null;
-  readonly isUserMenuOpened: boolean;
   readonly sort: {
     sorType: string;
     inputSort: string;
@@ -43,7 +41,6 @@ const USER_INITIAL_STATE: UserState = {
   currentUser: {},
   isLoading: false,
   error: null,
-  isUserMenuOpened: false,
   sort: {
     sorType: "alphabetic",
     inputSort: "",
@@ -55,10 +52,7 @@ export const userReducer = (
   state = USER_INITIAL_STATE,
   action = {} as AnyAction
 ): UserState => {
-  if (toggleUserMenu.match(action)) {
-    return { ...state, isUserMenuOpened: !state.isUserMenuOpened };
-  }
-
+  
   if (toggleSortingAscending.match(action)) {
     return {
       ...state,

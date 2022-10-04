@@ -89,14 +89,26 @@ export const InputBar = styled(BaseButton)`
 export const UserMenuFuncButton = styled(BaseButton)`
   background-color: ${Colors.light};
   border: 1px solid ${Colors.dark};
+
   &:hover {
     background-color: ${Colors.dark};
-    color: ${Colors.white};
+    color: ${Colors.primary};
+    border: none;
+  }
+`;
+
+export const CartFuncButton = styled(BaseButton)`
+  background-color: ${Colors.light};
+  border: 1px solid ${Colors.dark};
+  &:hover {
+    background-color: ${Colors.dark};
+    color: ${Colors.primary};
     border: none;
   }
 `;
 
 export const ButtonSpiner = styled.div`
+
   display: inline-block;
   width: 30px;
   height: 30px;

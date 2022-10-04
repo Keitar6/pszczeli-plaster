@@ -7,7 +7,6 @@ import {
 
 import { USER_ACTION_TYPES } from "./user.types";
 
-export type ToggleUserMenu = Action<USER_ACTION_TYPES.TOGGLE_USER_MENU>;
 
 export type ToggleSortingAscending =
   Action<USER_ACTION_TYPES.TOGGLE_SORTING_ASCENDING>;
@@ -21,10 +20,6 @@ export type SetInputSorting = ActionWithPayload<
   USER_ACTION_TYPES.SET_SORTING_INPUT,
   string
 >;
-
-export const toggleUserMenu = withMatch(
-  (): ToggleUserMenu => actionCreator(USER_ACTION_TYPES.TOGGLE_USER_MENU)
-);
 
 export const toggleSortingAscending = withMatch(
   (): ToggleSortingAscending =>

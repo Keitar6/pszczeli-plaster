@@ -1,14 +1,14 @@
 import { H1 } from "global.styles";
 import { FC } from "react";
-import { refresh } from "reusableFunctions/refresh.function";
-import { Sorting } from "reusableFunctions/basicSorting.function";
+import { refresh } from "utils/reusableFunctions/refresh.function";
+import { Sorting } from "utils/reusableFunctions/basicSorting.function";
 
 import { selectPath } from "store/generalPropReducer/generalProp.selector";
 import {
   selectCategories,
   selectCategoriesMap
 } from "../../store/categories/category.selector";
-import { useAppSelector } from "../../types/hooks/hooks";
+import { useAppSelector } from "../../hooks/hooks";
 import { ProductCard } from "../productCard/productCard.component";
 
 import {
@@ -19,13 +19,12 @@ import {
   ShopDirectoryContentHeader,
   ShopMenuItem,
   ShopMenuItems
-
 } from "./shopDirectory.styles";
 
 import { selectSort } from "store/userReducer/user.selector";
 import { ShopSorting } from "./shopSorting/shopSorting.component";
 import { CategoryItem } from "store/categories/category.types";
-import { inputSorting } from "reusableFunctions/sortingWithInput.function";
+import { inputSorting } from "utils/reusableFunctions/sortingWithInput.function";
 
 const ShopDirectory: FC = () => {
   const categories = useAppSelector(selectCategories);
@@ -82,20 +81,17 @@ const ShopDirectory: FC = () => {
                 const { items } = category;
                 if (category.title === path) {
                   sortedItems = Sorting(items, sort);
-                  return sortedItems.map(
-                    ({ id, name, image, price }) => (
-                      <ProductCard
-                        key={id}
-                        id={id}
-                        name={name}
-                        image={image}
-                        price={price}
-                      />
-                    ),
-                    {}
-                  );
+                  return sortedItems.map(({ id, name, image, price }) => (
+                    <ProductCard
+                      key={id}
+                      id={id}
+                      name={name}
+                      image={image}
+                      price={price}
+                    />
+                  ));
                 }
-              }, {})
+              })
             : shopHPSorting().map(({ id, name, image, price }) => {
                 return (
                   <ProductCard
@@ -106,7 +102,7 @@ const ShopDirectory: FC = () => {
                     price={price}
                   />
                 );
-              }, {})}
+              })}
         </ProductCardsContainer>
       </ShopDirectoryContent>
     </ShopDirectoryContainer>
