@@ -1,12 +1,24 @@
+import { Colors } from "global.styles";
 import styled from "styled-components";
 
 export const CheckoutContainer = styled.div`
-  width: 55%;
-  min-height: 90vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: start;
+  justify-content: space-between;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  // border: 2px solid red;
+`;
+
+export const CheckoutSummaryContainer = styled.div`
+  width: 50%;
+  // min-height: 90vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin: 50px auto 0;
+  padding: 0 0 0 1rem;
+  border-left: 1px solid ${Colors.darkRGBA};
 `;
 
 export const CheckoutHeader = styled.div`
@@ -14,7 +26,7 @@ export const CheckoutHeader = styled.div`
   padding: 10px 0;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid darkgrey;
+  border-bottom: 1px solid ${Colors.dark};
 `;
 
 export const HeaderBlock = styled.div`

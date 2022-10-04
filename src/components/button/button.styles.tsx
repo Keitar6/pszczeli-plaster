@@ -103,7 +103,7 @@ export const CartFuncButton = styled(BaseButton)`
   &:hover {
     background-color: ${Colors.dark};
     color: ${Colors.primary};
-    border: none;
+    // border: none;
   }
 `;
 

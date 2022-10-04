@@ -18,7 +18,10 @@ import {
   selectCartTotal
 } from "store/cartReducer/cart.selector";
 import { CartCard } from "./cartCard/cartCard.component";
-import Button, { BUTTON_TYPE_CLASSES } from "components/button/button.component";
+import Button, {
+  BUTTON_TYPE_CLASSES
+} from "components/button/button.component";
+import { useNavigate } from "react-router-dom";
 
 type CartClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
   T,
@@ -31,6 +34,11 @@ export const CartModal = () => {
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector(selectCartItems);
   const cartTotal = useAppSelector(selectCartTotal);
+  const navigate = useNavigate();
+
+  const goToCheckoutHandler = () => {
+    navigate("/checkout");
+  };
 
   const cartClosingHandler = (
     event: CartClosingHandlerType<HTMLDivElement>
@@ -64,9 +72,11 @@ export const CartModal = () => {
             return <CartCard key={cartItem.id} cartItem={cartItem} />;
           })}
           <CartGoToCheckout>
-
-          <Button buttonType={BUTTON_TYPE_CLASSES.userMenuFuncButton}>{`Do kasy`}</Button>
-          <span>{`W sumie: ${cartTotal}$`}</span>
+            <Button
+              onClick={goToCheckoutHandler}
+              buttonType={BUTTON_TYPE_CLASSES.cartFuncButton}
+            >{`Do kasy`}</Button>
+            {`W sumie: ${cartTotal}$`}
           </CartGoToCheckout>
         </CartContainer>
       </Cart>

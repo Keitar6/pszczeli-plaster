@@ -2,6 +2,7 @@ import { useAppSelector } from "hooks/hooks";
 
 import {
   CheckoutContainer,
+  CheckoutSummaryContainer,
   CheckoutHeader,
   HeaderBlock,
   Total
@@ -11,45 +12,51 @@ import {
   selectCartTotal
 } from "store/cartReducer/cart.selector";
 import CheckoutItem from "components/checkoutItem/checkoutItem.component";
-import { Outlet } from "react-router-dom";
+import { H3 } from "global.styles";
 
 const CheckoutPage = () => {
   const cartItems = useAppSelector(selectCartItems);
   const totalCost = useAppSelector(selectCartTotal);
 
+  const checkoutHeaders = {
+    summary: "summary",
+    product: "Product",
+    description: "Description",
+    quantity: "Quantity",
+    price: "Product",
+    remove: "Remove",
+    formularz: "formularz"
+  };
+
   return (
     <CheckoutContainer>
-      <CheckoutHeader>
-        <HeaderBlock>
-          <span>Product</span>
-        </HeaderBlock>
+      <div className="CheckoutForm">
+        {`${checkoutHeaders.formularz.toUpperCase()}`}{" "}
+      </div>
 
-        <HeaderBlock>
-          <span>Description</span>
-        </HeaderBlock>
+      <CheckoutSummaryContainer>
+        <H3>{`${checkoutHeaders.summary.toUpperCase()}`}</H3>
+        <CheckoutHeader>
+          <HeaderBlock>{`${checkoutHeaders.product}`}</HeaderBlock>
 
-        <HeaderBlock>
-          <span>Quantity</span>
-        </HeaderBlock>
+          <HeaderBlock>{`${checkoutHeaders.description}`}</HeaderBlock>
 
-        <HeaderBlock>
-          <span>Price</span>
-        </HeaderBlock>
+          <HeaderBlock>{`${checkoutHeaders.quantity}`}</HeaderBlock>
 
-        <HeaderBlock>
-          <span>Remove</span>
-        </HeaderBlock>
-      </CheckoutHeader>
+          <HeaderBlock>{`${checkoutHeaders.price}`}</HeaderBlock>
 
-      {cartItems.map((currentItem) => (
-        <CheckoutItem
-          key={currentItem.id}
-          cartItem={currentItem}
-        ></CheckoutItem>
-      ))}
+          <HeaderBlock>{`${checkoutHeaders.remove}`}</HeaderBlock>
+        </CheckoutHeader>
 
-      <Total>{`Total: $${totalCost}`}</Total>
-      <Outlet />
+        {cartItems.map((currentItem) => (
+          <CheckoutItem
+            key={currentItem.id}
+            cartItem={currentItem}
+          ></CheckoutItem>
+        ))}
+
+        <Total>{`Total: $${totalCost}`}</Total>
+      </CheckoutSummaryContainer>
     </CheckoutContainer>
   );
 };

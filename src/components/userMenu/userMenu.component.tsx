@@ -16,6 +16,7 @@ import {
 import { toggleUserMenu } from "store/generalPropReducer/generalProp.actions";
 import { useAppDispatch } from "../../hooks/hooks";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
   T,
@@ -26,6 +27,7 @@ type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
 
 export const UserMenuModal = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const userMenuOnClickHandler = (
     event: UserMenuClosingHandlerType<HTMLDivElement>
@@ -33,6 +35,10 @@ export const UserMenuModal = () => {
     if (event.target.id === "UserMenuContainer") {
       dispatch(toggleUserMenu());
     }
+  };
+
+  const goToCheckoutHandler = () => {
+    navigate("/checkout");
   };
 
   return (
@@ -74,7 +80,10 @@ export const UserMenuModal = () => {
               />
               Historia Zamówień
             </UserMenuFuncButton>
-            <UserMenuFuncButton buttonType={BUTTON_TYPE_CLASSES.base}>
+            <UserMenuFuncButton
+              onClick={goToCheckoutHandler}
+              buttonType={BUTTON_TYPE_CLASSES.base}
+            >
               <Icon
                 icon="eva:shopping-cart-outline"
                 color="#ffb703"

@@ -13,7 +13,7 @@ import {
   Arrow,
   Value,
   Span,
-} from "./checkout-item.styles";
+} from "./checkoutItem.styles";
 
 type CheckoutItemProps = {
   cartItem: CartItem;
@@ -30,7 +30,8 @@ const CheckoutItem: FC<CheckoutItemProps> = ({ cartItem }) => {
 
   return (
     <CheckoutItemContainer>
-      {/* <Image src={image} alt={name} /> */}
+      <Image src={require(`../../assets/dataBaseImages/${image}`)}
+          alt={`Obraz: ${name}`} />
       <Span>{name}</Span>
       <Quantity>
         <Arrow onClick={removeItemHandler}>&#10094;</Arrow>
