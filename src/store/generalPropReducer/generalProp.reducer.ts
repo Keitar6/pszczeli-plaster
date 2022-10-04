@@ -1,5 +1,5 @@
 import type { AnyAction } from "redux";
-import { setPath } from "./generalProp.actions";
+import { setPath, toggleUserMenu } from "./generalProp.actions";
 import { PathType } from "./generalProp.types";
 
 export type GeneralPropsState = {
@@ -8,6 +8,7 @@ export type GeneralPropsState = {
     color: string;
   };
   path: PathType;
+  isUserMenuOpened: boolean
 };
 
 const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
@@ -15,13 +16,19 @@ const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
     type: "default",
     color: "#f06d06"
   },
-  path: ""
+  path: "",
+  isUserMenuOpened: false,
 };
 
 export const generalPropReducer = (
   state = GENERAL_PROPS_INITIAL_STATE,
   action={} as AnyAction
 ) => {
+
+  if (toggleUserMenu.match(action)) {
+    return { ...state, isUserMenuOpened: !state.isUserMenuOpened };
+  }
+
   if (setPath.match(action))
     return {
       ...state,

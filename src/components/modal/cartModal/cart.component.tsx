@@ -1,8 +1,8 @@
 import { Icon } from "@iconify/react";
-import { H2, TextLink } from "../../global.styles";
-import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import { H2, TextLink } from "../../../global.styles";
+import Button, { BUTTON_TYPE_CLASSES } from "../../button/button.component";
 
-import Modal from "../modal/modal.component";
+import Modal from "../modal.component";
 import {
   UserMenu,
   UserMenuLoginButtons,
@@ -11,10 +11,10 @@ import {
   UserMenuFuncButtons,
   UserMenuFuncButton,
   UserMenuContainer
-} from "./userMenu.styles";
+} from "./cart.styles";
 
-import { toggleUserMenu } from "store/generalPropReducer/generalProp.actions"; 
-import { useAppDispatch } from "../../types/hooks/hooks";
+import { toggleUserMenu } from "store/generalPropReducer/generalProp.actions";
+import { useAppDispatch } from "../../../types/hooks/hooks";
 import React from "react";
 
 type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
@@ -72,7 +72,7 @@ export const AuthModal = () => {
                 width="32"
                 height="32"
               />
-              Historia Zamówień
+              Historia zamówień
             </UserMenuFuncButton>
             <UserMenuFuncButton buttonType={BUTTON_TYPE_CLASSES.base}>
               <Icon
@@ -81,7 +81,7 @@ export const AuthModal = () => {
                 width="32"
                 height="32"
               />
-              Podsumowanie
+              Koszyk
             </UserMenuFuncButton>
             <UserMenuFuncButton buttonType={BUTTON_TYPE_CLASSES.base}>
               <Icon

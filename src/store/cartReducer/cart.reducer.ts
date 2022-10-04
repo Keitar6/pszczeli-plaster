@@ -4,10 +4,12 @@ import type { CartItem } from "./cart.types";
 
 export type CartState = {
   readonly cartItems: CartItem[];
+  readonly isDropdownActive: boolean;
 };
 
 const CART_INITIAL_STATE: CartState = {
-  cartItems: []
+  cartItems: [],
+  isDropdownActive: false
 };
 
 export const cartReducer = (

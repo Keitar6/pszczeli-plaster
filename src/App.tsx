@@ -4,8 +4,9 @@ import Spinner from "./components/spinner/spinner.component";
 import { GlobalStyle } from "./global.styles";
 import { AuthModal } from "./components/userMenu/userMenu.component";
 import { useAppSelector } from "./types/hooks/hooks";
-import { selectIsUserMenuOpened } from "./store/userReducer/user.selector";
-import { NaviPath } from "./components/ShopDirectory/shopNavi/naviPath.component";
+import { selectIsUserMenuOpened } from "store/generalPropReducer/generalProp.selector";
+import { NaviPath } from "./components/shopDirectory/shopNavi/naviPath.component";
+import { CartPage } from "routes/cart/CartPage.route";
 
 const Navigation = lazy(() => import("./routes/navigation/navigation.route"));
 const Home = lazy(() => import("./routes/home/homePage.route"));
@@ -28,6 +29,7 @@ function App() {
               <Route index element={<Shop />} />
               <Route path="/shop/:id" element={<Shop />} />
             </Route>
+            <Route path="cart" element={<CartPage />} />
             <Route path="checkout" element={<Checkout />} />
           </Route>
         </Routes>

@@ -16,8 +16,8 @@ import {
 
 import { Footer } from "../../components/footer/footer.component";
 
-import { toggleUserMenu } from "../../store/userReducer/user.actions";
-import { selectIsUserMenuOpened } from "../../store/userReducer/user.selector";
+import { toggleUserMenu } from "store/generalPropReducer/generalProp.actions";
+import { selectIsUserMenuOpened } from "store/generalPropReducer/generalProp.selector";
 import { InputBar } from "../../components/inputBar/inputBar.component";
 
 import { refresh } from "reusableFunctions/refresh.function";
@@ -37,7 +37,7 @@ const Navigation = () => {
         </Logo>
         <BrandName>Pszczeli Plaster</BrandName>
         <IconsContainer>
-          <InputBar whereTo='shop'/>
+          <InputBar whereTo="shop" />
           <CartIcon />
           <HamburgerIcon
             label="Show user menu"

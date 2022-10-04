@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Colors, StandardFlexContainer } from "../../global.styles";
-import Button from "../button/button.component";
+import { Colors, StandardFlexContainer } from "../../../global.styles";
+import Button from "../../button/button.component";
 
 export const UserMenu = styled.div`
   background-color: rgba(0, 0, 0, 0.9);
@@ -9,7 +9,7 @@ export const UserMenu = styled.div`
   right: 0;
   bottom: 0;
   top: 0;
-  z-index: 52;
+  z-index: 51;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,9 +39,8 @@ export const UserMenuLogoContainer = styled(StandardFlexContainer)`
 export const UserMenuLogoText = styled(StandardFlexContainer)`
   flex-direction: column;
   // border: 2px solid red;
-  align-items:start
+  align-items: start;
 `;
-
 
 export const UserMenuLinks = styled.a`
   display: inline-block;

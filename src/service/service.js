@@ -1,4 +1,4 @@
-const axios = require("axios");
+import axios from "axios";
 // const categoryTemplate = {
 //   dobraNazwa: {
 //     title: "TEŚCIOR",
@@ -34,7 +34,6 @@ export const readCategories = async (category) => {
   const url = `http://localhost:3000/${category}`;
   try {
     const data = await axios.get(url).then((response) => {
-      console.log(response.data);
       return response.data;
     });
     return data;
