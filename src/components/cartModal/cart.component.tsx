@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
-import { H2 } from "../../../global.styles";
+import { H2 } from "../../global.styles";
 
-import Modal from "../modal.component";
+import Modal from "../modal/modal.component";
 import {
   Cart,
   CartLogoContainer,
@@ -10,7 +10,7 @@ import {
   CartGoToCheckout
 } from "./cart.styles";
 
-import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import React from "react";
 import { toggleCartMenu } from "store/cartReducer/cart.actions";
 import {

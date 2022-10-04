@@ -18,16 +18,13 @@ export const CartCard = ({ cartItem }: CartItemProps) => {
   return (
     <CartItemContainer>
       <Image
-        src={require(`../../../../assets/dataBaseImages/${image}`)}
+        src={require(`../../../assets/dataBaseImages/${image}`)}
         alt={`Obraz: ${name}`}
       />
       <ItemDetails>
         <Name>{name}</Name>
-        <Price >{`${quantity} x ${price} = ${
-          quantity * price
-        }$`}</Price>
+        <Price>{`${quantity} x ${price} = ${quantity * price}$`}</Price>
       </ItemDetails>
-      
     </CartItemContainer>
   );
 };

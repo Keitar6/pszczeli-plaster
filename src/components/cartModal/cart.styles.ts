@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { Colors, StandardFlexContainer } from "../../../global.styles";
+import { Colors, StandardFlexContainer } from "../../global.styles";
 
 const slideIn = keyframes`
 {

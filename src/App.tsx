@@ -5,9 +5,9 @@ import { GlobalStyle } from "./global.styles";
 import { UserMenuModal } from "./components/userMenu/userMenu.component";
 import { useAppSelector } from "./hooks/hooks";
 import { selectIsUserMenuOpened } from "store/generalPropReducer/generalProp.selector";
-import { NaviPath } from "./components/shopDirectory/shopNavi/naviPath.component";
 import { selectIsCartMenuOpened } from "store/cartReducer/cart.selector";
-import { CartModal } from "components/modal/cartModal/cart.component";
+import { CartModal } from "components/cartModal/cart.component";
+import { NaviPath } from "components/shopDirectory/shopNavi/NaviPath.component";
 
 const Navigation = lazy(() => import("./routes/navigation/navigation.route"));
 const Home = lazy(() => import("./routes/home/homePage.route"));

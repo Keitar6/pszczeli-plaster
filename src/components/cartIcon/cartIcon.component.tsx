@@ -1,6 +1,6 @@
 import { selectCartCount } from "store/cartReducer/cart.selector";
 import { useAppSelector } from "hooks/hooks";
-import { CartIconContainer, ItemCount, ShoppingIcon } from "./cart-icon.styles";
+import { CartIconContainer, ItemCount, ShoppingIcon } from "./cartIcon.styles";
 
 const CartIcon = () => {
   const quantity= useAppSelector(selectCartCount)

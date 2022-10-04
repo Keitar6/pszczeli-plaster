@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { Fragment } from "react";
 import { useAppDispatch } from "../../hooks/hooks";
 
-import CartIcon from "../../components/cart-icon/cart-icon.component";
+import CartIcon from "../../components/cartIcon/cartIcon.component";
 import { Icon } from "@iconify/react";
 import {
   BrandName,
