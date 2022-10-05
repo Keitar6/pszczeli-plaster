@@ -13,6 +13,7 @@ const Navigation = lazy(() => import("./routes/navigation/navigation.route"));
 const Home = lazy(() => import("./routes/home/homePage.route"));
 const Shop = lazy(() => import("./routes/shopPage/shopPage.route"));
 const CheckoutPage = lazy(() => import("./routes/checkout/checkoutPage.route"));
+const OrdersPage = lazy(() => import("./routes/orders/ordersPage.route"));
 
 function App() {
   const isUserMenuOpened = useAppSelector(selectIsUserMenuOpened);
@@ -36,6 +37,7 @@ function App() {
               <Route path="/shop/:id" element={<Shop />} />
             </Route>
             <Route path="checkout" element={<CheckoutPage />} />
+            <Route path="orders" element={<OrdersPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

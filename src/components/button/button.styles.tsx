@@ -50,6 +50,23 @@ export const LoginButton = styled(BaseButton)`
     border: none;
   }
 `;
+
+export const LoginCheckout = styled(BaseButton)`
+  background-color: ${Colors.dark};
+  color: ${Colors.primary};
+  border: none;
+  padding: 0.3rem 0;
+  margin-bottom: 0.5rem;
+  border-radius: 0.6rem;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.75));
+
+  &:hover {
+    background-color: ${Colors.primary};
+    color: ${Colors.dark};
+    border: none;
+  }
+`;
+
 export const InvertedButton = styled(LoginButton)`
   background-color: ${Colors.dark};
   color: ${Colors.primary};
@@ -60,6 +77,7 @@ export const InvertedButton = styled(LoginButton)`
     color: ${Colors.dark};
   }
 `;
+
 export const ProductCard = styled(LoginButton)`
   background-color: ${Colors.darkRGBA};
   color: ${Colors.primary};
@@ -103,12 +121,11 @@ export const CartFuncButton = styled(BaseButton)`
   &:hover {
     background-color: ${Colors.dark};
     color: ${Colors.primary};
-    border: none;
+    // border: none;
   }
 `;
 
 export const ButtonSpiner = styled.div`
-
   display: inline-block;
   width: 30px;
   height: 30px;
