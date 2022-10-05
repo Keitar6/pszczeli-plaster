@@ -6,7 +6,9 @@ import {
   CheckoutHeader,
   HeaderBlock,
   Total,
-  CheckoutFormContainer
+  CheckoutFormContainer,
+  FormTitle,
+  SummaryTitle
 } from "./checkoutPage.styles";
 import {
   selectCartItems,
@@ -34,12 +36,13 @@ const CheckoutPage = () => {
   return (
     <CheckoutContainer>
       <CheckoutFormContainer>
-        <H3> {`${checkoutHeaders.formularz.toUpperCase()}`} </H3>
+        <FormTitle>{`${checkoutHeaders.formularz.toUpperCase()}`}</FormTitle>
+
         <CheckoutForm />
-      </CheckoutFormContainer>
+      </CheckoutFormContainer>  
 
       <CheckoutSummaryContainer>
-        <H3>{`${checkoutHeaders.summary.toUpperCase()}`}</H3>
+        <SummaryTitle>{`${checkoutHeaders.summary.toUpperCase()}`}</SummaryTitle>
         <CheckoutHeader>
           <HeaderBlock>{`${checkoutHeaders.product}`}</HeaderBlock>
 
