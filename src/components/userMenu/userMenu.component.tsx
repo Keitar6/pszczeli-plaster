@@ -41,6 +41,10 @@ export const UserMenuModal = () => {
     navigate("/checkout");
   };
 
+  const goToOrdersHandler = () => {
+    navigate("/orders");
+  };
+
   return (
     <Modal>
       <UserMenu
@@ -71,7 +75,10 @@ export const UserMenuModal = () => {
             </Button>
           </UserMenuLoginButtons>
           <UserMenuFuncButtons>
-            <UserMenuFuncButton buttonType={BUTTON_TYPE_CLASSES.base}>
+            <UserMenuFuncButton
+              onClick={goToOrdersHandler}
+              buttonType={BUTTON_TYPE_CLASSES.base}
+            >
               <Icon
                 icon="icon-park-outline:history-query"
                 color="#ffb703"
