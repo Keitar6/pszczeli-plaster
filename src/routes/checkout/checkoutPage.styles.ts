@@ -31,10 +31,10 @@ export const CheckoutHeader = styled.div`
 
 export const HeaderBlock = styled.div`
 text-transform: capitalize;
-width: 23%;
+width: 25%;
 
 &:last-child {
-	width: 8%;
+	width: 10%;
 	`;
 
 export const Total = styled("footer")`
@@ -42,4 +42,9 @@ export const Total = styled("footer")`
   margin-top: 30px;
   margin-left: auto;
   font-size: 32px;
+`;
+export const CheckoutFormContainer = styled.div`
+  // border: 2px solid red;
+  width: 35%;
+  padding:0 1rem 0 0;
 `;

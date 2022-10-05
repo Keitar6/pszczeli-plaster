@@ -9,7 +9,8 @@ import {
   InputBar,
   ProductCard,
   SortingTypes,
-  CartFuncButton
+  CartFuncButton,
+  LoginCheckout
 } from "./button.styles";
 
 export enum BUTTON_TYPE_CLASSES {
@@ -18,6 +19,7 @@ export enum BUTTON_TYPE_CLASSES {
   inverted = "inverted",
   userMenuFuncButton = "userMenuFuncButton",
   login = "LoginButton",
+  loginCheckout="LoginCheckout",
   InputBar = "InputBar",
   productCard = "ProductCard",
   cartFuncButton = "CartFuncButton",
@@ -34,6 +36,7 @@ const getButton = (buttonType = BUTTON_TYPE_CLASSES.base): typeof BaseButton =>
     [BUTTON_TYPE_CLASSES.base]: BaseButton,
     [BUTTON_TYPE_CLASSES.google]: GoogleSignInButton,
     [BUTTON_TYPE_CLASSES.login]: LoginButton,
+    [BUTTON_TYPE_CLASSES.loginCheckout]: LoginCheckout,
     [BUTTON_TYPE_CLASSES.inverted]: InvertedButton,
     [BUTTON_TYPE_CLASSES.userMenuFuncButton]: UserMenuFuncButton,
     [BUTTON_TYPE_CLASSES.InputBar]: InputBar,

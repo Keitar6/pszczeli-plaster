@@ -5,7 +5,8 @@ import {
   CheckoutSummaryContainer,
   CheckoutHeader,
   HeaderBlock,
-  Total
+  Total,
+  CheckoutFormContainer
 } from "./checkoutPage.styles";
 import {
   selectCartItems,
@@ -13,26 +14,29 @@ import {
 } from "store/cartReducer/cart.selector";
 import CheckoutItem from "components/checkoutItem/checkoutItem.component";
 import { H3 } from "global.styles";
+import { CheckoutForm } from "components/checkoutForm/checkoutForm.component";
 
 const CheckoutPage = () => {
   const cartItems = useAppSelector(selectCartItems);
   const totalCost = useAppSelector(selectCartTotal);
 
   const checkoutHeaders = {
-    summary: "summary",
-    product: "Product",
-    description: "Description",
-    quantity: "Quantity",
-    price: "Product",
-    remove: "Remove",
-    formularz: "formularz"
+    summary: "podsumowanie",
+    product: "produkt",
+    description: "Opis",
+    quantity: "Ilość",
+    price: "Cena",
+    remove: "Usuń",
+    formularz: "formularz",
+    wSumie: "W sumie"
   };
 
   return (
     <CheckoutContainer>
-      <div className="CheckoutForm">
-        {`${checkoutHeaders.formularz.toUpperCase()}`}{" "}
-      </div>
+      <CheckoutFormContainer>
+        <H3> {`${checkoutHeaders.formularz.toUpperCase()}`} </H3>
+        <CheckoutForm />
+      </CheckoutFormContainer>
 
       <CheckoutSummaryContainer>
         <H3>{`${checkoutHeaders.summary.toUpperCase()}`}</H3>
@@ -55,7 +59,7 @@ const CheckoutPage = () => {
           ></CheckoutItem>
         ))}
 
-        <Total>{`Total: $${totalCost}`}</Total>
+        <Total>{`${checkoutHeaders.wSumie}: $${totalCost}`}</Total>
       </CheckoutSummaryContainer>
     </CheckoutContainer>
   );
