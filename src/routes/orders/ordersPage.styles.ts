@@ -14,7 +14,7 @@ export const OrdersContainer = styled.div`
 
 export const OrdersContent = styled.div`
   display: flex;
-  width: 50%;
+  width: 60%;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;

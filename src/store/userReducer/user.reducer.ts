@@ -1,6 +1,7 @@
 import type { AnyAction } from "redux";
 import { CartItem } from "store/cartReducer/cart.types";
 import {
+  setOrderHistory,
   setAlphabeticSorting,
   setInputSorting,
   setPriceSorting,
@@ -27,16 +28,18 @@ export type SortType = {
   ascending: boolean;
 };
 
-export type OrderItem = {
-  id: string;
-  name: string;
+export type DeliveryData = {
+  [key: string]: string | boolean;
 };
+
+export type OrderItem = CartItem
 
 export type Order = {
   id: string;
-  description: string;
+  time: string;
   price: number;
   itemsBought: OrderItem[];
+  deliveryData: DeliveryData;
 };
 
 export type UserState = {
@@ -104,6 +107,13 @@ export const userReducer = (
         ...state.sort,
         inputSort: action.payload
       }
+    };
+  }
+
+  if (setOrderHistory.match(action)) {
+    return {
+      ...state,
+      orderHistory: action.payload
     };
   }
 

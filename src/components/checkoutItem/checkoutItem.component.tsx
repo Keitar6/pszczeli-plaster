@@ -19,7 +19,7 @@ type CheckoutItemProps = {
   cartItem: CartItem;
 };
 
-const CheckoutItem: FC<CheckoutItemProps> = ({ cartItem }) => {
+export const CheckoutItem: FC<CheckoutItemProps> = ({ cartItem }) => {
   const dispatch = useDispatch();
   const { name, quantity, price, image } = cartItem;
   const cartItems = useSelector(selectCartItems);
@@ -48,4 +48,4 @@ const CheckoutItem: FC<CheckoutItemProps> = ({ cartItem }) => {
     </CheckoutItemContainer>
   );
 };
-export default CheckoutItem;
+

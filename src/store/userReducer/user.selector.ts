@@ -12,3 +12,8 @@ export const selectSort = createSelector(
   [selectUserReducer],
   (userReducer) => userReducer.sort
 );
+
+export const selectOrderHistory = createSelector(
+  [selectUserReducer],
+  (userReducer) => userReducer.orderHistory
+);

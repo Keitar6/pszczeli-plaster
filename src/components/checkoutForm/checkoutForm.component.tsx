@@ -1,18 +1,42 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-
 import Button, {
   BUTTON_TYPE_CLASSES
 } from "components/button/button.component";
+import { useAppDispatch, useAppSelector } from "hooks/hooks";
 
 import { useForm } from "react-hook-form";
-import { FormButton, FormButtons } from "./checkoutForm.styles";
+import { setCartItems } from "store/cartReducer/cart.actions";
+import {
+  selectCartItems,
+  selectCartTotal
+} from "store/cartReducer/cart.selector";
+import { setOrderHistory } from "store/userReducer/user.actions";
+import { DeliveryData } from "store/userReducer/user.reducer";
+import { selectOrderHistory } from "store/userReducer/user.selector";
+import { generateId } from "utils/reusableFunctions/generateId.function";
+import { getCurrentTime } from "utils/reusableFunctions/getTime.function";
+import { orderCreator } from "utils/store/orderCreator.utils";
+import {
+  FormButton,
+  FormButtons,
+  NonValidFormInput
+} from "./checkoutForm.styles";
 
 export const CheckoutForm = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
+  const dispatch = useAppDispatch();
+  const orderHistory = useAppSelector(selectOrderHistory);
+  const totalPrice = useAppSelector(selectCartTotal);
+  const cartItems = useAppSelector(selectCartItems);
+  const orderId = generateId(8);
 
-  const formData = {
+  const formData: DeliveryData = {
     name: "name",
     lastName: "lastName",
+    email: "email",
     deliveryMethod: "deliveryMethod",
     city: "city",
     homeAdress: "homeAdress",
@@ -20,7 +44,18 @@ export const CheckoutForm = () => {
     street: "street",
     zip: "zip",
     payMethod: "payMethod",
-    subscription: "subscription"
+    terms: "terms"
+  };
+
+  const addToOrderHistoryHandler = (formData: DeliveryData) => {
+    dispatch(
+      setOrderHistory(
+        orderHistory,
+        orderCreator(orderId, getCurrentTime(), totalPrice, cartItems, formData)
+      )
+    );
+
+    dispatch(setCartItems([]));
   };
 
   return (
@@ -39,188 +74,200 @@ export const CheckoutForm = () => {
       </FormButtons>
 
       <form
-        onSubmit={handleSubmit((data) => {
-          console.log(data);
-        })}
+        onSubmit={handleSubmit((formData) =>
+          addToOrderHistoryHandler(formData)
+        )}
         className="was-validated align-items-center"
       >
-        <div className="form-group row my-3 ">
-          <div className="form-group col-md-6 mt-2">
-            <label htmlFor={`${formData.name}`} className="form-label">
-              Imie
-            </label>
+        <div>
+          <div>
+            <label htmlFor={`${formData.name}`}>Imie</label>
             <input
               type="text"
-              className="form-control"
               id={`${formData.name}`}
               placeholder="Imie"
-              {...register(`${formData.name}`)}
-              required
+              {...register(`${formData.name}`, {
+                required: true,
+                minLength: 8
+              })}
             />
-            <div className="valid-feedback"></div>
-            <div className="invalid-feedback"></div>
+            {errors.name && (
+              <NonValidFormInput>Sprawdź proszę wpisane imie</NonValidFormInput>
+            )}
           </div>
-          <div className="form-group col-md-6 mt-2">
-            <label htmlFor={`${formData.lastName}`} className="form-label">
-              Nazwisko
-            </label>
+          <div>
+            <label htmlFor={`${formData.lastName}`}>Nazwisko</label>
             <input
               type="text"
-              className="form-control"
               id={`${formData.lastName}`}
               placeholder="Nazwisko"
-              {...register(`${formData.lastName}`)}
-              required
+              {...register(`${formData.lastName}`, {
+                required: true,
+                pattern: /^[A-Za-z]+$/i
+              })}
             />
-            <div className="valid-feedback"></div>
-            <div className="invalid-feedback"></div>
+            {errors.lastName && (
+              <NonValidFormInput>
+                Sprawdź proszę wpisane nazwisko{" "}
+              </NonValidFormInput>
+            )}
           </div>
-        </div>
-        <div className="form-group mt-2">
-          <label htmlFor={`${formData.street}`} className="form-label">
-            Ulica
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id={`${formData.street}`}
-            placeholder="Ul. nazwa"
-            {...register(`${formData.street}`)}
-            required
-          />
-          <div className="valid-feedback"></div>
-          <div className="invalid-feedback"></div>
-        </div>
-        <div className="form-group my-3">
-          <label htmlFor={`${formData.homeAdress}`} className="form-label">
-            Numer domu
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id={`${formData.homeAdress}`}
-            placeholder="Nr klatki, nr mieszkania / domu"
-            {...register(`${formData.homeAdress}`)}
-            required
-          />
-          <div className="valid-feedback"></div>
-          <div className="invalid-feedback"></div>
-        </div>
-        <div className="form-group row my-3">
-          <div className="form-group col-md-4">
-            <label htmlFor={`${formData.city}`} className="form-label">
-              Miasto
-            </label>
+          <div>
+            <label htmlFor={`${formData.email}`}>Email</label>
             <input
               type="text"
-              className="form-control"
-              id={`${formData.city}`}
-              {...register(`${formData.city}`)}
-              required
+              id={`${formData.email}`}
+              placeholder="Email"
+              {...register(`${formData.email}`, {
+                required: true,
+                pattern:
+                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+              })}
             />
-            <div className="valid-feedback"></div>
-            <div className="invalid-feedback"></div>
+            {errors.email && (
+              <NonValidFormInput>
+                Sprawdź proszę wpisany email
+              </NonValidFormInput>
+            )}
           </div>
-          <div className="form-group col-md-4">
-            <label htmlFor={`${formData.state}`} className="form-label">
-              Województwo
-            </label>
+        </div>
+        <div>
+          <label htmlFor={`${formData.street}`}>Ulica</label>
+          <input
+            type="text"
+            id={`${formData.street}`}
+            placeholder="Ul. nazwa"
+            {...register(`${formData.street}`, {
+              required: true,
+              minLength: 1
+            })}
+          />
+          {errors.street && (
+            <NonValidFormInput>Sprawdź proszę wpisaną ulicę </NonValidFormInput>
+          )}
+        </div>
+        <div className="form-group my-3">
+          <label htmlFor={`${formData.homeAdress}`}>Numer domu</label>
+          <input
+            type="text"
+            id={`${formData.homeAdress}`}
+            placeholder="Nr klatki, nr mieszkania / domu"
+            {...register(`${formData.homeAdress}`, {
+              required: true,
+              minLength: 1
+            })}
+          />
+          {errors.homeAdress && (
+            <NonValidFormInput>
+              Sprawdź proszę wpisany adres domowy{" "}
+            </NonValidFormInput>
+          )}
+        </div>
+        <div>
+          <div>
+            <label htmlFor={`${formData.city}`}>Miasto</label>
+            <input
+              type="text"
+              id={`${formData.city}`}
+              {...register(`${formData.city}`, {
+                required: true,
+                minLength: 1
+              })}
+            />
+            {errors.city && (
+              <NonValidFormInput>
+                Sprawdź proszę wpisane miasto{" "}
+              </NonValidFormInput>
+            )}
+          </div>
+          <div>
+            <label htmlFor={`${formData.state}`}>Województwo</label>
             <select
               id={`${formData.state}`}
-              className="form-control"
               defaultValue={"..."}
               {...register(`${formData.state}`)}
-              required
             >
               <option></option>
               <option>Dolnośląskie</option>
               <option>Mazowieckie</option>
               <option>Opolskie</option>
             </select>
-            <div className="valid-feedback"></div>
-            <div className="invalid-feedback"></div>
+            {errors.state && (
+              <NonValidFormInput>Wybierz proszę województwo </NonValidFormInput>
+            )}
           </div>
-          <div className="form-group col-md-4">
-            <label htmlFor={`${formData.zip}`} className="form-label">
-              Kod pocztowy
-            </label>
+          <div>
+            <label htmlFor={`${formData.zip}`}>Kod pocztowy</label>
             <input
               type="text"
-              className="form-control"
               id={`${formData.zip}`}
-              {...register(`${formData.zip}`)}
-              required
+              {...register(`${formData.zip}`, {
+                required: true,
+                minLength: 1
+              })}
             />
-            <div className="valid-feedback"></div>
-            <div className="invalid-feedback"></div>
+            {errors.zip && (
+              <NonValidFormInput>
+                Sprawdź proszę kod pocztowy{" "}
+              </NonValidFormInput>
+            )}
           </div>
         </div>
-        <div className="form-group row px-auto ">
-          <div className="form-group col-sm-6">
-            <label
-              htmlFor={`${formData.deliveryMethod}`}
-              className="form-label"
-            >
-              Opcje dostawy
-            </label>
+        <div>
+          <div>
+            <label htmlFor={`${formData.deliveryMethod}`}>Opcje dostawy</label>
             <select
               id={`${formData.deliveryMethod}`}
-              className="form-control"
               defaultValue={"..."}
-              {...register(`${formData.deliveryMethod}`)}
-              required
+              {...register(`${formData.deliveryMethod}`, { required: true })}
             >
-              <option></option>
+              <option disabled>...</option>
               <option>Poczta Polska</option>
               <option>Kurier DHL</option>
               <option>Kurier Inpost</option>
               <option>Kurier FedEx</option>
             </select>
-            <div className="valid-feedback"></div>
-            <div className="invalid-feedback"></div>
+            {errors.deliveryMethod && (
+              <NonValidFormInput>
+                Wybierz proszę sposób dostawy{" "}
+              </NonValidFormInput>
+            )}
           </div>
-          <div className="form-group col-sm-6">
-            <label htmlFor={`${formData.payMethod}`} className="form-label">
-              Opcje płatności
-            </label>
+          <div>
+            <label htmlFor={`${formData.payMethod}`}>Opcje płatności</label>
             <select
               id={`${formData.payMethod}`}
-              className="form-control"
               defaultValue={"..."}
-              {...register(`${formData.payMethod}`)}
-              required
+              {...register(`${formData.payMethod}`, { required: true })}
             >
               <option></option>
               <option>Blik</option>
               <option>Za pobraniem</option>
               <option>Przelew tradycyjny</option>
             </select>
-            <div className="valid-feedback"></div>
-            <div className="invalid-feedback"></div>
+            {errors.payMethod && (
+              <NonValidFormInput>
+                Wybierz proszę metodę płatności{" "}
+              </NonValidFormInput>
+            )}
           </div>
         </div>
-        <div className="form-group my-3">
-          <div className="form-check">
-            <label
-              className="form-check-label"
-              htmlFor={`${formData.subscription}`}
-            >
-              Zgadzam się na warunki
+        <div>
+          <div>
+            <label htmlFor={`${formData.terms}`}>
+              <input
+                type="checkbox"
+                id={`${formData.terms}`}
+                {...register(`${formData.terms}`, { required: true })}
+              />
+              {errors.terms && (
+                <NonValidFormInput>Wymagana jest zgoda </NonValidFormInput>
+              )}
+              Zgadzam się na warunki i zasady
             </label>
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id={`${formData.subscription}`}
-              {...register(`${formData.subscription}`)}
-              required
-            />
-            <div className="valid-feedback"></div>
-            <div className="invalid-feedback">
-              Aby dokonać zakupu musisz zgodzić się na obowiązujące warunki
-            </div>
           </div>
         </div>
-        <div className="form-group row mx-auto">
+        <div>
           <Button
             id="submitFormButton"
             type="submit"

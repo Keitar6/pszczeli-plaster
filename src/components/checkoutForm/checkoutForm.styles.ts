@@ -5,12 +5,18 @@ export const FormButtons = styled(StandardFlexContainer)`
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-//   border: 2px solid red;
+  //   border: 2px solid red;
   width: 100%;
 `;
 
 export const FormButton = styled(StandardFlexContainer)`
-//   border: 2px solid red;
+  //   border: 2px solid red;
   align-items: space-between;
   justify-content: center;
+`;
+
+export const NonValidFormInput = styled.p`
+  // border: 2px solid red;
+  font-size: 0.5rem;
+  color: red;
 `;

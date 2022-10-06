@@ -7,16 +7,17 @@ import {
   OrdersTitle,
   OrdersContent
 } from "./ordersPage.styles";
-import { selectCartItems } from "store/cartReducer/cart.selector";
-import CheckoutItem from "components/checkoutItem/checkoutItem.component";
+
+import { selectOrderHistory } from "store/userReducer/user.selector";
+import { OrderItem } from "components/orderItem/orderItem.component";
 
 const OrdersPage = () => {
-  const cartItems = useAppSelector(selectCartItems);
+  const ordersHistory = useAppSelector(selectOrderHistory);
 
   const ordersHeaders = {
     title: "zamówienia",
     id: "#id",
-    description: "Opis",
+    date: "Data",
     price: "Kwota"
   };
 
@@ -27,17 +28,19 @@ const OrdersPage = () => {
         <OrdersHeader>
           <HeaderBlock>{`${ordersHeaders.id}`}</HeaderBlock>
 
-          <HeaderBlock>{`${ordersHeaders.description}`}</HeaderBlock>
-
+          <HeaderBlock>{`${ordersHeaders.date}`}</HeaderBlock>
 
           <HeaderBlock>{`${ordersHeaders.price}`}</HeaderBlock>
         </OrdersHeader>
-        {cartItems.map((currentItem) => (
-          <CheckoutItem
-            key={currentItem.id}
-            cartItem={currentItem}
-          ></CheckoutItem>
-        ))}
+        {ordersHistory
+          ? ordersHistory.map((currentOrder) => (
+              // <div key={currentOrder.id}>AAAA</div>
+              <OrderItem
+                key={currentOrder.id}
+                orderItem={currentOrder}
+              ></OrderItem>
+            ))
+          : null}
       </OrdersContent>
     </OrdersContainer>
   );
