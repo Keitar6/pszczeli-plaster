@@ -1,9 +1,10 @@
 import type { AnyAction } from "redux";
+import { CartItem } from "store/cartReducer/cart.types";
 import {
   setAlphabeticSorting,
   setInputSorting,
   setPriceSorting,
-  toggleSortingAscending,
+  toggleSortingAscending
 } from "./user.actions";
 
 export type SortingTypes = {
@@ -26,6 +27,18 @@ export type SortType = {
   ascending: boolean;
 };
 
+export type OrderItem = {
+  id: string;
+  name: string;
+};
+
+export type Order = {
+  id: string;
+  description: string;
+  price: number;
+  itemsBought: OrderItem[];
+};
+
 export type UserState = {
   readonly currentUser: Record<string, unknown>;
   readonly isLoading: boolean;
@@ -35,6 +48,7 @@ export type UserState = {
     inputSort: string;
     ascending: boolean;
   };
+  readonly orderHistory: Order[];
 };
 
 const USER_INITIAL_STATE: UserState = {
@@ -45,14 +59,14 @@ const USER_INITIAL_STATE: UserState = {
     sorType: "alphabetic",
     inputSort: "",
     ascending: true
-  }
+  },
+  orderHistory: []
 };
 
 export const userReducer = (
   state = USER_INITIAL_STATE,
   action = {} as AnyAction
 ): UserState => {
-  
   if (toggleSortingAscending.match(action)) {
     return {
       ...state,

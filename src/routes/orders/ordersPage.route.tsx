@@ -15,9 +15,8 @@ const OrdersPage = () => {
 
   const ordersHeaders = {
     title: "zamówienia",
-    id: "produkt",
+    id: "#id",
     description: "Opis",
-    quantity: "Ilość",
     price: "Kwota"
   };
 
@@ -30,7 +29,6 @@ const OrdersPage = () => {
 
           <HeaderBlock>{`${ordersHeaders.description}`}</HeaderBlock>
 
-          <HeaderBlock>{`${ordersHeaders.quantity}`}</HeaderBlock>
 
           <HeaderBlock>{`${ordersHeaders.price}`}</HeaderBlock>
         </OrdersHeader>

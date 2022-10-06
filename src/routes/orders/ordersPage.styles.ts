@@ -47,6 +47,7 @@ export const OrdersTitle = styled(H3)`
 
   border-image-source: linear-gradient(
     to left,
+    ${Colors.dark},
     ${Colors.primary},
     ${Colors.dark}
   );
