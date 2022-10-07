@@ -34,13 +34,6 @@ export const ShopDirectoryContentHeader = styled.div`
   }
 `;
 
-export const ProductCardsContainer = styled(StandardFlexContainer)`
-  // border: 1px solid blue;
-  width: 100%;
-  flex-direction: row;
-  gap: 0.5rem;
-`;
-
 export const ShopMenuContainer = styled.div`
   border-right: 1px solid ${Colors.darkRGBA};
   display: flex;

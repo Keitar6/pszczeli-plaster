@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
 import { ReduxState } from "../rootReducer.redux";
 import { CategoriesState } from "./category.reducer";
-import { CategoryMap } from "./category.types";
+import { CategoryItem, CategoryMap } from "./category.types";
 
 const selectCategoryReducer = (state: ReduxState): CategoriesState =>
   state.categoriesReducer;
@@ -24,5 +24,17 @@ export const selectCategoriesMap = createSelector(
       acc[title.toLowerCase()] = items;
       return acc;
     }, {} as CategoryMap);
+  }
+);
+
+export const selectAllItemsMap = createSelector(
+  [selectCategoriesMap],
+  (categoriesMap): CategoryItem[] => {
+    const tempAllItems: CategoryItem[] = [];
+    Object.values(categoriesMap).map((value) => {
+      tempAllItems.push(...value);
+    }, [] as CategoryItem[]);
+
+    return tempAllItems;
   }
 );

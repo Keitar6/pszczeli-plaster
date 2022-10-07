@@ -1,4 +1,4 @@
-import { useAppSelector } from "hooks/hooks";
+import { useAppDispatch, useAppSelector } from "hooks/hooks";
 
 import {
   OrdersContainer,
@@ -10,9 +10,20 @@ import {
 
 import { selectOrderHistory } from "store/userReducer/user.selector";
 import { OrderItem } from "components/orderItem/orderItem.component";
+import { selectViewLimiter } from "store/generalPropReducer/generalProp.selector";
+import Button, {
+  BUTTON_TYPE_CLASSES
+} from "components/button/button.component";
+import {
+  incrementViewLimiter,
+  resetViewLimiter
+} from "store/generalPropReducer/generalProp.actions";
+import { useEffect } from "react";
 
 const OrdersPage = () => {
+  const dispatch = useAppDispatch();
   const ordersHistory = useAppSelector(selectOrderHistory);
+  const viewLimiter = useAppSelector(selectViewLimiter);
 
   const ordersHeaders = {
     title: "zamówienia",
@@ -20,6 +31,15 @@ const OrdersPage = () => {
     date: "Data",
     price: "Kwota"
   };
+
+  const moreHistoryHandler = () => {
+    dispatch(incrementViewLimiter(viewLimiter, 0));
+  };
+
+  useEffect(() => {
+    console.log(ordersHistory);
+    dispatch(resetViewLimiter());
+  }, []);
 
   return (
     <OrdersContainer>
@@ -32,16 +52,25 @@ const OrdersPage = () => {
 
           <HeaderBlock>{`${ordersHeaders.price}`}</HeaderBlock>
         </OrdersHeader>
+        
         {ordersHistory
-          ? ordersHistory.map((currentOrder) => (
-              // <div key={currentOrder.id}>AAAA</div>
-              <OrderItem
-                key={currentOrder.id}
-                orderItem={currentOrder}
-              ></OrderItem>
-            ))
+            ? ordersHistory.map((currentOrder) => {
+console.log(ordersHistory)
+                return <OrderItem
+                  key={currentOrder.id}
+                  orderItem={currentOrder}
+                ></OrderItem>}
+              )
           : null}
       </OrdersContent>
+      {ordersHistory.length > viewLimiter && (
+        <Button
+          onClick={moreHistoryHandler}
+          buttonType={BUTTON_TYPE_CLASSES.base}
+        >
+          Więcej zamówień...
+        </Button>
+      )}
     </OrdersContainer>
   );
 };

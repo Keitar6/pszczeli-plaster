@@ -1,47 +1,55 @@
 import { H1 } from "global.styles";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { refresh } from "utils/reusableFunctions/refresh.function";
-import { Sorting } from "utils/reusableFunctions/basicSorting.function";
 
-import { selectPath } from "store/generalPropReducer/generalProp.selector";
 import {
+  selectPath,
+  selectViewLimiter
+} from "store/generalPropReducer/generalProp.selector";
+import {
+  selectAllItemsMap,
   selectCategories,
   selectCategoriesMap
 } from "../../store/categories/category.selector";
-import { useAppSelector } from "../../hooks/hooks";
-import { ProductCard } from "../productCard/productCard.component";
-
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import {
   ShopMenuContainer,
   ShopDirectoryContainer,
   ShopDirectoryContent,
-  ProductCardsContainer,
   ShopDirectoryContentHeader,
   ShopMenuItem,
   ShopMenuItems
 } from "./shopDirectory.styles";
 
-import { selectSort } from "store/userReducer/user.selector";
 import { ShopSorting } from "./shopSorting/shopSorting.component";
-import { CategoryItem } from "store/categories/category.types";
-import { inputSorting } from "utils/reusableFunctions/sortingWithInput.function";
+
+import {
+  incrementViewLimiter,
+  resetViewLimiter
+} from "store/generalPropReducer/generalProp.actions";
+import Button, {
+  BUTTON_TYPE_CLASSES
+} from "components/button/button.component";
+import { ProductCardsContainer } from "components/productCards/productCards.component";
 
 const ShopDirectory: FC = () => {
   const categories = useAppSelector(selectCategories);
-  const sort = useAppSelector(selectSort);
-  const path = useAppSelector(selectPath);
   const categoriesMap = useAppSelector(selectCategoriesMap);
+  const path = useAppSelector(selectPath);
+  const allItemsMap = useAppSelector(selectAllItemsMap);
+  const viewLimiter = useAppSelector(selectViewLimiter);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(resetViewLimiter());
+  }, [path]);
+
+  const moreProductsHandler = () => {
+    dispatch(incrementViewLimiter(viewLimiter, 1));
+  };
 
   const ItemOnClickHandler = (categoryPath: string) => {
     refresh(categoryPath);
-  };
-
-  const shopHPSorting = () => {
-    const tempAllItems: CategoryItem[] = [];
-    Object.values(categoriesMap).map((value) => {
-      tempAllItems.push(...value);
-    }, []);
-    return inputSorting(tempAllItems, sort, true);
   };
 
   return (
@@ -70,40 +78,27 @@ const ShopDirectory: FC = () => {
       <ShopDirectoryContent>
         <ShopDirectoryContentHeader>
           <H1>{path}</H1>
-
           <ShopSorting />
         </ShopDirectoryContentHeader>
+        <ProductCardsContainer />
 
-        <ProductCardsContainer>
-          {path !== "shop"
-            ? categories.map((category) => {
-                let sortedItems: CategoryItem[] = [];
-                const { items } = category;
-                if (category.title === path) {
-                  sortedItems = Sorting(items, sort);
-                  return sortedItems.map(({ id, name, image, price }) => (
-                    <ProductCard
-                      key={id}
-                      id={id}
-                      name={name}
-                      image={image}
-                      price={price}
-                    />
-                  ));
-                }
-              })
-            : shopHPSorting().map(({ id, name, image, price }) => {
-                return (
-                  <ProductCard
-                    key={id}
-                    id={id}
-                    name={name}
-                    image={image}
-                    price={price}
-                  />
-                );
-              })}
-        </ProductCardsContainer>
+        {path === "shop"
+          ? allItemsMap.length > viewLimiter && (
+              <Button
+                onClick={moreProductsHandler}
+                buttonType={BUTTON_TYPE_CLASSES.base}
+              >
+                Więcej produktów
+              </Button>
+            )
+          : categoriesMap[path.toLowerCase()].length > viewLimiter && (
+              <Button
+                onClick={moreProductsHandler}
+                buttonType={BUTTON_TYPE_CLASSES.base}
+              >
+                Więcej produktów
+              </Button>
+            )}
       </ShopDirectoryContent>
     </ShopDirectoryContainer>
   );

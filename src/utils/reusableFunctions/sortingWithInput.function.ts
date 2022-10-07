@@ -60,8 +60,6 @@ export const inputSorting = (
 ) => {
   const { ascending, sorType } = sortType;
   let sortedArray = items;
-  console.log("InputSorting START");
-  console.log(sortedArray);
 
   sortedArray.sort((a, b) => {
     if (ascending) return comparingUP(a, b, sorType as string);
@@ -74,7 +72,5 @@ export const inputSorting = (
       return a.name.includes(sortType.inputSort) ? 1 : 0;
     });
 
-  console.log("InputSorting FINISH");
-  console.log(sortedArray);
   return sortedArray;
 };
