@@ -14,8 +14,8 @@ import {
   selectCartItems,
   selectCartTotal
 } from "store/cartReducer/cart.selector";
-import CheckoutItem from "components/checkoutItem/checkoutItem.component";
-import { H3 } from "global.styles";
+import { CheckoutItem } from "components/checkoutItem/checkoutItem.component";
+
 import { CheckoutForm } from "components/checkoutForm/checkoutForm.component";
 
 const CheckoutPage = () => {
@@ -39,7 +39,7 @@ const CheckoutPage = () => {
         <FormTitle>{`${checkoutHeaders.formularz.toUpperCase()}`}</FormTitle>
 
         <CheckoutForm />
-      </CheckoutFormContainer>  
+      </CheckoutFormContainer>
 
       <CheckoutSummaryContainer>
         <SummaryTitle>{`${checkoutHeaders.summary.toUpperCase()}`}</SummaryTitle>

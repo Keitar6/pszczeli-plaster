@@ -18,3 +18,8 @@ export const selectPath = createSelector(
   [selectGeneralPropReducer],
   (state) => state.path
 );
+
+export const selectViewLimiter = createSelector(
+  [selectGeneralPropReducer],
+  (state) => state.viewLimiter
+);

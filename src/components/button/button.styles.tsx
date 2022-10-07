@@ -6,6 +6,7 @@ export const BaseButton = styled.button`
   width: auto;
   letter-spacing: 0.5px;
   padding: 1rem 3rem;
+  margin: 0.5rem 0;
   font-size: ${Typhography.fontSizes.H6};
   background-color: ${Colors.light};
   font-family: "Open Sans Condensed";

@@ -14,7 +14,7 @@ export const OrdersContainer = styled.div`
 
 export const OrdersContent = styled.div`
   display: flex;
-  width: 50%;
+  width: 100%;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
@@ -34,12 +34,12 @@ export const OrdersHeader = styled.div`
 `;
 
 export const HeaderBlock = styled.div`
-text-transform: capitalize;
-width: 25%;
-
-&:last-child {
-	width: 10%;
-	`;
+  text-transform: capitalize;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+`;
 
 export const OrdersTitle = styled(H3)`
   border-bottom: 2px solid;
@@ -47,6 +47,7 @@ export const OrdersTitle = styled(H3)`
 
   border-image-source: linear-gradient(
     to left,
+    ${Colors.dark},
     ${Colors.primary},
     ${Colors.dark}
   );

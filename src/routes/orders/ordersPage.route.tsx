@@ -1,4 +1,4 @@
-import { useAppSelector } from "hooks/hooks";
+import { useAppDispatch, useAppSelector } from "hooks/hooks";
 
 import {
   OrdersContainer,
@@ -7,19 +7,41 @@ import {
   OrdersTitle,
   OrdersContent
 } from "./ordersPage.styles";
-import { selectCartItems } from "store/cartReducer/cart.selector";
-import CheckoutItem from "components/checkoutItem/checkoutItem.component";
+
+import { selectOrderHistory } from "store/userReducer/user.selector";
+import { OrderItem } from "components/orderItem/orderItem.component";
+import { selectViewLimiter } from "store/generalPropReducer/generalProp.selector";
+import Button, {
+  BUTTON_TYPE_CLASSES
+} from "components/button/button.component";
+import {
+  incrementViewLimiter,
+  resetViewLimiter
+} from "store/generalPropReducer/generalProp.actions";
+import { useEffect } from "react";
 
 const OrdersPage = () => {
-  const cartItems = useAppSelector(selectCartItems);
+  const dispatch = useAppDispatch();
+  const ordersHistory = useAppSelector(selectOrderHistory);
+  const viewLimiter = useAppSelector(selectViewLimiter);
+  const tempOrdersHistory = [...ordersHistory].splice(0, viewLimiter);
 
   const ordersHeaders = {
     title: "zamówienia",
-    id: "produkt",
-    description: "Opis",
-    quantity: "Ilość",
+    id: "#id",
+    date: "Data",
     price: "Kwota"
   };
+
+  const moreHistoryHandler = () => {
+    dispatch(incrementViewLimiter(viewLimiter, 1));
+  };
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetViewLimiter());
+    };
+  }, []);
 
   return (
     <OrdersContainer>
@@ -28,19 +50,30 @@ const OrdersPage = () => {
         <OrdersHeader>
           <HeaderBlock>{`${ordersHeaders.id}`}</HeaderBlock>
 
-          <HeaderBlock>{`${ordersHeaders.description}`}</HeaderBlock>
-
-          <HeaderBlock>{`${ordersHeaders.quantity}`}</HeaderBlock>
+          <HeaderBlock>{`${ordersHeaders.date}`}</HeaderBlock>
 
           <HeaderBlock>{`${ordersHeaders.price}`}</HeaderBlock>
         </OrdersHeader>
-        {cartItems.map((currentItem) => (
-          <CheckoutItem
-            key={currentItem.id}
-            cartItem={currentItem}
-          ></CheckoutItem>
-        ))}
+
+        {tempOrdersHistory
+          ? tempOrdersHistory.map((currentOrder) => {
+              return (
+                <OrderItem
+                  key={currentOrder.id}
+                  orderItem={currentOrder}
+                ></OrderItem>
+              );
+            })
+          : null}
       </OrdersContent>
+      {ordersHistory.length > viewLimiter && (
+        <Button
+          onClick={moreHistoryHandler}
+          buttonType={BUTTON_TYPE_CLASSES.base}
+        >
+          Więcej zamówień...
+        </Button>
+      )}
     </OrdersContainer>
   );
 };
