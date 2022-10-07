@@ -43,6 +43,7 @@ export const ProductCardDescription = styled.div`
   border-top: 0.2rem solid ${Colors.primary};
   width: 100%;
   padding: 0.5rem 0.5rem;
+  cursor: pointer;
 `;
 
 export const ProductCardName = styled(StandardFlexContainer)``;

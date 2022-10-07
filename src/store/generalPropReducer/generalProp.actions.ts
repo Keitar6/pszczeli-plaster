@@ -14,6 +14,9 @@ export type SetPathType = ActionWithPayload<
 export type ToggleUserMenu =
   Action<GENERAL_PROPS_ACTION_TYPES.TOGGLE_USER_MENU>;
 
+export type ToggleProductCard =
+  Action<GENERAL_PROPS_ACTION_TYPES.TOGGLE_PRODUCT_CARD_MENU>;
+
 export type SetViewLimiter = ActionWithPayload<
   GENERAL_PROPS_ACTION_TYPES.SET_VIEW_LIMITER,
   number
@@ -22,6 +25,11 @@ export type SetViewLimiter = ActionWithPayload<
 export const toggleUserMenu = withMatch(
   (): ToggleUserMenu =>
     actionCreator(GENERAL_PROPS_ACTION_TYPES.TOGGLE_USER_MENU)
+);
+
+export const toggleProductCard = withMatch(
+  (): ToggleProductCard =>
+    actionCreator(GENERAL_PROPS_ACTION_TYPES.TOGGLE_PRODUCT_CARD_MENU)
 );
 
 export const setPath = withMatch(

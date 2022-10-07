@@ -1,5 +1,10 @@
 import type { AnyAction } from "redux";
-import { setPath, setViewLimiter, toggleUserMenu } from "./generalProp.actions";
+import {
+  setPath,
+  setViewLimiter,
+  toggleProductCard,
+  toggleUserMenu
+} from "./generalProp.actions";
 import { PathType } from "./generalProp.types";
 
 export type GeneralPropsState = {
@@ -9,6 +14,7 @@ export type GeneralPropsState = {
   };
   path: PathType;
   isUserMenuOpened: boolean;
+  isProductCardOpened: boolean;
   viewLimiter: number;
 };
 
@@ -19,6 +25,7 @@ const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
   },
   path: "shop",
   isUserMenuOpened: false,
+  isProductCardOpened: false,
   viewLimiter: 2
 };
 
@@ -28,6 +35,10 @@ export const generalPropReducer = (
 ): GeneralPropsState => {
   if (toggleUserMenu.match(action)) {
     return { ...state, isUserMenuOpened: !state.isUserMenuOpened };
+  }
+
+  if (toggleProductCard.match(action)) {
+    return { ...state, isProductCardOpened: !state.isProductCardOpened };
   }
 
   if (setPath.match(action))

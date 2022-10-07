@@ -9,6 +9,11 @@ export const selectIsUserMenuOpened = createSelector(
   (userReducer) => userReducer.isUserMenuOpened
 );
 
+export const selectIsProductCardOpened = createSelector(
+  [selectGeneralPropReducer],
+  (userReducer) => userReducer.isProductCardOpened
+);
+
 export const selectTheme = createSelector(
   [selectGeneralPropReducer],
   (state) => state.theme

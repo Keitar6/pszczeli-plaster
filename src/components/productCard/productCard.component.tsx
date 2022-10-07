@@ -11,6 +11,8 @@ import {
   ProductCardName,
   ProductCardImageContainer
 } from "./productCard.styles";
+import { selectIsProductCardOpened } from "store/generalPropReducer/generalProp.selector";
+import { toggleProductCard } from "store/generalPropReducer/generalProp.actions";
 
 type ProductCardProps = CategoryItem;
 export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
@@ -18,12 +20,17 @@ export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
 ) => {
   const { id, name, dodatki, image, price } = category;
 
+  const isProductCardOpened = useAppSelector(selectIsProductCardOpened);
   const cartItems = useAppSelector(selectCartItems);
   const dispatch = useAppDispatch();
 
   const addProductHandler = () => {
     const productToAdd = { id, dodatki, image, name, price };
     dispatch(addItemToCart(cartItems, productToAdd));
+  };
+
+  const productDetailsHandler = () => {
+    dispatch(toggleProductCard());
   };
 
   return (
@@ -41,7 +48,7 @@ export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
         </Button>
       </ProductCardImageContainer>
 
-      <ProductCardDescription>
+      <ProductCardDescription onClick={productDetailsHandler}>
         <ProductCardName>{`${name}`}</ProductCardName>
         <ProductCardPrice>{`$${price}`}</ProductCardPrice>
       </ProductCardDescription>
