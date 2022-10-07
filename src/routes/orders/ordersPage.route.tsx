@@ -24,6 +24,7 @@ const OrdersPage = () => {
   const dispatch = useAppDispatch();
   const ordersHistory = useAppSelector(selectOrderHistory);
   const viewLimiter = useAppSelector(selectViewLimiter);
+  const tempOrdersHistory = [...ordersHistory].splice(0, viewLimiter);
 
   const ordersHeaders = {
     title: "zamówienia",
@@ -33,12 +34,13 @@ const OrdersPage = () => {
   };
 
   const moreHistoryHandler = () => {
-    dispatch(incrementViewLimiter(viewLimiter, 0));
+    dispatch(incrementViewLimiter(viewLimiter, 1));
   };
 
   useEffect(() => {
-    console.log(ordersHistory);
-    dispatch(resetViewLimiter());
+    return () => {
+      dispatch(resetViewLimiter());
+    };
   }, []);
 
   return (
@@ -52,15 +54,16 @@ const OrdersPage = () => {
 
           <HeaderBlock>{`${ordersHeaders.price}`}</HeaderBlock>
         </OrdersHeader>
-        
-        {ordersHistory
-            ? ordersHistory.map((currentOrder) => {
-console.log(ordersHistory)
-                return <OrderItem
+
+        {tempOrdersHistory
+          ? tempOrdersHistory.map((currentOrder) => {
+              return (
+                <OrderItem
                   key={currentOrder.id}
                   orderItem={currentOrder}
-                ></OrderItem>}
-              )
+                ></OrderItem>
+              );
+            })
           : null}
       </OrdersContent>
       {ordersHistory.length > viewLimiter && (

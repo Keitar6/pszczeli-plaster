@@ -40,7 +40,6 @@ export const CheckoutForm = () => {
     deliveryMethod: "deliveryMethod",
     city: "city",
     homeAdress: "homeAdress",
-    state: "state",
     street: "street",
     zip: "zip",
     payMethod: "payMethod",
@@ -88,7 +87,7 @@ export const CheckoutForm = () => {
               placeholder="Imie"
               {...register(`${formData.name}`, {
                 required: true,
-                minLength: 8
+                minLength: 2
               })}
             />
             {errors.name && (
@@ -180,22 +179,7 @@ export const CheckoutForm = () => {
               </NonValidFormInput>
             )}
           </div>
-          <div>
-            <label htmlFor={`${formData.state}`}>Województwo</label>
-            <select
-              id={`${formData.state}`}
-              defaultValue={"..."}
-              {...register(`${formData.state}`)}
-            >
-              <option></option>
-              <option>Dolnośląskie</option>
-              <option>Mazowieckie</option>
-              <option>Opolskie</option>
-            </select>
-            {errors.state && (
-              <NonValidFormInput>Wybierz proszę województwo </NonValidFormInput>
-            )}
-          </div>
+
           <div>
             <label htmlFor={`${formData.zip}`}>Kod pocztowy</label>
             <input
@@ -221,7 +205,7 @@ export const CheckoutForm = () => {
               defaultValue={"..."}
               {...register(`${formData.deliveryMethod}`, { required: true })}
             >
-              <option disabled>...</option>
+              <option></option>
               <option>Poczta Polska</option>
               <option>Kurier DHL</option>
               <option>Kurier Inpost</option>

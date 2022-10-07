@@ -41,7 +41,9 @@ const ShopDirectory: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(resetViewLimiter());
+    return () => {
+      dispatch(resetViewLimiter());
+    };
   }, [path]);
 
   const moreProductsHandler = () => {
