@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import { addItemToCart } from "store/cartReducer/cart.actions";
 import { selectCartItems } from "store/cartReducer/cart.selector";
 import { CategoryItem } from "store/categories/category.types";
@@ -29,7 +29,10 @@ export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
     dispatch(addItemToCart(cartItems, productToAdd));
   };
 
-  const productDetailsHandler = () => {
+  const productDetailsHandler = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    console.log(event.target);
     dispatch(toggleProductCard());
   };
 
@@ -48,8 +51,10 @@ export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
         </Button>
       </ProductCardImageContainer>
 
-      <ProductCardDescription onClick={productDetailsHandler}>
-        <ProductCardName>{`${name}`}</ProductCardName>
+      <ProductCardDescription>
+        <ProductCardName
+          onClick={(event) => productDetailsHandler(event)}
+        >{`${name}`}</ProductCardName>
         <ProductCardPrice>{`$${price}`}</ProductCardPrice>
       </ProductCardDescription>
     </ProductCardComponent>

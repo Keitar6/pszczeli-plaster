@@ -23,6 +23,7 @@ export enum Colors {
   dark = "#023047",
   darkRGBA = "#0230473e",
   light = "#faeff0",
+  lightBlue = "#54b3d6",
   white = "#FFFFFF",
   googleButtonBCKG = "#4285f4",
   googleButtonHover = "#357ae8"
@@ -82,7 +83,24 @@ export const StandardFlexContainer = styled.div`
 
 export const TextLink = styled.div`
   cursor: pointer;
-  &:hover {
-    text-decoration: underline;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    background-color: #18272f;
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
   }
 `;

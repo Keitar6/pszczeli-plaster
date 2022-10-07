@@ -12,7 +12,8 @@ import {
 
 import { toggleProductCard } from "store/generalPropReducer/generalProp.actions";
 import { useAppDispatch } from "../../hooks/hooks";
-import React from "react";
+import React, { FC } from "react";
+import { CartItem } from "store/cartReducer/cart.types";
 
 type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
   T,
@@ -20,8 +21,8 @@ type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
 > & {
   target: T;
 };
-
-export const ProductDetailsModal = () => {
+// {name,image,price}CartItem
+export const ProductDetailsModal: FC = () => {
   const dispatch = useAppDispatch();
 
   const userMenuOnClickHandler = (
@@ -54,8 +55,6 @@ export const ProductDetailsModal = () => {
               <H2>Przedstawiam (nazwa produktu)</H2>
             </UserMenuLogoText>
           </UserMenuLogoContainer>
-
-          
         </UserMenuContainer>
       </UserMenu>
     </Modal>

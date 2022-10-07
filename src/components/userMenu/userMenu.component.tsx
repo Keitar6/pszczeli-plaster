@@ -15,7 +15,6 @@ import {
 
 import { toggleUserMenu } from "store/generalPropReducer/generalProp.actions";
 import { useAppDispatch } from "../../hooks/hooks";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
 type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
