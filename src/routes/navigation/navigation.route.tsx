@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
-import { Fragment } from "react";
 import { useAppDispatch } from "../../hooks/hooks";
 
 import CartIcon from "../../components/cartIcon/cartIcon.component";
@@ -11,7 +10,8 @@ import {
   Logo,
   NavigationContainer,
   HamburgerIcon,
-  naviIcons
+  naviIcons,
+  StructurizeComponent
 } from "./navigation.styles";
 
 import { Footer } from "../../components/footer/footer.component";
@@ -33,7 +33,7 @@ const Navigation = () => {
   const cartDropdownHandler = () => dispatch(toggleCartMenu());
 
   return (
-    <>
+    <StructurizeComponent>
       <NavigationContainer>
         <Logo to="/" onClick={logoClickHandler}>
           <Icon icon={naviIcons.honeyBee} width="42" height="42" />
@@ -54,7 +54,7 @@ const Navigation = () => {
       </NavigationContainer>
       <Outlet />
       <Footer />
-    </>
+    </StructurizeComponent>
   );
 };
 export default Navigation;
