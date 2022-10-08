@@ -12,7 +12,7 @@ import {
   selectPath,
   selectViewLimiter
 } from "store/generalPropReducer/generalProp.selector";
-import { ProductCards } from "./productCards.styles";
+import { ProductCards, ProductCardsContent } from "./productCards.styles";
 
 export const ProductCardsContainer = () => {
   const categories = useAppSelector(selectCategories);
@@ -31,34 +31,36 @@ export const ProductCardsContainer = () => {
     return Sorting(tempItemsMapp.splice(0, viewLimiter), sort);
   };
   return (
-    <ProductCards>
-      {path !== "shop"
-        ? categories.map((category) => {
-            if (category.title === path) {
-              return categoriesSorting(category.items).map(
-                ({ id, name, image, price }) => (
-                  <ProductCard
-                    key={id}
-                    id={id}
-                    name={name}
-                    image={image}
-                    price={price}
-                  />
-                )
+    <ProductCardsContent>
+      <ProductCards>
+        {path !== "sklep"
+          ? categories.map((category) => {
+              if (category.title === path) {
+                return categoriesSorting(category.items).map(
+                  ({ id, name, image, price }) => (
+                    <ProductCard
+                      key={id}
+                      id={id}
+                      name={name}
+                      image={image}
+                      price={price}
+                    />
+                  )
+                );
+              }
+            })
+          : shopHPSorting().map(({ id, name, image, price }) => {
+              return (
+                <ProductCard
+                  key={id}
+                  id={id}
+                  name={name}
+                  image={image}
+                  price={price}
+                />
               );
-            }
-          })
-        : shopHPSorting().map(({ id, name, image, price }) => {
-            return (
-              <ProductCard
-                key={id}
-                id={id}
-                name={name}
-                image={image}
-                price={price}
-              />
-            );
-          })}
-    </ProductCards>
+            })}
+      </ProductCards>
+    </ProductCardsContent>
   );
 };

@@ -37,12 +37,12 @@ export const UserMenuModal = () => {
   };
 
   const goToCheckoutHandler = () => {
-    navigate("/checkout");
+    navigate("/podsumowanie");
     dispatch(toggleUserMenu())
   };
 
   const goToOrdersHandler = () => {
-    navigate("/orders");
+    navigate("/historiaZamówień");
     dispatch(toggleUserMenu())
   };
 

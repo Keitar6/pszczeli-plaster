@@ -23,7 +23,7 @@ const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
     type: "default",
     color: "#f06d06"
   },
-  path: "shop",
+  path: "sklep",
   isUserMenuOpened: false,
   isProductCardOpened: false,
   viewLimiter: 2

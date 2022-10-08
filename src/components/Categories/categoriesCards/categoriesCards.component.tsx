@@ -19,7 +19,7 @@ export const CategoryCard: FC<PropsWithChildren<CategoryCardProps>> = ({
   const path = title;
   const navigate = useNavigate();
   const CategoriesCardOnClickHandler = () => {
-    navigate(`/shop/${path}`);
+    navigate(`/sklep/${path}`);
   };
 
   return (

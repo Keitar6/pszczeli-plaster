@@ -40,7 +40,7 @@ const Navigation = () => {
         </Logo>
         <BrandName>Pszczeli Plaster</BrandName>
         <IconsContainer>
-          <InputBar whereTo="shop" />
+          <InputBar whereTo="sklep" />
           <div onClick={cartDropdownHandler} onKeyDown={cartDropdownHandler} role="presentation">
             <CartIcon />
           </div>

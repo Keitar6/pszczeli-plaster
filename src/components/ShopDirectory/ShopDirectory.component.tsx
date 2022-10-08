@@ -67,8 +67,8 @@ const ShopDirectory: FC = () => {
             return (
               <li key={title}>
                 <ShopMenuItem
-                  to={`/shop/${title}`}
-                  onClick={() => ItemOnClickHandler(`shop/${title}`)}
+                  to={`/sklep/${title}`}
+                  onClick={() => ItemOnClickHandler(`sklep/${title}`)}
                 >
                   {title}
                 </ShopMenuItem>
@@ -84,7 +84,7 @@ const ShopDirectory: FC = () => {
         </ShopDirectoryContentHeader>
         <ProductCardsContainer />
 
-        {path === "shop"
+        {path === "sklep"
           ? allItemsMap.length > viewLimiter && (
               <Button
                 onClick={moreProductsHandler}

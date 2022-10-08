@@ -6,7 +6,6 @@ export const BaseButton = styled.button`
   width: auto;
   letter-spacing: 0.5px;
   padding: 1rem 3rem;
-  margin: 0.5rem 0;
   font-size: ${Typhography.fontSizes.H6};
   background-color: ${Colors.light};
   font-family: "Open Sans Condensed";
@@ -53,17 +52,16 @@ export const LoginButton = styled(BaseButton)`
 `;
 
 export const LoginCheckout = styled(BaseButton)`
-  background-color: ${Colors.dark};
-  color: ${Colors.primary};
+  background-color: ${Colors.primary};
+  color: ${Colors.dark};
   border: none;
-  padding: 0.3rem 0;
-  margin-bottom: 0.5rem;
+  padding: 0.5r 0;
   border-radius: 0.6rem;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.75));
 
   &:hover {
-    background-color: ${Colors.primary};
-    color: ${Colors.dark};
+    background-color: ${Colors.dark};
+    color: ${Colors.primary};
     border: none;
   }
 `;
@@ -98,7 +96,7 @@ export const InputBar = styled(BaseButton)`
   color: ${Colors.primary};
   border-radius: 0 0.6rem 0.6rem 0;
   padding: 0.5rem 1rem;
-
+  height: 2rem;
   &:hover {
     color: ${Colors.light};
     border: none;

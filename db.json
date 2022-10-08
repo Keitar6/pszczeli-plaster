@@ -52,13 +52,13 @@
       ]
     },
     {
-      "title": "Bio",
+      "title": "Bio produkty",
       "icon": "ri:plant-fill",
       "image": "ProduktyPszczele/PylekPszczeli.jpg",
       "items": []
     },
     {
-      "title": "Giftcards",
+      "title": "Karty podarunkowe",
       "icon": "ic:baseline-card-giftcard",
       "image": "ProduktyPszczele/PylekPszczeli.jpg",
       "items": []
