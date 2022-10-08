@@ -7,8 +7,7 @@ export const CheckoutContainer = styled.div`
   flex-wrap: nowrap;
   align-items: start;
   justify-content: space-around;
-  margin: 2rem auto;
-  padding: 0 2rem;
+  padding: 2rem 2rem;
   // border: 2px solid red;
 `;
 
@@ -63,7 +62,7 @@ export const FormTitle = styled(H3)`
   );
   padding-bottom: 0.5rem;
   position: relative;
-  
+
   &::before {
     content: "";
     position: absolute;
