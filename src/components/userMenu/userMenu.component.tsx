@@ -38,10 +38,12 @@ export const UserMenuModal = () => {
 
   const goToCheckoutHandler = () => {
     navigate("/checkout");
+    dispatch(toggleUserMenu())
   };
 
   const goToOrdersHandler = () => {
     navigate("/orders");
+    dispatch(toggleUserMenu())
   };
 
   return (
