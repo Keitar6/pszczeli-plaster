@@ -1,6 +1,7 @@
 export type CategoryItem = {
   id: string;
   name: string;
+  weight?: number;
   price: number;
   image: string;
   dodatki?: boolean;

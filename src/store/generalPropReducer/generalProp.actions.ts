@@ -20,7 +20,10 @@ export type ToggleProductCard =
 
 export type SetProductCard = ActionWithPayload<
   GENERAL_PROPS_ACTION_TYPES.SET_CURRENT_PRODUCT_CARD,
-  CategoryItem
+  {
+    isProductCardOpened: boolean;
+    currentProductCard: CategoryItem;
+  }
 >;
 
 export type SetViewLimiter = ActionWithPayload<
@@ -40,19 +43,17 @@ export const toggleProductCard = withMatch(
 
 export const setProductCard = withMatch(
   (productCard: CategoryItem): SetProductCard =>
-    actionCreator(
-      GENERAL_PROPS_ACTION_TYPES.SET_CURRENT_PRODUCT_CARD,
-      productCard
-    )
+    actionCreator(GENERAL_PROPS_ACTION_TYPES.SET_CURRENT_PRODUCT_CARD, {
+      isProductCardOpened: true,
+      currentProductCard: productCard
+    })
 );
 
-export const findDesiredProductCardByName = withMatch(
+export const showProductCardDetails = withMatch(
   (allItemsMap: CategoryItem[], productCardName: string): SetProductCard => {
     const temp = allItemsMap.find(
       (product) => product.name === productCardName
     );
-    console.log(temp);
-
     return setProductCard(temp as CategoryItem);
   }
 );

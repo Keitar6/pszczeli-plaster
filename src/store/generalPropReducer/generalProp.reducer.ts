@@ -2,6 +2,7 @@ import type { AnyAction } from "redux";
 import { CategoryItem } from "store/categories/category.types";
 import {
   setPath,
+  setProductCard,
   setViewLimiter,
   toggleProductCard,
   toggleUserMenu
@@ -57,6 +58,13 @@ export const generalPropReducer = (
         ...state.productCardModal,
         isProductCardOpened: !state.productCardModal.isProductCardOpened
       }
+    };
+  }
+
+  if (setProductCard.match(action)) {
+    return {
+      ...state,
+      productCardModal: action.payload
     };
   }
 

@@ -1,7 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-export const homePath = "http://localhost:3005/";
-
 export const Typhography = {
   fontType: '"Tapestry", "Dancing Script", cursive',
   fontSizes: {

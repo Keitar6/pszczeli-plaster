@@ -9,18 +9,18 @@ export const selectIsUserMenuOpened = createSelector(
   (generalPropReducer) => generalPropReducer.isUserMenuOpened
 );
 
-export const selectProductCardOpened = createSelector(
+export const selectProductCardModal = createSelector(
   [selectGeneralPropReducer],
   (generalPropReducer) => generalPropReducer.productCardModal
 );
 
 export const selectIsProductCardOpened = createSelector(
-  [selectProductCardOpened],
+  [selectProductCardModal],
   (productCardOpened) => productCardOpened.isProductCardOpened
 );
 
 export const selectCurrentProductCard = createSelector(
-  [selectProductCardOpened],
+  [selectProductCardModal],
   (productCardOpened) => productCardOpened.currentProductCard
 );
 

@@ -11,8 +11,8 @@ import {
   ProductCardName,
   ProductCardImageContainer
 } from "./productCard.styles";
-import { selectIsProductCardOpened } from "store/generalPropReducer/generalProp.selector";
-import { toggleProductCard } from "store/generalPropReducer/generalProp.actions";
+import { showProductCardDetails } from "store/generalPropReducer/generalProp.actions";
+import { selectAllItemsMap } from "store/categories/category.selector";
 
 type ProductCardProps = CategoryItem;
 export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
@@ -20,8 +20,8 @@ export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
 ) => {
   const { id, name, dodatki, image, price } = category;
 
-  const isProductCardOpened = useAppSelector(selectIsProductCardOpened);
   const cartItems = useAppSelector(selectCartItems);
+  const allItemsMap = useAppSelector(selectAllItemsMap);
   const dispatch = useAppDispatch();
 
   const addProductHandler = () => {
@@ -33,7 +33,17 @@ export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     console.log(event.target);
-    dispatch(toggleProductCard());
+
+    dispatch(
+      showProductCardDetails(
+        allItemsMap,
+        (
+          event as React.MouseEvent<HTMLDivElement, MouseEvent> & {
+            target: { innerText: string };
+          }
+        ).target.innerText
+      )
+    );
   };
 
   return (
@@ -47,7 +57,7 @@ export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
           buttonType={BUTTON_TYPE_CLASSES.productCard}
           onClick={() => addProductHandler()}
         >
-          Add to cart
+          Dodaj do koszyka
         </Button>
       </ProductCardImageContainer>
 

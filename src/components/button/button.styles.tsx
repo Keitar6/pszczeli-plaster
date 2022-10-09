@@ -110,7 +110,22 @@ export const UserMenuFuncButton = styled(BaseButton)`
   &:hover {
     background-color: ${Colors.dark};
     color: ${Colors.primary};
-    border: none;
+    // border: none;
+  }
+`;
+
+export const ProductCardCartButton = styled(BaseButton)`
+  background-color: ${Colors.primary};
+  border: 1px solid ${Colors.dark};
+  border-radius: .5rem 0 0 .5rem;
+  min-width: 1rem;
+  padding: .8rem 1rem;
+  // margin-top:1rem;
+
+  &:hover {
+    background-color: ${Colors.dark};
+    color: ${Colors.primary};
+    // border: none;
   }
 `;
 

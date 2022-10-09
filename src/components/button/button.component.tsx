@@ -10,7 +10,8 @@ import {
   ProductCard,
   SortingTypes,
   CartFuncButton,
-  LoginCheckout
+  LoginCheckout,
+  ProductCardCartButton
 } from "./button.styles";
 
 export enum BUTTON_TYPE_CLASSES {
@@ -19,11 +20,12 @@ export enum BUTTON_TYPE_CLASSES {
   inverted = "inverted",
   userMenuFuncButton = "userMenuFuncButton",
   login = "LoginButton",
-  loginCheckout="LoginCheckout",
+  loginCheckout = "LoginCheckout",
   InputBar = "InputBar",
   productCard = "ProductCard",
   cartFuncButton = "CartFuncButton",
-  sorting = "Sorting"
+  sorting = "Sorting",
+  productCardCartButton = "ProductCardCartButton"
 }
 
 type ButtonProps = {
@@ -42,7 +44,8 @@ const getButton = (buttonType = BUTTON_TYPE_CLASSES.base): typeof BaseButton =>
     [BUTTON_TYPE_CLASSES.InputBar]: InputBar,
     [BUTTON_TYPE_CLASSES.productCard]: ProductCard,
     [BUTTON_TYPE_CLASSES.sorting]: SortingTypes,
-    [BUTTON_TYPE_CLASSES.cartFuncButton]: CartFuncButton
+    [BUTTON_TYPE_CLASSES.cartFuncButton]: CartFuncButton,
+    [BUTTON_TYPE_CLASSES.productCardCartButton]: ProductCardCartButton
   }[buttonType]);
 
 const Button: FC<ButtonProps> = ({

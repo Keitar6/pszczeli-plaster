@@ -15,3 +15,4 @@ export const IsRefNull = (
 export const IsModal = (modal: HTMLElement | null): modal is HTMLElement => {
     return modal != null;
   };
+
