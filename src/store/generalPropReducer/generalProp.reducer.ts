@@ -1,4 +1,5 @@
 import type { AnyAction } from "redux";
+import { CategoryItem } from "store/categories/category.types";
 import {
   setPath,
   setViewLimiter,
@@ -14,7 +15,10 @@ export type GeneralPropsState = {
   };
   path: PathType;
   isUserMenuOpened: boolean;
-  isProductCardOpened: boolean;
+  productCardModal: {
+    isProductCardOpened: boolean;
+    currentProductCard: CategoryItem;
+  };
   viewLimiter: number;
 };
 
@@ -25,7 +29,16 @@ const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
   },
   path: "sklep",
   isUserMenuOpened: false,
-  isProductCardOpened: false,
+  productCardModal: {
+    isProductCardOpened: false,
+    currentProductCard: {
+      id: "",
+      name: "",
+      price: 0,
+      image: "",
+      dodatki: false
+    }
+  },
   viewLimiter: 2
 };
 
@@ -38,7 +51,13 @@ export const generalPropReducer = (
   }
 
   if (toggleProductCard.match(action)) {
-    return { ...state, isProductCardOpened: !state.isProductCardOpened };
+    return {
+      ...state,
+      productCardModal: {
+        ...state.productCardModal,
+        isProductCardOpened: !state.productCardModal.isProductCardOpened
+      }
+    };
   }
 
   if (setPath.match(action))

@@ -54,14 +54,26 @@
     {
       "title": "Bio produkty",
       "icon": "ri:plant-fill",
-      "image": "ProduktyPszczele/PylekPszczeli.jpg",
-      "items": []
+      "items": [
+        {
+          "id": "001BP",
+          "name": "Miód mandarynkowy",
+          "image": "Bio/MiodMandarynkowy.jpg",
+          "price": 48
+        }
+      ]
     },
     {
       "title": "Karty podarunkowe",
       "icon": "ic:baseline-card-giftcard",
-      "image": "ProduktyPszczele/PylekPszczeli.jpg",
-      "items": []
+      "items": [
+        {
+          "id": "001KP",
+          "name": "Bio one",
+          "image": "KartyPodarunkowe/giftCard.jpg",
+          "price": 48
+        }
+      ]
     }
   ]
 }

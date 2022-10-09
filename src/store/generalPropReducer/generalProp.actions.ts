@@ -1,3 +1,4 @@
+import { CategoryItem } from "store/categories/category.types";
 import {
   Action,
   actionCreator,
@@ -17,6 +18,11 @@ export type ToggleUserMenu =
 export type ToggleProductCard =
   Action<GENERAL_PROPS_ACTION_TYPES.TOGGLE_PRODUCT_CARD_MENU>;
 
+export type SetProductCard = ActionWithPayload<
+  GENERAL_PROPS_ACTION_TYPES.SET_CURRENT_PRODUCT_CARD,
+  CategoryItem
+>;
+
 export type SetViewLimiter = ActionWithPayload<
   GENERAL_PROPS_ACTION_TYPES.SET_VIEW_LIMITER,
   number
@@ -30,6 +36,25 @@ export const toggleUserMenu = withMatch(
 export const toggleProductCard = withMatch(
   (): ToggleProductCard =>
     actionCreator(GENERAL_PROPS_ACTION_TYPES.TOGGLE_PRODUCT_CARD_MENU)
+);
+
+export const setProductCard = withMatch(
+  (productCard: CategoryItem): SetProductCard =>
+    actionCreator(
+      GENERAL_PROPS_ACTION_TYPES.SET_CURRENT_PRODUCT_CARD,
+      productCard
+    )
+);
+
+export const findDesiredProductCardByName = withMatch(
+  (allItemsMap: CategoryItem[], productCardName: string): SetProductCard => {
+    const temp = allItemsMap.find(
+      (product) => product.name === productCardName
+    );
+    console.log(temp);
+
+    return setProductCard(temp as CategoryItem);
+  }
 );
 
 export const setPath = withMatch(

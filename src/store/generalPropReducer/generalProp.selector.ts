@@ -6,12 +6,22 @@ export const selectGeneralPropReducer = (state: ReduxState) =>
 
 export const selectIsUserMenuOpened = createSelector(
   [selectGeneralPropReducer],
-  (userReducer) => userReducer.isUserMenuOpened
+  (generalPropReducer) => generalPropReducer.isUserMenuOpened
+);
+
+export const selectProductCardOpened = createSelector(
+  [selectGeneralPropReducer],
+  (generalPropReducer) => generalPropReducer.productCardModal
 );
 
 export const selectIsProductCardOpened = createSelector(
-  [selectGeneralPropReducer],
-  (userReducer) => userReducer.isProductCardOpened
+  [selectProductCardOpened],
+  (productCardOpened) => productCardOpened.isProductCardOpened
+);
+
+export const selectCurrentProductCard = createSelector(
+  [selectProductCardOpened],
+  (productCardOpened) => productCardOpened.currentProductCard
 );
 
 export const selectTheme = createSelector(
