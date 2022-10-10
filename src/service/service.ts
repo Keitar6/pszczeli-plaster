@@ -1,9 +1,12 @@
 import axios from "axios";
 import { Order } from "store/orderHistory/orderHistory.types";
 
-import { categoriesPath, orderHistoryPath } from "utils/globalRoutes/globalRoutes.utils";
+import {
+  categoriesPath,
+  orderHistoryPath
+} from "utils/globalRoutes/globalRoutes.utils";
 
-export const createCategories = async (category:string) => {
+export const createCategories = async (category: string) => {
   const url = `http://localhost:3000/categories`;
   try {
     await axios
@@ -21,33 +24,32 @@ export const createCategories = async (category:string) => {
   }
 };
 
-export const postNewOrder = async (order:Order) => {
+export const postNewOrder = async (order: Order) => {
   const url = `${orderHistoryPath}`;
 
+  const customConfig = {
+    headers: {
+    'Content-Type': 'application/json'
+    }}
+
   try {
-    await axios
-      .post(url, order, {
-        headers: {
-          "Content-type": "application/json; charset=UTF-8"
-        }
-      })
-      .then((response) => {
-        //   console.log(response);
-        console.log(response.data);
-      });
+    await axios.post(url, JSON.stringify(order),customConfig).then((response) => {
+      console.log(response.data);
+    });
   } catch (error) {
-    throw new Error(`Pojawił się problem przy tworzeniu elementu: ${error}`);
+    throw new Error(
+      `Pojawił się problem przy postowaniu elementu (${order}): ${error}`
+    );
   }
 };
 
 export const readOrderHistory = async () => {
   const url = `${orderHistoryPath}`;
-  
+
   try {
     const data = await axios.get(url).then((response) => {
       return response.data;
     });
-    console.log(data)
     return data;
   } catch (error) {
     throw new Error(
@@ -55,9 +57,10 @@ export const readOrderHistory = async () => {
     );
   }
 };
+
 export const readCategories = async () => {
   const url = `${categoriesPath}`;
-  
+
   try {
     const data = await axios.get(url).then((response) => {
       return response.data;
@@ -70,7 +73,7 @@ export const readCategories = async () => {
   }
 };
 
-export const updateCategories = async (category:string) => {
+export const updateCategories = async (category: string) => {
   const url = `http://localhost:3000/${category}`;
   try {
     await axios.put(url).then((response) => {
@@ -83,7 +86,7 @@ export const updateCategories = async (category:string) => {
   }
 };
 
-export const deleteCategories = async (category:string) => {
+export const deleteCategories = async (category: string) => {
   const url = `http://localhost:3000/categories/${category}`;
   try {
     const dane = await axios.delete(url).then((response) => {

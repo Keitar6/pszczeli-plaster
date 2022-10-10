@@ -1,17 +1,13 @@
-import {
-  DeliveryData,
-  Order,
-  OrderItem
-} from "store/orderHistory/orderHistory.types";
+import { DeliveryData, Order, OrderItem } from "store/orderHistory/orderHistory.types";
 
-export const orderCreator = (
+export const orderCreator= (
   id: string,
   time: string,
   price: number,
   itemsBought: OrderItem[],
   deliveryData: DeliveryData,
   deliveryPrice: number
-): Order => {
+):Order => {
   return {
     id,
     time,

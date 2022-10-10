@@ -41,7 +41,7 @@ function App() {
               <Route path="/sklep/:id" element={<Shop />} />
             </Route>
             <Route path="podsumowanie" element={<CheckoutPage />} />
-            <Route path="historiaZamówień" element={<OrdersPage />} />
+            <Route path="historiaZamowien" element={<OrdersPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -42,7 +42,7 @@ export const UserMenuModal = () => {
   };
 
   const goToOrdersHandler = () => {
-    navigate("/historiaZamówień");
+    navigate("/historiaZamowien");
     dispatch(toggleUserMenu());
   };
 

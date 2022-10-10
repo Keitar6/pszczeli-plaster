@@ -9,12 +9,22 @@ import {
   selectCartItems,
   selectCartTotal
 } from "store/cartReducer/cart.selector";
-import { setDelivery } from "store/orderHistory/orderHistory.action";
-import { selectDelivery, selectOrderHistory } from "store/orderHistory/orderHistory.selector";
-import { DeliveryData, DeliveryType } from "store/orderHistory/orderHistory.types";
+import {
+  postOrderHistoryAsync,
+  setDelivery
+} from "store/orderHistory/orderHistory.action";
+import {
+  selectDelivery,
+  selectOrderHistory
+} from "store/orderHistory/orderHistory.selector";
+import {
+  DeliveryData,
+  DeliveryType
+} from "store/orderHistory/orderHistory.types";
 
 import { generateId } from "utils/reusableFunctions/generateId.function";
 import { getCurrentTime } from "utils/reusableFunctions/getTime.function";
+import { refresh } from "utils/reusableFunctions/refresh.function";
 import { orderCreator } from "utils/store/orderCreator.utils";
 import {
   FormButton,
@@ -57,22 +67,22 @@ export const CheckoutForm = () => {
   };
 
   const addToOrderHistoryHandler = (formData: DeliveryData) => {
-
     //     // Postowanie ordera
-    // dispatch(
-    //   setOrderHistory(
-    //     orderHistory,
-    //     orderCreator(
-    //       orderId,
-    //       getCurrentTime(),
-    //       totalPrice + deliveryInfo.price,
-    //       cartItems,
-    //       formData,
-    //       deliveryInfo.price
-    //     )
-    //   )
-    // );
+    dispatch(
+      postOrderHistoryAsync(
+        orderHistory,
+        orderCreator(
+          orderId,
+          getCurrentTime(),
+          totalPrice + deliveryInfo.price,
+          cartItems,
+          formData,
+          deliveryInfo.price
+        )
+      )
+    );
     dispatch(setCartItems([]));
+    // refresh("podsumowanie");
   };
 
   const deliveryPriceHandler = (deliveryType: string) => {

@@ -1,4 +1,4 @@
-import { readOrderHistory } from "service/service";
+import { postNewOrder, readOrderHistory } from "service/service";
 import {
   Action,
   actionCreator,
@@ -61,7 +61,7 @@ export const fetchOrderHistoryAsync: any = () => {
     dispatch(fetchOrderHistoryStart());
     try {
       const orderHistoryEndPoint = await readOrderHistory();
-      console.log(orderHistoryEndPoint);
+      console.log(orderHistoryEndPoint.items);
       dispatch(fetchOrderHistorySuccess(orderHistoryEndPoint.items));
     } catch (error) {
       dispatch(fetchOrderHistoryFailed(error as Error));
@@ -69,14 +69,44 @@ export const fetchOrderHistoryAsync: any = () => {
   };
 };
 
-// export const postOrderHistoryAsync: any = () => {
-//   return async (dispatch: any) => {
-//     dispatch(postOrderHistoryStart());
-//     try {
-//       const database = await postNewOrder("NotFakeDatabase");
-//       dispatch(postOrderHistorySuccess(database.categories));
-//     } catch (error) {
-//       dispatch(postOrderHistoryFailed(error as Error));
-//     }
-//   };
-// };
+export type PostOrderHistoryStart =
+  Action<ORDER_HISTORY_ACTION_TYPES.POST_ORDER_HISTORY_START>;
+
+export type PostOrderHistorySuccess =
+  Action<ORDER_HISTORY_ACTION_TYPES.POST_ORDER_HISTORY_SUCCESS>;
+
+export type PostOrderHistoryFailed = ActionWithPayload<
+  ORDER_HISTORY_ACTION_TYPES.POST_ORDER_HISTORY_FAILED,
+  Error
+>;
+
+export const postOrderHistoryStart = withMatch(
+  (): PostOrderHistoryStart =>
+    actionCreator(ORDER_HISTORY_ACTION_TYPES.POST_ORDER_HISTORY_START)
+);
+
+export const postOrderHistorySuccess = withMatch(
+  (): PostOrderHistorySuccess =>
+    actionCreator(ORDER_HISTORY_ACTION_TYPES.POST_ORDER_HISTORY_SUCCESS)
+);
+
+export const postOrderHistoryFailed = withMatch(
+  (error: Error): PostOrderHistoryFailed =>
+    actionCreator(ORDER_HISTORY_ACTION_TYPES.POST_ORDER_HISTORY_FAILED, error)
+);
+
+export const postOrderHistoryAsync: any = (orderHistory:Order[],order:Order) => {
+
+
+  return async (dispatch: any) => {
+    const tempOrder = order
+    dispatch(postOrderHistoryStart());  
+    try {
+      const orderHistoryEndPoint = await postNewOrder(tempOrder);
+      console.log(orderHistoryEndPoint)
+      dispatch(postOrderHistorySuccess());
+    } catch (error) {
+      dispatch(postOrderHistoryFailed(error as Error));
+    }
+  };
+};

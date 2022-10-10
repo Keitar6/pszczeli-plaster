@@ -9,9 +9,7 @@ import {
 } from "./ordersPage.styles";
 
 import { OrderItem } from "components/orderItem/orderItem.component";
-import {
-  selectViewLimiter
-} from "store/generalPropReducer/generalProp.selector";
+import { selectViewLimiter } from "store/generalPropReducer/generalProp.selector";
 import Button, {
   BUTTON_TYPE_CLASSES
 } from "components/button/button.component";
@@ -27,7 +25,10 @@ const OrdersPage = () => {
   const dispatch = useAppDispatch();
   const ordersHistory = useAppSelector(selectOrderHistory);
   const viewLimiter = useAppSelector(selectViewLimiter);
-  const tempOrdersHistory = [...ordersHistory].splice(0, viewLimiter);
+  console.log(ordersHistory)
+  const tempOrdersHistory = ordersHistory
+    ? [...ordersHistory].splice(0, viewLimiter)
+    : [];
 
   const ordersHeaders = {
     title: "zamówienia",
