@@ -13,6 +13,7 @@ import {
   selectViewLimiter
 } from "store/generalPropReducer/generalProp.selector";
 import { ProductCards, ProductCardsContent } from "./productCards.styles";
+import { useEffect } from "react";
 
 export const ProductCardsContainer = () => {
   const categories = useAppSelector(selectCategories);
@@ -30,6 +31,14 @@ export const ProductCardsContainer = () => {
     const tempItemsMapp = [...items];
     return Sorting(tempItemsMapp.splice(0, viewLimiter), sort);
   };
+
+  // useEffect(() => {
+  //   // console.log("Categories:", categories);
+  //   // console.log("AllItemsMap: ", allItemsMap);
+  //   // console.log("ShopSorting:", shopHPSorting());
+  //   // console.log("Path:", path);
+  // }, []);
+
   return (
     <ProductCardsContent>
       <ProductCards>

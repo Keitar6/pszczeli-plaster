@@ -23,13 +23,6 @@ type OrderItemProps = {
   orderItem: Order;
 };
 
-//   Order{
-//     id: string;
-//     time: string;
-//     price: number;
-//     itemsBought: OrderItem[];
-//     deliveryData: DeliveryData;
-// }
 export const OrderItem: FC<OrderItemProps> = ({ orderItem }) => {
   const { id, time, price, itemsBought, deliveryData } = orderItem;
   const {
@@ -45,10 +38,7 @@ export const OrderItem: FC<OrderItemProps> = ({ orderItem }) => {
   } = deliveryData;
 
   const [info, setInfo] = useState(false);
-  // const removeItemHandler = () =>
-  //   dispatch(removeItemFromCart(cartItems, orderItem));
-  console.log(`itemsBought: `, itemsBought);
-  console.log(`deliveryData: `, deliveryData);
+
   return (
     <OrderItemContainer>
       <OrderItemContent>
@@ -56,7 +46,7 @@ export const OrderItem: FC<OrderItemProps> = ({ orderItem }) => {
           <Id>{id}</Id>
           <Time>{time}</Time>
 
-          <Total>{`${price}$`}</Total>
+          <Total>{`${price}zł`}</Total>
 
           {/* <RemoveButton
         className="remove-button"
@@ -80,12 +70,12 @@ export const OrderItem: FC<OrderItemProps> = ({ orderItem }) => {
                 <H4>{`Przedmioty`}</H4>
                 {itemsBought.length > 0 &&
                   itemsBought.map((item) => <Info key={item.id}>
-                    {`${item.quantity}*${item.price}$ ${item.name}`}
+                    {`${item.quantity}*${item.price}zł ${item.name}`}
                     
                     </Info>)}
               </ItemsInfo>
               <PayDeliveryInfo>
-                <H4> {`Płatność`}</H4>
+                <H4> {`Dostawa i płatność`}</H4>
                 <Info>{`Dostawa: ${deliveryMethod} `}</Info>
                 <Info>{`Płatność: ${payMethod} `}</Info>
               </PayDeliveryInfo>

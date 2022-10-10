@@ -80,11 +80,13 @@ export const CheckoutForm = () => {
       >
         <div>
           <div>
-            <label htmlFor={`${formData.name}`}>Imie</label>
+            {/* <CheckoutFormInput id= /> */}
+
+            <label htmlFor={`${formData.name}`}>Imię</label>
             <input
               type="text"
               id={`${formData.name}`}
-              placeholder="Imie"
+              placeholder="Imię"
               {...register(`${formData.name}`, {
                 required: true,
                 minLength: 2
@@ -112,11 +114,11 @@ export const CheckoutForm = () => {
             )}
           </div>
           <div>
-            <label htmlFor={`${formData.email}`}>Email</label>
+            <label htmlFor={`${formData.email}`}>E-mail</label>
             <input
               type="text"
               id={`${formData.email}`}
-              placeholder="Email"
+              placeholder="E-mail"
               {...register(`${formData.email}`, {
                 required: true,
                 pattern:
@@ -184,6 +186,7 @@ export const CheckoutForm = () => {
             <label htmlFor={`${formData.zip}`}>Kod pocztowy</label>
             <input
               type="text"
+              placeholder="123456"
               id={`${formData.zip}`}
               {...register(`${formData.zip}`, {
                 required: true,
@@ -199,7 +202,7 @@ export const CheckoutForm = () => {
         </div>
         <div>
           <div>
-            <label htmlFor={`${formData.deliveryMethod}`}>Opcje dostawy</label>
+            <label htmlFor={`${formData.deliveryMethod}`}>Sposób dostawy</label>
             <select
               id={`${formData.deliveryMethod}`}
               defaultValue={"..."}
@@ -218,7 +221,7 @@ export const CheckoutForm = () => {
             )}
           </div>
           <div>
-            <label htmlFor={`${formData.payMethod}`}>Opcje płatności</label>
+            <label htmlFor={`${formData.payMethod}`}>Metoda płatności</label>
             <select
               id={`${formData.payMethod}`}
               defaultValue={"..."}

@@ -30,7 +30,7 @@ export const CheckoutItem: FC<CheckoutItemProps> = ({ cartItem }) => {
 
   return (
     <CheckoutItemContainer>
-      <Image src={require(`../../assets/dataBaseImages/${image}`)}
+      <Image src={`/dataBaseImages/${image}`}
           alt={`Obraz: ${name}`} />
       <Span>{name}</Span>
       <Quantity>
@@ -38,7 +38,7 @@ export const CheckoutItem: FC<CheckoutItemProps> = ({ cartItem }) => {
         <Value>{quantity}</Value>
         <Arrow onClick={addItemHandler}>&#10095;</Arrow>
       </Quantity>
-      <Span>{`$${quantity * price}`}</Span>
+      <Span>{`${quantity * price}zł`}</Span>
       <RemoveButton
         className="remove-button"
         onClick={() => dispatch(removeItemFromCart(cartItems, cartItem, "all"))}

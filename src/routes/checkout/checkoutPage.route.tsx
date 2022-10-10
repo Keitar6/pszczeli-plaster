@@ -62,7 +62,7 @@ const CheckoutPage = () => {
           ></CheckoutItem>
         ))}
 
-        <Total>{`${checkoutHeaders.wSumie}: $${totalCost}`}</Total>
+        <Total>{`${checkoutHeaders.wSumie}: ${totalCost}zł`}</Total>
       </CheckoutSummaryContainer>
     </CheckoutContainer>
   );

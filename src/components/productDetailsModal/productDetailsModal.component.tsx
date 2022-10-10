@@ -1,6 +1,5 @@
 import { Icon } from "@iconify/react";
 import { Colors, H2, H3, PLarge } from "../../global.styles";
-
 import Modal from "../modal/modal.component";
 import {
   ProductCardDetails,
@@ -36,18 +35,13 @@ type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
 > & {
   target: T;
 };
-// {name,image,price}CartItem
 
 export const ProductDetailsModal: FC = () => {
   const dispatch = useAppDispatch();
-
   const navigate = useNavigate();
-
   const productCard = useAppSelector(selectCurrentProductCard);
   const cartItems = useAppSelector(selectCartItems);
   const { id, dodatki, name, image, price, weight } = productCard;
-  console.log(productCard);
-
   const productDetailsClosingHandler = (
     event: UserMenuClosingHandlerType<HTMLDivElement>
   ): void => {
@@ -55,12 +49,10 @@ export const ProductDetailsModal: FC = () => {
       dispatch(toggleProductCard());
     }
   };
-
   const addProductHandler = () => {
     const productToAdd = { id, dodatki, image, name, price };
     dispatch(addItemToCart(cartItems, productToAdd));
   };
-
   const navigateToCartHandler = () => {
     navigate("/podsumowanie");
     dispatch(toggleProductCard());
@@ -88,12 +80,9 @@ export const ProductDetailsModal: FC = () => {
               <H2>{`${name}`}</H2>
             </ProductCardDetailsLogoText>
           </ProductCardDetailsLogoContainer>
-
           <ProductDetails>
             <ProductDetailsImageWithDescription>
-              <ProductImage
-                src={require(`../../assets/dataBaseImages/${image}`)}
-              />
+              <ProductImage src={`/dataBaseImages/${image}`} />
               <ProductPayETC>
                 <AddToFavourite>
                   {" "}

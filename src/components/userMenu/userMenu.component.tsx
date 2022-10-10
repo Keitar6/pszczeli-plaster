@@ -38,12 +38,12 @@ export const UserMenuModal = () => {
 
   const goToCheckoutHandler = () => {
     navigate("/podsumowanie");
-    dispatch(toggleUserMenu())
+    dispatch(toggleUserMenu());
   };
 
   const goToOrdersHandler = () => {
     navigate("/historiaZamówień");
-    dispatch(toggleUserMenu())
+    dispatch(toggleUserMenu());
   };
 
   return (
@@ -65,7 +65,7 @@ export const UserMenuModal = () => {
               height="64"
             />
             <UserMenuLogoText>
-              <H2>Cześć (imie użytkownika)</H2>
+              <H2>Cześć (nazwa użytkownika)</H2>
               <TextLink>Moje konto</TextLink>
             </UserMenuLogoText>
           </UserMenuLogoContainer>

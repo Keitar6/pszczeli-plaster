@@ -77,7 +77,7 @@ export const CartModal = () => {
               onClick={goToCheckoutHandler}
               buttonType={BUTTON_TYPE_CLASSES.cartFuncButton}
             >{`Do kasy`}</Button>
-            {`W sumie: ${cartTotal}$`}
+            {`W sumie: ${cartTotal}zł`}
           </CartGoToCheckout>
         </CartContainer>
       </Cart>

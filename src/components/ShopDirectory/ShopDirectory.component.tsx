@@ -31,6 +31,7 @@ import Button, {
   BUTTON_TYPE_CLASSES
 } from "components/button/button.component";
 import { ProductCardsContainer } from "components/productCards/productCards.component";
+import { setInputSorting } from "store/userReducer/user.actions";
 
 const ShopDirectory: FC = () => {
   const categories = useAppSelector(selectCategories);
@@ -43,6 +44,7 @@ const ShopDirectory: FC = () => {
   useEffect(() => {
     return () => {
       dispatch(resetViewLimiter());
+      dispatch(setInputSorting(""));
     };
   }, [path]);
 

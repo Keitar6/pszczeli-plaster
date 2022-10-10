@@ -48,7 +48,7 @@ export const InputBar: FC<InputBarProps> = ({ whereTo }) => {
         onClick={onSearchHandler}
         buttonType={BUTTON_TYPE_CLASSES.InputBar}
       >
-        Search
+        Szukaj
       </Button>
     </InputBarContainer>
   );

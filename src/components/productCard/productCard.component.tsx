@@ -50,7 +50,7 @@ export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
     <ProductCardComponent>
       <ProductCardImageContainer>
         <img
-          src={require(`../../assets/dataBaseImages/${image}`)}
+          src={`/dataBaseImages/${image}`}
           alt={`Obraz: ${name}`}
         />
         <Button
@@ -65,7 +65,7 @@ export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
         <ProductCardName
           onClick={(event) => productDetailsHandler(event)}
         >{`${name}`}</ProductCardName>
-        <ProductCardPrice>{`$${price}`}</ProductCardPrice>
+        <ProductCardPrice>{`${price}zł`}</ProductCardPrice>
       </ProductCardDescription>
     </ProductCardComponent>
   );
