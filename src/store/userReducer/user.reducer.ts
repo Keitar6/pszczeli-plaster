@@ -40,6 +40,7 @@ export type Order = {
   price: number;
   itemsBought: OrderItem[];
   deliveryData: DeliveryData;
+  deliveryPrice: number;
 };
 
 export type UserState = {

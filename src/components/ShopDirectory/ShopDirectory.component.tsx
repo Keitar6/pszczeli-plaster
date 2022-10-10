@@ -31,6 +31,7 @@ import Button, {
   BUTTON_TYPE_CLASSES
 } from "components/button/button.component";
 import { ProductCardsContainer } from "components/productCards/productCards.component";
+import { setInputSorting } from "store/userReducer/user.actions";
 
 const ShopDirectory: FC = () => {
   const categories = useAppSelector(selectCategories);
@@ -43,6 +44,7 @@ const ShopDirectory: FC = () => {
   useEffect(() => {
     return () => {
       dispatch(resetViewLimiter());
+      dispatch(setInputSorting(""));
     };
   }, [path]);
 
@@ -67,8 +69,8 @@ const ShopDirectory: FC = () => {
             return (
               <li key={title}>
                 <ShopMenuItem
-                  to={`/shop/${title}`}
-                  onClick={() => ItemOnClickHandler(`shop/${title}`)}
+                  to={`/sklep/${title}`}
+                  onClick={() => ItemOnClickHandler(`sklep/${title}`)}
                 >
                   {title}
                 </ShopMenuItem>
@@ -84,7 +86,7 @@ const ShopDirectory: FC = () => {
         </ShopDirectoryContentHeader>
         <ProductCardsContainer />
 
-        {path === "shop"
+        {path === "sklep"
           ? allItemsMap.length > viewLimiter && (
               <Button
                 onClick={moreProductsHandler}

@@ -13,7 +13,8 @@ export const ProductCardImageContainer = styled(StandardFlexContainer)`
   flex: 1 1 70%;
 
   img {
-    width: 100%;
+    height: 12rem;
+    width: 12rem;
     object-fit: cover;
     // border: 0.2rem solid red;
   }
@@ -43,8 +44,43 @@ export const ProductCardDescription = styled.div`
   border-top: 0.2rem solid ${Colors.primary};
   width: 100%;
   padding: 0.5rem 0.5rem;
+  cursor: pointer;
 `;
 
-export const ProductCardName = styled(StandardFlexContainer)``;
+export const ProductCardName = styled(StandardFlexContainer)`
+  position: relative;
+
+  background-image: linear-gradient(
+    to right,
+    ${Colors.primary},
+    ${Colors.dark} 50%,
+    #000 50%
+  );
+  background-size: 200% 100%;
+  background-position: -100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+
+  &:before {
+    content: "";
+    background: linear-gradient(to left, ${Colors.primary}, ${Colors.dark});
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+  }
+
+  &:hover {
+    background-position: 0;
+  }
+
+  &:hover::before {
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+  }
+`;
 
 export const ProductCardPrice = styled(StandardFlexContainer)``;

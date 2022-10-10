@@ -7,8 +7,7 @@ export const OrdersContainer = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-around;
-  margin: 2rem auto;
-  padding: 0 2rem;
+  padding: 2rem 2rem;
   // border: 2px solid red;
 `;
 

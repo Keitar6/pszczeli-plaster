@@ -5,13 +5,15 @@ export const orderCreator= (
   time: string,
   price: number,
   itemsBought: OrderItem[],
-  deliveryData: DeliveryData
+  deliveryData: DeliveryData,
+  deliveryPrice: number
 ):Order => {
   return {
     id,
     time,
     price,
     itemsBought,
-    deliveryData
+    deliveryData,
+    deliveryPrice
   };
 };

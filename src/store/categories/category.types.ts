@@ -1,6 +1,7 @@
 export type CategoryItem = {
   id: string;
   name: string;
+  weight?: number;
   price: number;
   image: string;
   dodatki?: boolean;
@@ -13,10 +14,6 @@ export type Category = {
 };
 
 export type CategoryMap = {
-  [key: string]: CategoryItem[];
-};
-
-export type AllItemsMap = {
   [key: string]: CategoryItem[];
 };
 

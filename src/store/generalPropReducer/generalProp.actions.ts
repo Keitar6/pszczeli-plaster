@@ -1,9 +1,11 @@
+import { CategoryItem } from "store/categories/category.types";
 import {
   Action,
   actionCreator,
   ActionWithPayload,
   withMatch
 } from "utils/store/store.utils";
+import { DeliveryType, DELIVERY_TYPE } from "./generalProp.reducer";
 import { GENERAL_PROPS_ACTION_TYPES, PathType } from "./generalProp.types";
 
 export type SetPathType = ActionWithPayload<
@@ -14,14 +16,60 @@ export type SetPathType = ActionWithPayload<
 export type ToggleUserMenu =
   Action<GENERAL_PROPS_ACTION_TYPES.TOGGLE_USER_MENU>;
 
+export type ToggleProductCard =
+  Action<GENERAL_PROPS_ACTION_TYPES.TOGGLE_PRODUCT_CARD_MENU>;
+
+export type SetProductCard = ActionWithPayload<
+  GENERAL_PROPS_ACTION_TYPES.SET_CURRENT_PRODUCT_CARD,
+  {
+    isProductCardOpened: boolean;
+    currentProductCard: CategoryItem;
+  }
+>;
+
 export type SetViewLimiter = ActionWithPayload<
   GENERAL_PROPS_ACTION_TYPES.SET_VIEW_LIMITER,
   number
 >;
 
+export type SetDelivery = ActionWithPayload<
+  GENERAL_PROPS_ACTION_TYPES.SET_DELIVERY,
+  DeliveryType
+>;
+
+export const setDelivery = withMatch(
+  (deliveryMethod: DeliveryType["type"]): SetDelivery =>
+    actionCreator(GENERAL_PROPS_ACTION_TYPES.SET_DELIVERY, {
+      type: deliveryMethod,
+      price: DELIVERY_TYPE[deliveryMethod]
+    })
+);
+
 export const toggleUserMenu = withMatch(
   (): ToggleUserMenu =>
     actionCreator(GENERAL_PROPS_ACTION_TYPES.TOGGLE_USER_MENU)
+);
+
+export const toggleProductCard = withMatch(
+  (): ToggleProductCard =>
+    actionCreator(GENERAL_PROPS_ACTION_TYPES.TOGGLE_PRODUCT_CARD_MENU)
+);
+
+export const setProductCard = withMatch(
+  (productCard: CategoryItem): SetProductCard =>
+    actionCreator(GENERAL_PROPS_ACTION_TYPES.SET_CURRENT_PRODUCT_CARD, {
+      isProductCardOpened: true,
+      currentProductCard: productCard
+    })
+);
+
+export const showProductCardDetails = withMatch(
+  (allItemsMap: CategoryItem[], productCardName: string): SetProductCard => {
+    const temp = allItemsMap.find(
+      (product) => product.name === productCardName
+    );
+    return setProductCard(temp as CategoryItem);
+  }
 );
 
 export const setPath = withMatch(

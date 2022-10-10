@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import { addItemToCart } from "store/cartReducer/cart.actions";
 import { selectCartItems } from "store/cartReducer/cart.selector";
 import { CategoryItem } from "store/categories/category.types";
@@ -11,6 +11,8 @@ import {
   ProductCardName,
   ProductCardImageContainer
 } from "./productCard.styles";
+import { showProductCardDetails } from "store/generalPropReducer/generalProp.actions";
+import { selectAllItemsMap } from "store/categories/category.selector";
 
 type ProductCardProps = CategoryItem;
 export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
@@ -19,6 +21,7 @@ export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
   const { id, name, dodatki, image, price } = category;
 
   const cartItems = useAppSelector(selectCartItems);
+  const allItemsMap = useAppSelector(selectAllItemsMap);
   const dispatch = useAppDispatch();
 
   const addProductHandler = () => {
@@ -26,24 +29,43 @@ export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
     dispatch(addItemToCart(cartItems, productToAdd));
   };
 
+  const productDetailsHandler = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    console.log(event.target);
+
+    dispatch(
+      showProductCardDetails(
+        allItemsMap,
+        (
+          event as React.MouseEvent<HTMLDivElement, MouseEvent> & {
+            target: { innerText: string };
+          }
+        ).target.innerText
+      )
+    );
+  };
+
   return (
     <ProductCardComponent>
       <ProductCardImageContainer>
         <img
-          src={require(`../../assets/dataBaseImages/${image}`)}
+          src={`/dataBaseImages/${image}`}
           alt={`Obraz: ${name}`}
         />
         <Button
           buttonType={BUTTON_TYPE_CLASSES.productCard}
           onClick={() => addProductHandler()}
         >
-          Add to cart
+          Dodaj do koszyka
         </Button>
       </ProductCardImageContainer>
 
       <ProductCardDescription>
-        <ProductCardName>{`${name}`}</ProductCardName>
-        <ProductCardPrice>{`$${price}`}</ProductCardPrice>
+        <ProductCardName
+          onClick={(event) => productDetailsHandler(event)}
+        >{`${name}`}</ProductCardName>
+        <ProductCardPrice>{`${price}zł`}</ProductCardPrice>
       </ProductCardDescription>
     </ProductCardComponent>
   );

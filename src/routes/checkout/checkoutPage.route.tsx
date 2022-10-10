@@ -17,10 +17,13 @@ import {
 import { CheckoutItem } from "components/checkoutItem/checkoutItem.component";
 
 import { CheckoutForm } from "components/checkoutForm/checkoutForm.component";
+import { PLarge } from "global.styles";
+import { selectDelivery } from "store/generalPropReducer/generalProp.selector";
 
 const CheckoutPage = () => {
   const cartItems = useAppSelector(selectCartItems);
   const totalCost = useAppSelector(selectCartTotal);
+  const deliveryInfo = useAppSelector(selectDelivery);
 
   const checkoutHeaders = {
     summary: "podsumowanie",
@@ -30,7 +33,9 @@ const CheckoutPage = () => {
     price: "Cena",
     remove: "Usuń",
     formularz: "formularz",
-    wSumie: "W sumie"
+    wSumie: "W sumie",
+    deliveryPrice: "Przesyłka",
+    productsPrice: "Cena towarów"
   };
 
   return (
@@ -62,7 +67,11 @@ const CheckoutPage = () => {
           ></CheckoutItem>
         ))}
 
-        <Total>{`${checkoutHeaders.wSumie}: $${totalCost}`}</Total>
+        <PLarge>{`${checkoutHeaders.deliveryPrice}: ${deliveryInfo.price}zł`}</PLarge>
+        <PLarge>{`${checkoutHeaders.productsPrice}: ${totalCost}zł`}</PLarge>
+        <Total>{`${checkoutHeaders.wSumie}: ${
+          totalCost + deliveryInfo.price
+        }zł`}</Total>
       </CheckoutSummaryContainer>
     </CheckoutContainer>
   );

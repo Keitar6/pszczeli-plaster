@@ -15,7 +15,6 @@ import {
 
 import { toggleUserMenu } from "store/generalPropReducer/generalProp.actions";
 import { useAppDispatch } from "../../hooks/hooks";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
 type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
@@ -38,11 +37,13 @@ export const UserMenuModal = () => {
   };
 
   const goToCheckoutHandler = () => {
-    navigate("/checkout");
+    navigate("/podsumowanie");
+    dispatch(toggleUserMenu());
   };
 
   const goToOrdersHandler = () => {
-    navigate("/orders");
+    navigate("/historiaZamówień");
+    dispatch(toggleUserMenu());
   };
 
   return (
@@ -64,7 +65,7 @@ export const UserMenuModal = () => {
               height="64"
             />
             <UserMenuLogoText>
-              <H2>Cześć (imie użytkownika)</H2>
+              <H2>Cześć (nazwa użytkownika)</H2>
               <TextLink>Moje konto</TextLink>
             </UserMenuLogoText>
           </UserMenuLogoContainer>

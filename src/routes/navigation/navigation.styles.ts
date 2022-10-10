@@ -13,7 +13,7 @@ export enum naviIcons {
 
 export const NavigationContainer = styled.nav`
   display: flex;
-  flex: 1 1 0;
+  // flex: 1 1 0;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -24,6 +24,13 @@ export const NavigationContainer = styled.nav`
   position: sticky;
   top: 0;
   z-index: 50;
+`;
+
+export const StructurizeComponent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
 `;
 
 export const IconsContainer = styled.div`
