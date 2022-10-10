@@ -8,9 +8,6 @@ export const Directory:FC = () => {
 
   return (
     <DirectoryContainer>
-      <H2>Directory Component</H2>
-      <H1>SLAJDY</H1>
-
       <CategoriesHP />
 
       <DescriptionHP />

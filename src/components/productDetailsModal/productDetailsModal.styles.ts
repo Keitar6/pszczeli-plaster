@@ -1,5 +1,4 @@
 import { Icon } from "@iconify/react";
-import Button from "components/button/button.component";
 import styled from "styled-components";
 import { Colors, H4, StandardFlexContainer } from "../../global.styles";
 
@@ -21,7 +20,6 @@ export const ProductCardDetails = styled.div`
     display: none;
   }
 `;
-
 export const ProductCardDetailsContainer = styled(StandardFlexContainer)`
   flex-direction: column;
   gap: 2.4rem;
@@ -31,12 +29,10 @@ export const ProductCardDetailsContainer = styled(StandardFlexContainer)`
   border-radius: 1.5rem;
   background: ${Colors.light};
 `;
-
 export const ProductCardDetailsLogoContainer = styled(StandardFlexContainer)`
   flex-direction: row;
   gap: 2rem;
 `;
-
 export const ProductCardDetailsLogoText = styled(StandardFlexContainer)`
   flex-direction: column;
   // border: 2px solid red;
@@ -67,7 +63,6 @@ export const ProductCardDetailsLogoText = styled(StandardFlexContainer)`
     right: -1rem;
   }
 `;
-
 export const ProductDetails = styled.div`
   // border: 2px solid red;
   display: inline-flex;
@@ -75,7 +70,6 @@ export const ProductDetails = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
 export const ProductDescription = styled.p`
   // border: 2px solid blue;
   display: inline-flex;
@@ -83,7 +77,6 @@ export const ProductDescription = styled.p`
   text-align: start;
   justify-content: flex-start;
 `;
-
 export const ProductDescriptionTitle = styled(H4)`
   width: 100%;
   display: flex;
@@ -120,16 +113,13 @@ export const ProductPayETC = styled(StandardFlexContainer)`
   flex-direction: column;
   align-items: start;
 `;
-
 export const ProductConsumerDetails = styled(StandardFlexContainer)`
   // border: 2px solid red;
   flex-direction: column;
   align-items: start;
   margin: 1rem;
 `;
-
 export const AddToFavourite = styled(StandardFlexContainer)``;
-
 export const ProductCardModalButtons = styled.div`
   display: inline-flex;
   flex-direction: row;
@@ -139,7 +129,6 @@ export const ProductCardModalButtons = styled.div`
   margin: 0;
   padding: 0;
 `;
-
 export const ProductModalIcon = styled(Icon)`
   // border: 2px solid red;
   z-inder: 100;
@@ -150,7 +139,6 @@ export const ProductModalIcon = styled(Icon)`
     color: ${Colors.light};
   }
 `;
-
 export const ProductModalIconButton = styled.button`
   border: none;
   width: 30%;

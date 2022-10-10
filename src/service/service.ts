@@ -1,18 +1,7 @@
 import axios from "axios";
-// const categoryTemplate = {
-//   dobraNazwa: {
-//     title: "TEŚCIOR",
-//     items: [
-//       {
-//         name: "TEST",
-//         image: "TEST",
-//         price: 0
-//       }
-//     ]
-//   }
-// };
+import { dataBasePath } from "utils/globalRoutes/globalRoutes.utils";
 
-export const createCategories = async (category) => {
+export const createCategories = async (category:string) => {
   const url = `http://localhost:3000/categories`;
   try {
     await axios
@@ -30,8 +19,9 @@ export const createCategories = async (category) => {
   }
 };
 
-export const readCategories = async (category) => {
-  const url = `http://localhost:3000/${category}`;
+export const readDatabase = async (database:string) => {
+  const url = `${dataBasePath}${database}`;
+  
   try {
     const data = await axios.get(url).then((response) => {
       return response.data;
@@ -39,12 +29,12 @@ export const readCategories = async (category) => {
     return data;
   } catch (error) {
     throw new Error(
-      `Pojawił się problem przy czytaniu elementu(${category}): ${error}`
+      `Pojawił się problem przy czytaniu elementu(${database}): ${error}`
     );
   }
 };
 
-export const updateCategories = async (category) => {
+export const updateCategories = async (category:string) => {
   const url = `http://localhost:3000/${category}`;
   try {
     await axios.put(url).then((response) => {
@@ -57,7 +47,7 @@ export const updateCategories = async (category) => {
   }
 };
 
-export const deleteCategories = async (category) => {
+export const deleteCategories = async (category:string) => {
   const url = `http://localhost:3000/categories/${category}`;
   try {
     const dane = await axios.delete(url).then((response) => {
@@ -71,18 +61,3 @@ export const deleteCategories = async (category) => {
     );
   }
 };
-
-/**
- const elo = async () => {
-   await createCategories(categoryTemplate);
- 
-   await createCategories(categoryTemplate2);
-   console.log("d")
- };
- 
- elo();
- 
- readCategories("TEST");
- console.log("readCategories");
-
- */
