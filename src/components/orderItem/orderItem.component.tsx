@@ -24,7 +24,8 @@ type OrderItemProps = {
 };
 
 export const OrderItem: FC<OrderItemProps> = ({ orderItem }) => {
-  const { id, time, price, itemsBought, deliveryData } = orderItem;
+  const { id, time, price, itemsBought, deliveryData, deliveryPrice } =
+    orderItem;
   const {
     name,
     lastName,
@@ -69,14 +70,17 @@ export const OrderItem: FC<OrderItemProps> = ({ orderItem }) => {
               <ItemsInfo>
                 <H4>{`Przedmioty`}</H4>
                 {itemsBought.length > 0 &&
-                  itemsBought.map((item) => <Info key={item.id}>
-                    {`${item.quantity}*${item.price}zł ${item.name}`}
-                    
-                    </Info>)}
+                  itemsBought.map((item) => (
+                    <Info key={item.id}>
+                      {`${item.name} - ${item.quantity}x${item.price}zł`}
+                    </Info>
+                  ))}
               </ItemsInfo>
               <PayDeliveryInfo>
                 <H4> {`Dostawa i płatność`}</H4>
-                <Info>{`Dostawa: ${deliveryMethod} `}</Info>
+                <Info>{`Dostawa: ${deliveryMethod} - ${
+                  deliveryPrice ? deliveryPrice : "Darmowa dostawa"
+                } `}</Info>
                 <Info>{`Płatność: ${payMethod} `}</Info>
               </PayDeliveryInfo>
               <AdresInfo>
@@ -88,7 +92,11 @@ export const OrderItem: FC<OrderItemProps> = ({ orderItem }) => {
               </AdresInfo>
             </OrderItemInfoHeader>
           </>
-        ):(<OrderDescription>Kliknij aby zobaczyć szczegóły zamówienia</OrderDescription>)}
+        ) : (
+          <OrderDescription>
+            Kliknij aby zobaczyć szczegóły zamówienia
+          </OrderDescription>
+        )}
       </OrderItemContent>
     </OrderItemContainer>
   );

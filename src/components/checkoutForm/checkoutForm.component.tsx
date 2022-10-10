@@ -9,6 +9,9 @@ import {
   selectCartItems,
   selectCartTotal
 } from "store/cartReducer/cart.selector";
+import { setDelivery } from "store/generalPropReducer/generalProp.actions";
+import { DeliveryType } from "store/generalPropReducer/generalProp.reducer";
+import { selectDelivery } from "store/generalPropReducer/generalProp.selector";
 import { setOrderHistory } from "store/userReducer/user.actions";
 import { DeliveryData } from "store/userReducer/user.reducer";
 import { selectOrderHistory } from "store/userReducer/user.selector";
@@ -31,6 +34,7 @@ export const CheckoutForm = () => {
   const orderHistory = useAppSelector(selectOrderHistory);
   const totalPrice = useAppSelector(selectCartTotal);
   const cartItems = useAppSelector(selectCartItems);
+  const deliveryInfo = useAppSelector(selectDelivery);
   const orderId = generateId(8);
 
   const formData: DeliveryData = {
@@ -46,15 +50,35 @@ export const CheckoutForm = () => {
     terms: "terms"
   };
 
+  const deliveryOptions = {
+    none: { value: "None", label: "None" },
+    poczta: { value: "Poczta Polska", label: "Poczta Polska" },
+    dhl: { value: "Kurier DHL", label: "Kurier DHL" },
+    inpost: { value: "Kurier Inpost", label: "Kurier Inpost" },
+    fedex: { value: "Kurier FedEx", label: "Kurier FedEx" }
+  };
+
   const addToOrderHistoryHandler = (formData: DeliveryData) => {
     dispatch(
       setOrderHistory(
         orderHistory,
-        orderCreator(orderId, getCurrentTime(), totalPrice, cartItems, formData)
+        orderCreator(
+          orderId,
+          getCurrentTime(),
+          totalPrice + deliveryInfo.price,
+          cartItems,
+          formData,
+          deliveryInfo.price
+        )
       )
     );
-
     dispatch(setCartItems([]));
+  };
+
+  const deliveryPriceHandler = (deliveryType: string) => {
+    dispatch(
+      setDelivery(deliveryType.replace(/\s+/g, "") as DeliveryType["type"])
+    );
   };
 
   return (
@@ -205,14 +229,22 @@ export const CheckoutForm = () => {
             <label htmlFor={`${formData.deliveryMethod}`}>Sposób dostawy</label>
             <select
               id={`${formData.deliveryMethod}`}
-              defaultValue={"..."}
               {...register(`${formData.deliveryMethod}`, { required: true })}
+              onChange={(event) => deliveryPriceHandler(event.target.value)}
             >
               <option></option>
-              <option>Poczta Polska</option>
-              <option>Kurier DHL</option>
-              <option>Kurier Inpost</option>
-              <option>Kurier FedEx</option>
+              <option value={`${deliveryOptions.poczta.value}`}>
+                {`${deliveryOptions.poczta.value}`}
+              </option>
+              <option
+                value={`${deliveryOptions.dhl.value}`}
+              >{`${deliveryOptions.dhl.value}`}</option>
+              <option
+                value={`${deliveryOptions.inpost.value}`}
+              >{`${deliveryOptions.inpost.value}`}</option>
+              <option
+                value={`${deliveryOptions.fedex.value}`}
+              >{`${deliveryOptions.fedex.value}`}</option>
             </select>
             {errors.deliveryMethod && (
               <NonValidFormInput>

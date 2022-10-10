@@ -1,6 +1,7 @@
 import type { AnyAction } from "redux";
 import { CategoryItem } from "store/categories/category.types";
 import {
+  setDelivery,
   setPath,
   setProductCard,
   setViewLimiter,
@@ -8,6 +9,19 @@ import {
   toggleUserMenu
 } from "./generalProp.actions";
 import { PathType } from "./generalProp.types";
+
+export enum DELIVERY_TYPE {
+  None = 0,
+  PocztaPolska = 12,
+  KurierDHL = 9,
+  KurierInpost = 11,
+  KurierFedEx = 14
+}
+
+export type DeliveryType = {
+  type: keyof typeof DELIVERY_TYPE;
+  price: number;
+};
 
 export type GeneralPropsState = {
   theme: {
@@ -21,6 +35,7 @@ export type GeneralPropsState = {
     currentProductCard: CategoryItem;
   };
   viewLimiter: number;
+  delivery: DeliveryType;
 };
 
 const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
@@ -40,7 +55,11 @@ const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
       dodatki: false
     }
   },
-  viewLimiter: 2
+  viewLimiter: 2,
+  delivery: {
+    price: 0,
+    type: "None"
+  }
 };
 
 export const generalPropReducer = (
@@ -78,6 +97,12 @@ export const generalPropReducer = (
     return {
       ...state,
       viewLimiter: action.payload
+    };
+
+  if (setDelivery.match(action))
+    return {
+      ...state,
+      delivery: action.payload
     };
 
   return state;

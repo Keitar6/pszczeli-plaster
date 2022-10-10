@@ -5,6 +5,7 @@ import {
   ActionWithPayload,
   withMatch
 } from "utils/store/store.utils";
+import { DeliveryType, DELIVERY_TYPE } from "./generalProp.reducer";
 import { GENERAL_PROPS_ACTION_TYPES, PathType } from "./generalProp.types";
 
 export type SetPathType = ActionWithPayload<
@@ -30,6 +31,19 @@ export type SetViewLimiter = ActionWithPayload<
   GENERAL_PROPS_ACTION_TYPES.SET_VIEW_LIMITER,
   number
 >;
+
+export type SetDelivery = ActionWithPayload<
+  GENERAL_PROPS_ACTION_TYPES.SET_DELIVERY,
+  DeliveryType
+>;
+
+export const setDelivery = withMatch(
+  (deliveryMethod: DeliveryType["type"]): SetDelivery =>
+    actionCreator(GENERAL_PROPS_ACTION_TYPES.SET_DELIVERY, {
+      type: deliveryMethod,
+      price: DELIVERY_TYPE[deliveryMethod]
+    })
+);
 
 export const toggleUserMenu = withMatch(
   (): ToggleUserMenu =>

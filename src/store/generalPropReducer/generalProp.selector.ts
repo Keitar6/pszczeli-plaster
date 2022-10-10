@@ -38,3 +38,9 @@ export const selectViewLimiter = createSelector(
   [selectGeneralPropReducer],
   (state) => state.viewLimiter
 );
+
+export const selectDelivery = createSelector(
+  [selectGeneralPropReducer],
+  (state) => state.delivery
+);
+
