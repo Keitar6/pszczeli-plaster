@@ -4,7 +4,6 @@ import {
   ActionWithPayload,
   withMatch
 } from "../../utils/store/store.utils";
-import { Order } from "./user.reducer";
 
 import { USER_ACTION_TYPES } from "./user.types";
 
@@ -20,19 +19,6 @@ export type SetInputSorting = ActionWithPayload<
   USER_ACTION_TYPES.SET_SORTING_INPUT,
   string
 >;
-
-export type SetToOrderHistory = ActionWithPayload<
-  USER_ACTION_TYPES.SET_ORDER_HISTORY,
-  Order[]
->;
-
-export const setOrderHistory = withMatch(
-  (ordersHistory: Order[] = [], order: Order): SetToOrderHistory => {
-    const temp = [...ordersHistory];
-    temp.push(order);
-    return actionCreator(USER_ACTION_TYPES.SET_ORDER_HISTORY, temp);
-  }
-);
 
 export const toggleSortingAscending = withMatch(
   (): ToggleSortingAscending =>

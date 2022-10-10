@@ -8,9 +8,11 @@ import {
   OrdersContent
 } from "./ordersPage.styles";
 
-import { selectOrderHistory } from "store/userReducer/user.selector";
 import { OrderItem } from "components/orderItem/orderItem.component";
-import { selectViewLimiter } from "store/generalPropReducer/generalProp.selector";
+import {
+  selectOrderHistory,
+  selectViewLimiter
+} from "store/generalPropReducer/generalProp.selector";
 import Button, {
   BUTTON_TYPE_CLASSES
 } from "components/button/button.component";

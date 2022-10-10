@@ -5,7 +5,7 @@ import {
   ActionWithPayload,
   withMatch
 } from "utils/store/store.utils";
-import { DeliveryType, DELIVERY_TYPE } from "./generalProp.reducer";
+import { DeliveryType, DELIVERY_TYPE, Order } from "./generalProp.reducer";
 import { GENERAL_PROPS_ACTION_TYPES, PathType } from "./generalProp.types";
 
 export type SetPathType = ActionWithPayload<
@@ -35,6 +35,11 @@ export type SetViewLimiter = ActionWithPayload<
 export type SetDelivery = ActionWithPayload<
   GENERAL_PROPS_ACTION_TYPES.SET_DELIVERY,
   DeliveryType
+>;
+
+export type SetToOrderHistory = ActionWithPayload<
+  GENERAL_PROPS_ACTION_TYPES.SET_ORDER_HISTORY,
+  Order[]
 >;
 
 export const setDelivery = withMatch(
@@ -89,4 +94,12 @@ export const incrementViewLimiter = withMatch(
 
 export const resetViewLimiter = withMatch(
   (): SetViewLimiter => setViewLimiter(2)
+);
+
+export const setOrderHistory = withMatch(
+  (ordersHistory: Order[] = [], order: Order): SetToOrderHistory => {
+    const temp = [...ordersHistory];
+    temp.push(order);
+    return actionCreator(GENERAL_PROPS_ACTION_TYPES.SET_ORDER_HISTORY, temp);
+  }
 );

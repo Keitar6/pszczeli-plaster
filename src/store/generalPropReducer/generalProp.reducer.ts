@@ -1,7 +1,9 @@
 import type { AnyAction } from "redux";
+import { CartItem } from "store/cartReducer/cart.types";
 import { CategoryItem } from "store/categories/category.types";
 import {
   setDelivery,
+  setOrderHistory,
   setPath,
   setProductCard,
   setViewLimiter,
@@ -9,6 +11,21 @@ import {
   toggleUserMenu
 } from "./generalProp.actions";
 import { PathType } from "./generalProp.types";
+
+export type DeliveryData = {
+  [key: string]: string | boolean;
+};
+
+export type OrderItem = CartItem;
+
+export type Order = {
+  id: string;
+  time: string;
+  price: number;
+  itemsBought: OrderItem[];
+  deliveryData: DeliveryData;
+  deliveryPrice: number;
+};
 
 export enum DELIVERY_TYPE {
   None = 0,
@@ -24,18 +41,19 @@ export type DeliveryType = {
 };
 
 export type GeneralPropsState = {
-  theme: {
+  readonly theme: {
     type: string;
     color: string;
   };
-  path: PathType;
-  isUserMenuOpened: boolean;
-  productCardModal: {
+  readonly path: PathType;
+  readonly isUserMenuOpened: boolean;
+  readonly productCardModal: {
     isProductCardOpened: boolean;
     currentProductCard: CategoryItem;
   };
-  viewLimiter: number;
-  delivery: DeliveryType;
+  readonly viewLimiter: number;
+  readonly delivery: DeliveryType;
+  readonly orderHistory: Order[];
 };
 
 const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
@@ -59,7 +77,8 @@ const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
   delivery: {
     price: 0,
     type: "None"
-  }
+  },
+  orderHistory: []
 };
 
 export const generalPropReducer = (
@@ -104,6 +123,13 @@ export const generalPropReducer = (
       ...state,
       delivery: action.payload
     };
+
+  if (setOrderHistory.match(action)) {
+    return {
+      ...state,
+      orderHistory: action.payload
+    };
+  }
 
   return state;
 };

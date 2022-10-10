@@ -44,3 +44,7 @@ export const selectDelivery = createSelector(
   (state) => state.delivery
 );
 
+export const selectOrderHistory = createSelector(
+  [selectGeneralPropReducer],
+  (GeneralPropReducer) => GeneralPropReducer.orderHistory
+);

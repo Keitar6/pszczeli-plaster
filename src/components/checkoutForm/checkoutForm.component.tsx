@@ -9,12 +9,19 @@ import {
   selectCartItems,
   selectCartTotal
 } from "store/cartReducer/cart.selector";
-import { setDelivery } from "store/generalPropReducer/generalProp.actions";
-import { DeliveryType } from "store/generalPropReducer/generalProp.reducer";
-import { selectDelivery } from "store/generalPropReducer/generalProp.selector";
-import { setOrderHistory } from "store/userReducer/user.actions";
-import { DeliveryData } from "store/userReducer/user.reducer";
-import { selectOrderHistory } from "store/userReducer/user.selector";
+import {
+  setDelivery,
+  setOrderHistory
+} from "store/generalPropReducer/generalProp.actions";
+import {
+  DeliveryData,
+  DeliveryType
+} from "store/generalPropReducer/generalProp.reducer";
+import {
+  selectDelivery,
+  selectOrderHistory
+} from "store/generalPropReducer/generalProp.selector";
+
 import { generateId } from "utils/reusableFunctions/generateId.function";
 import { getCurrentTime } from "utils/reusableFunctions/getTime.function";
 import { orderCreator } from "utils/store/orderCreator.utils";
