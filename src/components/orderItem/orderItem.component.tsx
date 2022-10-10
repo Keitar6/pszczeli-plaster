@@ -1,7 +1,6 @@
 import { H4 } from "global.styles";
 import { FC, useState } from "react";
-
-import { Order } from "store/userReducer/user.reducer";
+import { Order } from "store/generalPropReducer/generalProp.reducer";
 
 import {
   OrderItemContainer,
@@ -49,14 +48,6 @@ export const OrderItem: FC<OrderItemProps> = ({ orderItem }) => {
 
           <Total>{`${price}zł`}</Total>
 
-          {/* <RemoveButton
-        className="remove-button"
-        onClick={() =>
-          dispatch(removeItemFromCart(cartItems, orderItem, "all"))
-        }
-        >
-        &#10005;
-      </RemoveButton> */}
         </OrderItemHeader>
         {info ? (
           <>

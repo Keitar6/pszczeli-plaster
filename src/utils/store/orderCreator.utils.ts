@@ -1,4 +1,4 @@
-import { DeliveryData, Order, OrderItem } from "store/userReducer/user.reducer";
+import { DeliveryData, Order, OrderItem } from "store/generalPropReducer/generalProp.reducer";
 
 export const orderCreator= (
   id: string,
