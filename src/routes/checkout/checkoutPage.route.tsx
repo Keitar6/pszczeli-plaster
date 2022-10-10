@@ -18,7 +18,8 @@ import { CheckoutItem } from "components/checkoutItem/checkoutItem.component";
 
 import { CheckoutForm } from "components/checkoutForm/checkoutForm.component";
 import { PLarge } from "global.styles";
-import { selectDelivery } from "store/generalPropReducer/generalProp.selector";
+import { selectDelivery } from "store/orderHistory/orderHistory.selector";
+
 
 const CheckoutPage = () => {
   const cartItems = useAppSelector(selectCartItems);

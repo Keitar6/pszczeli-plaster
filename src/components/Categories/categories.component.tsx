@@ -7,10 +7,9 @@ import { useAppSelector } from "hooks/hooks";
 
 export const CategoriesHP = () => {
   const categories = useAppSelector(selectCategories);
-
   return (
     <CategoriesContainer>
-      {categories.map((category) => {
+      {categories&&categories.map((category) => {
         return (
           <CategoryCard key={category.title} category={category}>
             <Icon icon={category.icon} color="#ffb703" width="96" height="96" />

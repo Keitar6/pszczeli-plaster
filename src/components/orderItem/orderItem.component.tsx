@@ -1,6 +1,6 @@
 import { H4 } from "global.styles";
 import { FC, useState } from "react";
-import { Order } from "store/generalPropReducer/generalProp.reducer";
+import { Order } from "store/orderHistory/orderHistory.types";
 
 import {
   OrderItemContainer,

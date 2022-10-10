@@ -1,5 +1,7 @@
 import axios from "axios";
-import { dataBasePath } from "utils/globalRoutes/globalRoutes.utils";
+import { Order } from "store/orderHistory/orderHistory.types";
+
+import { categoriesPath, orderHistoryPath } from "utils/globalRoutes/globalRoutes.utils";
 
 export const createCategories = async (category:string) => {
   const url = `http://localhost:3000/categories`;
@@ -19,8 +21,42 @@ export const createCategories = async (category:string) => {
   }
 };
 
-export const readDatabase = async (database:string) => {
-  const url = `${dataBasePath}${database}`;
+export const postNewOrder = async (order:Order) => {
+  const url = `${orderHistoryPath}`;
+
+  try {
+    await axios
+      .post(url, order, {
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+      .then((response) => {
+        //   console.log(response);
+        console.log(response.data);
+      });
+  } catch (error) {
+    throw new Error(`Pojawił się problem przy tworzeniu elementu: ${error}`);
+  }
+};
+
+export const readOrderHistory = async () => {
+  const url = `${orderHistoryPath}`;
+  
+  try {
+    const data = await axios.get(url).then((response) => {
+      return response.data;
+    });
+    console.log(data)
+    return data;
+  } catch (error) {
+    throw new Error(
+      `Pojawił się problem przy czytaniu elementu z OrderHistory: ${error}`
+    );
+  }
+};
+export const readCategories = async () => {
+  const url = `${categoriesPath}`;
   
   try {
     const data = await axios.get(url).then((response) => {
@@ -29,7 +65,7 @@ export const readDatabase = async (database:string) => {
     return data;
   } catch (error) {
     throw new Error(
-      `Pojawił się problem przy czytaniu elementu(${database}): ${error}`
+      `Pojawił się problem przy czytaniu elementu z Categories: ${error}`
     );
   }
 };

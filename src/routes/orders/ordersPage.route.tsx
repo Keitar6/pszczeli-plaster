@@ -10,7 +10,6 @@ import {
 
 import { OrderItem } from "components/orderItem/orderItem.component";
 import {
-  selectOrderHistory,
   selectViewLimiter
 } from "store/generalPropReducer/generalProp.selector";
 import Button, {
@@ -21,6 +20,8 @@ import {
   resetViewLimiter
 } from "store/generalPropReducer/generalProp.actions";
 import { useEffect } from "react";
+import { selectOrderHistory } from "store/orderHistory/orderHistory.selector";
+import { fetchOrderHistoryAsync } from "store/orderHistory/orderHistory.action";
 
 const OrdersPage = () => {
   const dispatch = useAppDispatch();
@@ -40,6 +41,7 @@ const OrdersPage = () => {
   };
 
   useEffect(() => {
+    dispatch(fetchOrderHistoryAsync());
     return () => {
       dispatch(resetViewLimiter());
     };
