@@ -37,6 +37,7 @@ export type FormDataInputMapItem = {
   minLength?: number;
   maxLength?: number;
   pattern?: RegExp;
+  width?: string;
 };
 
 export type FormDataInputMap = {
@@ -49,49 +50,56 @@ export const formDataInputMap: FormDataInputMap = {
     placeholder: "Imię",
     text: "Proszę wpisać imię nie używając znaków specjalnych",
     minLength: 1,
-    pattern: validationPatterns.namePattern
+    pattern: validationPatterns.namePattern,
+    width: "40%"
   },
   lastName: {
     name: formData.lastName,
     placeholder: "Nazwisko",
     text: "Wpisz nazwisko nie używając znaków specjalnych",
     minLength: 1,
-    pattern: validationPatterns.lastNamePattern
+    pattern: validationPatterns.lastNamePattern,
+    width: "56%"
   },
   email: {
     name: formData.email,
     placeholder: "E-mail",
     text: "Uzupełnij e-mail w formacie 'abcde@acbc.com' nie używając znaków specjalnych",
     minLength: 1,
-    pattern: validationPatterns.eMailPattern
+    pattern: validationPatterns.eMailPattern,
+    width: "58%"
   },
   city: {
     name: formData.city,
     placeholder: "Miasto",
     text: "Wypełnij tę rubrykę nie używając znaków specjalnych",
     minLength: 1,
-    pattern: validationPatterns.cityPattern
-  },
-  homeAdress: {
-    name: formData.homeAdress,
-    placeholder: "Numer domu",
-    text: "Wymagane polę, uzupełnij nie używając znaków specjalnych",
-    minLength: 2,
-    pattern: validationPatterns.homeAdressPattern
+    pattern: validationPatterns.cityPattern,
+    width: "38%"
   },
   street: {
     name: formData.street,
     placeholder: "Nazwa ulicy",
     text: "To pole jest potrzebne, wpisz poprawną wartość bez używania znaków specjalnych",
     minLength: 1,
-    pattern: validationPatterns.streetPattern
+    pattern: validationPatterns.streetPattern,
+    width: ""
+  },
+  homeAdress: {
+    name: formData.homeAdress,
+    placeholder: "Numer domu",
+    text: "Wymagane polę, uzupełnij nie używając znaków specjalnych",
+    minLength: 2,
+    pattern: validationPatterns.homeAdressPattern,
+    width: "30%"
   },
   zip: {
     name: formData.zip,
     placeholder: "Zip",
     text: "Kod pocztowy musi być w formacie XX-XXX",
     minLength: 5,
-    pattern: validationPatterns.zipCodePattern
+    pattern: validationPatterns.zipCodePattern,
+    width: "5rem"
   }
 };
 

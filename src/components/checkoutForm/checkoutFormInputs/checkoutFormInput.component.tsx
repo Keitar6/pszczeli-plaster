@@ -7,7 +7,12 @@ import {
 } from "react-hook-form";
 import type { FieldValues } from "react-hook-form/dist/types/fields";
 import type { UseFormRegister } from "react-hook-form/dist/types/form";
-import { Input, NonValidFormInput } from "../checkoutForm.styles";
+import {
+  InputContainer,
+  InputLabel,
+  NonValidFormInput,
+  TextInput
+} from "../checkoutForm.styles";
 
 type CheckoutFormInput = {
   id: string;
@@ -16,6 +21,7 @@ type CheckoutFormInput = {
   errorName: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
   minLength?: ValidationRule<number> | undefined;
   pattern?: ValidationRule<RegExp> | undefined;
+  width?: string;
 };
 
 export const CheckoutFormInput: FC<PropsWithChildren<CheckoutFormInput>> = ({
@@ -26,15 +32,16 @@ export const CheckoutFormInput: FC<PropsWithChildren<CheckoutFormInput>> = ({
   children,
   minLength,
   pattern,
+  width,
   ...restArgs
 }) => {
   return (
-    <>
-      <label htmlFor={`${id}`}>{placeholder}</label>
-      <Input
+    <InputContainer width={`${width && width}`}>
+      <TextInput
+        autoComplete="off"
         type="text"
         id={`${id}`}
-        placeholder={placeholder}
+        placeholder={`${placeholder}`}
         {...register(`${id}`, {
           required: true,
           minLength: minLength,
@@ -42,7 +49,8 @@ export const CheckoutFormInput: FC<PropsWithChildren<CheckoutFormInput>> = ({
           ...restArgs
         })}
       />
+      <InputLabel htmlFor={`${id}`}>{placeholder}</InputLabel>
       {errorName && <NonValidFormInput>{children}</NonValidFormInput>}
-    </>
+    </InputContainer>
   );
 };

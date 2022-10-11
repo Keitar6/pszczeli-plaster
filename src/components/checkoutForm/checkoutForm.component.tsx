@@ -19,7 +19,7 @@ import {
 } from "utils/checkoutForm/checkoutForm.utils";
 import { getCurrentTime } from "utils/reusableFunctions/getTime.function";
 import { orderCreator } from "utils/store/orderCreator.utils";
-import { NonValidFormInput, Form } from "./checkoutForm.styles";
+import { NonValidFormInput, Form, FormTextInputs } from "./checkoutForm.styles";
 import { CheckoutFormInput } from "./checkoutFormInputs/checkoutFormInput.component";
 import { CheckoutFormSelect } from "./checkoutFormInputs/checkoutFormSelect.component";
 import { FormButtons } from "./formButtons/formButtons.component";
@@ -39,7 +39,6 @@ export const CheckoutForm = () => {
   const navigate = useNavigate();
 
   const addToOrderHistoryHandler = (formData: DeliveryData) => {
-    
     console.log(formData);
     dispatch(
       postOrderHistoryAsync(
@@ -59,31 +58,35 @@ export const CheckoutForm = () => {
   };
   return (
     <>
-      <Form className="was-validated" >
-        {Object.keys(formDataInputMap).map((input) => {
-          const {
-            name,
-            text,
-            placeholder,
-            minLength = 2,
-            pattern,
-            ...restArgs
-          } = formDataInputMap[input];
-          return (
-            <CheckoutFormInput
-              id={name}
-              register={register}
-              pattern={pattern}
-              minLength={minLength}
-              placeholder={placeholder}
-              errorName={errors[name]}
-              key={name}
-              {...restArgs}
-            >
-              {text}
-            </CheckoutFormInput>
-          );
-        })}
+      <Form className="was-validated">
+        <FormTextInputs>
+          {Object.keys(formDataInputMap).map((input) => {
+            const {
+              name,
+              text,
+              placeholder,
+              minLength = 2,
+              pattern,
+              width = "5rem",
+              ...restArgs
+            } = formDataInputMap[input];
+            return (
+              <CheckoutFormInput
+                id={name}
+                register={register}
+                pattern={pattern}
+                minLength={minLength}
+                placeholder={placeholder}
+                errorName={errors[name]}
+                width={width}
+                key={name}
+                {...restArgs}
+              >
+                {text}
+              </CheckoutFormInput>
+            );
+          })}
+        </FormTextInputs>
         <div>
           <CheckoutFormSelect
             idPayment={formData.payMethod as string}
