@@ -61,8 +61,7 @@ export const fetchOrderHistoryAsync: any = () => {
     dispatch(fetchOrderHistoryStart());
     try {
       const orderHistoryEndPoint = await readOrderHistory();
-      console.log(orderHistoryEndPoint.items);
-      dispatch(fetchOrderHistorySuccess(orderHistoryEndPoint.items));
+      dispatch(fetchOrderHistorySuccess(orderHistoryEndPoint));
     } catch (error) {
       dispatch(fetchOrderHistoryFailed(error as Error));
     }
@@ -95,18 +94,20 @@ export const postOrderHistoryFailed = withMatch(
     actionCreator(ORDER_HISTORY_ACTION_TYPES.POST_ORDER_HISTORY_FAILED, error)
 );
 
-export const postOrderHistoryAsync: any = (orderHistory:Order[],order:Order) => {
-
-
+export const postOrderHistoryAsync: any = (
+  orderHistory: Order[],
+  order: Order
+) => {
   return async (dispatch: any) => {
-    const tempOrder = order
-    dispatch(postOrderHistoryStart());  
+    const tempOrder = order;
+    dispatch(postOrderHistoryStart());
     try {
       const orderHistoryEndPoint = await postNewOrder(tempOrder);
-      console.log(orderHistoryEndPoint)
+      console.log(orderHistoryEndPoint);
       dispatch(postOrderHistorySuccess());
     } catch (error) {
       dispatch(postOrderHistoryFailed(error as Error));
+      console.log(error);
     }
   };
 };

@@ -49,12 +49,11 @@ export type AppThunk<T = void> = ActionCreator<
 >;
 
 export const fetchCategoriesAsync: any = () => {
-  console.log('adgagdadgadgagd')
   return async (dispatch: any) => {
     dispatch(fetchCategoriesStart());
     try {
       const categoryEndPoint = await readCategories();
-      dispatch(fetchCategoriesSuccess(categoryEndPoint.items));
+      dispatch(fetchCategoriesSuccess(categoryEndPoint));
     } catch (error) {
       dispatch(fetchCategoriesFailed(error as Error));
     }

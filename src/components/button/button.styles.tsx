@@ -181,3 +181,9 @@ export const SortingTypes = styled(BaseButton)`
     transition: none;
   }
 `;
+
+export const FormButton = styled(BaseButton)`
+  //   border: 2px solid red;
+  align-items: space-between;
+  justify-content: center;
+`;

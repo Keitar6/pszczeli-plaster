@@ -27,13 +27,19 @@ export const createCategories = async (category: string) => {
 export const postNewOrder = async (order: Order) => {
   const url = `${orderHistoryPath}`;
 
-  const customConfig = {
+  const options = {
+    url: url,
+    method: "POST",
     headers: {
-    'Content-Type': 'application/json'
-    }}
+      Accept: "application/json",
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+
+    data: order
+  };
 
   try {
-    await axios.post(url, JSON.stringify(order),customConfig).then((response) => {
+    await axios(options).then((response) => {
       console.log(response.data);
     });
   } catch (error) {

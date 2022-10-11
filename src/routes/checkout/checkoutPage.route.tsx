@@ -25,7 +25,6 @@ const CheckoutPage = () => {
   const cartItems = useAppSelector(selectCartItems);
   const totalCost = useAppSelector(selectCartTotal);
   const deliveryInfo = useAppSelector(selectDelivery);
-
   const checkoutHeaders = {
     summary: "podsumowanie",
     product: "produkt",
@@ -43,31 +42,23 @@ const CheckoutPage = () => {
     <CheckoutContainer>
       <CheckoutFormContainer>
         <FormTitle>{`${checkoutHeaders.formularz.toUpperCase()}`}</FormTitle>
-
         <CheckoutForm />
       </CheckoutFormContainer>
-
       <CheckoutSummaryContainer>
         <SummaryTitle>{`${checkoutHeaders.summary.toUpperCase()}`}</SummaryTitle>
         <CheckoutHeader>
           <HeaderBlock>{`${checkoutHeaders.product}`}</HeaderBlock>
-
           <HeaderBlock>{`${checkoutHeaders.description}`}</HeaderBlock>
-
           <HeaderBlock>{`${checkoutHeaders.quantity}`}</HeaderBlock>
-
           <HeaderBlock>{`${checkoutHeaders.price}`}</HeaderBlock>
-
           <HeaderBlock>{`${checkoutHeaders.remove}`}</HeaderBlock>
         </CheckoutHeader>
-
         {cartItems.map((currentItem) => (
           <CheckoutItem
             key={currentItem.id}
             cartItem={currentItem}
           ></CheckoutItem>
         ))}
-
         <PLarge>{`${checkoutHeaders.deliveryPrice}: ${deliveryInfo.price}zł`}</PLarge>
         <PLarge>{`${checkoutHeaders.productsPrice}: ${totalCost}zł`}</PLarge>
         <Total>{`${checkoutHeaders.wSumie}: ${
@@ -77,5 +68,4 @@ const CheckoutPage = () => {
     </CheckoutContainer>
   );
 };
-
 export default CheckoutPage;

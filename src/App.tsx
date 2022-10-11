@@ -35,6 +35,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Navigation />}>
+
             <Route index element={<Home />} />
             <Route path="sklep" element={<NaviPath />}>
               <Route index element={<Shop />} />
@@ -42,6 +43,7 @@ function App() {
             </Route>
             <Route path="podsumowanie" element={<CheckoutPage />} />
             <Route path="historiaZamowien" element={<OrdersPage />} />
+
           </Route>
         </Routes>
       </BrowserRouter>

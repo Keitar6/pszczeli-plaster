@@ -95,7 +95,7 @@ export const ProductDetailsModal: FC = () => {
                 </AddToFavourite>
                 <ProductConsumerDetails>
                   <H3> {`Szczegóły:`}</H3>
-                  <PLarge> {`Waga: ${weight}g`}</PLarge>
+                  {weight && <PLarge> {`Waga: ${weight}g`}</PLarge>}
                   <PLarge> {`Cena: ${price}zł`}</PLarge>
                 </ProductConsumerDetails>
                 <ProductCardModalButtons>

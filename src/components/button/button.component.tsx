@@ -11,7 +11,8 @@ import {
   SortingTypes,
   CartFuncButton,
   LoginCheckout,
-  ProductCardCartButton
+  ProductCardCartButton,
+  FormButton
 } from "./button.styles";
 
 export enum BUTTON_TYPE_CLASSES {
@@ -25,7 +26,8 @@ export enum BUTTON_TYPE_CLASSES {
   productCard = "ProductCard",
   cartFuncButton = "CartFuncButton",
   sorting = "Sorting",
-  productCardCartButton = "ProductCardCartButton"
+  productCardCartButton = "ProductCardCartButton",
+  formButton = "FormButton"
 }
 
 type ButtonProps = {
@@ -45,7 +47,8 @@ const getButton = (buttonType = BUTTON_TYPE_CLASSES.base): typeof BaseButton =>
     [BUTTON_TYPE_CLASSES.productCard]: ProductCard,
     [BUTTON_TYPE_CLASSES.sorting]: SortingTypes,
     [BUTTON_TYPE_CLASSES.cartFuncButton]: CartFuncButton,
-    [BUTTON_TYPE_CLASSES.productCardCartButton]: ProductCardCartButton
+    [BUTTON_TYPE_CLASSES.productCardCartButton]: ProductCardCartButton,
+    [BUTTON_TYPE_CLASSES.formButton]: FormButton
   }[buttonType]);
 
 const Button: FC<ButtonProps> = ({

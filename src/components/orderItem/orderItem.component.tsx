@@ -71,7 +71,7 @@ export const OrderItem: FC<OrderItemProps> = ({ orderItem }) => {
                 <H4> {`Dostawa i płatność`}</H4>
                 <Info>{`Dostawa: ${deliveryMethod} - ${
                   deliveryPrice ? deliveryPrice : "Darmowa dostawa"
-                } `}</Info>
+                }zł `}</Info>
                 <Info>{`Płatność: ${payMethod} `}</Info>
               </PayDeliveryInfo>
               <AdresInfo>

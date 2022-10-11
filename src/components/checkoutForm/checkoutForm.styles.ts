@@ -1,22 +1,28 @@
-import { StandardFlexContainer } from "global.styles";
 import styled from "styled-components";
-
-export const FormButtons = styled(StandardFlexContainer)`
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
-  //   border: 2px solid red;
-  width: 100%;
-`;
-
-export const FormButton = styled(StandardFlexContainer)`
-  //   border: 2px solid red;
-  align-items: space-between;
-  justify-content: center;
-`;
 
 export const NonValidFormInput = styled.p`
   // border: 2px solid red;
   font-size: 0.5rem;
   color: red;
+`;
+
+export const Form = styled.form`
+  // border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+`;
+export const Input = styled.input`
+  flex: 1 0;
+  min-width: 50px;
+  min-height: 25px;
+  font-size: inherit;
+  background-color: transparent;
+  padding-left: 5px;
+  border: 2px solid red;
+
+  &:focus {
+    outline: none;
+  }
 `;

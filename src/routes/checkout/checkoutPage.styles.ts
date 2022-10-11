@@ -45,10 +45,10 @@ export const Total = styled("footer")`
 
 export const CheckoutFormContainer = styled.div`
   // border: 2px solid red;
-  width: 35%;
-  display:flex
+  width: 40%;
+  display: inline-flex;
+  flex-direction: column;
   padding: 0 1rem 0 0;
-
 `;
 
 export const FormTitle = styled(H3)`
