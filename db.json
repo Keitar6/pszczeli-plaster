@@ -176,6 +176,26 @@
         "payMethod": "Blik"
       },
       "deliveryPrice": 11
+    },
+    {
+      "id": "jRAupMNC",
+      "time": "2/9/2022 @ 23:0:11",
+      "price": 9,
+      "itemsBought": [],
+      "deliveryData": {
+        "undefined": true,
+        "name": "Mateusz",
+        "lastName": "Statkiewicz",
+        "email": "afd@adf.com",
+        "city": "Strzelin",
+        "street": "Rynek",
+        "homeAdress": "asfd",
+        "zip": "57-100",
+        "deliveryMethod": "Kurier DHL",
+        "payMethod": "Za pobraniem",
+        "Select Ladniutki": false
+      },
+      "deliveryPrice": 9
     }
   ]
 }

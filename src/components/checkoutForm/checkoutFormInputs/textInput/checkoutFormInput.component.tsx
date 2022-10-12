@@ -8,11 +8,9 @@ import {
 import type { FieldValues } from "react-hook-form/dist/types/fields";
 import type { UseFormRegister } from "react-hook-form/dist/types/form";
 import {
-  InputContainer,
-  InputLabel,
   NonValidFormInput,
-  TextInput
-} from "../checkoutForm.styles";
+} from "../../checkoutForm.styles";
+import { InputContainer, InputLabel, TextInput } from "./checkoutFormInput.styles";
 
 type CheckoutFormInput = {
   id: string;

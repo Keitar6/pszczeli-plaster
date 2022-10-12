@@ -20,8 +20,8 @@ import {
 import { getCurrentTime } from "utils/reusableFunctions/getTime.function";
 import { orderCreator } from "utils/store/orderCreator.utils";
 import { NonValidFormInput, Form, FormTextInputs } from "./checkoutForm.styles";
-import { CheckoutFormInput } from "./checkoutFormInputs/checkoutFormInput.component";
-import { CheckoutFormSelect } from "./checkoutFormInputs/checkoutFormSelect.component";
+import { CheckoutFormInput } from "./checkoutFormInputs/textInput/checkoutFormInput.component";
+import { CheckoutFormSelect } from "./checkoutFormInputs/selectInput/checkoutFormSelect.component";
 import { FormButtons } from "./formButtons/formButtons.component";
 
 export const CheckoutForm = () => {
@@ -54,7 +54,7 @@ export const CheckoutForm = () => {
       )
     );
     dispatch(setCartItems([]));
-    navigate("sklep");
+    navigate("/sklep");
   };
   return (
     <>
@@ -109,14 +109,14 @@ export const CheckoutForm = () => {
             Zgadzam się na warunki i zasady
           </label>
         </div>
-        <div>
+
           <FormButtons
             submitHandler={handleSubmit((formData) =>
               addToOrderHistoryHandler(formData)
             )}
             reset={reset}
           />
-        </div>
+
       </Form>
     </>
   );

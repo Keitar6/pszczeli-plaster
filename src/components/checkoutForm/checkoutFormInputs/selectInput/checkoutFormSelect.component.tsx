@@ -10,7 +10,9 @@ import {
   formData,
   paymentOptions
 } from "utils/checkoutForm/checkoutForm.utils";
-import { NonValidFormInput } from "../checkoutForm.styles";
+import { NonValidFormInput } from "../../checkoutForm.styles";
+import { SelectContainer, SelectInput } from "./checkoutFormSelect.styles";
+import { Select } from "./select";
 
 type CheckoutFormInput = {
   idDelivery: string;
@@ -42,7 +44,7 @@ export const CheckoutFormSelect: FC<PropsWithChildren<CheckoutFormInput>> = ({
 
   return (
     <>
-      <div>
+      {/* <div>
         <label htmlFor={`${idDelivery}`}>Sposób dostawy</label>
         <select
           id={`${formData.deliveryMethod}`}
@@ -85,7 +87,14 @@ export const CheckoutFormSelect: FC<PropsWithChildren<CheckoutFormInput>> = ({
             Wybierz proszę metodę płatności{" "}
           </NonValidFormInput>
         )}
-      </div>
+
+      </div> */}
+      <SelectContainer>
+
+       <Select id="Hi" register={register} datas={deliveryOptions}></Select>
+       <Select id="Hi" register={register} datas={paymentOptions}></Select>
+
+      </SelectContainer>
     </>
   );
 };

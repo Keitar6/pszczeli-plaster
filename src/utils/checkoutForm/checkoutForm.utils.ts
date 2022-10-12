@@ -44,6 +44,10 @@ export type FormDataInputMap = {
   [key in keyof typeof formData]: FormDataInputMapItem;
 };
 
+export type DeliveryOptions = {
+  [key in keyof typeof formData]: { value: string; label: string };
+};
+
 export const formDataInputMap: FormDataInputMap = {
   name: {
     name: formData.name,
@@ -103,8 +107,7 @@ export const formDataInputMap: FormDataInputMap = {
   }
 };
 
-export const deliveryOptions = {
-  none: { value: "None", label: "None" },
+export const deliveryOptions: DeliveryOptions = {
   poczta: { value: "Poczta Polska", label: "Poczta Polska" },
   dhl: { value: "Kurier DHL", label: "Kurier DHL" },
   inpost: { value: "Kurier Inpost", label: "Kurier Inpost" },
@@ -112,7 +115,6 @@ export const deliveryOptions = {
 };
 
 export const paymentOptions = {
-  none: { value: "None", label: "None" },
   blik: { value: "Blik", label: "Blik" },
   przelew: { value: "Przelew tradycyjny", label: "Przelew tradycyjny" },
   zaPobraniem: { value: "Za pobraniem", label: "Za pobraniem" }
