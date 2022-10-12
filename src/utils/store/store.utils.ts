@@ -34,7 +34,7 @@ type Matchable<AC extends () => AnyAction & { type: string }> = AC & {
 };
 
 export function withMatch<
-  AC extends (...args: any) => AnyAction & { type: string }
+  AC extends (...args: any[]) => AnyAction & { type: string }
 >(actionCreator: AC): Matchable<AC>;
 
 export function withMatch<AC extends () => AnyAction & { type: string }>(

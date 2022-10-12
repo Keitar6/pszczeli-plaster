@@ -6,12 +6,19 @@ import {
   toggleSortingAscending
 } from "./user.actions";
 
-export type SortingTypes = {
-  ALPHABETIC: string;
-  PRICE: string;
-  INPUT_STRING: string;
-  ASCENDING: boolean;
+export type SorTypeVariations = {
+  ALPHABETIC: "alphabetic";
+  PRICE: "price";
 };
+
+export const SortTypeVariations: SorTypeVariations = {
+  ALPHABETIC: "alphabetic",
+  PRICE: "price"
+};
+
+export type SortingTypes = {
+  [keys in keyof typeof SortTypeVariations]: typeof SortTypeVariations[keys];
+} & { INPUT_STRING: string; ASCENDING: boolean };
 
 export const SORTING_TYPES: SortingTypes = {
   ALPHABETIC: "alphabetic",
@@ -26,13 +33,12 @@ export type SortType = {
   ascending: boolean;
 };
 
-
 export type UserState = {
   readonly currentUser: Record<string, unknown>;
   readonly isLoading: boolean;
   readonly error: Error | null;
   readonly sort: {
-    sorType: string;
+    sorType: SorTypeVariations[keyof SorTypeVariations];
     inputSort: string;
     ascending: boolean;
   };
@@ -46,7 +52,7 @@ const USER_INITIAL_STATE: UserState = {
     sorType: "alphabetic",
     inputSort: "",
     ascending: true
-  },
+  }
 };
 
 export const userReducer = (

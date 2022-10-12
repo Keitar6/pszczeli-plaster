@@ -25,22 +25,25 @@ import { selectCurrentProductCard } from "store/generalPropReducer/generalProp.s
 import Button, {
   BUTTON_TYPE_CLASSES
 } from "components/button/button.component";
-import { selectCartItems } from "store/cartReducer/cart.selector";
+import {
+  selectCartCount,
+  selectCartItems
+} from "store/cartReducer/cart.selector";
 import { addItemToCart } from "store/cartReducer/cart.actions";
 import { useNavigate } from "react-router-dom";
-
+import { isCartEmpty } from "utils/reusableFunctions/isCartEmpty.function";
 type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
   T,
   MouseEvent
 > & {
   target: T;
 };
-
 export const ProductDetailsModal: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const productCard = useAppSelector(selectCurrentProductCard);
   const cartItems = useAppSelector(selectCartItems);
+  const cartQuantity = useAppSelector(selectCartCount);
   const { id, dodatki, name, image, price, weight } = productCard;
   const productDetailsClosingHandler = (
     event: UserMenuClosingHandlerType<HTMLDivElement>
@@ -57,7 +60,6 @@ export const ProductDetailsModal: FC = () => {
     navigate("/podsumowanie");
     dispatch(toggleProductCard());
   };
-
   return (
     <Modal>
       <ProductCardDetails
@@ -105,9 +107,17 @@ export const ProductDetailsModal: FC = () => {
                   >
                     Dodaj do koszyka{" "}
                   </Button>
-                  <ProductModalIconButton onClick={navigateToCartHandler}>
+                  <ProductModalIconButton
+                    onClick={() =>
+                      isCartEmpty(cartQuantity) && navigateToCartHandler()
+                    }
+                  >
                     <ProductModalIcon
-                      icon="akar-icons:arrow-right"
+                      icon={`${
+                        isCartEmpty(cartQuantity)
+                          ? "akar-icons:arrow-right"
+                          : "carbon:shopping-cart-clear"
+                      }`}
                       width="32"
                     />
                   </ProductModalIconButton>
