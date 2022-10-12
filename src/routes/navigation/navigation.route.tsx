@@ -1,6 +1,5 @@
-import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
-import { useAppDispatch } from "../../hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
 import CartIcon from "../../components/cartIcon/cartIcon.component";
 import { Icon } from "@iconify/react";
@@ -22,15 +21,19 @@ import { InputBar } from "../../components/inputBar/inputBar.component";
 
 import { refresh } from "utils/reusableFunctions/refresh.function";
 import { toggleCartMenu } from "store/cartReducer/cart.actions";
+import { selectCartCount } from "store/cartReducer/cart.selector";
+import { isCartEmpty } from "utils/reusableFunctions/isCartEmpty.function";
 
 const Navigation = () => {
-  const isUserMenuOpened = useSelector(selectIsUserMenuOpened);
+  const isUserMenuOpened = useAppSelector(selectIsUserMenuOpened);
   const dispatch = useAppDispatch();
+  const cartQuantity = useAppSelector(selectCartCount);
 
   const userMenuHandler = () => dispatch(toggleUserMenu());
   const logoClickHandler = () => refresh();
 
-  const cartDropdownHandler = () => dispatch(toggleCartMenu());
+  const cartDropdownHandler = () =>
+    isCartEmpty(cartQuantity) && dispatch(toggleCartMenu());
 
   return (
     <StructurizeComponent>
@@ -41,7 +44,11 @@ const Navigation = () => {
         <BrandName>Pszczeli Plaster</BrandName>
         <IconsContainer>
           <InputBar whereTo="sklep" />
-          <div onClick={cartDropdownHandler} onKeyDown={cartDropdownHandler} role="presentation">
+          <div
+            onClick={cartDropdownHandler}
+            onKeyDown={cartDropdownHandler}
+            role="presentation"
+          >
             <CartIcon />
           </div>
           <HamburgerIcon

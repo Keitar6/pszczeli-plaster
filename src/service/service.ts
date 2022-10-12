@@ -1,7 +1,12 @@
 import axios from "axios";
-import { dataBasePath } from "utils/globalRoutes/globalRoutes.utils";
+import { Order } from "store/orderHistory/orderHistory.types";
 
-export const createCategories = async (category:string) => {
+import {
+  categoriesPath,
+  orderHistoryPath
+} from "utils/globalRoutes/globalRoutes.utils";
+
+export const createCategories = async (category: string) => {
   const url = `http://localhost:3000/categories`;
   try {
     await axios
@@ -19,9 +24,34 @@ export const createCategories = async (category:string) => {
   }
 };
 
-export const readDatabase = async (database:string) => {
-  const url = `${dataBasePath}${database}`;
-  
+export const postNewOrder = async (order: Order) => {
+  const url = `${orderHistoryPath}`;
+
+  const options = {
+    url: url,
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+
+    data: order
+  };
+
+  try {
+    await axios(options).then((response) => {
+      console.log(response.data);
+    });
+  } catch (error) {
+    throw new Error(
+      `Pojawił się problem przy postowaniu elementu (${order}): ${error}`
+    );
+  }
+};
+
+export const readOrderHistory = async () => {
+  const url = `${orderHistoryPath}`;
+
   try {
     const data = await axios.get(url).then((response) => {
       return response.data;
@@ -29,12 +59,27 @@ export const readDatabase = async (database:string) => {
     return data;
   } catch (error) {
     throw new Error(
-      `Pojawił się problem przy czytaniu elementu(${database}): ${error}`
+      `Pojawił się problem przy czytaniu elementu z OrderHistory: ${error}`
     );
   }
 };
 
-export const updateCategories = async (category:string) => {
+export const readCategories = async () => {
+  const url = `${categoriesPath}`;
+
+  try {
+    const data = await axios.get(url).then((response) => {
+      return response.data;
+    });
+    return data;
+  } catch (error) {
+    throw new Error(
+      `Pojawił się problem przy czytaniu elementu z Categories: ${error}`
+    );
+  }
+};
+
+export const updateCategories = async (category: string) => {
   const url = `http://localhost:3000/${category}`;
   try {
     await axios.put(url).then((response) => {
@@ -47,7 +92,7 @@ export const updateCategories = async (category:string) => {
   }
 };
 
-export const deleteCategories = async (category:string) => {
+export const deleteCategories = async (category: string) => {
   const url = `http://localhost:3000/categories/${category}`;
   try {
     const dane = await axios.delete(url).then((response) => {

@@ -14,8 +14,10 @@ import {
 } from "./userMenu.styles";
 
 import { toggleUserMenu } from "store/generalPropReducer/generalProp.actions";
-import { useAppDispatch } from "../../hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
+import { selectCartCount } from "store/cartReducer/cart.selector";
+import { isCartEmpty } from "utils/reusableFunctions/isCartEmpty.function";
 
 type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
   T,
@@ -27,6 +29,7 @@ type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
 export const UserMenuModal = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const cartQuantity = useAppSelector(selectCartCount);
 
   const userMenuOnClickHandler = (
     event: UserMenuClosingHandlerType<HTMLDivElement>
@@ -37,12 +40,14 @@ export const UserMenuModal = () => {
   };
 
   const goToCheckoutHandler = () => {
-    navigate("/podsumowanie");
-    dispatch(toggleUserMenu());
+    if (isCartEmpty(cartQuantity)) {
+      navigate("/podsumowanie");
+      dispatch(toggleUserMenu());
+    }
   };
 
   const goToOrdersHandler = () => {
-    navigate("/historiaZamówień");
+    navigate("/historiaZamowien");
     dispatch(toggleUserMenu());
   };
 
@@ -98,7 +103,9 @@ export const UserMenuModal = () => {
                 width="32"
                 height="32"
               />
-              Podsumowanie
+              {isCartEmpty(cartQuantity)
+                ? "Podsumowanie"
+                : "Wprowadź elementy do koszyka"}
             </UserMenuFuncButton>
             <UserMenuFuncButton buttonType={BUTTON_TYPE_CLASSES.base}>
               <Icon

@@ -1,7 +1,7 @@
 import { actionCreator, withMatch } from "../../utils/store/store.utils";
 import { CATEGORIES_ACTION_TYPES, Category } from "./category.types";
 import { Action, ActionWithPayload } from "../../utils/store/store.utils";
-import { readDatabase } from "../../service/service";
+import { readCategories } from "../../service/service";
 
 import type { ActionCreator, AnyAction } from "redux";
 import type { ThunkAction } from "redux-thunk";
@@ -52,8 +52,8 @@ export const fetchCategoriesAsync: any = () => {
   return async (dispatch: any) => {
     dispatch(fetchCategoriesStart());
     try {
-      const database = await readDatabase("NotFakeDatabase");
-      dispatch(fetchCategoriesSuccess(database.categories));
+      const categoryEndPoint = await readCategories();
+      dispatch(fetchCategoriesSuccess(categoryEndPoint));
     } catch (error) {
       dispatch(fetchCategoriesFailed(error as Error));
     }

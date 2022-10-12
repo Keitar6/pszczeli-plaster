@@ -11,9 +11,10 @@ import {
 } from "./cart.styles";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import React from "react";
+import React, { useEffect } from "react";
 import { toggleCartMenu } from "store/cartReducer/cart.actions";
 import {
+  selectCartCount,
   selectCartItems,
   selectCartTotal
 } from "store/cartReducer/cart.selector";
@@ -76,7 +77,7 @@ export const CartModal = () => {
             <Button
               onClick={goToCheckoutHandler}
               buttonType={BUTTON_TYPE_CLASSES.cartFuncButton}
-            >{`Do kasy`}</Button>
+            >{`${"Do kasy"}`}</Button>
             {`W sumie: ${cartTotal}zł`}
           </CartGoToCheckout>
         </CartContainer>

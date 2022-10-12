@@ -1,7 +1,6 @@
 import { H4 } from "global.styles";
 import { FC, useState } from "react";
-
-import { Order } from "store/userReducer/user.reducer";
+import { Order } from "store/orderHistory/orderHistory.types";
 
 import {
   OrderItemContainer,
@@ -47,16 +46,7 @@ export const OrderItem: FC<OrderItemProps> = ({ orderItem }) => {
           <Id>{id}</Id>
           <Time>{time}</Time>
 
-          <Total>{`${price}zł`}</Total>
-
-          {/* <RemoveButton
-        className="remove-button"
-        onClick={() =>
-          dispatch(removeItemFromCart(cartItems, orderItem, "all"))
-        }
-        >
-        &#10005;
-      </RemoveButton> */}
+          <Total>{`${price ? price + "zł" : "Błąd"}`}</Total>
         </OrderItemHeader>
         {info ? (
           <>
@@ -79,7 +69,7 @@ export const OrderItem: FC<OrderItemProps> = ({ orderItem }) => {
               <PayDeliveryInfo>
                 <H4> {`Dostawa i płatność`}</H4>
                 <Info>{`Dostawa: ${deliveryMethod} - ${
-                  deliveryPrice ? deliveryPrice : "Darmowa dostawa"
+                  deliveryPrice ? deliveryPrice + "zł" : "Darmowa dostawa"
                 } `}</Info>
                 <Info>{`Płatność: ${payMethod} `}</Info>
               </PayDeliveryInfo>

@@ -4,11 +4,18 @@ import Spinner from "./components/spinner/spinner.component";
 import { GlobalStyle } from "./global.styles";
 import { UserMenuModal } from "./components/userMenu/userMenu.component";
 import { useAppSelector } from "./hooks/hooks";
-import { selectIsUserMenuOpened, selectIsProductCardOpened } from "store/generalPropReducer/generalProp.selector";
-import { selectIsCartMenuOpened } from "store/cartReducer/cart.selector";
+import {
+  selectIsUserMenuOpened,
+  selectIsProductCardOpened
+} from "store/generalPropReducer/generalProp.selector";
+import {
+  selectCartCount,
+  selectIsCartMenuOpened
+} from "store/cartReducer/cart.selector";
 import { CartModal } from "components/cartModal/cart.component";
 import { NaviPath } from "components/shopDirectory/shopNavi/naviPath.component";
 import { ProductDetailsModal } from "components/productDetailsModal/productDetailsModal.component";
+import { isCartEmpty } from "utils/reusableFunctions/isCartEmpty.function";
 
 const Navigation = lazy(() => import("./routes/navigation/navigation.route"));
 const Home = lazy(() => import("./routes/home/homePage.route"));
@@ -20,6 +27,7 @@ function App() {
   const isUserMenuOpened = useAppSelector(selectIsUserMenuOpened);
   const isCartMenuOpened = useAppSelector(selectIsCartMenuOpened);
   const isProductCardOpened = useAppSelector(selectIsProductCardOpened);
+  const cartQuantity = useAppSelector(selectCartCount);
 
   return (
     <Suspense fallback={<Spinner />}>
@@ -29,7 +37,7 @@ function App() {
         <div id="modal"></div>
         {isUserMenuOpened ? <UserMenuModal /> : null}
 
-        {isCartMenuOpened ? <CartModal /> : null}
+        {isCartMenuOpened && isCartEmpty(cartQuantity) ? <CartModal /> : null}
 
         {isProductCardOpened ? <ProductDetailsModal /> : null}
 
@@ -41,7 +49,7 @@ function App() {
               <Route path="/sklep/:id" element={<Shop />} />
             </Route>
             <Route path="podsumowanie" element={<CheckoutPage />} />
-            <Route path="historiaZamówień" element={<OrdersPage />} />
+            <Route path="historiaZamowien" element={<OrdersPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

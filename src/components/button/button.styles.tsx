@@ -117,9 +117,9 @@ export const UserMenuFuncButton = styled(BaseButton)`
 export const ProductCardCartButton = styled(BaseButton)`
   background-color: ${Colors.primary};
   border: 1px solid ${Colors.dark};
-  border-radius: .5rem 0 0 .5rem;
+  border-radius: 0.5rem 0 0 0.5rem;
   min-width: 1rem;
-  padding: .8rem 1rem;
+  padding: 0.8rem 1rem;
   // margin-top:1rem;
 
   &:hover {
@@ -180,4 +180,20 @@ export const SortingTypes = styled(BaseButton)`
     transform: none;
     transition: none;
   }
+`;
+
+export const FormButton = styled(BaseButton)`
+  width: 48%;
+  border: 2px solid;
+  border-radius: 0.5rem;
+  border-image-slice: 1;
+  background: ${Colors.light};
+  border-image-source: linear-gradient(
+    to left,
+    ${Colors.dark},
+    ${Colors.primary},
+    ${Colors.dark}
+  );
+  align-items: space-between;
+  justify-content: center;
 `;

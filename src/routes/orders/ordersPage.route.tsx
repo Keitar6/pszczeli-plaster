@@ -5,10 +5,10 @@ import {
   OrdersHeader,
   HeaderBlock,
   OrdersTitle,
-  OrdersContent
+  OrdersContent,
+  OrderItemsContainer
 } from "./ordersPage.styles";
 
-import { selectOrderHistory } from "store/userReducer/user.selector";
 import { OrderItem } from "components/orderItem/orderItem.component";
 import { selectViewLimiter } from "store/generalPropReducer/generalProp.selector";
 import Button, {
@@ -19,15 +19,20 @@ import {
   resetViewLimiter
 } from "store/generalPropReducer/generalProp.actions";
 import { useEffect } from "react";
+import { selectOrderHistory } from "store/orderHistory/orderHistory.selector";
+import { fetchOrderHistoryAsync } from "store/orderHistory/orderHistory.action";
+import { timeSorting } from "utils/reusableFunctions/timeSorting.function";
 
 const OrdersPage = () => {
   const dispatch = useAppDispatch();
   const ordersHistory = useAppSelector(selectOrderHistory);
   const viewLimiter = useAppSelector(selectViewLimiter);
-  const tempOrdersHistory = [...ordersHistory].splice(0, viewLimiter);
+  const tempOrdersHistory = timeSorting(ordersHistory)
+    ? [...ordersHistory].splice(0, viewLimiter)
+    : [];
 
   const ordersHeaders = {
-    title: "zamówienia",
+    title: "historia zamówień",
     id: "#id",
     date: "Data",
     price: "Kwota"
@@ -38,6 +43,7 @@ const OrdersPage = () => {
   };
 
   useEffect(() => {
+    dispatch(fetchOrderHistoryAsync());
     return () => {
       dispatch(resetViewLimiter());
     };
@@ -54,17 +60,18 @@ const OrdersPage = () => {
 
           <HeaderBlock>{`${ordersHeaders.price}`}</HeaderBlock>
         </OrdersHeader>
-
-        {tempOrdersHistory
-          ? tempOrdersHistory.map((currentOrder) => {
-              return (
-                <OrderItem
-                  key={currentOrder.id}
-                  orderItem={currentOrder}
-                ></OrderItem>
-              );
-            })
-          : null}
+        <OrderItemsContainer>
+          {tempOrdersHistory
+            ? tempOrdersHistory.map((currentOrder) => {
+                return (
+                  <OrderItem
+                    key={currentOrder.id}
+                    orderItem={currentOrder}
+                  ></OrderItem>
+                );
+              })
+            : null}
+        </OrderItemsContainer>
       </OrdersContent>
       {ordersHistory.length > viewLimiter && (
         <Button

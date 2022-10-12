@@ -1,88 +1,326 @@
 {
-  "NotFakeDatabase": {
-    "categories": [
-      {
-        "title": "Miody",
-        "icon": "emojione:honey-pot",
-        "items": [
-          {
-            "id": "001M",
-            "name": "Miód lipowy",
-            "dodatki": false,
-            "image": "Miody/lipa.jpg",
-            "weight": 500,
-            "price": 25
-          },
-          {
-            "id": "002M",
-            "name": "Miód rzepakowy",
-            "dodatki": false,
-            "image": "Miody/rzepak.jpg",
-            "weight": 500,
-            "price": 24
-          },
-          {
-            "id": "003M",
-            "name": "Miód wielokwiatowy",
-            "dodatki": false,
-            "image": "Miody/wielokwiat.jpg",
-            "weight": 500,
-            "price": 20
-          }
-        ]
+  "categories": [
+    {
+      "title": "Miody",
+      "icon": "emojione:honey-pot",
+      "items": [
+        {
+          "id": "001M",
+          "name": "Miód lipowy",
+          "dodatki": false,
+          "image": "Miody/lipa.jpg",
+          "weight": 500,
+          "price": 25
+        },
+        {
+          "id": "002M",
+          "name": "Miód rzepakowy",
+          "dodatki": false,
+          "image": "Miody/rzepak.jpg",
+          "weight": 500,
+          "price": 24
+        },
+        {
+          "id": "003M",
+          "name": "Miód wielokwiatowy",
+          "dodatki": false,
+          "image": "Miody/wielokwiat.jpg",
+          "weight": 500,
+          "price": 20
+        }
+      ]
+    },
+    {
+      "title": "Miody pitne",
+      "icon": "icon-park-solid:honey-one",
+      "items": [
+        {
+          "id": "001MP",
+          "name": "Miód pitny trójniak",
+          "image": "MiodyPitne/rogDoMiodu.jpg",
+          "weight": 500,
+          "price": 35
+        }
+      ]
+    },
+    {
+      "title": "Produkty pszczele",
+      "icon": "noto-v1:honeybee",
+      "items": [
+        {
+          "id": "001PP",
+          "name": "Pyłek pszczeli",
+          "image": "ProduktyPszczele/PylekPszczeli.jpg",
+          "weight": 500,
+          "price": 48
+        }
+      ]
+    },
+    {
+      "title": "Bio produkty",
+      "icon": "ri:plant-fill",
+      "items": [
+        {
+          "id": "001BP",
+          "name": "Miód mandarynkowy",
+          "image": "Bio/MiodMandarynkowy.jpg",
+          "weight": 500,
+          "price": 48
+        }
+      ]
+    },
+    {
+      "title": "Karty podarunkowe",
+      "icon": "ic:baseline-card-giftcard",
+      "items": [
+        {
+          "id": "001KP",
+          "name": "Karta podarunkowa premium",
+          "image": "KartyPodarunkowe/giftCard.jpg",
+          "price": 48
+        }
+      ]
+    }
+  ],
+  "orderHistory": [
+    {
+      "id": "FodcJ1x2",
+      "time": "2/9/2022 @ 9:25:41",
+      "price": 12,
+      "itemsBought": [],
+      "deliveryData": {
+        "terms": true,
+        "name": "Mateusz",
+        "lastName": "Statkiewicz",
+        "email": "mateusz.statkiewicz2@gmail.com",
+        "street": "Rynek, 13/3",
+        "homeAdress": "ee",
+        "city": "Strzelin",
+        "zip": "57-100",
+        "deliveryMethod": "Poczta Polska",
+        "payMethod": "paymentOptions.blik"
       },
-      {
-        "title": "Miody pitne",
-        "icon": "icon-park-solid:honey-one",
-        "items": [
-          {
-            "id": "001MP",
-            "name": "Miód pitny trójniak",
-            "image": "MiodyPitne/rogDoMiodu.jpg",
-            "weight": 500,
-            "price": 35
-          }
-        ]
+      "deliveryPrice": 12
+    },
+    {
+      "id": "EkT4ppwW",
+      "time": "2/9/2022 @ 11:1:17",
+      "price": 60,
+      "itemsBought": [
+        {
+          "id": "002M",
+          "image": "Miody/rzepak.jpg",
+          "name": "Miód rzepakowy",
+          "price": 24,
+          "quantity": 1
+        },
+        {
+          "id": "001M",
+          "image": "Miody/lipa.jpg",
+          "name": "Miód lipowy",
+          "price": 25,
+          "quantity": 1
+        }
+      ],
+      "deliveryData": {
+        "terms": true,
+        "name": "Mateusz",
+        "lastName": "Statkiewicz",
+        "email": "mateusz.statkiewicz@capgemini.com",
+        "street": "Rynek, 13/3",
+        "homeAdress": "13",
+        "city": "Strzelin",
+        "zip": "57-100",
+        "deliveryMethod": "Kurier Inpost",
+        "payMethod": "[object Object]"
       },
-      {
-        "title": "Produkty pszczele",
-        "icon": "noto-v1:honeybee",
-        "items": [
-          {
-            "id": "001PP",
-            "name": "Pyłek pszczeli",
-            "image": "ProduktyPszczele/PylekPszczeli.jpg",
-            "weight": 500,
-            "price": 48
-          }
-        ]
+      "deliveryPrice": 11
+    },
+    {
+      "id": "R4hv9SpM",
+      "time": "2/9/2022 @ 11:7:48",
+      "price": 119,
+      "itemsBought": [
+        {
+          "id": "001PP",
+          "image": "ProduktyPszczele/PylekPszczeli.jpg",
+          "name": "Pyłek pszczeli",
+          "price": 48,
+          "quantity": 1
+        },
+        {
+          "id": "001MP",
+          "image": "MiodyPitne/rogDoMiodu.jpg",
+          "name": "Miód pitny trójniak",
+          "price": 35,
+          "quantity": 1
+        },
+        {
+          "id": "001M",
+          "image": "Miody/lipa.jpg",
+          "name": "Miód lipowy",
+          "price": 25,
+          "quantity": 1
+        }
+      ],
+      "deliveryData": {
+        "terms": true,
+        "name": "Mateusz",
+        "lastName": "Statkiewicz",
+        "email": "mankiety0@gmail.com",
+        "street": "Rynek, 13/3",
+        "homeAdress": "e",
+        "city": "Strzelin",
+        "zip": "57-100",
+        "deliveryMethod": "Kurier Inpost",
+        "payMethod": "Blik"
       },
-      {
-        "title": "Bio produkty",
-        "icon": "ri:plant-fill",
-        "items": [
-          {
-            "id": "001BP",
-            "name": "Miód mandarynkowy",
-            "image": "Bio/MiodMandarynkowy.jpg",
-            "weight": 500,
-            "price": 48
-          }
-        ]
+      "deliveryPrice": 11
+    },
+    {
+      "id": "jRAupMNC",
+      "time": "2/9/2022 @ 23:0:11",
+      "price": 9,
+      "itemsBought": [],
+      "deliveryData": {
+        "undefined": true,
+        "name": "Mateusz",
+        "lastName": "Statkiewicz",
+        "email": "afd@adf.com",
+        "city": "Strzelin",
+        "street": "Rynek",
+        "homeAdress": "asfd",
+        "zip": "57-100",
+        "deliveryMethod": "Kurier DHL",
+        "payMethod": "Za pobraniem",
+        "Select Ladniutki": false
       },
-      {
-        "title": "Karty podarunkowe",
-        "icon": "ic:baseline-card-giftcard",
-        "items": [
-          {
-            "id": "001KP",
-            "name": "Bio one",
-            "image": "KartyPodarunkowe/giftCard.jpg",
-            "price": 48
-          }
-        ]
+      "deliveryPrice": 9
+    },
+    {
+      "id": "cSNyN8zA",
+      "time": "3/9/2022 @ 10:6:57",
+      "price": null,
+      "itemsBought": [
+        {
+          "id": "001M",
+          "image": "Miody/lipa.jpg",
+          "name": "Miód lipowy",
+          "price": 25,
+          "quantity": 1
+        }
+      ],
+      "deliveryData": {
+        "terms": true,
+        "name": "Mateusz",
+        "lastName": "Statkiewicz",
+        "email": "sdg@dafg.com",
+        "city": "Strzelin",
+        "street": "Rynek",
+        "homeAdress": "12",
+        "zip": "57-100",
+        "deliveryMethod": "dhl",
+        "payMethod": "blik"
       }
-    ],
-    "orderHistory": {}
-  }
+    },
+    {
+      "id": "5x4qVSL1",
+      "time": "3/9/2022 @ 10:28:35",
+      "price": 24,
+      "itemsBought": [
+        {
+          "id": "002M",
+          "image": "Miody/rzepak.jpg",
+          "name": "Miód rzepakowy",
+          "price": 24,
+          "quantity": 1
+        }
+      ],
+      "deliveryData": {
+        "terms": true,
+        "name": "Mateusz",
+        "lastName": "Statkiewicz",
+        "email": "asdf@adf.com",
+        "city": "Strzelin",
+        "street": "Rynek",
+        "homeAdress": "124",
+        "zip": "57-100",
+        "deliveryMethod": "dhl",
+        "payMethod": "blik"
+      },
+      "deliveryPrice": 0
+    },
+    {
+      "id": "fcATJBKS",
+      "time": "3/9/2022 @ 10:29:35",
+      "price": 0,
+      "itemsBought": [],
+      "deliveryData": {
+        "terms": true,
+        "name": "Mateusz",
+        "lastName": "Statkiewicz",
+        "email": "adf@adf.com",
+        "city": "Strzelin",
+        "street": "Rynek",
+        "homeAdress": "1234",
+        "zip": "57-100",
+        "deliveryMethod": "poczta",
+        "payMethod": "blik"
+      },
+      "deliveryPrice": 0
+    },
+    {
+      "id": "OMk8KQkV",
+      "time": "3/9/2022 @ 10:34:40",
+      "price": 0,
+      "itemsBought": [],
+      "deliveryData": {
+        "terms": true,
+        "name": "Mateusz",
+        "lastName": "Statkiewicz",
+        "email": "adafd@agd.com",
+        "city": "Strzelin",
+        "street": "Rynek",
+        "homeAdress": "1234",
+        "zip": "57-100",
+        "deliveryMethod": "[object Object]",
+        "payMethod": "[object Object]"
+      },
+      "deliveryPrice": 0
+    },
+    {
+      "id": "1BI4AL2w",
+      "time": "3/9/2022 @ 10:42:49",
+      "price": 63,
+      "itemsBought": [
+        {
+          "id": "001M",
+          "image": "Miody/lipa.jpg",
+          "name": "Miód lipowy",
+          "price": 25,
+          "quantity": 1
+        },
+        {
+          "id": "002M",
+          "image": "Miody/rzepak.jpg",
+          "name": "Miód rzepakowy",
+          "price": 24,
+          "quantity": 1
+        }
+      ],
+      "deliveryData": {
+        "terms": true,
+        "name": "Jurek",
+        "lastName": "AAASSWWE",
+        "email": "AAczesc@mors.com",
+        "city": "Prochów",
+        "street": "Rynka",
+        "homeAdress": "135",
+        "zip": "57-100",
+        "deliveryMethod": "Kurier FedEx",
+        "payMethod": "Przelew tradycyjny"
+      },
+      "deliveryPrice": 14
+    }
+  ]
 }
