@@ -9,7 +9,7 @@ export const Form = styled.form`
   align-items: flex-start;
 `;
 
-export const FormTextInputs = styled.form`
+export const FormTextInputs = styled.div`
   // border: 2px solid red;
   display: inline-flex;
   flex-direction: row;

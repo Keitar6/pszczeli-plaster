@@ -23,7 +23,6 @@ import Button, {
   BUTTON_TYPE_CLASSES
 } from "components/button/button.component";
 import { useNavigate } from "react-router-dom";
-import { isCartEmpty } from "utils/reusableFunctions/isCartEmpty.function";
 
 type CartClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
   T,
@@ -36,7 +35,6 @@ export const CartModal = () => {
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector(selectCartItems);
   const cartTotal = useAppSelector(selectCartTotal);
-  const cartQuantity = useAppSelector(selectCartCount);
   const navigate = useNavigate();
 
   const goToCheckoutHandler = () => {

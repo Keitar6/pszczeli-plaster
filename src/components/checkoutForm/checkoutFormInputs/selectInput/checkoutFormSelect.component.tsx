@@ -37,6 +37,7 @@ export const CheckoutFormSelect: FC<PropsWithChildren<CheckoutFormInput>> = ({
 }) => {
   const dispatch = useAppDispatch();
   const deliveryPriceHandler = (deliveryType: string) => {
+    console.log(deliveryType);
     dispatch(
       setDelivery(deliveryType.replace(/\s+/g, "") as DeliveryType["type"])
     );
@@ -50,8 +51,9 @@ export const CheckoutFormSelect: FC<PropsWithChildren<CheckoutFormInput>> = ({
             id={`${idDelivery}`}
             register={register}
             datas={deliveryOptions}
+            deliveryPriceHandler={deliveryPriceHandler}
           >
-            Wybierz sposób dostawy
+            Sposób dostawy
           </Select>
           {errorDelivery && (
             <NonValidFormInput>Wybierz proszę sposób dostawy</NonValidFormInput>
@@ -63,9 +65,8 @@ export const CheckoutFormSelect: FC<PropsWithChildren<CheckoutFormInput>> = ({
             id={`${idPayment}`}
             register={register}
             datas={paymentOptions}
-            deliveryPriceHandler={deliveryPriceHandler}
           >
-            Wybierz formę płatności
+            Metoda płatność
           </Select>
           {errorPayment && (
             <NonValidFormInput>

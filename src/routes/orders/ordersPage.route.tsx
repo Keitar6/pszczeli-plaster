@@ -38,7 +38,6 @@ const OrdersPage = () => {
     price: "Kwota"
   };
 
-  console.log(timeSorting(ordersHistory));
   const moreHistoryHandler = () => {
     dispatch(incrementViewLimiter(viewLimiter, 1));
   };

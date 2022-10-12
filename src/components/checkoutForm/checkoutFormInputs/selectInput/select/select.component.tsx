@@ -19,14 +19,7 @@ export const Select: FC<PropsWithChildren<CheckoutFormInput>> = ({
   return (
     <div id="app-cover">
       <div id={`select-box ${id}`}>
-        <input
-          type="checkbox"
-          id={`options-view-button`}
-          name={`${id}`}
-          onChange={(event) =>
-            deliveryPriceHandler && deliveryPriceHandler(event.target.value)
-          }
-        />
+        <input type="checkbox" id={`options-view-button`} name={`${id}`} />
         <div id="select-button" className="brd">
           <div id="selected-value">
             <span>{children} </span>
@@ -38,16 +31,20 @@ export const Select: FC<PropsWithChildren<CheckoutFormInput>> = ({
               <div key={option} className="option">
                 <input
                   {...register(`${id}`, { required: true })}
+                  onChange={(event) =>
+                    deliveryPriceHandler &&
+                    deliveryPriceHandler(event.target.value)
+                  }
                   className="s-c top"
                   type="radio"
                   name={`${id}`}
-                  value={`${option}`}
+                  value={`${datas[option].value}`}
                 />
                 <input
                   className="s-c bottom"
                   type="radio"
                   name={`${id}`}
-                  value={`${option}`}
+                  value={`${datas[option].value}`}
                 />
                 <i className="fab fa-codepen"></i>
                 <span className="label">{`${datas[option].value}`}</span>

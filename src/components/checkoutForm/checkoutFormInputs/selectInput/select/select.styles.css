@@ -1,41 +1,33 @@
-.brd {
-  border: 1px solid #e2eded;
-  border-color: #eaf1f1 #e4eded #dbe7e7 #e4eded;
-}
-
-#info {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  color: #2d3667;
-  font-size: 1rem;
-  text-align: center;
-  padding: 1rem;
-  background-color: #f3f9f9;
-}
-
 #app-cover {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 0;
   right: 0;
   left: 0;
   width: 100%;
   height: 3rem;
-  margin: 1rem auto 0 auto;
+  margin: 1rem auto 1rem auto;
   z-index: 1;
-  /* border: 2px solid red; */
+  color: #0230473e;
+  border: 2px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to top, #023047, #ffb703, #023047);
+}
+
+#app-cover:hover {
+  background-color: #023047;
+  color: #ffb703;
 }
 
 #select-button {
   position: relative;
   height: 100%;
-  padding: 0.5rem .9rem;
-  background-color: #fff;
+  padding: 0.5rem 0.9rem;
+  background-color: transparent;
   border-radius: 0.3rem;
   cursor: pointer;
-  
-  
 }
 
 #options-view-button {
@@ -50,8 +42,6 @@
   opacity: 0;
   cursor: pointer;
   z-index: 3;
- 
-  
 }
 
 #selected-value {
@@ -111,7 +101,6 @@
   margin: 0 auto;
   background-color: #fff;
   border-radius: 0.3rem;
-
 }
 
 #options-view-button:checked ~ #options {

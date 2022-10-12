@@ -46,6 +46,7 @@ export const CheckoutForm = () => {
 
   const addToOrderHistoryHandler = (formData: DeliveryData) => {
     console.log(formData);
+
     dispatch(
       postOrderHistoryAsync(
         orderHistory,
@@ -60,7 +61,6 @@ export const CheckoutForm = () => {
       )
     );
     dispatch(setCartItems([]));
-    navigate("/sklep");
   };
   return (
     <>
@@ -93,15 +93,13 @@ export const CheckoutForm = () => {
             );
           })}
         </FormTextInputs>
-        <div>
-          <CheckoutFormSelect
-            idPayment={formData.payMethod as string}
-            idDelivery={formData.deliveryMethod as string}
-            register={register}
-            errorPayment={errors.payMethod}
-            errorDelivery={errors.deliveryMethod}
-          />
-        </div>
+        <CheckoutFormSelect
+          idPayment={formData.payMethod as string}
+          idDelivery={formData.deliveryMethod as string}
+          register={register}
+          errorPayment={errors.payMethod}
+          errorDelivery={errors.deliveryMethod}
+        />
         <div>
           <label htmlFor={`${formData.terms}`}>
             <InputCheckbox
@@ -115,7 +113,6 @@ export const CheckoutForm = () => {
             )}
           </label>
         </div>
-
         <FormButtons
           submitHandler={handleSubmit((formData) =>
             addToOrderHistoryHandler(formData)
