@@ -34,8 +34,8 @@ export const TextInput = styled.input`
   width: 100%;
   height: 100%;
   padding: 0.8rem;
-  border-image-slice: 1;
   background: ${Colors.light};
+  border-image-slice: 1;
   border-image-source: linear-gradient(
     to left,
     ${Colors.primary},

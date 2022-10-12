@@ -19,7 +19,7 @@ import {
 } from "utils/checkoutForm/checkoutForm.utils";
 import { getCurrentTime } from "utils/reusableFunctions/getTime.function";
 import { orderCreator } from "utils/store/orderCreator.utils";
-import { NonValidFormInput, Form, FormTextInputs } from "./checkoutForm.styles";
+import { NonValidFormInput, Form, FormTextInputs, InputCheckbox } from "./checkoutForm.styles";
 import { CheckoutFormInput } from "./checkoutFormInputs/textInput/checkoutFormInput.component";
 import { CheckoutFormSelect } from "./checkoutFormInputs/selectInput/checkoutFormSelect.component";
 import { FormButtons } from "./formButtons/formButtons.component";
@@ -98,7 +98,7 @@ export const CheckoutForm = () => {
         </div>
         <div>
           <label htmlFor={`${formData.terms}`}>
-            <input
+            <InputCheckbox
               type="checkbox"
               id={`${formData.terms}`}
               {...register(`${formData.terms}`, { required: true })}

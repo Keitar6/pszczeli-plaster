@@ -19,11 +19,12 @@ export const Select: FC<PropsWithChildren<CheckoutFormInput>> = ({
   id,
   register,
   deliveryPriceHandler,
-  datas
+  datas,
+  children
 }) => {
   return (
     <div id="app-cover">
-      <div id="select-box">
+      <div id={`select-box ${id}`}>
         <input
           type="checkbox"
           id={`options-view-button`}
@@ -34,7 +35,7 @@ export const Select: FC<PropsWithChildren<CheckoutFormInput>> = ({
         />
         <div id="select-button" className="brd">
           <div id="selected-value">
-            <span>Wybierz formę dostawy </span>
+            <span>{children} </span>
           </div>
         </div>
         <div id="options">

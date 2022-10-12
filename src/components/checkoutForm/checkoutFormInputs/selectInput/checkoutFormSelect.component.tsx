@@ -90,10 +90,12 @@ export const CheckoutFormSelect: FC<PropsWithChildren<CheckoutFormInput>> = ({
 
       </div> */}
       <SelectContainer>
-
-       <Select id="Hi" register={register} datas={deliveryOptions}></Select>
-       <Select id="Hi" register={register} datas={paymentOptions}></Select>
-
+        <Select id="Hi" register={register} datas={deliveryOptions}>
+          Wybierz sposób dostawy
+        </Select>
+        <Select id="Hi" register={register} datas={paymentOptions}>
+          Wybierz formę płatności
+        </Select>
       </SelectContainer>
     </>
   );

@@ -183,6 +183,7 @@ export const SortingTypes = styled(BaseButton)`
 `;
 
 export const FormButton = styled(BaseButton)`
+  width: 48%;
   border: 2px solid;
   border-radius: 0.5rem;
   border-image-slice: 1;
