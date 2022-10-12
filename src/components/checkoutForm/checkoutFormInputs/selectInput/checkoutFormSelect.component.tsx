@@ -11,8 +11,8 @@ import {
   paymentOptions
 } from "utils/checkoutForm/checkoutForm.utils";
 import { NonValidFormInput } from "../../checkoutForm.styles";
-import { SelectContainer, SelectInput } from "./checkoutFormSelect.styles";
-import { Select } from "./select";
+import { SelectContainer, SelectContent } from "./checkoutFormSelect.styles";
+import { Select } from "./select/select.component";
 
 type CheckoutFormInput = {
   idDelivery: string;
@@ -44,58 +44,35 @@ export const CheckoutFormSelect: FC<PropsWithChildren<CheckoutFormInput>> = ({
 
   return (
     <>
-      {/* <div>
-        <label htmlFor={`${idDelivery}`}>Sposób dostawy</label>
-        <select
-          id={`${formData.deliveryMethod}`}
-          {...register(`${formData.deliveryMethod}`, { required: true })}
-          onChange={(event) => deliveryPriceHandler(event.target.value)}
-        >
-          <option></option>
-          <option value={`${deliveryOptions.poczta.value}`}>
-            {`${deliveryOptions.poczta.value}`}
-          </option>
-          <option
-            value={`${deliveryOptions.dhl.value}`}
-          >{`${deliveryOptions.dhl.value}`}</option>
-          <option
-            value={`${deliveryOptions.inpost.value}`}
-          >{`${deliveryOptions.inpost.value}`}</option>
-          <option
-            value={`${deliveryOptions.fedex.value}`}
-          >{`${deliveryOptions.fedex.value}`}</option>
-        </select>
-        {errorDelivery && (
-          <NonValidFormInput>Wybierz proszę sposób dostawy</NonValidFormInput>
-        )}
-      </div>
-
-      <div>
-        <label htmlFor={`${idPayment}`}>Metoda płatności</label>
-        <select
-          id={`${formData.payMethod}`}
-          defaultValue={"..."}
-          {...register(`${formData.payMethod}`, { required: true })}
-        >
-          <option></option>
-          <option>{`${paymentOptions.blik.value}`}</option>
-          <option>{`${paymentOptions.zaPobraniem.value}`}</option>
-          <option>{`${paymentOptions.przelew.value}`}</option>
-        </select>
-        {errorPayment && (
-          <NonValidFormInput>
-            Wybierz proszę metodę płatności{" "}
-          </NonValidFormInput>
-        )}
-
-      </div> */}
       <SelectContainer>
-        <Select id="Hi" register={register} datas={deliveryOptions}>
-          Wybierz sposób dostawy
-        </Select>
-        <Select id="Hi" register={register} datas={paymentOptions}>
-          Wybierz formę płatności
-        </Select>
+        <SelectContent>
+          <Select
+            id={`${idDelivery}`}
+            register={register}
+            datas={deliveryOptions}
+          >
+            Wybierz sposób dostawy
+          </Select>
+          {errorDelivery && (
+            <NonValidFormInput>Wybierz proszę sposób dostawy</NonValidFormInput>
+          )}
+        </SelectContent>
+
+        <SelectContent>
+          <Select
+            id={`${idPayment}`}
+            register={register}
+            datas={paymentOptions}
+            deliveryPriceHandler={deliveryPriceHandler}
+          >
+            Wybierz formę płatności
+          </Select>
+          {errorPayment && (
+            <NonValidFormInput>
+              Wybierz proszę metodę płatności{" "}
+            </NonValidFormInput>
+          )}
+        </SelectContent>
       </SelectContainer>
     </>
   );

@@ -27,7 +27,8 @@ export const formData: FormData = {
   homeAdress: "homeAdress",
   street: "street",
   zip: "zip",
-  payMethod: "payMethod"
+  payMethod: "payMethod",
+  terms: "terms"
 };
 
 export type FormDataInputMapItem = {

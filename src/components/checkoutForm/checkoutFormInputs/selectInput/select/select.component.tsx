@@ -1,17 +1,11 @@
 import { FC, PropsWithChildren } from "react";
-import {
-  FieldError,
-  FieldErrorsImpl,
-  FieldValues,
-  Merge,
-  UseFormRegister
-} from "react-hook-form";
+import { FieldValues, UseFormRegister } from "react-hook-form";
 import { DeliveryOptions } from "utils/checkoutForm/checkoutForm.utils";
-import "./select.css";
+import "./select.styles.css";
 type CheckoutFormInput = {
   id: string;
   register: UseFormRegister<FieldValues>;
-    datas: DeliveryOptions;
+  datas: DeliveryOptions;
   deliveryPriceHandler?: (deliveryType: string) => void;
 };
 
@@ -28,7 +22,7 @@ export const Select: FC<PropsWithChildren<CheckoutFormInput>> = ({
         <input
           type="checkbox"
           id={`options-view-button`}
-          {...register(`${id}`, { required: true })}
+          name={`${id}`}
           onChange={(event) =>
             deliveryPriceHandler && deliveryPriceHandler(event.target.value)
           }
@@ -43,16 +37,17 @@ export const Select: FC<PropsWithChildren<CheckoutFormInput>> = ({
             return (
               <div key={option} className="option">
                 <input
+                  {...register(`${id}`, { required: true })}
                   className="s-c top"
                   type="radio"
-                  name="platform"
-                  value="codepen"
+                  name={`${id}`}
+                  value={`${option}`}
                 />
                 <input
                   className="s-c bottom"
                   type="radio"
-                  name="platform"
-                  value="codepen"
+                  name={`${id}`}
+                  value={`${option}`}
                 />
                 <i className="fab fa-codepen"></i>
                 <span className="label">{`${datas[option].value}`}</span>

@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import React from "react";
 import { toggleCartMenu } from "store/cartReducer/cart.actions";
 import {
+  selectCartCount,
   selectCartItems,
   selectCartTotal
 } from "store/cartReducer/cart.selector";
@@ -22,6 +23,7 @@ import Button, {
   BUTTON_TYPE_CLASSES
 } from "components/button/button.component";
 import { useNavigate } from "react-router-dom";
+import { isCartEmpty } from "utils/reusableFunctions/isCartEmpty.function";
 
 type CartClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
   T,
@@ -34,6 +36,7 @@ export const CartModal = () => {
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector(selectCartItems);
   const cartTotal = useAppSelector(selectCartTotal);
+  const cartQuantity = useAppSelector(selectCartCount);
   const navigate = useNavigate();
 
   const goToCheckoutHandler = () => {
@@ -76,7 +79,9 @@ export const CartModal = () => {
             <Button
               onClick={goToCheckoutHandler}
               buttonType={BUTTON_TYPE_CLASSES.cartFuncButton}
-            >{`Do kasy`}</Button>
+            >{`${
+              isCartEmpty(cartQuantity) ? "Do kasy" : "Pusty koszyk"
+            }`}</Button>
             {`W sumie: ${cartTotal}zł`}
           </CartGoToCheckout>
         </CartContainer>

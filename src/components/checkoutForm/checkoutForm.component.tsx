@@ -19,7 +19,12 @@ import {
 } from "utils/checkoutForm/checkoutForm.utils";
 import { getCurrentTime } from "utils/reusableFunctions/getTime.function";
 import { orderCreator } from "utils/store/orderCreator.utils";
-import { NonValidFormInput, Form, FormTextInputs, InputCheckbox } from "./checkoutForm.styles";
+import {
+  NonValidFormInput,
+  Form,
+  FormTextInputs,
+  InputCheckbox
+} from "./checkoutForm.styles";
 import { CheckoutFormInput } from "./checkoutFormInputs/textInput/checkoutFormInput.component";
 import { CheckoutFormSelect } from "./checkoutFormInputs/selectInput/checkoutFormSelect.component";
 import { FormButtons } from "./formButtons/formButtons.component";
@@ -103,20 +108,19 @@ export const CheckoutForm = () => {
               id={`${formData.terms}`}
               {...register(`${formData.terms}`, { required: true })}
             />
+            Zgadzam się na warunki i zasady
             {errors.terms && (
               <NonValidFormInput>Wymagana jest zgoda </NonValidFormInput>
             )}
-            Zgadzam się na warunki i zasady
           </label>
         </div>
 
-          <FormButtons
-            submitHandler={handleSubmit((formData) =>
-              addToOrderHistoryHandler(formData)
-            )}
-            reset={reset}
-          />
-
+        <FormButtons
+          submitHandler={handleSubmit((formData) =>
+            addToOrderHistoryHandler(formData)
+          )}
+          reset={reset}
+        />
       </Form>
     </>
   );
