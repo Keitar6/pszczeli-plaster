@@ -41,6 +41,7 @@ export const CheckoutForm = () => {
   const totalPrice = useAppSelector(selectCartTotal);
   const cartItems = useAppSelector(selectCartItems);
   const deliveryInfo = useAppSelector(selectDelivery);
+  const deliveryPrice = deliveryInfo.price ? deliveryInfo.price : 0;
   const navigate = useNavigate();
 
   const addToOrderHistoryHandler = (formData: DeliveryData) => {
@@ -51,10 +52,10 @@ export const CheckoutForm = () => {
         orderCreator(
           orderId,
           getCurrentTime(),
-          totalPrice + deliveryInfo.price,
+          totalPrice + deliveryPrice,
           cartItems,
           formData,
-          deliveryInfo.price
+          deliveryPrice
         )
       )
     );

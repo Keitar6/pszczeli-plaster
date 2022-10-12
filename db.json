@@ -196,6 +196,32 @@
         "Select Ladniutki": false
       },
       "deliveryPrice": 9
+    },
+    {
+      "id": "cSNyN8zA",
+      "time": "3/9/2022 @ 10:6:57",
+      "price": null,
+      "itemsBought": [
+        {
+          "id": "001M",
+          "image": "Miody/lipa.jpg",
+          "name": "Miód lipowy",
+          "price": 25,
+          "quantity": 1
+        }
+      ],
+      "deliveryData": {
+        "terms": true,
+        "name": "Mateusz",
+        "lastName": "Statkiewicz",
+        "email": "sdg@dafg.com",
+        "city": "Strzelin",
+        "street": "Rynek",
+        "homeAdress": "12",
+        "zip": "57-100",
+        "deliveryMethod": "dhl",
+        "payMethod": "blik"
+      }
     }
   ]
 }

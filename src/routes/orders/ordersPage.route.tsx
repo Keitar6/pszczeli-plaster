@@ -5,7 +5,8 @@ import {
   OrdersHeader,
   HeaderBlock,
   OrdersTitle,
-  OrdersContent
+  OrdersContent,
+  OrderItemsContainer
 } from "./ordersPage.styles";
 
 import { OrderItem } from "components/orderItem/orderItem.component";
@@ -20,23 +21,24 @@ import {
 import { useEffect } from "react";
 import { selectOrderHistory } from "store/orderHistory/orderHistory.selector";
 import { fetchOrderHistoryAsync } from "store/orderHistory/orderHistory.action";
+import { timeSorting } from "utils/reusableFunctions/timeSorting.function";
 
 const OrdersPage = () => {
   const dispatch = useAppDispatch();
   const ordersHistory = useAppSelector(selectOrderHistory);
   const viewLimiter = useAppSelector(selectViewLimiter);
-  console.log(ordersHistory)
-  const tempOrdersHistory = ordersHistory
+  const tempOrdersHistory = timeSorting(ordersHistory)
     ? [...ordersHistory].splice(0, viewLimiter)
     : [];
 
   const ordersHeaders = {
-    title: "zamówienia",
+    title: "historia zamówień",
     id: "#id",
     date: "Data",
     price: "Kwota"
   };
 
+  console.log(timeSorting(ordersHistory));
   const moreHistoryHandler = () => {
     dispatch(incrementViewLimiter(viewLimiter, 1));
   };
@@ -59,17 +61,18 @@ const OrdersPage = () => {
 
           <HeaderBlock>{`${ordersHeaders.price}`}</HeaderBlock>
         </OrdersHeader>
-
-        {tempOrdersHistory
-          ? tempOrdersHistory.map((currentOrder) => {
-              return (
-                <OrderItem
-                  key={currentOrder.id}
-                  orderItem={currentOrder}
-                ></OrderItem>
-              );
-            })
-          : null}
+        <OrderItemsContainer>
+          {tempOrdersHistory
+            ? tempOrdersHistory.map((currentOrder) => {
+                return (
+                  <OrderItem
+                    key={currentOrder.id}
+                    orderItem={currentOrder}
+                  ></OrderItem>
+                );
+              })
+            : null}
+        </OrderItemsContainer>
       </OrdersContent>
       {ordersHistory.length > viewLimiter && (
         <Button

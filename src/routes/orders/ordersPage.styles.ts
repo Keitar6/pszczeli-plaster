@@ -19,7 +19,17 @@ export const OrdersContent = styled.div`
   align-items: center;
   justify-content: space-around;
   margin: 0 auto;
-  padding: 0 2rem;
+
+  // border: 2px solid red;
+`;
+export const OrderItemsContainer = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+
   // border: 2px solid red;
 `;
 
