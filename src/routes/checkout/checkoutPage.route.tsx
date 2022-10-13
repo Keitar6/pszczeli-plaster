@@ -73,7 +73,7 @@ const CheckoutPage = () => {
         }zł`}</PLarge>
         <PLarge>{`${checkoutHeaders.productsPrice}: ${totalCost}zł`}</PLarge>
         <Total>{`${checkoutHeaders.wSumie}: ${
-          totalCost + deliveryInfo.price ? deliveryInfo.price : 0
+          totalCost + (deliveryInfo.price ? deliveryInfo.price : 0)
         }zł`}</Total>
       </CheckoutSummaryContainer>
     </CheckoutContainer>

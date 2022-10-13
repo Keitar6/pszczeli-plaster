@@ -28,7 +28,7 @@ export const SORTING_TYPES: SortingTypes = {
 };
 
 export type SortType = {
-  sorType: string;
+  sorType: SorTypeVariations[keyof SorTypeVariations];
   inputSort: string;
   ascending: boolean;
 };
@@ -37,11 +37,7 @@ export type UserState = {
   readonly currentUser: Record<string, unknown>;
   readonly isLoading: boolean;
   readonly error: Error | null;
-  readonly sort: {
-    sorType: SorTypeVariations[keyof SorTypeVariations];
-    inputSort: string;
-    ascending: boolean;
-  };
+  readonly sort:SortType
 };
 
 const USER_INITIAL_STATE: UserState = {

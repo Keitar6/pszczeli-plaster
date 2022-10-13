@@ -1,6 +1,5 @@
 import { homePath } from "utils/globalRoutes/globalRoutes.utils";
 
-
 export const refresh = (inputPath = "") => {
   const path = `${homePath}${inputPath}`;
 

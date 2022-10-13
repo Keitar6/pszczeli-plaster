@@ -36,7 +36,7 @@ export const FormButtons: FC<FormButtonsProps> = ({ reset, submitHandler }) => {
           return reset({ ...resetFormHandler() });
         }}
       >
-        Reset
+        Wyczyść formularz
       </Button>
     </FormButtonsContainer>
   );
