@@ -6,6 +6,8 @@ import { FieldValues, UseFormReset } from "react-hook-form";
 import { FormButtonsContainer } from "./formButtons.styles";
 
 import { resetFormHandler } from "../../../utils/checkoutForm/formHandlers.utils";
+import { setDelivery } from "store/orderHistory/orderHistory.action";
+import { useAppDispatch } from "hooks/hooks";
 
 type FormButtonsProps = {
   reset: UseFormReset<FieldValues>;
@@ -15,6 +17,8 @@ type FormButtonsProps = {
 };
 
 export const FormButtons: FC<FormButtonsProps> = ({ reset, submitHandler }) => {
+  const dispatch = useAppDispatch();
+
   return (
     <FormButtonsContainer>
       <Button
@@ -33,7 +37,8 @@ export const FormButtons: FC<FormButtonsProps> = ({ reset, submitHandler }) => {
         buttonType={BUTTON_TYPE_CLASSES.formButton}
         onClick={(e) => {
           e.preventDefault();
-          return reset({ ...resetFormHandler() });
+          dispatch(setDelivery("None"));
+          reset({ ...resetFormHandler() });
         }}
       >
         Wyczyść formularz

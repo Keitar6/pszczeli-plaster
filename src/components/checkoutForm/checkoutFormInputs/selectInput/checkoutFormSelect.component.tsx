@@ -1,5 +1,5 @@
 import { useAppDispatch } from "hooks/hooks";
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, useEffect } from "react";
 import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form";
 import type { FieldValues } from "react-hook-form/dist/types/fields";
 import type { UseFormRegister } from "react-hook-form/dist/types/form";
@@ -42,6 +42,9 @@ export const CheckoutFormSelect: FC<PropsWithChildren<CheckoutFormInput>> = ({
       setDelivery(deliveryType.replace(/\s+/g, "") as DeliveryType["type"])
     );
   };
+  useEffect(() => {
+    return () => {dispatch(setDelivery("None"))};
+  }, []);
 
   return (
     <>
