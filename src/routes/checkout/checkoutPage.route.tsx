@@ -29,6 +29,7 @@ const CheckoutPage = () => {
   const totalCost = useAppSelector(selectCartTotal);
   const cartQuantity = useAppSelector(selectCartCount);
   const deliveryInfo = useAppSelector(selectDelivery);
+  const deliveryPrice = deliveryInfo.price ? deliveryInfo.price : 0;
   const navigate = useNavigate();
   const checkoutHeaders = {
     summary: "podsumowanie",
@@ -68,12 +69,10 @@ const CheckoutPage = () => {
             cartItem={currentItem}
           ></CheckoutItem>
         ))}
-        <PLarge>{`${checkoutHeaders.deliveryPrice}: ${
-          deliveryInfo.price ? deliveryInfo.price : 0
-        }zł`}</PLarge>
+        <PLarge>{`${checkoutHeaders.deliveryPrice}: ${deliveryPrice}zł`}</PLarge>
         <PLarge>{`${checkoutHeaders.productsPrice}: ${totalCost}zł`}</PLarge>
         <Total>{`${checkoutHeaders.wSumie}: ${
-          totalCost + (deliveryInfo.price ? deliveryInfo.price : 0)
+          totalCost + deliveryPrice
         }zł`}</Total>
       </CheckoutSummaryContainer>
     </CheckoutContainer>
