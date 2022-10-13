@@ -6,7 +6,7 @@ import { Sorting } from "../basicSorting.function";
 
 // Input (items: CategoryItem[], sort: SortType)
 
-describe("Reusable Functions", () => {
+describe("Reusable Functions --> Basic sorting", () => {
   type MockItems = {
     [key: string]: CategoryItem[];
   };
