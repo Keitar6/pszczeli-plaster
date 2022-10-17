@@ -34,7 +34,7 @@ export const removeCartItem = (
   let updatedCartItemsRemove = [];
   let productId = 0;
 
-  if (ifAll !== "all" && productToRemove && productToRemove.quantity !== 1)
+  if (productToRemove && ifAll !== "all" && productToRemove.quantity !== 1)
     updatedCartItemsRemove = tempCartItems.map((cartItem) =>
       cartItem.id === productToRemove.id
         ? { ...cartItem, quantity: cartItem.quantity - 1 }
@@ -49,12 +49,10 @@ export const removeCartItem = (
   return updatedCartItemsRemove;
 };
 
-export type ToggleCartMenu =
-  Action<CART_ACTION_TYPES.TOGGLE_CART_MENU>;
+export type ToggleCartMenu = Action<CART_ACTION_TYPES.TOGGLE_CART_MENU>;
 
 export const toggleCartMenu = withMatch(
-  (): ToggleCartMenu =>
-    actionCreator(CART_ACTION_TYPES.TOGGLE_CART_MENU)
+  (): ToggleCartMenu => actionCreator(CART_ACTION_TYPES.TOGGLE_CART_MENU)
 );
 
 export type SetCartItems = ActionWithPayload<
@@ -75,7 +73,7 @@ export const addItemToCart = withMatch(
 );
 
 export const removeItemFromCart = withMatch(
-  (cartItems: CartItem[], productToRemove: CartItem, ifAll = "") => {
+  (cartItems: CartItem[]=[], productToRemove: CartItem, ifAll = "") => {
     const updatedCartItems = removeCartItem(cartItems, productToRemove, ifAll);
 
     return setCartItems(updatedCartItems);

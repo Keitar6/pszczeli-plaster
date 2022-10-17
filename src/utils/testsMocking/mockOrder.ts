@@ -1,14 +1,4 @@
-export const mockCartItems = [
-  {
-    id: "FajneID",
-    name: "SuperName",
-    weight: 15,
-    price: 165,
-    image: "ImageSciezka",
-    dodatki: false,
-    quantity: 2
-  }
-];
+import { mockCartItems } from "./mockCartItem";
 
 export const deliveryData = {
   dobryDelivery: "bardzoDobryDelivery"
