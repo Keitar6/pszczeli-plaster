@@ -42,9 +42,6 @@ export const fetchCategoriesSuccess = withMatch(
       categoriesArray
     )
 );
-
-console.log(fetchCategoriesSuccess([]));
-
 export const fetchCategoriesFailed = withMatch(
   (error: Error): FetchCategoriesFailed =>
     actionCreator(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error)
@@ -60,8 +57,10 @@ export const fetchCategoriesAsync: any = () => {
     try {
       const categoryEndPoint = await readCategories();
       dispatch(fetchCategoriesSuccess(categoryEndPoint));
+      return categoryEndPoint
     } catch (error) {
       dispatch(fetchCategoriesFailed(error as Error));
+      return error
     }
   };
 };

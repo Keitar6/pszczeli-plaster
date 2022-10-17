@@ -1,95 +1,38 @@
+import { mockCategories } from "../../../utils/testsMocking/mockCategories";
+
 import {
-  mockCartItemInArray,
-  mockCartItemInArray1Quantity,
-  mockCartItemNotInArray,
-  mockCartItems
-} from "../../../utils/testsMocking/mockCartItem";
-import {
-  addItemToCart,
-  removeItemFromCart,
-  toggleCartMenu
-} from "../cart.actions";
+  fetchCategoriesAsync,
+  fetchCategoriesFailed,
+  fetchCategoriesStart,
+  fetchCategoriesSuccess
+} from "../category.action";
+import { CATEGORIES_ACTION_TYPES } from "../category.types";
 
-import { CART_ACTION_TYPES } from "../cart.types";
-
-describe("Actions - CartReducer", () => {
-  describe("ActionsHelpers - addCart", () => {
-    const mockCartItemsWithMockItem = [...mockCartItems, mockCartItemInArray];
-    const mockCartItemsWithMockItem1Quantity = [
-      ...mockCartItems,
-      mockCartItemInArray1Quantity
-    ];
-    const mockCartItemsUndefined = undefined;
-
-    test("addCartItem", () => {
-      expect(addItemToCart(mockCartItems, mockCartItemNotInArray)).toEqual({
-        payload: [...mockCartItems, { ...mockCartItemInArray, quantity: 1 }],
-        type: CART_ACTION_TYPES.SET_CART_ITEMS
-      });
-
-      expect(
-        addItemToCart(mockCartItemsWithMockItem, mockCartItemInArray)
-      ).toEqual({
-        payload: [...mockCartItems, { ...mockCartItemInArray, quantity: 3 }],
-        type: CART_ACTION_TYPES.SET_CART_ITEMS
-      });
-
-      expect(
-        addItemToCart(mockCartItemsUndefined, mockCartItemInArray)
-      ).toEqual({
-        payload: [{ ...mockCartItemInArray, quantity: 1 }],
-        type: CART_ACTION_TYPES.SET_CART_ITEMS
-      });
-    });
-
-    test("removeItemFromCart", () => {
-      expect(
-        removeItemFromCart(
-          mockCartItemsWithMockItem,
-          mockCartItemInArray,
-          "all"
-        )
-      ).toEqual({
-        payload: mockCartItems,
-        type: CART_ACTION_TYPES.SET_CART_ITEMS
-      });
-
-      expect(
-        removeItemFromCart(
-          mockCartItemsWithMockItem,
-          mockCartItemInArray,
-          "asd"
-        )
-      ).toEqual({
-        payload: [
-          ...mockCartItems,
-          { ...mockCartItemInArray, quantity: mockCartItemInArray.quantity - 1 }
-        ],
-        type: CART_ACTION_TYPES.SET_CART_ITEMS
-      });
-
-      expect(
-        removeItemFromCart(
-          mockCartItemsWithMockItem1Quantity,
-          mockCartItemInArray1Quantity
-        )
-      ).toEqual({
-        payload: [...mockCartItemsWithMockItem1Quantity],
-        type: CART_ACTION_TYPES.SET_CART_ITEMS
-      });
-
-      expect(
-        removeItemFromCart(mockCartItemsUndefined, mockCartItemInArray1Quantity)
-      ).toEqual({
-        payload: [],
-        type: CART_ACTION_TYPES.SET_CART_ITEMS
-      });
+describe("Actions - CategoriesReducer", () => {
+  test("fetchCategoriesStart", () => {
+    expect(fetchCategoriesStart()).toEqual({
+      type: CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START
     });
   });
 
-  test("toggleCartMenu", () => {
-    expect(toggleCartMenu()).toEqual({
-      type: CART_ACTION_TYPES.TOGGLE_CART_MENU
+  test("fetchCategoriesSuccess", () => {
+    expect(fetchCategoriesSuccess(mockCategories)).toEqual({
+      payload: mockCategories,
+      type: CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_SUCCESS
     });
   });
+  test("fetchCategoriesFailed", () => {
+    const error: Error = new Error();
+    expect(fetchCategoriesFailed(error)).toEqual({
+      type: CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED,
+      payload: error
+    });
+  });
+
+  // test("fetchCategoriesAsync", () => {
+  //   expect(fetchCategoriesAsync()).toEqual({
+  //     type: CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED,
+  //     payload: []
+  //   });
+  // });
 });
