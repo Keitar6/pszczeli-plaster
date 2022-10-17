@@ -8,8 +8,8 @@ import {
 
 import type { ActionCreator, AnyAction } from "redux";
 import type { ThunkAction } from "redux-thunk";
-import { ReduxState } from "store/rootReducer.redux";
-import { readCategories } from "service/service";
+import { ReduxState } from "../../store/rootReducer.redux";
+import { readCategories } from "../../service/service";
 
 export type FetchCategoriesStart =
   Action<CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START>;
