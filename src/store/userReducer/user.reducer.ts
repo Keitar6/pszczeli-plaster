@@ -40,7 +40,7 @@ export type UserState = {
   readonly sort:SortType
 };
 
-const USER_INITIAL_STATE: UserState = {
+export const USER_INITIAL_STATE: UserState = {
   currentUser: {},
   isLoading: false,
   error: null,
