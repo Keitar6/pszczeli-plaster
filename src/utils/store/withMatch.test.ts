@@ -37,13 +37,3 @@ test("withMatchReturn Test", () => {
     })
   );
 });
-
-// export function withMatch<AC extends () => AnyAction & { type: string }>(
-//   actionCreator: AC
-// ) {
-//   return Object.assign(actionCreator, {
-//     match(action: AnyAction) {
-//       return action.type === actionCreator().type;
-//     }
-//   });
-// }
