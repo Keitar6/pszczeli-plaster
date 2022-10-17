@@ -103,8 +103,9 @@ export const postOrderHistoryAsync: any = (
     dispatch(postOrderHistoryStart());
     try {
       const orderHistoryEndPoint = await postNewOrder(tempOrder);
-      console.log(orderHistoryEndPoint);
+
       dispatch(postOrderHistorySuccess());
+      return orderHistoryEndPoint;
     } catch (error) {
       dispatch(postOrderHistoryFailed(error as Error));
       console.log(error);

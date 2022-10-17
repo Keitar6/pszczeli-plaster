@@ -1,3 +1,22 @@
+export const mockOrder =  {
+  id: "FodcJ1x2",
+  time: "2/9/2022 @ 9:25:41",
+  price: 12,
+  itemsBought: [],
+  deliveryData: {
+    terms: true,
+    name: "Tomasz",
+    lastName: "Klusek",
+    email: "klusekTomasz@gmail.com",
+    street: "Nie, blok",
+    homeAdress: "posiada",
+    city: "Yrtaln",
+    zip: "51-143",
+    deliveryMethod: "Poczta Polska",
+    payMethod: "paymentOptions.blik"
+  },
+  deliveryPrice: 12
+}
 export const mockOrderHistory = [
   {
     id: "FodcJ1x2",

@@ -1,57 +1,76 @@
-import { mockCategories } from "../../../utils/testsMocking/mockCategories";
-
 import {
-  fetchCategoriesAsync,
-  fetchCategoriesFailed,
-  fetchCategoriesStart,
-  fetchCategoriesSuccess
-} from "../category.action";
-import { CATEGORIES_ACTION_TYPES } from "../category.types";
+  mockOrderHistory,
+  mockOrder
+} from "../../../utils/testsMocking/mockOrderHistory";
+import {
+  fetchOrderHistoryAsync,
+  fetchOrderHistoryFailed,
+  fetchOrderHistoryStart,
+  fetchOrderHistorySuccess,
+  postOrderHistoryAsync,
+  postOrderHistoryFailed,
+  postOrderHistoryStart,
+  postOrderHistorySuccess,
+  setDelivery
+} from "../orderHistory.action";
+import {
+  DELIVERY_TYPE,
+  ORDER_HISTORY_ACTION_TYPES
+} from "../orderHistory.types";
 
 describe("Actions - OrderHistoryReducer", () => {
   test("fetchOrderHistoryStart", () => {
-    expect(fetchCategoriesStart()).toEqual({
-      type: CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START
+    expect(fetchOrderHistoryStart()).toEqual({
+      type: ORDER_HISTORY_ACTION_TYPES.FETCH_ORDER_HISTORY_START
     });
   });
 
   test("fetchOrderHistorySuccess", () => {
-    expect(fetchCategoriesSuccess(mockCategories)).toEqual({
-      payload: mockCategories,
-      type: CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_SUCCESS
+    expect(fetchOrderHistorySuccess(mockOrderHistory)).toEqual({
+      payload: mockOrderHistory,
+      type: ORDER_HISTORY_ACTION_TYPES.FETCH_ORDER_HISTORY_SUCCESS
     });
   });
   test("fetchOrderHistoryFailed", () => {
     const error: Error = new Error();
-    expect(fetchCategoriesFailed(error)).toEqual({
-      type: CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED,
+    expect(fetchOrderHistoryFailed(error)).toEqual({
+      type: ORDER_HISTORY_ACTION_TYPES.FETCH_ORDER_HISTORY_FAILED,
       payload: error
     });
   });
   test("postOrderHistoryStart", () => {
-    expect(fetchCategoriesStart()).toEqual({
-      type: CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START
+    expect(postOrderHistoryStart()).toEqual({
+      type: ORDER_HISTORY_ACTION_TYPES.POST_ORDER_HISTORY_START
     });
   });
 
   test("postOrderHistorySuccess", () => {
-    expect(fetchCategoriesSuccess(mockCategories)).toEqual({
-      payload: mockCategories,
-      type: CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_SUCCESS
+    expect(postOrderHistorySuccess()).toEqual({
+      type: ORDER_HISTORY_ACTION_TYPES.POST_ORDER_HISTORY_SUCCESS
     });
   });
   test("postOrderHistoryFailed", () => {
     const error: Error = new Error();
-    expect(fetchCategoriesFailed(error)).toEqual({
-      type: CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED,
+    expect(postOrderHistoryFailed(error)).toEqual({
+      type: ORDER_HISTORY_ACTION_TYPES.POST_ORDER_HISTORY_FAILED,
       payload: error
     });
   });
 
-  // test("orderHistoryCategoriesAsync", () => {
-  //   expect(fetchCategoriesAsync()).toEqual({
-  //     type: CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED,
-  //     payload: []
-  //   });
+  // test("fetchOrderHistoryOrderHistoryAsync", () => {
+  //   expect(fetchOrderHistoryAsync()).toEqual();
   // });
+
+  // test("postOrderHistoryOrderHistoryAsync", () => {
+  //   console.log(postOrderHistoryAsync(mockOrderHistory, mockOrder));
+  //   expect(postOrderHistoryAsync()).toEqual();
+  // });
+
+  test("setDelivery", () => {
+    const deliveryType = "KurierDHL";
+    expect(setDelivery(deliveryType)).toEqual({
+      type: ORDER_HISTORY_ACTION_TYPES.SET_DELIVERY,
+      payload: { type: deliveryType, price: DELIVERY_TYPE[deliveryType] }
+    });
+  });
 });
