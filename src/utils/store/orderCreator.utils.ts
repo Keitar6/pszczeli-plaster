@@ -4,7 +4,7 @@ export const orderCreator= (
   id: string,
   time: string,
   price: number,
-  itemsBought: OrderItem[],//{,quantity:15}
+  itemsBought: OrderItem[],
   deliveryData: DeliveryData,
   deliveryPrice: number
 ):Order => {

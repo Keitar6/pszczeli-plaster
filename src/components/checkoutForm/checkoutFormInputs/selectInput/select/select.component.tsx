@@ -1,3 +1,4 @@
+import { Icon } from "@iconify/react";
 import { FC, PropsWithChildren } from "react";
 import { FieldValues, UseFormRegister } from "react-hook-form";
 import { DeliveryOptions } from "utils/checkoutForm/checkoutForm.utils";
@@ -18,8 +19,8 @@ export const Select: FC<PropsWithChildren<CheckoutFormInput>> = ({
 }) => {
   return (
     <div id="app-cover">
-      <div id={`select-box ${id}`}>
-        <input type="checkbox" id={`options-view-button`} name={`${id}`} />
+      <div id="select-box">
+        <input type="checkbox" id="options-view-button" name={`${id}`} />
         <div id="select-button" className="brd">
           <div id="selected-value">
             <span>{children} </span>
@@ -40,19 +41,27 @@ export const Select: FC<PropsWithChildren<CheckoutFormInput>> = ({
                   name={`${id}`}
                   value={`${datas[option].value}`}
                 />
-                <input
-                  className="s-c bottom"
-                  type="radio"
-                  name={`${id}`}
-                  value={`${datas[option].value}`}
-                />
-                <i className="fab fa-codepen"></i>
-                <span className="label">{`${datas[option].value}`}</span>
-                <span className="opt-val">{`${datas[option].value}`}</span>
+
+                <div className="label">
+                  <Icon
+                    className="LabelIcon"
+                    icon={`${datas[option].icon}`}
+                    width="32"
+                  />
+                  <span className="LabelText">{`${datas[option].value}`}</span>
+                </div>
+
+                <span className="opt-val">
+                  <Icon
+                    className="LabelIcon"
+                    icon={`${datas[option].icon}`}
+                    width="32"
+                  />
+                  <span className="LabelText">{`${datas[option].value}`}</span>
+                </span>
               </div>
             );
           })}
-          <div id="option-bg"></div>
         </div>
       </div>
     </div>

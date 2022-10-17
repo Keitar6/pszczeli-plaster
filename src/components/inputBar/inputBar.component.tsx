@@ -27,6 +27,7 @@ export const InputBar: FC<InputBarProps> = ({ whereTo }) => {
 
   const onInputChangeHandler = () => {
     const input = document.getElementById("inputBar");
+    
     if (IsInputNull(input)) {
       dispatch(setInputSorting(input.value));
     }

@@ -33,13 +33,15 @@ function App() {
     <Suspense fallback={<Spinner />}>
       <GlobalStyle />
       <BrowserRouter>
-        {/* tutaj warunki pozmieniac*/}
+       
         <div id="modal"></div>
-        {isUserMenuOpened ? <UserMenuModal /> : null}
-
-        {isCartMenuOpened && isCartEmpty(cartQuantity) ? <CartModal /> : null}
-
-        {isProductCardOpened ? <ProductDetailsModal /> : null}
+        {isUserMenuOpened ? (
+          <UserMenuModal />
+        ) : isCartMenuOpened && isCartEmpty(cartQuantity) ? (
+          <CartModal />
+        ) : isProductCardOpened ? (
+          <ProductDetailsModal />
+        ) : null}
 
         <Routes>
           <Route path="/" element={<Navigation />}>

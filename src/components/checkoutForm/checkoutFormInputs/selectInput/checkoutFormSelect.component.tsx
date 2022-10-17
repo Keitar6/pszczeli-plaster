@@ -7,7 +7,6 @@ import { setDelivery } from "store/orderHistory/orderHistory.action";
 import { DeliveryType } from "store/orderHistory/orderHistory.types";
 import {
   deliveryOptions,
-  formData,
   paymentOptions
 } from "utils/checkoutForm/checkoutForm.utils";
 import { NonValidFormInput } from "../../checkoutForm.styles";
@@ -43,7 +42,9 @@ export const CheckoutFormSelect: FC<PropsWithChildren<CheckoutFormInput>> = ({
     );
   };
   useEffect(() => {
-    return () => {dispatch(setDelivery("None"))};
+    return () => {
+      dispatch(setDelivery("None"));
+    };
   }, []);
 
   return (

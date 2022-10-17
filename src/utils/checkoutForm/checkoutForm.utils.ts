@@ -46,7 +46,7 @@ export type FormDataInputMap = {
 };
 
 export type DeliveryOptions = {
-  [key in keyof typeof formData]: { value: string; label: string };
+  [key in keyof typeof formData]: { value: string; icon: string };
 };
 
 export const formDataInputMap: FormDataInputMap = {
@@ -109,14 +109,14 @@ export const formDataInputMap: FormDataInputMap = {
 };
 
 export const deliveryOptions: DeliveryOptions = {
-  poczta: { value: "Poczta Polska", label: "Poczta Polska" },
-  dhl: { value: "Kurier DHL", label: "Kurier DHL" },
-  inpost: { value: "Kurier Inpost", label: "Kurier Inpost" },
-  fedex: { value: "Kurier FedEx", label: "Kurier FedEx" }
+  poczta: { value: "Poczta Polska", icon: "fluent-emoji:post-office" },
+  dhl: { value: "Kurier DHL", icon: "fa6-brands:dhl" },
+  inpost: { value: "Kurier Inpost", icon: "arcticons:inpost-mobile" },
+  fedex: { value: "Kurier FedEx", icon: "cib:fedex" }
 };
 
 export const paymentOptions = {
-  blik: { value: "Blik", label: "Blik" },
-  przelew: { value: "Przelew tradycyjny", label: "Przelew tradycyjny" },
-  zaPobraniem: { value: "Za pobraniem", label: "Za pobraniem" }
+  blik: { value: "Blik", icon: "akar-icons:mobile-device" },
+  przelew: { value: "Przelew tradycyjny", icon: "icon-park:bank-transfer" },
+  zaPobraniem: { value: "Za pobraniem", icon: "fluent:money-hand-20-regular" }
 };

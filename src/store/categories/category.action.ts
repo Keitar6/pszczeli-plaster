@@ -1,11 +1,15 @@
-import { actionCreator, withMatch } from "../../utils/store/store.utils";
 import { CATEGORIES_ACTION_TYPES, Category } from "./category.types";
-import { Action, ActionWithPayload } from "../../utils/store/store.utils";
-import { readCategories } from "../../service/service";
+import {
+  Action,
+  actionCreator,
+  ActionWithPayload,
+  withMatch
+} from "../../utils/store/store.utils";
 
 import type { ActionCreator, AnyAction } from "redux";
 import type { ThunkAction } from "redux-thunk";
 import { ReduxState } from "store/rootReducer.redux";
+import { readCategories } from "service/service";
 
 export type FetchCategoriesStart =
   Action<CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START>;
@@ -38,6 +42,8 @@ export const fetchCategoriesSuccess = withMatch(
       categoriesArray
     )
 );
+
+console.log(fetchCategoriesSuccess([]));
 
 export const fetchCategoriesFailed = withMatch(
   (error: Error): FetchCategoriesFailed =>

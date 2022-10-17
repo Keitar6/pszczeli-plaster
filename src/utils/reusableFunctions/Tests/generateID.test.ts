@@ -3,7 +3,7 @@ import { generateId } from "../generateId.function";
 describe("Reusable Functions --> GenerateID", () => {
   const charactersMock =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const idLength = 7;
+  const idLength = 5;
 
   const mockIfContains = (Id: string) => {
     const ifContains = true;
@@ -12,11 +12,10 @@ describe("Reusable Functions --> GenerateID", () => {
     });
     return ifContains;
   };
+
   test("GenerateID", () => {
     expect.assertions(2);
-
     expect(generateId(idLength).length).toEqual(idLength);
     expect(mockIfContains(generateId(idLength))).toBe(true);
-    // expect(generateId).toHaveBeenCalledWith(1);
   });
 });
