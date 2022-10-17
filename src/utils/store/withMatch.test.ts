@@ -4,36 +4,50 @@ const mockAction = {
   type: "dobryTyp",
   payload: 13
 };
+describe("withMatch", () => {
+  const mockActionACFunction = withMatch(() => mockAction);
 
-test("withMatchUseCase Test", () => {
-  const mochActionError = withMatch((error: Error) => ({
-    type: "dobryTyp",
-    payload: error
-  }));
+  // expect.assertions(3);
 
-  const mochActionArray = withMatch((Array: number[]) => ({
-    type: "dobryTyp",
-    payload: Array
-  }));
+  test("withMatchUseCase Test", () => {
+    const mochActionError = withMatch((error: Error) => ({
+      type: "dobryTyp",
+      payload: error
+    }));
 
-  expect(mochActionError(Error as any)).toEqual({
-    type: "dobryTyp",
-    payload: Error
+    const mochActionArray = withMatch((Array: number[]) => ({
+      type: "dobryTyp",
+      payload: Array
+    }));
+
+    expect(mochActionError(Error as any)).toEqual({
+      type: "dobryTyp",
+      payload: Error
+    });
+
+    expect(mochActionArray([1, 2, 3, 4, 5, 6])).toEqual({
+      type: "dobryTyp",
+      payload: [1, 2, 3, 4, 5, 6]
+    });
   });
 
-  expect(mochActionArray([1, 2, 3, 4, 5, 6])).toEqual({
-    type: "dobryTyp",
-    payload: [1, 2, 3, 4, 5, 6]
+  test("withMatchReturn Test", () => {
+    expect(withMatch(mockActionACFunction)).toEqual(
+      Object.assign(mockActionACFunction, {
+        match(action: AnyAction) {
+          return action.type === mockActionACFunction().type;
+        }
+      })
+    );
   });
-});
-test("withMatchReturn Test", () => {
-  const mockActionACFunction = () => mockAction;
 
-  expect(withMatch(mockActionACFunction)).toEqual(
-    Object.assign(mockActionACFunction, {
-      match(action: AnyAction) {
-        return action.type === mockActionACFunction().type;
-      }
-    })
-  );
+  test("withMatchFunction Test", () => {
+    expect(
+      mockActionACFunction.match({ type: "dobryTyp", payload: 13 })
+    ).toEqual(true);
+
+    expect(mockActionACFunction.match({ type: "zlyTyp", payload: 13 })).toEqual(
+      false
+    );
+  });
 });

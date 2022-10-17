@@ -3,11 +3,11 @@ import {
   actionCreator,
   ActionWithPayload,
   withMatch
-} from "utils/store/store.utils";
+} from "../../utils/store/store.utils";
 import { CategoryItem } from "../categories/category.types";
 import { CartItem, CART_ACTION_TYPES } from "./cart.types";
 
-const addCartItem = (
+export const addCartItem = (
   cartItems: CartItem[],
   productToAdd: CategoryItem
 ): CartItem[] => {
@@ -25,7 +25,7 @@ const addCartItem = (
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
-const removeCartItem = (
+export const removeCartItem = (
   cartItems: CartItem[] = [],
   productToRemove: CartItem,
   ifAll: string

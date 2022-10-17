@@ -7,7 +7,7 @@ export type CartState = {
   readonly isDropdownActive: boolean;
 };
 
-const CART_INITIAL_STATE: CartState = {
+export const CART_INITIAL_STATE: CartState = {
   cartItems: [],
   isDropdownActive: false
 };
