@@ -24,11 +24,6 @@ export const selectCurrentProductCard = createSelector(
   (productCardOpened) => productCardOpened.currentProductCard
 );
 
-export const selectTheme = createSelector(
-  [selectGeneralPropReducer],
-  (state) => state.theme
-);
-
 export const selectPath = createSelector(
   [selectGeneralPropReducer],
   (state) => state.path

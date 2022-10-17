@@ -1,10 +1,10 @@
-import { CategoryItem } from "store/categories/category.types";
+import { CategoryItem } from "../../store/categories/category.types";
 import {
   Action,
   actionCreator,
   ActionWithPayload,
   withMatch
-} from "utils/store/store.utils";
+} from "../../utils/store/store.utils";
 import { GENERAL_PROPS_ACTION_TYPES, PathType } from "./generalProp.types";
 
 export type SetPathType = ActionWithPayload<

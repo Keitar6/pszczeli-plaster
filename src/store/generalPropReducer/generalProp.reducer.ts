@@ -1,5 +1,5 @@
 import type { AnyAction } from "redux";
-import { CategoryItem } from "store/categories/category.types";
+import { CategoryItem } from "../../store/categories/category.types";
 import {
   setPath,
   setProductCard,
@@ -8,27 +8,18 @@ import {
   toggleUserMenu
 } from "./generalProp.actions";
 import { PathType } from "./generalProp.types";
-
+export type ProductCardModal = {
+  isProductCardOpened: boolean;
+  currentProductCard: CategoryItem;
+};
 export type GeneralPropsState = {
-  readonly theme: {
-    type: string;
-    color: string;
-  };
   readonly path: PathType;
   readonly isUserMenuOpened: boolean;
-  readonly productCardModal: {
-    isProductCardOpened: boolean;
-    currentProductCard: CategoryItem;
-  };
+  readonly productCardModal: ProductCardModal;
   readonly viewLimiter: number;
-
 };
 
-const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
-  theme: {
-    type: "default",
-    color: "#f06d06"
-  },
+export const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
   path: "sklep",
   isUserMenuOpened: false,
   productCardModal: {
@@ -41,8 +32,7 @@ const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
       dodatki: false
     }
   },
-  viewLimiter: 2,
-  
+  viewLimiter: 2
 };
 
 export const generalPropReducer = (

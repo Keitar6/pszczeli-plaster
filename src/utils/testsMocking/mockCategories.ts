@@ -1,3 +1,37 @@
+export const mockCategoryItem = {
+  id: "001M",
+  name: "Miód lipowy",
+  dodatki: false,
+  image: "Miody/lipa.jpg",
+  weight: 500,
+  price: 25
+};
+export const mockCategoryItemArray = [
+  {
+    id: "001M",
+    name: "Miód lipowy",
+    dodatki: false,
+    image: "Miody/lipa.jpg",
+    weight: 500,
+    price: 25
+  },
+  {
+    id: "002M",
+    name: "Miód rzepakowy",
+    dodatki: false,
+    image: "Miody/rzepak.jpg",
+    weight: 500,
+    price: 24
+  },
+  {
+    id: "003M",
+    name: "Miód wielokwiatowy",
+    dodatki: false,
+    image: "Miody/wielokwiat.jpg",
+    weight: 500,
+    price: 20
+  }
+];
 export const mockCategories = [
   {
     title: "Miody",
