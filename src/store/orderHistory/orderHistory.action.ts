@@ -1,10 +1,10 @@
-import { postNewOrder, readOrderHistory } from "service/service";
+import { postNewOrder, readOrderHistory } from "../../service/service";
 import {
   Action,
   actionCreator,
   ActionWithPayload,
   withMatch
-} from "utils/store/store.utils";
+} from "../../utils/store/store.utils";
 import {
   DeliveryType,
   DELIVERY_TYPE,

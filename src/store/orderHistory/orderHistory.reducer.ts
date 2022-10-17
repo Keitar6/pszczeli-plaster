@@ -15,7 +15,7 @@ export type OrderHistoryState = {
   readonly error: Error | null;
 };
 
-const ORDER_HISTORY_INITIAL_STATE: OrderHistoryState = {
+export const ORDER_HISTORY_INITIAL_STATE: OrderHistoryState = {
   delivery: {
     price: 0,
     type: "None"
@@ -47,6 +47,6 @@ export const orderHistoryReducer = (
   if (fetchOrderHistoryFailed.match(action)) {
     return { ...state, error: action.payload, isLoading: false };
   }
-
+  
   return state;
 };
