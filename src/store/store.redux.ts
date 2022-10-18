@@ -1,4 +1,8 @@
-import { compose, legacy_createStore as createStore, applyMiddleware } from "redux";
+import {
+  compose,
+  legacy_createStore as createStore,
+  applyMiddleware
+} from "redux";
 import type { Middleware } from "redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
@@ -22,7 +26,8 @@ type ExtendedPersistConfig = PersistConfig<ReduxState> & {
 const persistConfig: ExtendedPersistConfig = {
   key: "root",
   storage: storage,
-  whitelist: ["cartReducer", "userReducer", "categoriesReducer"]
+  whitelist: ["userReducer", "categoriesReducer"],
+  blacklist: ["cartReducer"]
 };
 
 const middleWares = [

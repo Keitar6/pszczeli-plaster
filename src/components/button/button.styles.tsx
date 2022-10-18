@@ -101,6 +101,13 @@ export const InputBar = styled(BaseButton)`
     color: ${Colors.light};
     border: none;
   }
+
+  @media (max-width: 1000px) {
+    & {
+      // border: 2px solid red;
+      max-width: 3rem;
+    }
+  }
 `;
 
 export const UserMenuFuncButton = styled(BaseButton)`
@@ -132,10 +139,20 @@ export const ProductCardCartButton = styled(BaseButton)`
 export const CartFuncButton = styled(BaseButton)`
   background-color: ${Colors.light};
   border: 1px solid ${Colors.dark};
+  min-width: 0;
+  max-width: 100%;
+  padding: 1rem 10%;
   &:hover {
     background-color: ${Colors.dark};
     color: ${Colors.primary};
     // border: none;
+  }
+
+  @media (max-width: 700px) {
+    & {
+      // border: 2px solid red;
+      max-width: 23rem;
+    }
   }
 `;
 

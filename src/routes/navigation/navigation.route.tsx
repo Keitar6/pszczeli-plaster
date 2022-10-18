@@ -10,7 +10,9 @@ import {
   NavigationContainer,
   HamburgerIcon,
   naviIcons,
-  StructurizeComponent
+  StructurizeComponent,
+  LogoContainer,
+  ModalsTogglersIconsContainer
 } from "./navigation.styles";
 
 import { Footer } from "../../components/footer/footer.component";
@@ -38,25 +40,25 @@ const Navigation = () => {
   return (
     <StructurizeComponent>
       <NavigationContainer>
-        <Logo to="/" onClick={logoClickHandler}>
-          <Icon icon={naviIcons.honeyBee} width="42" height="42" />
-        </Logo>
+        <LogoContainer>
+          <Logo to="/" onClick={logoClickHandler}>
+            <Icon icon={naviIcons.honeyBee} width="42" height="42" />
+          </Logo>
+        </LogoContainer>
         <BrandName>Pszczeli Plaster</BrandName>
         <IconsContainer>
           <InputBar whereTo="sklep" />
-          <div
-            onClick={cartDropdownHandler}
-            onKeyDown={cartDropdownHandler}
-            role="presentation"
-          >
-            <CartIcon />
-          </div>
-          <HamburgerIcon
-            label="Show user menu"
-            rounded
-            toggle={userMenuHandler}
-            toggled={isUserMenuOpened}
-          />
+          <ModalsTogglersIconsContainer>
+            <div onClick={cartDropdownHandler} role="presentation">
+              <CartIcon />
+            </div>
+            <HamburgerIcon
+              label="Show user menu"
+              rounded
+              toggle={userMenuHandler}
+              toggled={isUserMenuOpened}
+            />
+          </ModalsTogglersIconsContainer>
         </IconsContainer>
       </NavigationContainer>
       <Outlet />

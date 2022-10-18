@@ -5,7 +5,7 @@ import { CartIconContainer, ItemCount, ShoppingIcon } from "./cartIcon.styles";
 const CartIcon = () => {
   const quantity= useAppSelector(selectCartCount)
   return (
-    <CartIconContainer /*onClick={cartDropdownHandler}*/>
+    <CartIconContainer >
       <ShoppingIcon />
       <ItemCount>{quantity}</ItemCount>
     </CartIconContainer>

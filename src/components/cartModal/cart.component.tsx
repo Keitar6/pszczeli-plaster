@@ -11,10 +11,8 @@ import {
 } from "./cart.styles";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import React, { useEffect } from "react";
 import { toggleCartMenu } from "store/cartReducer/cart.actions";
 import {
-  selectCartCount,
   selectCartItems,
   selectCartTotal
 } from "store/cartReducer/cart.selector";
