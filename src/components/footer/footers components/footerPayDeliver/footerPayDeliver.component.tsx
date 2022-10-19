@@ -5,9 +5,9 @@ import {
   PlatnosciIDostawaContainer,
   PlatnosciIDostawaLinks,
   PlatnosciIDostawaTitle
-} from "./footer-Platnosc_I_Dostawa.styles";
+} from "./footerPayDeliver.styles";
 
-export const PlatnosciIDostawa: FC = () => {
+export const PayDeliver: FC = () => {
   return (
     <PlatnosciIDostawaContainer>
       <PlatnosciIDostawaTitle>Płatności i dostawa</PlatnosciIDostawaTitle>

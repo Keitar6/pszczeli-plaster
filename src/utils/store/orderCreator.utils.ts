@@ -1,4 +1,4 @@
-import { DeliveryData, Order, OrderItem } from "store/orderHistory/orderHistory.types";
+import { DeliveryData, Order, OrderItem } from "../../store/orderHistory/orderHistory.types";
 
 export const orderCreator= (
   id: string,

@@ -13,11 +13,11 @@ import {
   UserMenuContainer
 } from "./userMenu.styles";
 
-import { toggleUserMenu } from "store/generalPropReducer/generalProp.actions";
+import { toggleUserMenu } from "../../store/generalPropReducer/generalProp.actions";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
-import { selectCartCount } from "store/cartReducer/cart.selector";
-import { isCartEmpty } from "utils/reusableFunctions/isCartEmpty.function";
+import { selectCartCount } from "../../store/cartReducer/cart.selector";
+import { isCartEmpty } from "../../utils/reusableFunctions/isCartEmpty.function";
 
 type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
   T,

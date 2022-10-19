@@ -1,4 +1,4 @@
-import { Colors } from "global.styles";
+import { Colors } from "../../../../global.styles";
 import styled from "styled-components";
 
 export const InputContainer = styled.div<{ width: string }>`

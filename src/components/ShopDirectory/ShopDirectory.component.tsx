@@ -1,11 +1,11 @@
-import { H1 } from "global.styles";
+import { H1 } from "../../global.styles";
 import { FC, useEffect } from "react";
-import { refresh } from "utils/reusableFunctions/refresh.function";
+import { refresh } from "../../utils/reusableFunctions/refresh.function";
 
 import {
   selectPath,
   selectViewLimiter
-} from "store/generalPropReducer/generalProp.selector";
+} from "../../store/generalPropReducer/generalProp.selector";
 import {
   selectAllItemsMap,
   selectCategories,
@@ -26,12 +26,12 @@ import { ShopSorting } from "./shopSorting/shopSorting.component";
 import {
   incrementViewLimiter,
   resetViewLimiter
-} from "store/generalPropReducer/generalProp.actions";
+} from "../../store/generalPropReducer/generalProp.actions";
 import Button, {
   BUTTON_TYPE_CLASSES
-} from "components/button/button.component";
-import { ProductCardsContainer } from "components/productCards/productCards.component";
-import { setInputSorting } from "store/userReducer/user.actions";
+} from "../../components/button/button.component";
+import { ProductCardsContainer } from "../../components/productCards/productCards.component";
+import { setInputSorting } from "../../store/userReducer/user.actions";
 
 const ShopDirectory: FC = () => {
   const categories = useAppSelector(selectCategories);

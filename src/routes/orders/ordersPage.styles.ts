@@ -1,4 +1,4 @@
-import { Colors, H3 } from "global.styles";
+import { Colors, H3 } from "../../global.styles";
 import styled from "styled-components";
 
 export const OrdersContainer = styled.div`

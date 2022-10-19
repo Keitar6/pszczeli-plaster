@@ -5,9 +5,9 @@ import {
   InformacjeContainer,
   InformacjeLinks,
   InformacjeTitle
-} from "./footer-Informacje.styles";
+} from "./footerInfo.styles";
 
-export const Informacje: FC = () => {
+export const Info: FC = () => {
   return (
     <InformacjeContainer>
       <InformacjeTitle>Informacje</InformacjeTitle>

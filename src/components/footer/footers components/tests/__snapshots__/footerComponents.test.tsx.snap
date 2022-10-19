@@ -1,0 +1,214 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer AboutUs 1`] = `
+<div
+  className="sc-kDDrLX dnTGLO"
+>
+  <h4
+    className="sc-jqUVSM eEPyQA"
+  >
+    O Nas
+  </h4>
+  <div
+    className="sc-papXJ cWKQiM"
+  >
+    <div
+      className="sc-ftvSup cvUJgU"
+    >
+      O nas
+    </div>
+    <div
+      className="sc-ftvSup cvUJgU"
+    >
+      Sklepy stacjonarne
+    </div>
+    <div
+      className="sc-ftvSup cvUJgU"
+    >
+      Współpraca
+    </div>
+    <div
+      className="sc-ftvSup cvUJgU"
+    >
+      Media społecznościowe
+    </div>
+    <div
+      className="sc-iqcoie bYhGtI"
+    >
+      <a
+        className="sc-crXcEl EhBtU"
+      >
+        <span />
+      </a>
+      <a
+        className="sc-crXcEl EhBtU"
+      >
+        <span />
+      </a>
+      <a
+        className="sc-crXcEl EhBtU"
+      >
+        <span />
+      </a>
+      <a
+        className="sc-crXcEl EhBtU"
+      >
+        <span />
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Footer footerAboutUs 1`] = `
+<div
+  className="sc-kDDrLX dnTGLO"
+>
+  <h4
+    className="sc-jqUVSM eEPyQA"
+  >
+    O Nas
+  </h4>
+  <div
+    className="sc-papXJ cWKQiM"
+  >
+    <div
+      className="sc-ftvSup cvUJgU"
+    >
+      O nas
+    </div>
+    <div
+      className="sc-ftvSup cvUJgU"
+    >
+      Sklepy stacjonarne
+    </div>
+    <div
+      className="sc-ftvSup cvUJgU"
+    >
+      Współpraca
+    </div>
+    <div
+      className="sc-ftvSup cvUJgU"
+    >
+      Media społecznościowe
+    </div>
+    <div
+      className="sc-iqcoie bYhGtI"
+    >
+      <a
+        className="sc-crXcEl EhBtU"
+      >
+        <span />
+      </a>
+      <a
+        className="sc-crXcEl EhBtU"
+      >
+        <span />
+      </a>
+      <a
+        className="sc-crXcEl EhBtU"
+      >
+        <span />
+      </a>
+      <a
+        className="sc-crXcEl EhBtU"
+      >
+        <span />
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Footer footerInfo 1`] = `
+<div
+  className="sc-fEOsli bRscpn"
+>
+  <h4
+    className="sc-fnykZs bhbXbt"
+  >
+    Informacje
+  </h4>
+  <div
+    className="sc-hAZoDl jBJKdL"
+  >
+    <div
+      className="sc-ftvSup cvUJgU"
+    >
+      Warunki reklamacji
+    </div>
+    <div
+      className="sc-ftvSup cvUJgU"
+    >
+      Zwroty towaru
+    </div>
+    <div
+      className="sc-ftvSup cvUJgU"
+    >
+      Regulamin
+    </div>
+    <div
+      className="sc-ftvSup cvUJgU"
+    >
+      Polityka cookies
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Footer footerMyAccount 1`] = `
+<div
+  className="sc-dIouRR cXNlwS"
+>
+  <h4
+    className="sc-idiyUo cgjqa-d"
+  >
+    Moje Konto
+  </h4>
+  <div
+    className="sc-bjUoiL gNBFxM"
+  >
+    <div
+      className="sc-ftvSup cvUJgU"
+    >
+      Historia zamówień
+    </div>
+    <div
+      className="sc-ftvSup cvUJgU"
+    >
+      Ustawienia Konta
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Footer footerPayDeliver 1`] = `
+<div
+  className="sc-ksZaOG irkxga"
+>
+  <h4
+    className="sc-breuTD hPlSIS"
+  >
+    Płatności i dostawa
+  </h4>
+  <div
+    className="sc-evZas gHCSVc"
+  >
+    <div
+      className="sc-ftvSup cvUJgU"
+    >
+      Czas realizacji zamówień
+    </div>
+    <div
+      className="sc-ftvSup cvUJgU"
+    >
+      Faktury i paragony
+    </div>
+    <div
+      className="sc-ftvSup cvUJgU"
+    >
+      Opcje dostawy
+    </div>
+  </div>
+</div>
+`;

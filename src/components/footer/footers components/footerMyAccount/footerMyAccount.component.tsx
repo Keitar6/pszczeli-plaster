@@ -5,10 +5,10 @@ import {
   MojeKontoContainer,
   MojeKontoLinks,
   MojeKontoTitle
-} from "./footer-Moje_Konto.styles";
+} from "./footerMyAccount.styles";
 
 
-export const MojeKonto: FC = () => {
+export const MyAccount: FC = () => {
   return (
     <MojeKontoContainer>
       <MojeKontoTitle>Moje Konto</MojeKontoTitle>

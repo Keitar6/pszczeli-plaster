@@ -1,8 +1,7 @@
-import { mockOrder } from "utils/testsMocking/mockOrder";
+import { mockOrder } from "../../utils/testsMocking/mockOrder";
 import { orderCreator } from "./orderCreator.utils";
 
 test("orderCreator Test", () => {
-
   expect(
     orderCreator(
       mockOrder.id,

@@ -1,23 +1,23 @@
-import { useAppDispatch, useAppSelector } from "hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { useForm } from "react-hook-form";
-import { setCartItems } from "store/cartReducer/cart.actions";
+import { setCartItems } from "../../store/cartReducer/cart.actions";
 import {
   selectCartItems,
   selectCartTotal
-} from "store/cartReducer/cart.selector";
-import { postOrderHistoryAsync } from "store/orderHistory/orderHistory.action";
+} from "../../store/cartReducer/cart.selector";
+import { postOrderHistoryAsync } from "../../store/orderHistory/orderHistory.action";
 import {
   selectDelivery,
   selectOrderHistory
-} from "store/orderHistory/orderHistory.selector";
-import { DeliveryData } from "store/orderHistory/orderHistory.types";
+} from "../../store/orderHistory/orderHistory.selector";
+import { DeliveryData } from "../../store/orderHistory/orderHistory.types";
 import {
   formData,
   formDataInputMap,
   orderId
-} from "utils/checkoutForm/checkoutForm.utils";
-import { getCurrentTime } from "utils/reusableFunctions/getTime.function";
-import { orderCreator } from "utils/store/orderCreator.utils";
+} from "../../utils/checkoutForm/checkoutForm.utils";
+import { getCurrentTime } from "../../utils/reusableFunctions/getTime.function";
+import { orderCreator } from "../../utils/store/orderCreator.utils";
 import {
   NonValidFormInput,
   Form,

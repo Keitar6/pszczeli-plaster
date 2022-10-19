@@ -8,9 +8,9 @@ import {
   ONasMediaIcons,
   ONasTitle,
   SocialIcon
-} from "./footer-O_Nas.styles";
+} from "./footerAboutUs";
 
-export const ONas: FC = () => {
+export const AboutUs: FC = () => {
   return (
     <ONasContainer>
       <ONasTitle>O Nas</ONasTitle>

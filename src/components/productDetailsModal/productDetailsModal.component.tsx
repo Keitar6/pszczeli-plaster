@@ -18,20 +18,20 @@ import {
   ProductModalIcon,
   ProductModalIconButton
 } from "./productDetailsModal.styles";
-import { toggleProductCard } from "store/generalPropReducer/generalProp.actions";
+import { toggleProductCard } from "../../store/generalPropReducer/generalProp.actions";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import React, { FC } from "react";
-import { selectCurrentProductCard } from "store/generalPropReducer/generalProp.selector";
+import { selectCurrentProductCard } from "../../store/generalPropReducer/generalProp.selector";
 import Button, {
   BUTTON_TYPE_CLASSES
-} from "components/button/button.component";
+} from "../../components/button/button.component";
 import {
   selectCartCount,
   selectCartItems
-} from "store/cartReducer/cart.selector";
-import { addItemToCart } from "store/cartReducer/cart.actions";
+} from "../../store/cartReducer/cart.selector";
+import { addItemToCart } from "../../store/cartReducer/cart.actions";
 import { useNavigate } from "react-router-dom";
-import { isCartEmpty } from "utils/reusableFunctions/isCartEmpty.function";
+import { isCartEmpty } from "../../utils/reusableFunctions/isCartEmpty.function";
 type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
   T,
   MouseEvent

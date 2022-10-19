@@ -1,9 +1,11 @@
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux/es/exports";
-import { addItemToCart, removeItemFromCart } from "store/cartReducer/cart.actions";
-import { selectCartItems } from "store/cartReducer/cart.selector";
-import { CartItem } from "store/cartReducer/cart.types";
-
+import {
+  addItemToCart,
+  removeItemFromCart
+} from "../../store/cartReducer/cart.actions";
+import { selectCartItems } from "../../store/cartReducer/cart.selector";
+import { CartItem } from "../../store/cartReducer/cart.types";
 
 import {
   CheckoutItemContainer,
@@ -12,7 +14,7 @@ import {
   Image,
   Arrow,
   Value,
-  Span,
+  Span
 } from "./checkoutItem.styles";
 
 type CheckoutItemProps = {
@@ -30,8 +32,7 @@ export const CheckoutItem: FC<CheckoutItemProps> = ({ cartItem }) => {
 
   return (
     <CheckoutItemContainer>
-      <Image src={`/dataBaseImages/${image}`}
-          alt={`Obraz: ${name}`} />
+      <Image src={`/dataBaseImages/${image}`} alt={`Obraz: ${name}`} />
       <Span>{name}</Span>
       <Quantity>
         <Arrow onClick={removeItemHandler}>&#10094;</Arrow>
@@ -48,4 +49,3 @@ export const CheckoutItem: FC<CheckoutItemProps> = ({ cartItem }) => {
     </CheckoutItemContainer>
   );
 };
-

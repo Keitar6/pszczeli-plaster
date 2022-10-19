@@ -3,13 +3,13 @@ import { MutableRefObject } from "react";
 export const IsRefNotNull = (
     ref: MutableRefObject<HTMLElement | null>
   ): ref is MutableRefObject<HTMLElement> => {
-    return ref.current != null;
+    return ref != null;
   };
 
 export const IsRefNull = (
     ref: MutableRefObject<HTMLElement | null>
   ): ref is MutableRefObject<HTMLElement> => {
-    return ref.current == null;
+    return ref == null;
   };
 
 export const IsModal = (modal: HTMLElement | null): modal is HTMLElement => {

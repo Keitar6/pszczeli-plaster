@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cartModal cartCard 1`] = `
+<div
+  className="sc-papXJ fJNUoU"
+>
+  <img
+    alt="Obraz: SuperName"
+    className="sc-jqUVSM cLVDwC"
+    src="/dataBaseImages/ImageSciezka"
+  />
+  <div
+    className="sc-kDDrLX kbaQZF"
+  >
+    <span
+      className="sc-iqcoie dFKDnN"
+    >
+      SuperName
+    </span>
+    <span
+      className="sc-crXcEl fgtmIo"
+    >
+      2 x 165 = 330zł
+    </span>
+  </div>
+</div>
+`;

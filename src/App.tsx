@@ -7,15 +7,15 @@ import { useAppSelector } from "./hooks/hooks";
 import {
   selectIsUserMenuOpened,
   selectIsProductCardOpened
-} from "store/generalPropReducer/generalProp.selector";
+} from "./store/generalPropReducer/generalProp.selector";
 import {
   selectCartCount,
   selectIsCartMenuOpened
-} from "store/cartReducer/cart.selector";
-import { CartModal } from "components/cartModal/cart.component";
-import { NaviPath } from "components/shopDirectory/shopNavi/naviPath.component";
-import { ProductDetailsModal } from "components/productDetailsModal/productDetailsModal.component";
-import { isCartEmpty } from "utils/reusableFunctions/isCartEmpty.function";
+} from "./store/cartReducer/cart.selector";
+import { CartModal } from "./components/cartModal/cart.component";
+import { NaviPath } from "./components/shopDirectory/shopNavi/naviPath.component";
+import { ProductDetailsModal } from "./components/productDetailsModal/productDetailsModal.component";
+import { isCartEmpty } from "./utils/reusableFunctions/isCartEmpty.function";
 
 const Navigation = lazy(() => import("./routes/navigation/navigation.route"));
 const Home = lazy(() => import("./routes/home/homePage.route"));
@@ -33,7 +33,6 @@ function App() {
     <Suspense fallback={<Spinner />}>
       <GlobalStyle />
       <BrowserRouter>
-       
         <div id="modal"></div>
         {isUserMenuOpened ? (
           <UserMenuModal />

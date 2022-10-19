@@ -14,8 +14,8 @@ describe("Reusable Functions --> GenerateID", () => {
   };
 
   test("GenerateID", () => {
-    expect.assertions(2);
     expect(generateId(idLength).length).toEqual(idLength);
     expect(mockIfContains(generateId(idLength))).toBe(true);
+    expect(mockIfContains(generateId(undefined))).toBe(true);
   });
 });

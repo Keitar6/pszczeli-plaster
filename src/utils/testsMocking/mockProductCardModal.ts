@@ -1,4 +1,4 @@
-import { ProductCardModal } from "store/generalPropReducer/generalProp.reducer";
+import { ProductCardModal } from "../../store/generalPropReducer/generalProp.reducer";
 import { mockCategories } from "./mockCategories";
 
 export const mockProductCardModalClosed:ProductCardModal={

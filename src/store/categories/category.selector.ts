@@ -3,7 +3,7 @@ import { ReduxState } from "../rootReducer.redux";
 import { CategoriesState } from "./category.reducer";
 import { CategoryItem, CategoryMap } from "./category.types";
 
-const selectCategoryReducer = (state: ReduxState): CategoriesState =>
+export const selectCategoryReducer = (state: ReduxState): CategoriesState =>
   state.categoriesReducer;
 
 export const selectCategories = createSelector(

@@ -1,9 +1,7 @@
 import {
   mockOrderHistory,
-  mockOrder
 } from "../../../utils/testsMocking/mockOrderHistory";
 import {
-  fetchOrderHistoryAsync,
   fetchOrderHistoryFailed,
   fetchOrderHistoryStart,
   fetchOrderHistorySuccess,

@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { ReduxState } from "store/rootReducer.redux";
+import { ReduxState } from "../../store/rootReducer.redux";
 
 export const selectGeneralPropReducer = (state: ReduxState) =>
   state.generalPropReducer;

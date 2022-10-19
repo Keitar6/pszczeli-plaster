@@ -1,8 +1,8 @@
-import { useAppDispatch, useAppSelector } from "hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
 import { Icon } from "@iconify/react";
 
-import { Colors } from "global.styles";
-import { selectSort } from "store/userReducer/user.selector";
+import { Colors } from "../../../global.styles";
+import { selectSort } from "../../../store/userReducer/user.selector";
 import {
   ProductsSorting,
   ShopAscendingIcon,
@@ -12,11 +12,11 @@ import {
   setAlphabeticSorting,
   setPriceSorting,
   toggleSortingAscending
-} from "store/userReducer/user.actions";
+} from "../../../store/userReducer/user.actions";
 import { useState } from "react";
 import Button, {
   BUTTON_TYPE_CLASSES
-} from "components/button/button.component";
+} from "../../../components/button/button.component";
 
 export const ShopSorting = () => {
   const { ascending } = useAppSelector(selectSort);

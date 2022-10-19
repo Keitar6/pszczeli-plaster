@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer footerAboutUs 1`] = `
+<div
+  className="sc-papXJ NFyYL"
+>
+  <div
+    className="sc-iBkjds sc-jqUVSM gftbFx hbFiEh"
+  >
+    <div
+      className="sc-dmRaPn cpFxFl"
+    >
+      <h4
+        className="sc-hHLeRK cutfUm"
+      >
+        Płatności i dostawa
+      </h4>
+      <div
+        className="sc-dIouRR hrcPPE"
+      >
+        <div
+          className="sc-ftvSup cvUJgU"
+        >
+          Czas realizacji zamówień
+        </div>
+        <div
+          className="sc-ftvSup cvUJgU"
+        >
+          Faktury i paragony
+        </div>
+        <div
+          className="sc-ftvSup cvUJgU"
+        >
+          Opcje dostawy
+        </div>
+      </div>
+    </div>
+    <div
+      className="sc-crXcEl dxxyJK"
+    >
+      <h4
+        className="sc-iqcoie iXwxym"
+      >
+        Informacje
+      </h4>
+      <div
+        className="sc-kDDrLX eehIRC"
+      >
+        <div
+          className="sc-ftvSup cvUJgU"
+        >
+          Warunki reklamacji
+        </div>
+        <div
+          className="sc-ftvSup cvUJgU"
+        >
+          Zwroty towaru
+        </div>
+        <div
+          className="sc-ftvSup cvUJgU"
+        >
+          Regulamin
+        </div>
+        <div
+          className="sc-ftvSup cvUJgU"
+        >
+          Polityka cookies
+        </div>
+      </div>
+    </div>
+    <div
+      className="sc-fEOsli gRMNcJ"
+    >
+      <h4
+        className="sc-fnykZs bhbXbt"
+      >
+        O Nas
+      </h4>
+      <div
+        className="sc-hAZoDl jBJKdL"
+      >
+        <div
+          className="sc-ftvSup cvUJgU"
+        >
+          O nas
+        </div>
+        <div
+          className="sc-ftvSup cvUJgU"
+        >
+          Sklepy stacjonarne
+        </div>
+        <div
+          className="sc-ftvSup cvUJgU"
+        >
+          Współpraca
+        </div>
+        <div
+          className="sc-ftvSup cvUJgU"
+        >
+          Media społecznościowe
+        </div>
+        <div
+          className="sc-bjUoiL jpliOr"
+        >
+          <a
+            className="sc-idiyUo jhdLKE"
+          >
+            <span />
+          </a>
+          <a
+            className="sc-idiyUo jhdLKE"
+          >
+            <span />
+          </a>
+          <a
+            className="sc-idiyUo jhdLKE"
+          >
+            <span />
+          </a>
+          <a
+            className="sc-idiyUo jhdLKE"
+          >
+            <span />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      className="sc-ksZaOG irkxga"
+    >
+      <h4
+        className="sc-breuTD hPlSIS"
+      >
+        Moje Konto
+      </h4>
+      <div
+        className="sc-evZas gHCSVc"
+      >
+        <div
+          className="sc-ftvSup cvUJgU"
+        >
+          Historia zamówień
+        </div>
+        <div
+          className="sc-ftvSup cvUJgU"
+        >
+          Ustawienia Konta
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

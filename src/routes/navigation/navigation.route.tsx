@@ -17,14 +17,14 @@ import {
 
 import { Footer } from "../../components/footer/footer.component";
 
-import { toggleUserMenu } from "store/generalPropReducer/generalProp.actions";
-import { selectIsUserMenuOpened } from "store/generalPropReducer/generalProp.selector";
+import { toggleUserMenu } from "../../store/generalPropReducer/generalProp.actions";
+import { selectIsUserMenuOpened } from "../../store/generalPropReducer/generalProp.selector";
 import { InputBar } from "../../components/inputBar/inputBar.component";
 
-import { refresh } from "utils/reusableFunctions/refresh.function";
-import { toggleCartMenu } from "store/cartReducer/cart.actions";
-import { selectCartCount } from "store/cartReducer/cart.selector";
-import { isCartEmpty } from "utils/reusableFunctions/isCartEmpty.function";
+import { refresh } from "../../utils/reusableFunctions/refresh.function";
+import { toggleCartMenu } from "../../store/cartReducer/cart.actions";
+import { selectCartCount } from "../../store/cartReducer/cart.selector";
+import { isCartEmpty } from "../../utils/reusableFunctions/isCartEmpty.function";
 
 const Navigation = () => {
   const isUserMenuOpened = useAppSelector(selectIsUserMenuOpened);

@@ -11,16 +11,17 @@ import {
 } from "./cart.styles";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import { toggleCartMenu } from "store/cartReducer/cart.actions";
+import { toggleCartMenu } from "../../store/cartReducer/cart.actions";
 import {
   selectCartItems,
   selectCartTotal
-} from "store/cartReducer/cart.selector";
+} from "../../store/cartReducer/cart.selector";
 import { CartCard } from "./cartCard/cartCard.component";
 import Button, {
   BUTTON_TYPE_CLASSES
-} from "components/button/button.component";
+} from "../../components/button/button.component";
 import { useNavigate } from "react-router-dom";
+import { CartItem } from "../../store/cartReducer/cart.types";
 
 type CartClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
   T,
@@ -68,7 +69,7 @@ export const CartModal = () => {
               <H2>Koszyk</H2>
             </CartLogoText>
           </CartLogoContainer>
-          {cartItems.map((cartItem) => {
+          {cartItems.map((cartItem: CartItem) => {
             return <CartCard key={cartItem.id} cartItem={cartItem} />;
           })}
           <CartGoToCheckout>

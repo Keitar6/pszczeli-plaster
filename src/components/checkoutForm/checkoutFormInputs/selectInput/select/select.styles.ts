@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import { Colors } from "global.styles";
+import { Colors } from "../../../../../global.styles";
 import styled from "styled-components";
 
 export const AppCover = styled.div`

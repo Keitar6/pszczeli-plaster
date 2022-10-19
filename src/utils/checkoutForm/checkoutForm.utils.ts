@@ -1,4 +1,4 @@
-import { generateId } from "utils/reusableFunctions/generateId.function";
+import { generateId } from "../../utils/reusableFunctions/generateId.function";
 
 export const orderId = generateId(8);
 

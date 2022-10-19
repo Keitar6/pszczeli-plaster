@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from "react";
 import { FieldValues, UseFormRegister } from "react-hook-form";
-import { DeliveryOptions } from "utils/checkoutForm/checkoutForm.utils";
+import { DeliveryOptions } from "../../../../../utils/checkoutForm/checkoutForm.utils";
 import {
   AppCover,
   InputRadio,

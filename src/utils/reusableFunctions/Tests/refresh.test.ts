@@ -15,7 +15,6 @@ describe("Reusable Functions --> refresh", () => {
   test("refresh no input", () => {
     expect.assertions(1);
 
-    console.log(window.location.href);
     expect(refresh()).toBe("Refreshed");
   });
 
@@ -23,7 +22,6 @@ describe("Reusable Functions --> refresh", () => {
     Object.defineProperty(window, "location", {
       value: { href: mockLocation2, reload: () => jest.fn() }
     });
-    console.log(window.location.href);
     expect(refresh("sklep")).toBe("Refreshed");
     expect(refresh("podsumowanie")).not.toBe("Refreshed");
   });

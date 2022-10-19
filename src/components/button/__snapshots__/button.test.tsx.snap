@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Buttons buttonType - BaseButton 1`] = `
+<button
+  className="sc-papXJ erMgAK"
+/>
+`;
+
+exports[`Buttons buttonType - productCardButton 1`] = `
+<button
+  className="sc-papXJ sc-kDDrLX sc-evZas erMgAK fgJkEn bxqEZj"
+/>
+`;

@@ -1,4 +1,4 @@
-import { useAppSelector } from "hooks/hooks";
+import { useAppSelector } from "../../hooks/hooks";
 
 import {
   CheckoutContainer,
@@ -14,14 +14,14 @@ import {
   selectCartCount,
   selectCartItems,
   selectCartTotal
-} from "store/cartReducer/cart.selector";
-import { CheckoutItem } from "components/checkoutItem/checkoutItem.component";
+} from "../../store/cartReducer/cart.selector";
+import { CheckoutItem } from "../../components/checkoutItem/checkoutItem.component";
 
-import { CheckoutForm } from "components/checkoutForm/checkoutForm.component";
-import { PLarge } from "global.styles";
-import { selectDelivery } from "store/orderHistory/orderHistory.selector";
+import { CheckoutForm } from "../../components/checkoutForm/checkoutForm.component";
+import { PLarge } from "../../global.styles";
+import { selectDelivery } from "../../store/orderHistory/orderHistory.selector";
 import { useEffect } from "react";
-import { isCartEmpty } from "utils/reusableFunctions/isCartEmpty.function";
+import { isCartEmpty } from "../../utils/reusableFunctions/isCartEmpty.function";
 import { useNavigate } from "react-router-dom";
 
 const CheckoutPage = () => {

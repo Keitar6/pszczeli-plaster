@@ -1,10 +1,9 @@
 export const getCurrentTime = () => {
   const currentdate = new Date();
   const datetime =
-    
-    currentdate.getDay() +
+    currentdate.getDate() +
     "/" +
-    currentdate.getMonth() +
+    (currentdate.getMonth() + 1) +
     "/" +
     currentdate.getFullYear() +
     " @ " +

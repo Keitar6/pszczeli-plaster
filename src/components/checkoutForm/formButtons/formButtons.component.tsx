@@ -1,6 +1,6 @@
 import Button, {
   BUTTON_TYPE_CLASSES
-} from "components/button/button.component";
+} from "../../../components/button/button.component";
 import { BaseSyntheticEvent, FC } from "react";
 import { FormButtonsContainer } from "./formButtons.styles";
 type FormButtonsProps = {

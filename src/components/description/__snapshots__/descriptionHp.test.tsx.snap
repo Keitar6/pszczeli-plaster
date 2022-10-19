@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DescriptionHP DescriptionHPn 1`] = `
+<div
+  className="sc-iBkjds sc-kDDrLX gftbFx bHWBi"
+>
+  <h3
+    className="sc-dkzDqf sc-papXJ exRqZr dWxHTb"
+  >
+    O NAS
+  </h3>
+  <div
+    className="sc-jqUVSM heUhMV"
+  >
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio similique laborum excepturi ducimus praesentium, sapiente cumque ipsum perspiciatis quod eos illum aliquam illo a, rem, recusandae veritatis quibusdam in tempora? Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio similique laborum excepturi ducimus praesentium, sapiente cumque ipsum perspiciatis quod eos illum aliquam illo a, rem, recusandae veritatis quibusdam in tempora?
+  </div>
+</div>
+`;

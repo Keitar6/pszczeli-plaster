@@ -1,16 +1,16 @@
-import { ProductCard } from "components/productCard/productCard.component";
-import { CategoryItem } from "store/categories/category.types";
-import { Sorting } from "utils/reusableFunctions/basicSorting.function";
-import { useAppSelector } from "hooks/hooks";
-import { selectSort } from "store/userReducer/user.selector";
+import { ProductCard } from "../../components/productCard/productCard.component";
+import { CategoryItem } from "../../store/categories/category.types";
+import { Sorting } from "../../utils/reusableFunctions/basicSorting.function";
+import { useAppSelector } from "../../hooks/hooks";
+import { selectSort } from "../../store/userReducer/user.selector";
 import {
   selectAllItemsMap,
   selectCategories
-} from "store/categories/category.selector";
+} from "../../store/categories/category.selector";
 import {
   selectPath,
   selectViewLimiter
-} from "store/generalPropReducer/generalProp.selector";
+} from "../../store/generalPropReducer/generalProp.selector";
 import { ProductCards, ProductCardsContent } from "./productCards.styles";
 
 export const ProductCardsContainer = () => {

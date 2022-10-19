@@ -1,4 +1,4 @@
-import { Order } from "store/orderHistory/orderHistory.types";
+import { Order } from "../../../store/orderHistory/orderHistory.types";
 import { timeSorting } from "../timeSorting.function";
 
 describe("Reusable Functions --> Time sorting", () => {

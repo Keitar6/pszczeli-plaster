@@ -1,4 +1,4 @@
-import { CategoryItem } from "store/categories/category.types";
+import { CategoryItem } from "../../store/categories/category.types";
 
 export const mockCartItemInArray: CategoryItem & { quantity: number } = {
   id: "ajdi",

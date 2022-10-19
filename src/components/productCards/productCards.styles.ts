@@ -1,4 +1,4 @@
-import { StandardFlexContainer } from "global.styles";
+import { StandardFlexContainer } from "../../global.styles";
 import styled from "styled-components";
 
 export const ProductCards = styled(StandardFlexContainer)`

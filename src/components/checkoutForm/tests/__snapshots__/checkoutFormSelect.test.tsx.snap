@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`checkoutFroms CheckoutFormSelect 1`] = `
+<div
+  className="sc-iBkjds sc-idiyUo gftbFx ibzSnl"
+>
+  <button
+    className="sc-papXJ sc-bjUoiL erMgAK kiqIXi"
+    id="submitFormButton"
+    onClick={[Function]}
+    type="submit"
+  >
+    Zamawiam
+  </button>
+</div>
+`;

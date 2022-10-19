@@ -18,12 +18,13 @@ export const CategoryCard: FC<PropsWithChildren<CategoryCardProps>> = ({
   const { title } = category;
   const path = title;
   const navigate = useNavigate();
+
   const CategoriesCardOnClickHandler = () => {
     navigate(`/sklep/${path}`);
   };
 
   return (
-    <CategoryCardContainer onClick={CategoriesCardOnClickHandler}>
+    <CategoryCardContainer data-testid='categoryCardButton' onClick={CategoriesCardOnClickHandler}>
       <CategoryCardIcon>{children}</CategoryCardIcon>
       <CategoryCardTitle>{title}</CategoryCardTitle>
     </CategoryCardContainer>
