@@ -43,7 +43,7 @@ const OrdersPage = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchOrderHistoryAsync());
+    fetchOrderHistoryAsync();
     return () => {
       dispatch(resetViewLimiter());
     };

@@ -9,18 +9,18 @@ import {
 const Modal: FC<PropsWithChildren> = ({ children }) => {
   const elRef = useRef<null | HTMLElement>(null);
 
-  if (IsRefNull(elRef)) {
+  if (IsRefNull(elRef.current)) {
     elRef.current = document.createElement("div");
   }
 
   useEffect(() => {
     const modalRoot = document.getElementById("modal");
 
-    if (IsModal(modalRoot) && IsRefNotNull(elRef)) {
+    if (IsModal(modalRoot) && IsRefNotNull(elRef.current)) {
       modalRoot.appendChild(elRef.current);
 
       return () => {
-        modalRoot.removeChild(elRef.current);
+        modalRoot.removeChild(elRef.current as HTMLElement);
       };
     } else return;
   }, []);

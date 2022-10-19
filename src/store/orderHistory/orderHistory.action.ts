@@ -1,3 +1,5 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import type{ Dispatch } from "@reduxjs/toolkit";
 import { postNewOrder, readOrderHistory } from "../../service/service";
 import {
   Action,
@@ -56,8 +58,8 @@ export const fetchOrderHistoryFailed = withMatch(
     actionCreator(ORDER_HISTORY_ACTION_TYPES.FETCH_ORDER_HISTORY_FAILED, error)
 );
 
-export const fetchOrderHistoryAsync: any = () => {
-  return async (dispatch: any) => {
+export const fetchOrderHistoryAsync = createAsyncThunk("", async () => {
+  return async (dispatch: Dispatch) => {
     dispatch(fetchOrderHistoryStart());
     try {
       const orderHistoryEndPoint = await readOrderHistory();
@@ -66,7 +68,7 @@ export const fetchOrderHistoryAsync: any = () => {
       dispatch(fetchOrderHistoryFailed(error as Error));
     }
   };
-};
+});
 
 export type PostOrderHistoryStart =
   Action<ORDER_HISTORY_ACTION_TYPES.POST_ORDER_HISTORY_START>;
