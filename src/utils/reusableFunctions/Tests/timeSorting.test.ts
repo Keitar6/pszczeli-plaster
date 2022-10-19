@@ -26,44 +26,12 @@ describe("Reusable Functions --> Time sorting", () => {
       itemsBought: [],
       deliveryData: {},
       deliveryPrice: 9
-    },
-    {
-      id: "mockID",
-      time: "4/8/2022 @ 10:30:00",
-      price: 10,
-      itemsBought: [],
-      deliveryData: {},
-      deliveryPrice: 9
-    },
-    {
-      id: "mockID",
-      time: "4/10/2022 @ 10:30:00",
-      price: 10,
-      itemsBought: [],
-      deliveryData: {},
-      deliveryPrice: 9
     }
   ];
   const mockOrderArrayReturn1: Order[] = [
     {
       id: "mockID",
-      time: "4/10/2022 @ 10:30:00",
-      price: 10,
-      itemsBought: [],
-      deliveryData: {},
-      deliveryPrice: 9
-    },
-    {
-      id: "mockID",
       time: "4/9/2022 @ 10:30:00",
-      price: 10,
-      itemsBought: [],
-      deliveryData: {},
-      deliveryPrice: 9
-    },
-    {
-      id: "mockID",
-      time: "4/8/2022 @ 10:30:00",
       price: 10,
       itemsBought: [],
       deliveryData: {},

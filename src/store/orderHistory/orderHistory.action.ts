@@ -1,5 +1,6 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import type{ Dispatch } from "@reduxjs/toolkit";
+import { Dispatch } from "react";
+import type { ActionCreator, AnyAction } from "redux";
+import type { ThunkAction } from "redux-thunk";
 import { postNewOrder, readOrderHistory } from "../../service/service";
 import {
   Action,
@@ -7,6 +8,7 @@ import {
   ActionWithPayload,
   withMatch
 } from "../../utils/store/store.utils";
+import { ReduxState } from "../rootReducer.redux";
 import {
   DeliveryType,
   DELIVERY_TYPE,
@@ -58,8 +60,9 @@ export const fetchOrderHistoryFailed = withMatch(
     actionCreator(ORDER_HISTORY_ACTION_TYPES.FETCH_ORDER_HISTORY_FAILED, error)
 );
 
-export const fetchOrderHistoryAsync = createAsyncThunk("", async () => {
-  return async (dispatch: Dispatch) => {
+export const fetchOrderHistoryAsync = (): any => {
+  //ThunkAction<void, any, unknown, AnyAction> => {
+  return async (dispatch: any) => {
     dispatch(fetchOrderHistoryStart());
     try {
       const orderHistoryEndPoint = await readOrderHistory();
@@ -68,7 +71,7 @@ export const fetchOrderHistoryAsync = createAsyncThunk("", async () => {
       dispatch(fetchOrderHistoryFailed(error as Error));
     }
   };
-});
+};
 
 export type PostOrderHistoryStart =
   Action<ORDER_HISTORY_ACTION_TYPES.POST_ORDER_HISTORY_START>;
@@ -96,21 +99,23 @@ export const postOrderHistoryFailed = withMatch(
     actionCreator(ORDER_HISTORY_ACTION_TYPES.POST_ORDER_HISTORY_FAILED, error)
 );
 
-export const postOrderHistoryAsync: any = (
-  orderHistory: Order[],
-  order: Order
-) => {
-  return async (dispatch: any) => {
-    const tempOrder = order;
-    dispatch(postOrderHistoryStart());
-    try {
-      const orderHistoryEndPoint = await postNewOrder(tempOrder);
+export const postOrderHistoryAsync: any = //ThunkAction<
+  // void,
+  // any,
+  // unknown,
+  // AnyAction>
+  (orderHistory: Order[], order: Order) => {
+    return async (dispatch: Dispatch<AnyAction>) => {
+      const tempOrder = order;
+      dispatch(postOrderHistoryStart());
+      try {
+        const orderHistoryEndPoint = await postNewOrder(tempOrder);
 
-      dispatch(postOrderHistorySuccess());
-      return orderHistoryEndPoint;
-    } catch (error) {
-      dispatch(postOrderHistoryFailed(error as Error));
-      console.log(error);
-    }
+        dispatch(postOrderHistorySuccess());
+        return orderHistoryEndPoint;
+      } catch (error) {
+        dispatch(postOrderHistoryFailed(error as Error));
+        console.log(error);
+      }
+    };
   };
-};

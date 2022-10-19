@@ -27,10 +27,10 @@ const OrdersPage = () => {
   const dispatch = useAppDispatch();
   const ordersHistory = useAppSelector(selectOrderHistory);
   const viewLimiter = useAppSelector(selectViewLimiter);
-  const tempOrdersHistory = timeSorting(ordersHistory)
-    ? [...ordersHistory].splice(0, viewLimiter)
-    : [];
 
+  const tempOrdersHistory = ordersHistory
+    ? [...timeSorting(ordersHistory)].splice(0, viewLimiter)
+    : [];
   const ordersHeaders = {
     title: "historia zamówień",
     id: "#id",
@@ -43,7 +43,7 @@ const OrdersPage = () => {
   };
 
   useEffect(() => {
-    fetchOrderHistoryAsync();
+    dispatch(fetchOrderHistoryAsync());
     return () => {
       dispatch(resetViewLimiter());
     };
