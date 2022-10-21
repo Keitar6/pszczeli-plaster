@@ -1,0 +1,379 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer footerAboutUs 1`] = `
+.c1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c6 {
+  cursor: pointer;
+  position: relative;
+}
+
+.c6::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #18272f;
+  bottom: 0;
+  left: 0;
+  -webkit-transform-origin: right;
+  -ms-transform-origin: right;
+  transform-origin: right;
+  -webkit-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  -webkit-transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+
+.c6:hover::before {
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.c0 {
+  background-color: #FFB703;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c2 {
+  width: 100%;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: space-around;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: space-around;
+  justify-content: space-around;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 0 1rem 0 1rem;
+}
+
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c8 {
+  margin: 1rem 0 1rem 0;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+}
+
+.c17 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c16 {
+  margin: 1rem 0 1rem 0;
+}
+
+.c15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+}
+
+.c12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c11 {
+  margin: 1rem 0 1rem 0;
+}
+
+.c10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin: 0.2rem 0 1rem 0;
+}
+
+.c14 {
+  cursor: pointer;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c4 {
+  margin: 1rem 0 1rem 0;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1 c2"
+  >
+    <div
+      className="c3"
+    >
+      <h4
+        className="c4"
+      >
+        Płatności i dostawa
+      </h4>
+      <div
+        className="c5"
+      >
+        <div
+          className="c6"
+        >
+          Czas realizacji zamówień
+        </div>
+        <div
+          className="c6"
+        >
+          Faktury i paragony
+        </div>
+        <div
+          className="c6"
+        >
+          Opcje dostawy
+        </div>
+      </div>
+    </div>
+    <div
+      className="c7"
+    >
+      <h4
+        className="c8"
+      >
+        Informacje
+      </h4>
+      <div
+        className="c9"
+      >
+        <div
+          className="c6"
+        >
+          Warunki reklamacji
+        </div>
+        <div
+          className="c6"
+        >
+          Zwroty towaru
+        </div>
+        <div
+          className="c6"
+        >
+          Regulamin
+        </div>
+        <div
+          className="c6"
+        >
+          Polityka cookies
+        </div>
+      </div>
+    </div>
+    <div
+      className="c10"
+    >
+      <h4
+        className="c11"
+      >
+        O Nas
+      </h4>
+      <div
+        className="c12"
+      >
+        <div
+          className="c6"
+        >
+          O nas
+        </div>
+        <div
+          className="c6"
+        >
+          Sklepy stacjonarne
+        </div>
+        <div
+          className="c6"
+        >
+          Współpraca
+        </div>
+        <div
+          className="c6"
+        >
+          Media społecznościowe
+        </div>
+        <div
+          className="c13"
+        >
+          <a
+            className="c14"
+          >
+            <span />
+          </a>
+          <a
+            className="c14"
+          >
+            <span />
+          </a>
+          <a
+            className="c14"
+          >
+            <span />
+          </a>
+          <a
+            className="c14"
+          >
+            <span />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      className="c15"
+    >
+      <h4
+        className="c16"
+      >
+        Moje Konto
+      </h4>
+      <div
+        className="c17"
+      >
+        <div
+          className="c6"
+        >
+          Historia zamówień
+        </div>
+        <div
+          className="c6"
+        >
+          Ustawienia Konta
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

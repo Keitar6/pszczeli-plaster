@@ -1,4 +1,4 @@
-import { Colors, Typhography } from "global.styles";
+import { Colors, Typhography } from "../../../global.styles";
 import styled from "styled-components";
 
 export const CartItemContainer = styled.div`

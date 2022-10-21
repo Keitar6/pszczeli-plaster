@@ -3,11 +3,11 @@ import {
   actionCreator,
   ActionWithPayload,
   withMatch
-} from "utils/store/store.utils";
+} from "../../utils/store/store.utils";
 import { CategoryItem } from "../categories/category.types";
 import { CartItem, CART_ACTION_TYPES } from "./cart.types";
 
-const addCartItem = (
+export const addCartItem = (
   cartItems: CartItem[],
   productToAdd: CategoryItem
 ): CartItem[] => {
@@ -25,7 +25,7 @@ const addCartItem = (
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
-const removeCartItem = (
+export const removeCartItem = (
   cartItems: CartItem[] = [],
   productToRemove: CartItem,
   ifAll: string
@@ -34,7 +34,7 @@ const removeCartItem = (
   let updatedCartItemsRemove = [];
   let productId = 0;
 
-  if (ifAll !== "all" && productToRemove && productToRemove.quantity !== 1)
+  if (productToRemove && ifAll !== "all" && productToRemove.quantity !== 1)
     updatedCartItemsRemove = tempCartItems.map((cartItem) =>
       cartItem.id === productToRemove.id
         ? { ...cartItem, quantity: cartItem.quantity - 1 }
@@ -49,12 +49,10 @@ const removeCartItem = (
   return updatedCartItemsRemove;
 };
 
-export type ToggleCartMenu =
-  Action<CART_ACTION_TYPES.TOGGLE_CART_MENU>;
+export type ToggleCartMenu = Action<CART_ACTION_TYPES.TOGGLE_CART_MENU>;
 
 export const toggleCartMenu = withMatch(
-  (): ToggleCartMenu =>
-    actionCreator(CART_ACTION_TYPES.TOGGLE_CART_MENU)
+  (): ToggleCartMenu => actionCreator(CART_ACTION_TYPES.TOGGLE_CART_MENU)
 );
 
 export type SetCartItems = ActionWithPayload<
@@ -75,7 +73,7 @@ export const addItemToCart = withMatch(
 );
 
 export const removeItemFromCart = withMatch(
-  (cartItems: CartItem[], productToRemove: CartItem, ifAll = "") => {
+  (cartItems: CartItem[]=[], productToRemove: CartItem, ifAll = "") => {
     const updatedCartItems = removeCartItem(cartItems, productToRemove, ifAll);
 
     return setCartItems(updatedCartItems);

@@ -1,4 +1,4 @@
-import { useAppSelector } from "hooks/hooks";
+import { useAppSelector } from "../../hooks/hooks";
 
 import {
   CheckoutContainer,
@@ -14,14 +14,14 @@ import {
   selectCartCount,
   selectCartItems,
   selectCartTotal
-} from "store/cartReducer/cart.selector";
-import { CheckoutItem } from "components/checkoutItem/checkoutItem.component";
+} from "../../store/cartReducer/cart.selector";
+import { CheckoutItem } from "../../components/checkoutItem/checkoutItem.component";
 
-import { CheckoutForm } from "components/checkoutForm/checkoutForm.component";
-import { PLarge } from "global.styles";
-import { selectDelivery } from "store/orderHistory/orderHistory.selector";
+import { CheckoutForm } from "../../components/checkoutForm/checkoutForm.component";
+import { PLarge } from "../../global.styles";
+import { selectDelivery } from "../../store/orderHistory/orderHistory.selector";
 import { useEffect } from "react";
-import { isCartEmpty } from "utils/reusableFunctions/isCartEmpty.function";
+import { isCartEmpty } from "../../utils/reusableFunctions/isCartEmpty.function";
 import { useNavigate } from "react-router-dom";
 
 const CheckoutPage = () => {
@@ -29,6 +29,7 @@ const CheckoutPage = () => {
   const totalCost = useAppSelector(selectCartTotal);
   const cartQuantity = useAppSelector(selectCartCount);
   const deliveryInfo = useAppSelector(selectDelivery);
+  const deliveryPrice = deliveryInfo.price ? deliveryInfo.price : 0;
   const navigate = useNavigate();
   const checkoutHeaders = {
     summary: "podsumowanie",
@@ -68,12 +69,10 @@ const CheckoutPage = () => {
             cartItem={currentItem}
           ></CheckoutItem>
         ))}
-        <PLarge>{`${checkoutHeaders.deliveryPrice}: ${
-          deliveryInfo.price ? deliveryInfo.price : 0
-        }zł`}</PLarge>
+        <PLarge>{`${checkoutHeaders.deliveryPrice}: ${deliveryPrice}zł`}</PLarge>
         <PLarge>{`${checkoutHeaders.productsPrice}: ${totalCost}zł`}</PLarge>
         <Total>{`${checkoutHeaders.wSumie}: ${
-          totalCost + deliveryInfo.price ? deliveryInfo.price : 0
+          totalCost + deliveryPrice
         }zł`}</Total>
       </CheckoutSummaryContainer>
     </CheckoutContainer>

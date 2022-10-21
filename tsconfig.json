@@ -12,11 +12,10 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "src"
   },
-  "include": ["src/**/*", "src/components", "custom.d.ts"],
+  "include": ["src/**/*", "src/components", "custom.d.ts", "fileTransformer.ts", "__mocks__"],
   "exclude": ["node_modules", "src/**/*.spec.ts"]
 }

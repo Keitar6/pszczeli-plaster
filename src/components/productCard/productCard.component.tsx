@@ -1,8 +1,8 @@
 import React, { FC, PropsWithChildren } from "react";
-import { addItemToCart } from "store/cartReducer/cart.actions";
-import { selectCartItems } from "store/cartReducer/cart.selector";
-import { CategoryItem } from "store/categories/category.types";
-import { useAppDispatch, useAppSelector } from "hooks/hooks";
+import { addItemToCart } from "../../store/cartReducer/cart.actions";
+import { selectCartItems } from "../../store/cartReducer/cart.selector";
+import { CategoryItem } from "../../store/categories/category.types";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import {
   ProductCardPrice,
@@ -11,8 +11,8 @@ import {
   ProductCardName,
   ProductCardImageContainer
 } from "./productCard.styles";
-import { showProductCardDetails } from "store/generalPropReducer/generalProp.actions";
-import { selectAllItemsMap } from "store/categories/category.selector";
+import { showProductCardDetails } from "../../store/generalPropReducer/generalProp.actions";
+import { selectAllItemsMap } from "../../store/categories/category.selector";
 
 type ProductCardProps = CategoryItem;
 export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (

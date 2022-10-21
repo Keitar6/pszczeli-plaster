@@ -10,19 +10,21 @@ import {
   NavigationContainer,
   HamburgerIcon,
   naviIcons,
-  StructurizeComponent
+  StructurizeComponent,
+  LogoContainer,
+  ModalsTogglersIconsContainer
 } from "./navigation.styles";
 
 import { Footer } from "../../components/footer/footer.component";
 
-import { toggleUserMenu } from "store/generalPropReducer/generalProp.actions";
-import { selectIsUserMenuOpened } from "store/generalPropReducer/generalProp.selector";
+import { toggleUserMenu } from "../../store/generalPropReducer/generalProp.actions";
+import { selectIsUserMenuOpened } from "../../store/generalPropReducer/generalProp.selector";
 import { InputBar } from "../../components/inputBar/inputBar.component";
 
-import { refresh } from "utils/reusableFunctions/refresh.function";
-import { toggleCartMenu } from "store/cartReducer/cart.actions";
-import { selectCartCount } from "store/cartReducer/cart.selector";
-import { isCartEmpty } from "utils/reusableFunctions/isCartEmpty.function";
+import { refresh } from "../../utils/reusableFunctions/refresh.function";
+import { toggleCartMenu } from "../../store/cartReducer/cart.actions";
+import { selectCartCount } from "../../store/cartReducer/cart.selector";
+import { isCartEmpty } from "../../utils/reusableFunctions/isCartEmpty.function";
 
 const Navigation = () => {
   const isUserMenuOpened = useAppSelector(selectIsUserMenuOpened);
@@ -38,25 +40,34 @@ const Navigation = () => {
   return (
     <StructurizeComponent>
       <NavigationContainer>
-        <Logo to="/" onClick={logoClickHandler}>
-          <Icon icon={naviIcons.honeyBee} width="42" height="42" />
-        </Logo>
+        <LogoContainer>
+          <Logo to="/" onClick={logoClickHandler} data-testid="logoClick">
+            <Icon icon={naviIcons.honeyBee} width="42" height="42" />
+          </Logo>
+        </LogoContainer>
         <BrandName>Pszczeli Plaster</BrandName>
         <IconsContainer>
           <InputBar whereTo="sklep" />
-          <div
-            onClick={cartDropdownHandler}
-            onKeyDown={cartDropdownHandler}
-            role="presentation"
-          >
-            <CartIcon />
-          </div>
-          <HamburgerIcon
-            label="Show user menu"
-            rounded
-            toggle={userMenuHandler}
-            toggled={isUserMenuOpened}
-          />
+          <ModalsTogglersIconsContainer>
+            <div
+              onClick={cartDropdownHandler}
+              role="presentation"
+              data-testid="cartDropdown"
+            >
+              <CartIcon />
+            </div>
+            <div
+              onClick={userMenuHandler}
+              role="presentation"
+              data-testid="userMenu"
+            >
+              <HamburgerIcon
+                label="Show user menu"
+                rounded
+                toggled={isUserMenuOpened}
+              />
+            </div>
+          </ModalsTogglersIconsContainer>
         </IconsContainer>
       </NavigationContainer>
       <Outlet />

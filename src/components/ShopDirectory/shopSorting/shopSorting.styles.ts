@@ -1,4 +1,4 @@
-import { Colors, StandardFlexContainer, Typhography } from "global.styles";
+import { StandardFlexContainer, Typhography } from "../../../global.styles";
 import styled from "styled-components";
 
 export const ProductsSorting = styled.div`

@@ -1,24 +1,23 @@
-import { useAppDispatch, useAppSelector } from "hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { setCartItems } from "store/cartReducer/cart.actions";
+import { setCartItems } from "../../store/cartReducer/cart.actions";
 import {
   selectCartItems,
   selectCartTotal
-} from "store/cartReducer/cart.selector";
-import { postOrderHistoryAsync } from "store/orderHistory/orderHistory.action";
+} from "../../store/cartReducer/cart.selector";
+import { postOrderHistoryAsync } from "../../store/orderHistory/orderHistory.action";
 import {
   selectDelivery,
   selectOrderHistory
-} from "store/orderHistory/orderHistory.selector";
-import { DeliveryData } from "store/orderHistory/orderHistory.types";
+} from "../../store/orderHistory/orderHistory.selector";
+import { DeliveryData } from "../../store/orderHistory/orderHistory.types";
 import {
   formData,
   formDataInputMap,
   orderId
-} from "utils/checkoutForm/checkoutForm.utils";
-import { getCurrentTime } from "utils/reusableFunctions/getTime.function";
-import { orderCreator } from "utils/store/orderCreator.utils";
+} from "../../utils/checkoutForm/checkoutForm.utils";
+import { getCurrentTime } from "../../utils/reusableFunctions/getTime.function";
+import { orderCreator } from "../../utils/store/orderCreator.utils";
 import {
   NonValidFormInput,
   Form,
@@ -33,7 +32,6 @@ export const CheckoutForm = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors }
   } = useForm();
   const dispatch = useAppDispatch();
@@ -42,7 +40,6 @@ export const CheckoutForm = () => {
   const cartItems = useAppSelector(selectCartItems);
   const deliveryInfo = useAppSelector(selectDelivery);
   const deliveryPrice = deliveryInfo.price ? deliveryInfo.price : 0;
-  const navigate = useNavigate();
 
   const addToOrderHistoryHandler = (formData: DeliveryData) => {
     console.log(formData);
@@ -117,7 +114,6 @@ export const CheckoutForm = () => {
           submitHandler={handleSubmit((formData) =>
             addToOrderHistoryHandler(formData)
           )}
-          reset={reset}
         />
       </Form>
     </>

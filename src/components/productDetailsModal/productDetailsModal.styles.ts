@@ -21,13 +21,22 @@ export const ProductCardDetails = styled.div`
   }
 `;
 export const ProductCardDetailsContainer = styled(StandardFlexContainer)`
-  flex-direction: column;
   gap: 2.4rem;
-  max-width: 42rem;
+  max-width: 40rem;
+  max-height: 100vh;
+  // min-height: 100vh;
+  flex-direction: row;
   padding: 1rem 2rem 3rem 2rem;
   text-align: center;
   border-radius: 1.5rem;
   background: ${Colors.light};
+
+  @media (max-width: 500px) {
+    & {
+      max-width: 100%;
+      border-radius: 0rem;
+    }
+  }
 `;
 export const ProductCardDetailsLogoContainer = styled(StandardFlexContainer)`
   flex-direction: row;
@@ -90,6 +99,7 @@ export const ProductDescriptionTitle = styled(H4)`
   );
   padding-bottom: 0.2rem;
   margin-bottom: 0.5rem;
+
   position: relative;
 `;
 export const ProductDetailsImageWithDescription = styled(StandardFlexContainer)`
@@ -102,8 +112,8 @@ export const ProductDetailsImageWithDescription = styled(StandardFlexContainer)`
   gap: 3rem;
 `;
 export const ProductImage = styled.img`
-  height: 20rem;
-  width: 20rem;
+  height: 50%;
+  width: 50%;
   object-fit: cover;
   border-radius: 1rem;
   // border: 0.2rem solid red;
@@ -142,7 +152,7 @@ export const ProductModalIcon = styled(Icon)`
 export const ProductModalIconButton = styled.button`
   border: none;
   width: 30%;
-  height:3.6rem;
+  height: 3.6rem;
   border-radius: 0 0.4rem 0.4rem 0;
   background-color: ${Colors.dark};
   cursor: pointer;

@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { ReduxState } from "store/rootReducer.redux";
+import { ReduxState } from "../../store/rootReducer.redux";
 
 export const selectGeneralPropReducer = (state: ReduxState) =>
   state.generalPropReducer;
@@ -19,14 +19,14 @@ export const selectIsProductCardOpened = createSelector(
   (productCardOpened) => productCardOpened.isProductCardOpened
 );
 
+export const selectIsSortingInView = createSelector(
+  [selectGeneralPropReducer],
+  (generalPropReducer) => generalPropReducer.isSortingInView
+);
+
 export const selectCurrentProductCard = createSelector(
   [selectProductCardModal],
   (productCardOpened) => productCardOpened.currentProductCard
-);
-
-export const selectTheme = createSelector(
-  [selectGeneralPropReducer],
-  (state) => state.theme
 );
 
 export const selectPath = createSelector(

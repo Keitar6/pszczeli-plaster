@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cartModal cartCard 1`] = `
+.c0 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #0230473e;
+}
+
+.c1 {
+  width: 25%;
+  -webkit-flex-basis: 20%;
+  -ms-flex-preferred-size: 20%;
+  flex-basis: 20%;
+}
+
+.c2 {
+  width: 75%;
+  -webkit-flex-basis: auto;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0rem 1rem;
+  gap: 1rem;
+}
+
+.c3 {
+  width: 100%;
+  font-size: 1 rem;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  font-size: 1 rem;
+  font-weight: bold;
+}
+
+<div
+  className="c0"
+>
+  <img
+    alt="Obraz: SuperName"
+    className="c1"
+    src="/dataBaseImages/ImageSciezka"
+  />
+  <div
+    className="c2"
+  >
+    <span
+      className="c3"
+    >
+      SuperName
+    </span>
+    <span
+      className="c4"
+    >
+      2 x 165 = 330zł
+    </span>
+  </div>
+</div>
+`;

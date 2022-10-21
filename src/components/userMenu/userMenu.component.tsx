@@ -13,30 +13,19 @@ import {
   UserMenuContainer
 } from "./userMenu.styles";
 
-import { toggleUserMenu } from "store/generalPropReducer/generalProp.actions";
+import { toggleUserMenu } from "../../store/generalPropReducer/generalProp.actions";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
-import { selectCartCount } from "store/cartReducer/cart.selector";
-import { isCartEmpty } from "utils/reusableFunctions/isCartEmpty.function";
-
-type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
-  T,
-  MouseEvent
-> & {
-  target: T;
-};
+import { selectCartCount } from "../../store/cartReducer/cart.selector";
+import { isCartEmpty } from "../../utils/reusableFunctions/isCartEmpty.function";
 
 export const UserMenuModal = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const cartQuantity = useAppSelector(selectCartCount);
 
-  const userMenuOnClickHandler = (
-    event: UserMenuClosingHandlerType<HTMLDivElement>
-  ): void => {
-    if (event.target.id === "UserMenuContainer") {
-      dispatch(toggleUserMenu());
-    }
+  const userMenuOnClickHandler = (): void => {
+    dispatch(toggleUserMenu());
   };
 
   const goToCheckoutHandler = () => {
@@ -54,11 +43,10 @@ export const UserMenuModal = () => {
   return (
     <Modal>
       <UserMenu
+        data-testid="userMenuOnClick"
         id="UserMenuContainer"
-        onClick={(e) => {
-          userMenuOnClickHandler(
-            e as UserMenuClosingHandlerType<HTMLDivElement>
-          );
+        onClick={() => {
+          userMenuOnClickHandler();
         }}
       >
         <UserMenuContainer>
@@ -82,6 +70,7 @@ export const UserMenuModal = () => {
           </UserMenuLoginButtons>
           <UserMenuFuncButtons>
             <UserMenuFuncButton
+              data-testid="goToOrders"
               onClick={goToOrdersHandler}
               buttonType={BUTTON_TYPE_CLASSES.base}
             >
@@ -94,6 +83,7 @@ export const UserMenuModal = () => {
               Historia Zamówień
             </UserMenuFuncButton>
             <UserMenuFuncButton
+              data-testid="goToCheckout"
               onClick={goToCheckoutHandler}
               buttonType={BUTTON_TYPE_CLASSES.base}
             >

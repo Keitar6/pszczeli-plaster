@@ -101,6 +101,13 @@ export const InputBar = styled(BaseButton)`
     color: ${Colors.light};
     border: none;
   }
+
+  @media (max-width: 1000px) {
+    & {
+      // border: 2px solid red;
+      max-width: 3rem;
+    }
+  }
 `;
 
 export const UserMenuFuncButton = styled(BaseButton)`
@@ -132,31 +139,19 @@ export const ProductCardCartButton = styled(BaseButton)`
 export const CartFuncButton = styled(BaseButton)`
   background-color: ${Colors.light};
   border: 1px solid ${Colors.dark};
+  min-width: 0;
+  max-width: 100%;
+  padding: 1rem 10%;
   &:hover {
     background-color: ${Colors.dark};
     color: ${Colors.primary};
     // border: none;
   }
-`;
 
-export const ButtonSpiner = styled.div`
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  border: 3px solid rgba(195, 195, 195, 0.6);
-  border-radius: 50%;
-  border-top-color: #636767;
-  animation: spin 1s ease-in-out infinite;
-  -webkit-animation: spin 1s ease-in-out infinite;
-
-  @keyframes spin {
-    to {
-      -webkit-transform: rotate(360deg);
-    }
-  }
-  @-webkit-keyframes spin {
-    to {
-      -webkit-transform: rotate(360deg);
+  @media (max-width: 700px) {
+    & {
+      // border: 2px solid red;
+      max-width: 23rem;
     }
   }
 `;
@@ -183,7 +178,7 @@ export const SortingTypes = styled(BaseButton)`
 `;
 
 export const FormButton = styled(BaseButton)`
-  width: 48%;
+  width: 100%;
   border: 2px solid;
   border-radius: 0.5rem;
   border-image-slice: 1;

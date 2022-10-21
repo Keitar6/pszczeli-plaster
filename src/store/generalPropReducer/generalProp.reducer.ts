@@ -1,36 +1,30 @@
 import type { AnyAction } from "redux";
-import { CategoryItem } from "store/categories/category.types";
+import { CategoryItem } from "../../store/categories/category.types";
 import {
   setPath,
   setProductCard,
   setViewLimiter,
   toggleProductCard,
+  toggleSortingInView,
   toggleUserMenu
 } from "./generalProp.actions";
 import { PathType } from "./generalProp.types";
-
+export type ProductCardModal = {
+  isProductCardOpened: boolean;
+  currentProductCard: CategoryItem;
+};
 export type GeneralPropsState = {
-  readonly theme: {
-    type: string;
-    color: string;
-  };
   readonly path: PathType;
   readonly isUserMenuOpened: boolean;
-  readonly productCardModal: {
-    isProductCardOpened: boolean;
-    currentProductCard: CategoryItem;
-  };
+  readonly isSortingInView: boolean;
+  readonly productCardModal: ProductCardModal;
   readonly viewLimiter: number;
-
 };
 
-const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
-  theme: {
-    type: "default",
-    color: "#f06d06"
-  },
+export const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
   path: "sklep",
   isUserMenuOpened: false,
+  isSortingInView: false,
   productCardModal: {
     isProductCardOpened: false,
     currentProductCard: {
@@ -41,8 +35,7 @@ const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
       dodatki: false
     }
   },
-  viewLimiter: 2,
-  
+  viewLimiter: 2
 };
 
 export const generalPropReducer = (
@@ -60,6 +53,13 @@ export const generalPropReducer = (
         ...state.productCardModal,
         isProductCardOpened: !state.productCardModal.isProductCardOpened
       }
+    };
+  }
+
+  if (toggleSortingInView.match(action)) {
+    return {
+      ...state,
+      isSortingInView: !state.isSortingInView
     };
   }
 

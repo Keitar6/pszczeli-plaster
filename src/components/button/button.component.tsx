@@ -1,7 +1,6 @@
 import { ButtonHTMLAttributes, FC } from "react";
 import {
   BaseButton,
-  ButtonSpiner,
   GoogleSignInButton,
   InvertedButton,
   UserMenuFuncButton,
@@ -35,7 +34,7 @@ type ButtonProps = {
   isLoading?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-const getButton = (buttonType = BUTTON_TYPE_CLASSES.base): typeof BaseButton =>
+export const getButton = (buttonType = BUTTON_TYPE_CLASSES.base): typeof BaseButton =>
   ({
     [BUTTON_TYPE_CLASSES.base]: BaseButton,
     [BUTTON_TYPE_CLASSES.google]: GoogleSignInButton,
@@ -51,18 +50,9 @@ const getButton = (buttonType = BUTTON_TYPE_CLASSES.base): typeof BaseButton =>
     [BUTTON_TYPE_CLASSES.formButton]: FormButton
   }[buttonType]);
 
-const Button: FC<ButtonProps> = ({
-  children,
-  buttonType,
-  isLoading,
-  ...otherProps
-}) => {
+const Button: FC<ButtonProps> = ({ buttonType, ...otherProps }) => {
   const CustomButton = getButton(buttonType);
-  return (
-    <CustomButton disabled={isLoading} {...otherProps}>
-      {isLoading ? <ButtonSpiner /> : children}
-    </CustomButton>
-  );
+  return <CustomButton {...otherProps}></CustomButton>;
 };
 
 export default Button;

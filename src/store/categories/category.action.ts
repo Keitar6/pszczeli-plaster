@@ -1,11 +1,15 @@
-import { actionCreator, withMatch } from "../../utils/store/store.utils";
 import { CATEGORIES_ACTION_TYPES, Category } from "./category.types";
-import { Action, ActionWithPayload } from "../../utils/store/store.utils";
-import { readCategories } from "../../service/service";
+import {
+  Action,
+  actionCreator,
+  ActionWithPayload,
+  withMatch
+} from "../../utils/store/store.utils";
 
 import type { ActionCreator, AnyAction } from "redux";
 import type { ThunkAction } from "redux-thunk";
-import { ReduxState } from "store/rootReducer.redux";
+import { ReduxState } from "../../store/rootReducer.redux";
+import { readCategories } from "../../service/service";
 
 export type FetchCategoriesStart =
   Action<CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START>;
@@ -38,7 +42,6 @@ export const fetchCategoriesSuccess = withMatch(
       categoriesArray
     )
 );
-
 export const fetchCategoriesFailed = withMatch(
   (error: Error): FetchCategoriesFailed =>
     actionCreator(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error)
@@ -48,28 +51,22 @@ export type AppThunk<T = void> = ActionCreator<
   ThunkAction<Promise<T>, ReduxState, unknown, AnyAction>
 >;
 
-export const fetchCategoriesAsync: any = () => {
-  return async (dispatch: any) => {
-    dispatch(fetchCategoriesStart());
-    try {
-      const categoryEndPoint = await readCategories();
-      dispatch(fetchCategoriesSuccess(categoryEndPoint));
-    } catch (error) {
-      dispatch(fetchCategoriesFailed(error as Error));
-    }
+export const fetchCategoriesAsync = (): any => //ThunkAction<
+  // void,
+  // any,l
+  // unknown,
+  // AnyAction>
+  {
+    return async (dispatch: any) => {
+      dispatch(fetchCategoriesStart());
+      try {
+        const categoryEndPoint = await readCategories();
+        dispatch(fetchCategoriesSuccess(categoryEndPoint));
+        return categoryEndPoint;
+      } catch (error) {
+        dispatch(fetchCategoriesFailed(error as Error));
+        return error;
+      }
+    };
   };
-};
 
-// const asyncThinkAction: ActionCreator<
-//   ThunkAction<Promise<Action>, IState, void>
-// > = () => {
-//   return async (dispatch: Dispatch<IState>): Promise<Action> => {
-//     try {
-//       const text = await Api.call();
-//       return dispatch({
-//         type: SET_TEXT,
-//         text
-//       });
-//     } catch (e) {}
-//   };
-// };

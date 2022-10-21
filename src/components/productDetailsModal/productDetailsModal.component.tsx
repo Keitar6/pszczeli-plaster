@@ -18,41 +18,39 @@ import {
   ProductModalIcon,
   ProductModalIconButton
 } from "./productDetailsModal.styles";
-import { toggleProductCard } from "store/generalPropReducer/generalProp.actions";
+import { toggleProductCard } from "../../store/generalPropReducer/generalProp.actions";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import React, { FC } from "react";
-import { selectCurrentProductCard } from "store/generalPropReducer/generalProp.selector";
+import { FC } from "react";
+import { selectCurrentProductCard } from "../../store/generalPropReducer/generalProp.selector";
 import Button, {
   BUTTON_TYPE_CLASSES
-} from "components/button/button.component";
-import { selectCartItems } from "store/cartReducer/cart.selector";
-import { addItemToCart } from "store/cartReducer/cart.actions";
+} from "../../components/button/button.component";
+import {
+  selectCartCount,
+  selectCartItems
+} from "../../store/cartReducer/cart.selector";
+import { addItemToCart } from "../../store/cartReducer/cart.actions";
 import { useNavigate } from "react-router-dom";
+import { isCartEmpty } from "../../utils/reusableFunctions/isCartEmpty.function";
 
-type UserMenuClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
-  T,
-  MouseEvent
-> & {
-  target: T;
-};
-
-export const ProductDetailsModal: FC = () => {
+export const ProductDetailsModal = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const productCard = useAppSelector(selectCurrentProductCard);
   const cartItems = useAppSelector(selectCartItems);
+  const cartQuantity = useAppSelector(selectCartCount);
+
   const { id, dodatki, name, image, price, weight } = productCard;
-  const productDetailsClosingHandler = (
-    event: UserMenuClosingHandlerType<HTMLDivElement>
-  ): void => {
-    if (event.target.id === "UserMenuContainer") {
-      dispatch(toggleProductCard());
-    }
+
+  const productDetailsClosingHandler = (): void => {
+    dispatch(toggleProductCard());
   };
+
   const addProductHandler = () => {
     const productToAdd = { id, dodatki, image, name, price };
     dispatch(addItemToCart(cartItems, productToAdd));
   };
+
   const navigateToCartHandler = () => {
     navigate("/podsumowanie");
     dispatch(toggleProductCard());
@@ -62,11 +60,10 @@ export const ProductDetailsModal: FC = () => {
     <Modal>
       <ProductCardDetails
         id="UserMenuContainer"
-        onClick={(e) => {
-          productDetailsClosingHandler(
-            e as UserMenuClosingHandlerType<HTMLDivElement>
-          );
+        onClick={() => {
+          productDetailsClosingHandler();
         }}
+        data-testid="productDetailsClosing"
       >
         <ProductCardDetailsContainer>
           <ProductCardDetailsLogoContainer>
@@ -100,14 +97,24 @@ export const ProductDetailsModal: FC = () => {
                 </ProductConsumerDetails>
                 <ProductCardModalButtons>
                   <Button
+                    data-testid="addProduct"
                     buttonType={BUTTON_TYPE_CLASSES.productCardCartButton}
                     onClick={() => addProductHandler()}
                   >
                     Dodaj do koszyka{" "}
                   </Button>
-                  <ProductModalIconButton onClick={navigateToCartHandler}>
+                  <ProductModalIconButton
+                    onClick={() =>
+                      isCartEmpty(cartQuantity) && navigateToCartHandler()
+                    }
+                    data-testid="navigateToCart"
+                  >
                     <ProductModalIcon
-                      icon="akar-icons:arrow-right"
+                      icon={`${
+                        isCartEmpty(cartQuantity)
+                          ? "akar-icons:arrow-right"
+                          : "carbon:shopping-cart-clear"
+                      }`}
                       width="32"
                     />
                   </ProductModalIconButton>

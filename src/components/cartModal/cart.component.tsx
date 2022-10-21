@@ -11,25 +11,17 @@ import {
 } from "./cart.styles";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import React, { useEffect } from "react";
-import { toggleCartMenu } from "store/cartReducer/cart.actions";
+import { toggleCartMenu } from "../../store/cartReducer/cart.actions";
 import {
-  selectCartCount,
   selectCartItems,
   selectCartTotal
-} from "store/cartReducer/cart.selector";
+} from "../../store/cartReducer/cart.selector";
 import { CartCard } from "./cartCard/cartCard.component";
 import Button, {
   BUTTON_TYPE_CLASSES
-} from "components/button/button.component";
+} from "../../components/button/button.component";
 import { useNavigate } from "react-router-dom";
-
-type CartClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
-  T,
-  MouseEvent
-> & {
-  target: T;
-};
+import { CartItem } from "../../store/cartReducer/cart.types";
 
 export const CartModal = () => {
   const dispatch = useAppDispatch();
@@ -42,20 +34,17 @@ export const CartModal = () => {
     dispatch(toggleCartMenu());
   };
 
-  const cartClosingHandler = (
-    event: CartClosingHandlerType<HTMLDivElement>
-  ): void => {
-    if (event.target.id === "CartContainer") {
-      dispatch(toggleCartMenu());
-    }
+  const cartClosingHandler = (): void => {
+    dispatch(toggleCartMenu());
   };
 
   return (
     <Modal>
       <Cart
+        data-testid="cartClosingCheck"
         id="CartContainer"
-        onClick={(e) => {
-          cartClosingHandler(e as CartClosingHandlerType<HTMLDivElement>);
+        onClick={() => {
+          cartClosingHandler();
         }}
       >
         <CartContainer>
@@ -70,11 +59,14 @@ export const CartModal = () => {
               <H2>Koszyk</H2>
             </CartLogoText>
           </CartLogoContainer>
-          {cartItems.map((cartItem) => {
-            return <CartCard key={cartItem.id} cartItem={cartItem} />;
-          })}
+          <div data-testid="cartMapElements">
+            {cartItems.map((cartItem: CartItem) => {
+              return <CartCard key={cartItem.id} cartItem={cartItem} />;
+            })}
+          </div>
           <CartGoToCheckout>
             <Button
+              data-testid="goToCheckout"
               onClick={goToCheckoutHandler}
               buttonType={BUTTON_TYPE_CLASSES.cartFuncButton}
             >{`${"Do kasy"}`}</Button>

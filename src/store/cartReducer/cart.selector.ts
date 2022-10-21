@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
-import { ReduxState } from "store/rootReducer.redux";
+import { ReduxState } from "../../store/rootReducer.redux";
 
-const selectCartReducer = (state: ReduxState) => state.cartReducer;
+export const selectCartReducer = (state: ReduxState) => state.cartReducer;
 
 export const selectCartItems = createSelector(
   [selectCartReducer],

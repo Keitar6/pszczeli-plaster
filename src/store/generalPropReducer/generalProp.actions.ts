@@ -1,10 +1,10 @@
-import { CategoryItem } from "store/categories/category.types";
+import { CategoryItem } from "../../store/categories/category.types";
 import {
   Action,
   actionCreator,
   ActionWithPayload,
   withMatch
-} from "utils/store/store.utils";
+} from "../../utils/store/store.utils";
 import { GENERAL_PROPS_ACTION_TYPES, PathType } from "./generalProp.types";
 
 export type SetPathType = ActionWithPayload<
@@ -17,6 +17,9 @@ export type ToggleUserMenu =
 
 export type ToggleProductCard =
   Action<GENERAL_PROPS_ACTION_TYPES.TOGGLE_PRODUCT_CARD_MENU>;
+
+export type ToggleSortingInView =
+  Action<GENERAL_PROPS_ACTION_TYPES.TOGGLE_SORTING_IS_IN_VIEW>;
 
 export type SetProductCard = ActionWithPayload<
   GENERAL_PROPS_ACTION_TYPES.SET_CURRENT_PRODUCT_CARD,
@@ -40,6 +43,11 @@ export const toggleUserMenu = withMatch(
 export const toggleProductCard = withMatch(
   (): ToggleProductCard =>
     actionCreator(GENERAL_PROPS_ACTION_TYPES.TOGGLE_PRODUCT_CARD_MENU)
+);
+
+export const toggleSortingInView = withMatch(
+  (): ToggleSortingInView =>
+    actionCreator(GENERAL_PROPS_ACTION_TYPES.TOGGLE_SORTING_IS_IN_VIEW)
 );
 
 export const setProductCard = withMatch(

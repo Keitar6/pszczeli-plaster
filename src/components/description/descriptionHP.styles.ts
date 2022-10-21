@@ -1,4 +1,4 @@
-import { Colors, H3, StandardFlexContainer } from "global.styles";
+import { Colors, H3, StandardFlexContainer } from "../../global.styles";
 import styled from "styled-components";
 
 export const DescriptionTitle = styled(H3)`

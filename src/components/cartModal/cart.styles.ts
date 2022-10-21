@@ -7,13 +7,6 @@ const slideIn = keyframes`
 }
 `;
 
-const slideOut = keyframes`
-{
-  0% { transform: translateY(0%); }
-  100% { transform: translateY(-100%); }
-}
-`;
-
 export const Cart = styled.div`
   background-color: rgba(0, 0, 0, 0.9);
   position: fixed;
@@ -36,7 +29,7 @@ export const Cart = styled.div`
 export const CartContainer = styled(StandardFlexContainer)`
   flex-direction: column;
   gap: 2.4rem;
-  max-width: 50rem;
+  max-width: 70%;
   padding: 1rem 2rem 3rem 2rem;
   justify-content: start;
 
@@ -44,7 +37,9 @@ export const CartContainer = styled(StandardFlexContainer)`
   height: 100%;
 
   animation: ${slideIn} 0.5s forwards;
-  `;
+
+  
+`;
 
 export const CartLogoContainer = styled(StandardFlexContainer)`
   flex-direction: row;
@@ -63,4 +58,5 @@ export const CartGoToCheckout = styled(StandardFlexContainer)`
   justify-content: space-between;
   // align-items: end;
   // border: 2px solid red;
+
 `;

@@ -1,7 +1,20 @@
 import { FC, PropsWithChildren } from "react";
 import { FieldValues, UseFormRegister } from "react-hook-form";
-import { DeliveryOptions } from "utils/checkoutForm/checkoutForm.utils";
-import "./select.styles.css";
+import { DeliveryOptions } from "../../../../../utils/checkoutForm/checkoutForm.utils";
+import {
+  AppCover,
+  InputRadio,
+  Label,
+  LabelIcon,
+  LabelText,
+  Option,
+  Options,
+  OptionsViewButton,
+  OptionValue,
+  SelectBox,
+  SelectedButton,
+  SelectedValue
+} from "./select.styles";
 type CheckoutFormInput = {
   id: string;
   register: UseFormRegister<FieldValues>;
@@ -17,44 +30,42 @@ export const Select: FC<PropsWithChildren<CheckoutFormInput>> = ({
   children
 }) => {
   return (
-    <div id="app-cover">
-      <div id={`select-box ${id}`}>
-        <input type="checkbox" id={`options-view-button`} name={`${id}`} />
-        <div id="select-button" className="brd">
-          <div id="selected-value">
+    <AppCover>
+      <SelectBox>
+        <OptionsViewButton name={`${id}`} />
+        <SelectedButton>
+          <SelectedValue>
             <span>{children} </span>
-          </div>
-        </div>
-        <div id="options">
+          </SelectedValue>
+        </SelectedButton>
+        <Options>
           {Object.keys(datas).map((option) => {
             return (
-              <div key={option} className="option">
-                <input
+              <Option key={option}>
+                <InputRadio
                   {...register(`${id}`, { required: true })}
                   onChange={(event) =>
                     deliveryPriceHandler &&
                     deliveryPriceHandler(event.target.value)
                   }
-                  className="s-c top"
-                  type="radio"
                   name={`${id}`}
                   value={`${datas[option].value}`}
                 />
-                <input
-                  className="s-c bottom"
-                  type="radio"
-                  name={`${id}`}
-                  value={`${datas[option].value}`}
-                />
-                <i className="fab fa-codepen"></i>
-                <span className="label">{`${datas[option].value}`}</span>
-                <span className="opt-val">{`${datas[option].value}`}</span>
-              </div>
+
+                <Label>
+                  <LabelIcon icon={`${datas[option].icon}`} width="32" />
+                  <LabelText>{`${datas[option].value}`}</LabelText>
+                </Label>
+
+                <OptionValue>
+                  <LabelIcon icon={`${datas[option].icon}`} width="32" />
+                  <LabelText>{`${datas[option].value}`}</LabelText>
+                </OptionValue>
+              </Option>
             );
           })}
-          <div id="option-bg"></div>
-        </div>
-      </div>
-    </div>
+        </Options>
+      </SelectBox>
+    </AppCover>
   );
 };

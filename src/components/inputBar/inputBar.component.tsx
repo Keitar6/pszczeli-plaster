@@ -1,9 +1,9 @@
 import { Icon } from "@iconify/react";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { setInputSorting } from "store/userReducer/user.actions";
-import { IsInputNull } from "types/checkTypes/navInput.typeGuards";
-import { useAppDispatch } from "hooks/hooks";
+import { setInputSorting } from "../../store/userReducer/user.actions";
+import { IsInputNull } from "../../types/checkTypes/navInput.typeGuards";
+import { useAppDispatch } from "../../hooks/hooks";
 import { naviIcons } from "../../routes/navigation/navigation.styles";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import {
@@ -27,6 +27,7 @@ export const InputBar: FC<InputBarProps> = ({ whereTo }) => {
 
   const onInputChangeHandler = () => {
     const input = document.getElementById("inputBar");
+    
     if (IsInputNull(input)) {
       dispatch(setInputSorting(input.value));
     }

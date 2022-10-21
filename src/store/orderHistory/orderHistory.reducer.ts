@@ -15,7 +15,7 @@ export type OrderHistoryState = {
   readonly error: Error | null;
 };
 
-const ORDER_HISTORY_INITIAL_STATE: OrderHistoryState = {
+export const ORDER_HISTORY_INITIAL_STATE: OrderHistoryState = {
   delivery: {
     price: 0,
     type: "None"
@@ -29,12 +29,11 @@ export const orderHistoryReducer = (
   state = ORDER_HISTORY_INITIAL_STATE,
   action = {} as AnyAction
 ): OrderHistoryState => {
-
   if (setDelivery.match(action))
-  return {
-    ...state,
-    delivery: action.payload
-  };
+    return {
+      ...state,
+      delivery: action.payload
+    };
 
   if (fetchOrderHistoryStart.match(action)) {
     return { ...state, isLoading: true };

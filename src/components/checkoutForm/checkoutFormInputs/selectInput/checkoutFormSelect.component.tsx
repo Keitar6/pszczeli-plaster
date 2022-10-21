@@ -1,15 +1,14 @@
-import { useAppDispatch } from "hooks/hooks";
-import { FC, PropsWithChildren } from "react";
+import { useAppDispatch } from "../../../../hooks/hooks";
+import { FC, PropsWithChildren, useEffect } from "react";
 import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form";
 import type { FieldValues } from "react-hook-form/dist/types/fields";
 import type { UseFormRegister } from "react-hook-form/dist/types/form";
-import { setDelivery } from "store/orderHistory/orderHistory.action";
-import { DeliveryType } from "store/orderHistory/orderHistory.types";
+import { setDelivery } from "../../../../store/orderHistory/orderHistory.action";
+import { DeliveryType } from "../../../../store/orderHistory/orderHistory.types";
 import {
   deliveryOptions,
-  formData,
   paymentOptions
-} from "utils/checkoutForm/checkoutForm.utils";
+} from "../../../../utils/checkoutForm/checkoutForm.utils";
 import { NonValidFormInput } from "../../checkoutForm.styles";
 import { SelectContainer, SelectContent } from "./checkoutFormSelect.styles";
 import { Select } from "./select/select.component";
@@ -42,6 +41,11 @@ export const CheckoutFormSelect: FC<PropsWithChildren<CheckoutFormInput>> = ({
       setDelivery(deliveryType.replace(/\s+/g, "") as DeliveryType["type"])
     );
   };
+  useEffect(() => {
+    return () => {
+      dispatch(setDelivery("None"));
+    };
+  }, []);
 
   return (
     <>

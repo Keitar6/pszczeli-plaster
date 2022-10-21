@@ -1,4 +1,4 @@
-import { CartItem } from "store/cartReducer/cart.types";
+import { CartItem } from "../../../store/cartReducer/cart.types";
 
 import {
   CartItemContainer,

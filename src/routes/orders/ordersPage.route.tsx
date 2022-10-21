@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
 import {
   OrdersContainer,
@@ -9,26 +9,27 @@ import {
   OrderItemsContainer
 } from "./ordersPage.styles";
 
-import { OrderItem } from "components/orderItem/orderItem.component";
-import { selectViewLimiter } from "store/generalPropReducer/generalProp.selector";
+import { OrderItem } from "../../components/orderItem/orderItem.component";
+import { selectViewLimiter } from "../../store/generalPropReducer/generalProp.selector";
 import Button, {
   BUTTON_TYPE_CLASSES
-} from "components/button/button.component";
+} from "../../components/button/button.component";
 import {
   incrementViewLimiter,
   resetViewLimiter
-} from "store/generalPropReducer/generalProp.actions";
+} from "../../store/generalPropReducer/generalProp.actions";
 import { useEffect } from "react";
-import { selectOrderHistory } from "store/orderHistory/orderHistory.selector";
-import { fetchOrderHistoryAsync } from "store/orderHistory/orderHistory.action";
-import { timeSorting } from "utils/reusableFunctions/timeSorting.function";
+import { selectOrderHistory } from "../../store/orderHistory/orderHistory.selector";
+import { fetchOrderHistoryAsync } from "../../store/orderHistory/orderHistory.action";
+import { timeSorting } from "../../utils/reusableFunctions/timeSorting.function";
 
 const OrdersPage = () => {
   const dispatch = useAppDispatch();
   const ordersHistory = useAppSelector(selectOrderHistory);
   const viewLimiter = useAppSelector(selectViewLimiter);
-  const tempOrdersHistory = timeSorting(ordersHistory)
-    ? [...ordersHistory].splice(0, viewLimiter)
+
+  const tempOrdersHistory = ordersHistory
+    ? [...timeSorting(ordersHistory)].splice(0, viewLimiter)
     : [];
 
   const ordersHeaders = {
@@ -44,9 +45,7 @@ const OrdersPage = () => {
 
   useEffect(() => {
     dispatch(fetchOrderHistoryAsync());
-    return () => {
-      dispatch(resetViewLimiter());
-    };
+ 
   }, []);
 
   return (
@@ -75,6 +74,7 @@ const OrdersPage = () => {
       </OrdersContent>
       {ordersHistory.length > viewLimiter && (
         <Button
+          data-testid="paginationButton"
           onClick={moreHistoryHandler}
           buttonType={BUTTON_TYPE_CLASSES.base}
         >

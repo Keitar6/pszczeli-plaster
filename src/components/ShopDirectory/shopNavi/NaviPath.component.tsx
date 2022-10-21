@@ -1,14 +1,17 @@
 import { FC, useEffect } from "react";
 import { Outlet, useParams } from "react-router-dom";
-import { refresh } from "utils/reusableFunctions/refresh.function";
-import { setPath } from "store/generalPropReducer/generalProp.actions";
-import { useAppDispatch } from "hooks/hooks";
+import { refresh } from "../../../utils/reusableFunctions/refresh.function";
+import { setPath } from "../../../store/generalPropReducer/generalProp.actions";
+import { useAppDispatch } from "../../../hooks/hooks";
 import { TextLink } from "../../../global.styles";
 import { NaviPathText, PathWebPage, ShopInsidePath } from "./naviPath.style";
 
 export const NaviPath: FC = () => {
   const dispatch = useAppDispatch();
   const params = useParams();
+  
+  console.log(params.id)
+  
   const paths = {
     homePath: ``,
     shopPath: `sklep`,
@@ -36,6 +39,7 @@ export const NaviPath: FC = () => {
         <PathWebPage
           to={`/${paths.shopPath}`}
           onClick={() => refresHandler(paths.shopPath)}
+          data-testid="refresh"
         >
           <TextLink> {`${String(paths.shopPath).toUpperCase()}`} </TextLink>
         </PathWebPage>
