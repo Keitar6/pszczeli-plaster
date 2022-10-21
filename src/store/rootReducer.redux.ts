@@ -6,7 +6,7 @@ import { cartReducer } from "./cartReducer/cart.reducer";
 import { categoriesReducer } from "./categories/category.reducer";
 import { orderHistoryReducer } from "./orderHistory/orderHistory.reducer";
 import storage from "redux-persist/lib/storage";
-import persistReducer from "redux-persist/es/persistReducer";
+import {persistReducer} from "redux-persist";
 
 export type ReduxState = ReturnType<typeof rootReducer>;
 

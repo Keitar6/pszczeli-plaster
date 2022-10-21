@@ -1,6 +1,4 @@
-import {
-  mockOrderHistory,
-} from "../../../utils/testsMocking/mockOrderHistory";
+import { mockOrderHistory } from "../../../utils/testsMocking/mockOrderHistory";
 import {
   fetchOrderHistoryFailed,
   fetchOrderHistoryStart,

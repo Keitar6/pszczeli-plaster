@@ -19,6 +19,11 @@ export const selectIsProductCardOpened = createSelector(
   (productCardOpened) => productCardOpened.isProductCardOpened
 );
 
+export const selectIsSortingInView = createSelector(
+  [selectGeneralPropReducer],
+  (generalPropReducer) => generalPropReducer.isSortingInView
+);
+
 export const selectCurrentProductCard = createSelector(
   [selectProductCardModal],
   (productCardOpened) => productCardOpened.currentProductCard

@@ -23,13 +23,6 @@ import Button, {
 import { useNavigate } from "react-router-dom";
 import { CartItem } from "../../store/cartReducer/cart.types";
 
-type CartClosingHandlerType<T extends HTMLElement> = React.MouseEvent<
-  T,
-  MouseEvent
-> & {
-  target: T;
-};
-
 export const CartModal = () => {
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector(selectCartItems);
@@ -41,20 +34,17 @@ export const CartModal = () => {
     dispatch(toggleCartMenu());
   };
 
-  const cartClosingHandler = (
-    event: CartClosingHandlerType<HTMLDivElement>
-  ): void => {
-    if (event.target.id === "CartContainer") {
-      dispatch(toggleCartMenu());
-    }
+  const cartClosingHandler = (): void => {
+    dispatch(toggleCartMenu());
   };
 
   return (
     <Modal>
       <Cart
+        data-testid="cartClosingCheck"
         id="CartContainer"
-        onClick={(e) => {
-          cartClosingHandler(e as CartClosingHandlerType<HTMLDivElement>);
+        onClick={() => {
+          cartClosingHandler();
         }}
       >
         <CartContainer>
@@ -69,11 +59,14 @@ export const CartModal = () => {
               <H2>Koszyk</H2>
             </CartLogoText>
           </CartLogoContainer>
-          {cartItems.map((cartItem: CartItem) => {
-            return <CartCard key={cartItem.id} cartItem={cartItem} />;
-          })}
+          <div data-testid="cartMapElements">
+            {cartItems.map((cartItem: CartItem) => {
+              return <CartCard key={cartItem.id} cartItem={cartItem} />;
+            })}
+          </div>
           <CartGoToCheckout>
             <Button
+              data-testid="goToCheckout"
               onClick={goToCheckoutHandler}
               buttonType={BUTTON_TYPE_CLASSES.cartFuncButton}
             >{`${"Do kasy"}`}</Button>

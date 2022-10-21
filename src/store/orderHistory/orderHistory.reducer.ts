@@ -29,12 +29,11 @@ export const orderHistoryReducer = (
   state = ORDER_HISTORY_INITIAL_STATE,
   action = {} as AnyAction
 ): OrderHistoryState => {
-
   if (setDelivery.match(action))
-  return {
-    ...state,
-    delivery: action.payload
-  };
+    return {
+      ...state,
+      delivery: action.payload
+    };
 
   if (fetchOrderHistoryStart.match(action)) {
     return { ...state, isLoading: true };
@@ -47,6 +46,6 @@ export const orderHistoryReducer = (
   if (fetchOrderHistoryFailed.match(action)) {
     return { ...state, error: action.payload, isLoading: false };
   }
-  
+
   return state;
 };

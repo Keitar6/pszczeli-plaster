@@ -1,6 +1,7 @@
 import { createElement, ReactNode, ReactPortal } from "react";
 import ReactDOM from "react-dom";
 import ComponentsRenderer from "react-test-renderer";
+import { renderWithProviders } from "../../utils/testsMocking/mockStoreProvider";
 import Modal from "./modal.component";
 
 describe("modal test", () => {
@@ -11,8 +12,8 @@ describe("modal test", () => {
     });
   });
   test("portal test", () => {
-    const component = ComponentsRenderer.create(<Modal>Hi</Modal>);
-    expect(component.toJSON()).toMatchSnapshot();
+    const component = renderWithProviders(<Modal>Hi</Modal>);
+    expect(component.findByText("Hi")).toBeTruthy();
   });
   afterAll(() => {
     ReactDOM.createPortal = prevPortal;

@@ -1,15 +1,18 @@
-import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form";
-import ComponentsRenderer from "react-test-renderer";
-import { CheckoutFormSelect } from "../checkoutFormInputs/selectInput/checkoutFormSelect.component";
+import { renderWithProviders } from "../../../utils/testsMocking/mockStoreProvider";
 import { FormButtons } from "../formButtons/formButtons.component";
 
 describe("checkoutFroms", () => {
-  test("CheckoutFormSelect", () => {
+  test("formButtons", () => {
     const submitHandler = jest.fn();
-    const component = ComponentsRenderer.create(
+    const component = renderWithProviders(
       <FormButtons submitHandler={submitHandler} />
-    ).toJSON();
+    );
     expect(component).toMatchSnapshot();
+    const submitHandle = component.getByTestId("submit");
+    expect(submitHandle).toBeTruthy();
+    submitHandle.click();
+
+    expect(submitHandler).toHaveBeenCalledTimes(1);
   });
 
   // test("CheckoutFormSelect - selectButtony i errory", () => {

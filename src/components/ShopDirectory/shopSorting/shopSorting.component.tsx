@@ -13,16 +13,17 @@ import {
   setPriceSorting,
   toggleSortingAscending
 } from "../../../store/userReducer/user.actions";
-import { useState } from "react";
 import Button, {
   BUTTON_TYPE_CLASSES
 } from "../../../components/button/button.component";
+import { selectIsSortingInView } from "../../../store/generalPropReducer/generalProp.selector";
+import { toggleSortingInView } from "../../../store/generalPropReducer/generalProp.actions";
 
 export const ShopSorting = () => {
   const { ascending } = useAppSelector(selectSort);
   const dispatch = useAppDispatch();
-  const [sortowanie, setSortowanie] = useState(false);
-
+  const sortowanie = useAppSelector(selectIsSortingInView);
+  console.log(sortowanie);
   const ascenIconOnClickHandler = () => {
     dispatch(toggleSortingAscending());
   };
@@ -37,7 +38,7 @@ export const ShopSorting = () => {
       <SortingTypesList id="SortingTypes">
         <Button
           buttonType={BUTTON_TYPE_CLASSES.sorting}
-          onClick={() => setSortowanie(!sortowanie)}
+          onClick={() => dispatch(toggleSortingInView())}
         >
           Sortowanie
         </Button>
@@ -47,6 +48,7 @@ export const ShopSorting = () => {
               id="alpha"
               buttonType={BUTTON_TYPE_CLASSES.sorting}
               onClick={sortTypeOnClickHandler}
+              data-testid="sortTypeOnClickApha"
             >
               Alphabetyczne
             </Button>
@@ -54,6 +56,7 @@ export const ShopSorting = () => {
               id="price"
               buttonType={BUTTON_TYPE_CLASSES.sorting}
               onClick={sortTypeOnClickHandler}
+              data-testid="sortTypeOnClickPrice"
             >
               Według ceny
             </Button>
@@ -61,11 +64,17 @@ export const ShopSorting = () => {
         ) : null}
       </SortingTypesList>
       {ascending ? (
-        <ShopAscendingIcon onClick={() => ascenIconOnClickHandler()}>
+        <ShopAscendingIcon
+          onClick={() => ascenIconOnClickHandler()}
+          data-testid="ascenIconOnClick"
+        >
           <Icon icon="bi:arrow-up-circle" width="32" color={Colors.dark} />
         </ShopAscendingIcon>
       ) : (
-        <ShopAscendingIcon onClick={() => ascenIconOnClickHandler()}>
+        <ShopAscendingIcon
+          onClick={() => ascenIconOnClickHandler()}
+          data-testid="ascenIconOnClick"
+        >
           <Icon
             icon="bi:arrow-up-circle"
             width="32"

@@ -13,6 +13,7 @@ export const FormButtons: FC<FormButtonsProps> = ({ submitHandler }) => {
   return (
     <FormButtonsContainer>
       <Button
+      data-testid="submit"
         id="submitFormButton"
         type="submit"
         buttonType={BUTTON_TYPE_CLASSES.formButton}

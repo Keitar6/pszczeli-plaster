@@ -1,13 +1,123 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Buttons buttonType - BaseButton 1`] = `
+.c0 {
+  min-width: 10rem;
+  width: auto;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
+  padding: 1rem 3rem;
+  font-size: 1 rem;
+  background-color: #faeff0;
+  font-family: "Open Sans Condensed";
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0:hover {
+  background-color: #023047;
+  color: #FFB703;
+}
+
+.c0:focus {
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+  -webkit-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+}
+
 <button
-  className="sc-papXJ erMgAK"
+  className="c0"
 />
 `;
 
 exports[`Buttons buttonType - productCardButton 1`] = `
+.c0 {
+  min-width: 10rem;
+  width: auto;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
+  padding: 1rem 3rem;
+  font-size: 1 rem;
+  background-color: #faeff0;
+  font-family: "Open Sans Condensed";
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0:hover {
+  background-color: #023047;
+  color: #FFB703;
+}
+
+.c0:focus {
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+  -webkit-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+}
+
+.c1 {
+  background-color: #FFB703;
+  color: #023047;
+  border: none;
+  border-radius: 0.6rem;
+  -webkit-filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.75));
+  filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.75));
+}
+
+.c1:hover {
+  background-color: #023047;
+  color: #FFB703;
+  border: none;
+}
+
+.c2 {
+  background-color: #0230473e;
+  color: #FFB703;
+  min-width: 5rem;
+  padding: 1rem 2rem;
+}
+
+.c2:hover {
+  border: none;
+  background-color: #FFB7033e;
+  color: #023047;
+}
+
 <button
-  className="sc-papXJ sc-kDDrLX sc-evZas erMgAK fgJkEn bxqEZj"
+  className="c0 c1 c2"
 />
 `;

@@ -31,6 +31,7 @@ const OrdersPage = () => {
   const tempOrdersHistory = ordersHistory
     ? [...timeSorting(ordersHistory)].splice(0, viewLimiter)
     : [];
+
   const ordersHeaders = {
     title: "historia zamówień",
     id: "#id",
@@ -44,9 +45,7 @@ const OrdersPage = () => {
 
   useEffect(() => {
     dispatch(fetchOrderHistoryAsync());
-    return () => {
-      dispatch(resetViewLimiter());
-    };
+ 
   }, []);
 
   return (
@@ -75,6 +74,7 @@ const OrdersPage = () => {
       </OrdersContent>
       {ordersHistory.length > viewLimiter && (
         <Button
+          data-testid="paginationButton"
           onClick={moreHistoryHandler}
           buttonType={BUTTON_TYPE_CLASSES.base}
         >

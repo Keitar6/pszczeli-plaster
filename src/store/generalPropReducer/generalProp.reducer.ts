@@ -5,6 +5,7 @@ import {
   setProductCard,
   setViewLimiter,
   toggleProductCard,
+  toggleSortingInView,
   toggleUserMenu
 } from "./generalProp.actions";
 import { PathType } from "./generalProp.types";
@@ -15,6 +16,7 @@ export type ProductCardModal = {
 export type GeneralPropsState = {
   readonly path: PathType;
   readonly isUserMenuOpened: boolean;
+  readonly isSortingInView: boolean;
   readonly productCardModal: ProductCardModal;
   readonly viewLimiter: number;
 };
@@ -22,6 +24,7 @@ export type GeneralPropsState = {
 export const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
   path: "sklep",
   isUserMenuOpened: false,
+  isSortingInView: false,
   productCardModal: {
     isProductCardOpened: false,
     currentProductCard: {
@@ -50,6 +53,13 @@ export const generalPropReducer = (
         ...state.productCardModal,
         isProductCardOpened: !state.productCardModal.isProductCardOpened
       }
+    };
+  }
+
+  if (toggleSortingInView.match(action)) {
+    return {
+      ...state,
+      isSortingInView: !state.isSortingInView
     };
   }
 

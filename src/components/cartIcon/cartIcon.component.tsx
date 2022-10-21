@@ -3,9 +3,10 @@ import { useAppSelector } from "../../hooks/hooks";
 import { CartIconContainer, ItemCount, ShoppingIcon } from "./cartIcon.styles";
 
 const CartIcon = () => {
-  const quantity= useAppSelector(selectCartCount)
+  const quantity = useAppSelector(selectCartCount);
+
   return (
-    <CartIconContainer >
+    <CartIconContainer>
       <ShoppingIcon />
       <ItemCount>{quantity}</ItemCount>
     </CartIconContainer>

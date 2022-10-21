@@ -18,6 +18,9 @@ export type ToggleUserMenu =
 export type ToggleProductCard =
   Action<GENERAL_PROPS_ACTION_TYPES.TOGGLE_PRODUCT_CARD_MENU>;
 
+export type ToggleSortingInView =
+  Action<GENERAL_PROPS_ACTION_TYPES.TOGGLE_SORTING_IS_IN_VIEW>;
+
 export type SetProductCard = ActionWithPayload<
   GENERAL_PROPS_ACTION_TYPES.SET_CURRENT_PRODUCT_CARD,
   {
@@ -40,6 +43,11 @@ export const toggleUserMenu = withMatch(
 export const toggleProductCard = withMatch(
   (): ToggleProductCard =>
     actionCreator(GENERAL_PROPS_ACTION_TYPES.TOGGLE_PRODUCT_CARD_MENU)
+);
+
+export const toggleSortingInView = withMatch(
+  (): ToggleSortingInView =>
+    actionCreator(GENERAL_PROPS_ACTION_TYPES.TOGGLE_SORTING_IS_IN_VIEW)
 );
 
 export const setProductCard = withMatch(

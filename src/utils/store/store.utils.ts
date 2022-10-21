@@ -22,12 +22,10 @@ export function actionCreator<T extends string, P>(type: T, payload: P) {
     payload
   };
 }
-
 /*
 Funkcja dodająca do funkcji zwracającej actionCreator funkcję sprawdzającą(match(action)) czy 
 action otrzymany przez reducer się zgadza
 */
-
 type Matchable<AC extends () => AnyAction & { type: string }> = AC & {
   type: ReturnType<AC>["type"];
   match(action: AnyAction): action is ReturnType<AC>;

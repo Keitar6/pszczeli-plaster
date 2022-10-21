@@ -40,5 +40,26 @@ export const mockCartItems = [
     image: "ImageSciezka",
     dodatki: false,
     quantity: 2
+  },
+];
+
+export const mockCartItems2 = [
+  {
+    id: "FajneID",
+    name: "SuperName",
+    weight: 15,
+    price: 165,
+    image: "ImageSciezka",
+    dodatki: false,
+    quantity: 2
+  },
+  {
+    id: "AjneID",
+    name: "UperName",
+    weight: 14,
+    price: 42,
+    image: "ImageSciezka",
+    dodatki: false,
+    quantity: 1
   }
 ];

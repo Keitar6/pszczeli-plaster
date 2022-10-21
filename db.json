@@ -143,6 +143,33 @@
         "payMethod": "Przelew tradycyjny"
       },
       "deliveryPrice": 12
+    },
+    {
+      "id": "kB2OkthT",
+      "time": "21/10/2022 @ 10:23:31",
+      "price": 60,
+      "itemsBought": [
+        {
+          "id": "002M",
+          "image": "Miody/rzepak.jpg",
+          "name": "Miód rzepakowy",
+          "price": 24,
+          "quantity": 2
+        }
+      ],
+      "deliveryData": {
+        "terms": true,
+        "name": "Beuk",
+        "lastName": "Bukai",
+        "email": "Aadf@gmail.com",
+        "city": "Bukowina Czarna",
+        "street": "Bfsg",
+        "homeAdress": "1351",
+        "zip": "51-222",
+        "deliveryMethod": "Poczta Polska",
+        "payMethod": "Przelew tradycyjny"
+      },
+      "deliveryPrice": 12
     }
   ]
 }

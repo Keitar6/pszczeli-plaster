@@ -18,7 +18,7 @@ describe("Buttons", () => {
     expect(button).toMatchSnapshot();
   });
 
-  test("buttonType - productCardButton", () => {
+  test("getButton", () => {
     expect(getButton(undefined)).toEqual(BaseButton);
   });
 });

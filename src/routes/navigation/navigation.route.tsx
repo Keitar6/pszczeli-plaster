@@ -41,7 +41,7 @@ const Navigation = () => {
     <StructurizeComponent>
       <NavigationContainer>
         <LogoContainer>
-          <Logo to="/" onClick={logoClickHandler}>
+          <Logo to="/" onClick={logoClickHandler} data-testid="logoClick">
             <Icon icon={naviIcons.honeyBee} width="42" height="42" />
           </Logo>
         </LogoContainer>
@@ -49,15 +49,24 @@ const Navigation = () => {
         <IconsContainer>
           <InputBar whereTo="sklep" />
           <ModalsTogglersIconsContainer>
-            <div onClick={cartDropdownHandler} role="presentation">
+            <div
+              onClick={cartDropdownHandler}
+              role="presentation"
+              data-testid="cartDropdown"
+            >
               <CartIcon />
             </div>
-            <HamburgerIcon
-              label="Show user menu"
-              rounded
-              toggle={userMenuHandler}
-              toggled={isUserMenuOpened}
-            />
+            <div
+              onClick={userMenuHandler}
+              role="presentation"
+              data-testid="userMenu"
+            >
+              <HamburgerIcon
+                label="Show user menu"
+                rounded
+                toggled={isUserMenuOpened}
+              />
+            </div>
           </ModalsTogglersIconsContainer>
         </IconsContainer>
       </NavigationContainer>

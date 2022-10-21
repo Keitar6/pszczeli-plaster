@@ -1,117 +1,146 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Footer AboutUs 1`] = `
-<div
-  className="sc-kDDrLX dnTGLO"
->
-  <h4
-    className="sc-jqUVSM eEPyQA"
-  >
-    O Nas
-  </h4>
-  <div
-    className="sc-papXJ cWKQiM"
-  >
-    <div
-      className="sc-ftvSup cvUJgU"
-    >
-      O nas
-    </div>
-    <div
-      className="sc-ftvSup cvUJgU"
-    >
-      Sklepy stacjonarne
-    </div>
-    <div
-      className="sc-ftvSup cvUJgU"
-    >
-      Współpraca
-    </div>
-    <div
-      className="sc-ftvSup cvUJgU"
-    >
-      Media społecznościowe
-    </div>
-    <div
-      className="sc-iqcoie bYhGtI"
-    >
-      <a
-        className="sc-crXcEl EhBtU"
-      >
-        <span />
-      </a>
-      <a
-        className="sc-crXcEl EhBtU"
-      >
-        <span />
-      </a>
-      <a
-        className="sc-crXcEl EhBtU"
-      >
-        <span />
-      </a>
-      <a
-        className="sc-crXcEl EhBtU"
-      >
-        <span />
-      </a>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`Footer footerAboutUs 1`] = `
+.c3 {
+  cursor: pointer;
+  position: relative;
+}
+
+.c3::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #18272f;
+  bottom: 0;
+  left: 0;
+  -webkit-transform-origin: right;
+  -ms-transform-origin: right;
+  transform-origin: right;
+  -webkit-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  -webkit-transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+
+.c3:hover::before {
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
+  margin: 1rem 0 1rem 0;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin: 0.2rem 0 1rem 0;
+}
+
+.c5 {
+  cursor: pointer;
+}
+
 <div
-  className="sc-kDDrLX dnTGLO"
+  className="c0"
 >
   <h4
-    className="sc-jqUVSM eEPyQA"
+    className="c1"
   >
     O Nas
   </h4>
   <div
-    className="sc-papXJ cWKQiM"
+    className="c2"
   >
     <div
-      className="sc-ftvSup cvUJgU"
+      className="c3"
     >
       O nas
     </div>
     <div
-      className="sc-ftvSup cvUJgU"
+      className="c3"
     >
       Sklepy stacjonarne
     </div>
     <div
-      className="sc-ftvSup cvUJgU"
+      className="c3"
     >
       Współpraca
     </div>
     <div
-      className="sc-ftvSup cvUJgU"
+      className="c3"
     >
       Media społecznościowe
     </div>
     <div
-      className="sc-iqcoie bYhGtI"
+      className="c4"
     >
       <a
-        className="sc-crXcEl EhBtU"
+        className="c5"
       >
         <span />
       </a>
       <a
-        className="sc-crXcEl EhBtU"
+        className="c5"
       >
         <span />
       </a>
       <a
-        className="sc-crXcEl EhBtU"
+        className="c5"
       >
         <span />
       </a>
       <a
-        className="sc-crXcEl EhBtU"
+        className="c5"
       >
         <span />
       </a>
@@ -121,34 +150,96 @@ exports[`Footer footerAboutUs 1`] = `
 `;
 
 exports[`Footer footerInfo 1`] = `
+.c3 {
+  cursor: pointer;
+  position: relative;
+}
+
+.c3::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #18272f;
+  bottom: 0;
+  left: 0;
+  -webkit-transform-origin: right;
+  -ms-transform-origin: right;
+  transform-origin: right;
+  -webkit-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  -webkit-transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+
+.c3:hover::before {
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
+  margin: 1rem 0 1rem 0;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+}
+
 <div
-  className="sc-fEOsli bRscpn"
+  className="c0"
 >
   <h4
-    className="sc-fnykZs bhbXbt"
+    className="c1"
   >
     Informacje
   </h4>
   <div
-    className="sc-hAZoDl jBJKdL"
+    className="c2"
   >
     <div
-      className="sc-ftvSup cvUJgU"
+      className="c3"
     >
       Warunki reklamacji
     </div>
     <div
-      className="sc-ftvSup cvUJgU"
+      className="c3"
     >
       Zwroty towaru
     </div>
     <div
-      className="sc-ftvSup cvUJgU"
+      className="c3"
     >
       Regulamin
     </div>
     <div
-      className="sc-ftvSup cvUJgU"
+      className="c3"
     >
       Polityka cookies
     </div>
@@ -157,24 +248,86 @@ exports[`Footer footerInfo 1`] = `
 `;
 
 exports[`Footer footerMyAccount 1`] = `
+.c3 {
+  cursor: pointer;
+  position: relative;
+}
+
+.c3::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #18272f;
+  bottom: 0;
+  left: 0;
+  -webkit-transform-origin: right;
+  -ms-transform-origin: right;
+  transform-origin: right;
+  -webkit-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  -webkit-transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+
+.c3:hover::before {
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
+  margin: 1rem 0 1rem 0;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+}
+
 <div
-  className="sc-dIouRR cXNlwS"
+  className="c0"
 >
   <h4
-    className="sc-idiyUo cgjqa-d"
+    className="c1"
   >
     Moje Konto
   </h4>
   <div
-    className="sc-bjUoiL gNBFxM"
+    className="c2"
   >
     <div
-      className="sc-ftvSup cvUJgU"
+      className="c3"
     >
       Historia zamówień
     </div>
     <div
-      className="sc-ftvSup cvUJgU"
+      className="c3"
     >
       Ustawienia Konta
     </div>
@@ -183,29 +336,91 @@ exports[`Footer footerMyAccount 1`] = `
 `;
 
 exports[`Footer footerPayDeliver 1`] = `
+.c3 {
+  cursor: pointer;
+  position: relative;
+}
+
+.c3::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #18272f;
+  bottom: 0;
+  left: 0;
+  -webkit-transform-origin: right;
+  -ms-transform-origin: right;
+  transform-origin: right;
+  -webkit-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  -webkit-transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+
+.c3:hover::before {
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
+  margin: 1rem 0 1rem 0;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+}
+
 <div
-  className="sc-ksZaOG irkxga"
+  className="c0"
 >
   <h4
-    className="sc-breuTD hPlSIS"
+    className="c1"
   >
     Płatności i dostawa
   </h4>
   <div
-    className="sc-evZas gHCSVc"
+    className="c2"
   >
     <div
-      className="sc-ftvSup cvUJgU"
+      className="c3"
     >
       Czas realizacji zamówień
     </div>
     <div
-      className="sc-ftvSup cvUJgU"
+      className="c3"
     >
       Faktury i paragony
     </div>
     <div
-      className="sc-ftvSup cvUJgU"
+      className="c3"
     >
       Opcje dostawy
     </div>
