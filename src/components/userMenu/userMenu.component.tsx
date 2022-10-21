@@ -24,18 +24,24 @@ export const UserMenuModal = () => {
   const navigate = useNavigate();
   const cartQuantity = useAppSelector(selectCartCount);
 
-  const userMenuOnClickHandler = (): void => {
-    dispatch(toggleUserMenu());
+  const userMenuOnClickHandler = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent> & {
+      target: { id: string };
+    }
+  ): void => {
+    event.target.id === "UserMenuContainer" && dispatch(toggleUserMenu());
   };
 
   const goToCheckoutHandler = () => {
     if (isCartEmpty(cartQuantity)) {
       navigate("/podsumowanie");
+      dispatch(toggleUserMenu());
     }
   };
 
   const goToOrdersHandler = () => {
     navigate("/historiaZamowien");
+    dispatch(toggleUserMenu());
   };
 
   return (
@@ -43,8 +49,12 @@ export const UserMenuModal = () => {
       <UserMenu
         data-testid="userMenuOnClick"
         id="UserMenuContainer"
-        onClick={() => {
-          userMenuOnClickHandler();
+        onClick={(event) => {
+          userMenuOnClickHandler(
+            event as React.MouseEvent<HTMLDivElement, MouseEvent> & {
+              target: { id: string };
+            }
+          );
         }}
       >
         <UserMenuContainer>

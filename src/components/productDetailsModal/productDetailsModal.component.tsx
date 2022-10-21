@@ -20,7 +20,6 @@ import {
 } from "./productDetailsModal.styles";
 import { toggleProductCard } from "../../store/generalPropReducer/generalProp.actions";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import { FC } from "react";
 import { selectCurrentProductCard } from "../../store/generalPropReducer/generalProp.selector";
 import Button, {
   BUTTON_TYPE_CLASSES
@@ -42,8 +41,13 @@ export const ProductDetailsModal = () => {
 
   const { id, dodatki, name, image, price, weight } = productCard;
 
-  const productDetailsClosingHandler = (): void => {
-    dispatch(toggleProductCard());
+  const productDetailsClosingHandler = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent> & {
+      target: { id: string };
+    }
+  ): void => {
+    event.target.id === "productCardDetailsContainer" &&
+      dispatch(toggleProductCard());
   };
 
   const addProductHandler = () => {
@@ -53,14 +57,19 @@ export const ProductDetailsModal = () => {
 
   const navigateToCartHandler = () => {
     navigate("/podsumowanie");
+    dispatch(toggleProductCard());
   };
 
   return (
     <Modal>
       <ProductCardDetails
-        id="UserMenuContainer"
-        onClick={() => {
-          productDetailsClosingHandler();
+        id="productCardDetailsContainer"
+        onClick={(event) => {
+          productDetailsClosingHandler(
+            event as React.MouseEvent<HTMLDivElement, MouseEvent> & {
+              target: { id: string };
+            }
+          );
         }}
         data-testid="productDetailsClosing"
       >

@@ -82,7 +82,8 @@ export const StandardFlexContainer = styled.div`
 export const TextLink = styled.div`
   cursor: pointer;
   position: relative;
-
+  color: inherit;
+  text-decoration: inherit;
   &::before {
     content: "";
     position: absolute;

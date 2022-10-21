@@ -31,11 +31,15 @@ export const CartModal = () => {
 
   const goToCheckoutHandler = () => {
     navigate("/podsumowanie");
-
+    dispatch(toggleCartMenu());
   };
 
-  const cartClosingHandler = (): void => {
-    dispatch(toggleCartMenu());
+  const cartClosingHandler = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent> & {
+      target: { id: string };
+    }
+  ): void => {
+    event.target.id === "CartContainer" && dispatch(toggleCartMenu());
   };
 
   return (
@@ -43,8 +47,12 @@ export const CartModal = () => {
       <Cart
         data-testid="cartClosingCheck"
         id="CartContainer"
-        onClick={() => {
-          cartClosingHandler();
+        onClick={(event) => {
+          cartClosingHandler(
+            event as React.MouseEvent<HTMLDivElement, MouseEvent> & {
+              target: { id: string };
+            }
+          );
         }}
       >
         <CartContainer>

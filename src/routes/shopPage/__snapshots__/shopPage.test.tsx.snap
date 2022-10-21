@@ -187,6 +187,7 @@ exports[`shopPage shopPage - snapshot 1`] = `
 }
 
 .c9:focus {
+  background-color: #FFB703;
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;

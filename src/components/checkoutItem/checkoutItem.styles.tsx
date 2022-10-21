@@ -9,24 +9,30 @@ export const CheckoutItemContainer = styled.div`
   padding: 15px 0;
   font-size: 20px;
   align-items: center;
+  // gap: 1rem;
+  // border: 2px solid red;
 `;
 export const RemoveButton = styled.div`
   // font-size: 1rem;
   padding-left: 12px;
+  width: 10%;
   cursor: pointer;
+  // border: 2px solid red;
 `;
 
 export const Image = styled("img")`
   width: 23%;
-  padding-right: 15px;
   img {
     width: 100%;
     height: 100%;
   }
+  // border: 2px solid red;
 `;
 
 export const Span = styled.div`
-  width: 23%;
+  width: 22%;
+  margin: 0 .3rem;
+  // border: 2px solid red;
 `;
 export const Quantity = styled(Span)`
   display: flex;

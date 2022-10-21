@@ -4,6 +4,9 @@ exports[`Footer footerAboutUs 1`] = `
 .c3 {
   cursor: pointer;
   position: relative;
+  color: inherit;
+  -webkit-text-decoration: inherit;
+  text-decoration: inherit;
 }
 
 .c3::before {
@@ -153,6 +156,9 @@ exports[`Footer footerInfo 1`] = `
 .c3 {
   cursor: pointer;
   position: relative;
+  color: inherit;
+  -webkit-text-decoration: inherit;
+  text-decoration: inherit;
 }
 
 .c3::before {
@@ -251,6 +257,9 @@ exports[`Footer footerMyAccount 1`] = `
 .c3 {
   cursor: pointer;
   position: relative;
+  color: inherit;
+  -webkit-text-decoration: inherit;
+  text-decoration: inherit;
 }
 
 .c3::before {
@@ -321,11 +330,12 @@ exports[`Footer footerMyAccount 1`] = `
   <div
     className="c2"
   >
-    <div
+    <a
       className="c3"
+      href="/historiaZamowien"
     >
       Historia zamówień
-    </div>
+    </a>
     <div
       className="c3"
     >
@@ -339,6 +349,9 @@ exports[`Footer footerPayDeliver 1`] = `
 .c3 {
   cursor: pointer;
   position: relative;
+  color: inherit;
+  -webkit-text-decoration: inherit;
+  text-decoration: inherit;
 }
 
 .c3::before {

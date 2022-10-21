@@ -22,6 +22,9 @@ exports[`Footer footerAboutUs 1`] = `
 .c6 {
   cursor: pointer;
   position: relative;
+  color: inherit;
+  -webkit-text-decoration: inherit;
+  text-decoration: inherit;
 }
 
 .c6::before {
@@ -362,11 +365,12 @@ exports[`Footer footerAboutUs 1`] = `
       <div
         className="c17"
       >
-        <div
+        <a
           className="c6"
+          href="/historiaZamowien"
         >
           Historia zamówień
-        </div>
+        </a>
         <div
           className="c6"
         >
