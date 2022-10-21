@@ -9,9 +9,6 @@ import { NaviPathText, PathWebPage, ShopInsidePath } from "./naviPath.style";
 export const NaviPath: FC = () => {
   const dispatch = useAppDispatch();
   const params = useParams();
-  
-  console.log(params.id)
-  
   const paths = {
     homePath: ``,
     shopPath: `sklep`,
@@ -32,7 +29,7 @@ export const NaviPath: FC = () => {
   return (
     <>
       <NaviPathText>
-        <PathWebPage to={paths.homePath}>
+        <PathWebPage to="/">
           <TextLink>{`${String("strona główna").toUpperCase()}`}</TextLink>
         </PathWebPage>
 

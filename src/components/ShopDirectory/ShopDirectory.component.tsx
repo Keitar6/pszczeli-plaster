@@ -29,8 +29,8 @@ import {
 } from "../../store/generalPropReducer/generalProp.actions";
 import Button, {
   BUTTON_TYPE_CLASSES
-} from "../../components/button/button.component";
-import { ProductCardsContainer } from "../../components/productCards/productCards.component";
+} from "../button/button.component";
+import { ProductCardsContainer } from "../productCards/productCards.component";
 import { setInputSorting } from "../../store/userReducer/user.actions";
 
 const ShopDirectory: FC = () => {

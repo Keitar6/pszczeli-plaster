@@ -23,7 +23,6 @@ export const ShopSorting = () => {
   const { ascending } = useAppSelector(selectSort);
   const dispatch = useAppDispatch();
   const sortowanie = useAppSelector(selectIsSortingInView);
-  console.log(sortowanie);
   const ascenIconOnClickHandler = () => {
     dispatch(toggleSortingAscending());
   };

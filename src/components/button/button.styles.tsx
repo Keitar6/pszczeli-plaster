@@ -172,6 +172,7 @@ export const SortingTypes = styled(BaseButton)`
   }
 
   &:focus {
+    background-color: ${Colors.primary};
     transform: none;
     transition: none;
   }

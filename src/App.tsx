@@ -18,7 +18,7 @@ function App() {
   const isCartMenuOpened = useAppSelector(selectIsCartMenuOpened);
   const isProductCardOpened = useAppSelector(selectIsProductCardOpened);
   const cartQuantity = useAppSelector(selectCartCount);
-  console.log(isUserMenuOpened, isCartMenuOpened, isProductCardOpened);
+
   return (
     <>
       <div id="modal" data-testid="modal"></div>

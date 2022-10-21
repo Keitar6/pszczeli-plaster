@@ -31,13 +31,11 @@ export const UserMenuModal = () => {
   const goToCheckoutHandler = () => {
     if (isCartEmpty(cartQuantity)) {
       navigate("/podsumowanie");
-      dispatch(toggleUserMenu());
     }
   };
 
   const goToOrdersHandler = () => {
     navigate("/historiaZamowien");
-    dispatch(toggleUserMenu());
   };
 
   return (

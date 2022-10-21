@@ -31,7 +31,7 @@ export const CartModal = () => {
 
   const goToCheckoutHandler = () => {
     navigate("/podsumowanie");
-    dispatch(toggleCartMenu());
+
   };
 
   const cartClosingHandler = (): void => {

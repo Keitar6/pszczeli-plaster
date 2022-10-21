@@ -58,7 +58,7 @@ export const UserMenuLinks = styled.a`
   cursor: pointer;
 `;
 
-export const UserMenuLoginButtons = styled.button`
+export const UserMenuLoginButtons = styled.div`
   display: flex;
   flex-direction: row;
   background-color: transparent;

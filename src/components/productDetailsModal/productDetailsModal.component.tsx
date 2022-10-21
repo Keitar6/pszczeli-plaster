@@ -53,7 +53,6 @@ export const ProductDetailsModal = () => {
 
   const navigateToCartHandler = () => {
     navigate("/podsumowanie");
-    dispatch(toggleProductCard());
   };
 
   return (
