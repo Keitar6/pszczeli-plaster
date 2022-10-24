@@ -3,6 +3,7 @@ import {
   setAlphabeticSorting,
   setInputSorting,
   setPriceSorting,
+  setUser,
   toggleSortingAscending
 } from "./user.actions";
 
@@ -37,7 +38,7 @@ export type UserState = {
   readonly currentUser: Record<string, unknown>;
   readonly isLoading: boolean;
   readonly error: Error | null;
-  readonly sort:SortType
+  readonly sort: SortType;
 };
 
 export const USER_INITIAL_STATE: UserState = {
@@ -55,6 +56,12 @@ export const userReducer = (
   state = USER_INITIAL_STATE,
   action = {} as AnyAction
 ): UserState => {
+  if (setUser.match(action)) {
+    return {
+      ...state,
+      currentUser: action.payload
+    };
+  }
   if (toggleSortingAscending.match(action)) {
     return {
       ...state,

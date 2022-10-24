@@ -4,6 +4,7 @@ import {
   ActionWithPayload,
   withMatch
 } from "../../utils/store/store.utils";
+import { UserState } from "./user.reducer";
 
 import { USER_ACTION_TYPES } from "./user.types";
 
@@ -18,6 +19,11 @@ export type SetAlphabeticSorting =
 export type SetInputSorting = ActionWithPayload<
   USER_ACTION_TYPES.SET_SORTING_INPUT,
   string
+>;
+
+export type SetUser = ActionWithPayload<
+  USER_ACTION_TYPES.SET_USER,
+  UserState["currentUser"]
 >;
 
 export const toggleSortingAscending = withMatch(
@@ -39,6 +45,6 @@ export const setInputSorting = withMatch(
     actionCreator(USER_ACTION_TYPES.SET_SORTING_INPUT, input)
 );
 
-// export const setUser = withMatch(
-//   (): ToggleUserMenu => actionCreator(USER_ACTION_TYPES.SET_USER)
-// );
+export const setUser = withMatch(
+  (user): SetUser => actionCreator(USER_ACTION_TYPES.SET_USER, user)
+);
