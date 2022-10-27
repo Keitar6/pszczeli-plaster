@@ -9,7 +9,6 @@ import {
 import type { ActionCreator, AnyAction } from "redux";
 import type { ThunkAction } from "redux-thunk";
 import { ReduxState } from "../../store/rootReducer.redux";
-import { readCategories } from "../../service/service";
 
 export type FetchCategoriesStart =
   Action<CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START>;
@@ -51,22 +50,20 @@ export type AppThunk<T = void> = ActionCreator<
   ThunkAction<Promise<T>, ReduxState, unknown, AnyAction>
 >;
 
-export const fetchCategoriesAsync = (): any => //ThunkAction<
+export const fetchCategoriesAsync = (
+  categoriesItem:Category[] = []
+): any => //ThunkAction<
   // void,
-  // any,l
+  // any,
   // unknown,
   // AnyAction>
   {
     return async (dispatch: any) => {
       dispatch(fetchCategoriesStart());
       try {
-        const categoryEndPoint = await readCategories();
-        dispatch(fetchCategoriesSuccess(categoryEndPoint));
-        return categoryEndPoint;
+        dispatch(fetchCategoriesSuccess(categoriesItem));
       } catch (error) {
         dispatch(fetchCategoriesFailed(error as Error));
-        return error;
       }
     };
   };
-

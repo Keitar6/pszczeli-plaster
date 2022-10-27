@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import { NaviPath } from "./components/shopDirectory/shopNavi/naviPath.component";
+import { NaviPath } from "./components/shopDirectory/shopNavi/shopNavi.component";
 
 const Navigation = lazy(() => import("./routes/navigation/navigation.route"));
 const Home = lazy(() => import("./routes/home/homePage.route"));

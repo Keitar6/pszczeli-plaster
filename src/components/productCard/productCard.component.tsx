@@ -25,7 +25,9 @@ export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
   const dispatch = useAppDispatch();
 
   const addProductHandler = () => {
-    const productToAdd = { id, dodatki, image, name, price };
+    const productToAdd = dodatki
+      ? { id, dodatki, image, name, price }
+      : { id, image, name, price };
     dispatch(addItemToCart(cartItems, productToAdd));
   };
 
@@ -49,10 +51,7 @@ export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
   return (
     <ProductCardComponent>
       <ProductCardImageContainer>
-        <img
-          src={`/dataBaseImages/${image}`}
-          alt={`Obraz: ${name}`}
-        />
+        <img src={`/dataBaseImages/${image}`} alt={`Obraz: ${name}`} />
         <Button
           buttonType={BUTTON_TYPE_CLASSES.productCard}
           onClick={() => addProductHandler()}

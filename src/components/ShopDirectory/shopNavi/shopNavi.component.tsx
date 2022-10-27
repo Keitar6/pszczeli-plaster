@@ -4,7 +4,7 @@ import { refresh } from "../../../utils/reusableFunctions/refresh.function";
 import { setPath } from "../../../store/generalPropReducer/generalProp.actions";
 import { useAppDispatch } from "../../../hooks/hooks";
 import { TextLink } from "../../../global.styles";
-import { NaviPathText, PathWebPage, ShopInsidePath } from "./naviPath.style";
+import { NaviPathText, PathWebPage, ShopInsidePath } from "./shopNavi.style";
 
 export const NaviPath: FC = () => {
   const dispatch = useAppDispatch();

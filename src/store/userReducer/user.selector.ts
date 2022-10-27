@@ -2,7 +2,7 @@ import { createSelector } from "reselect";
 import { ReduxState } from "../rootReducer.redux";
 
 export const selectUserReducer = (state: ReduxState) => {
-  console.log(state);
+
   return state.userReducer;
 };
 

@@ -170,6 +170,34 @@
         "payMethod": "Przelew tradycyjny"
       },
       "deliveryPrice": 12
+    },
+    {
+      "id": "tJRbjCUw",
+      "time": "27/10/2022 @ 13:17:31",
+      "price": 34,
+      "itemsBought": [
+        {
+          "id": "001M",
+          "dodatki": false,
+          "image": "Miody/lipa.jpg",
+          "name": "Miód lipowy",
+          "price": 25,
+          "quantity": 1
+        }
+      ],
+      "deliveryData": {
+        "terms": true,
+        "name": "Mateusz",
+        "lastName": "Statkiewicz",
+        "email": "Noga@noga.noga",
+        "city": "Strzelin",
+        "street": "Rynek",
+        "homeAdress": "12",
+        "zip": "57-100",
+        "deliveryMethod": "Kurier DHL",
+        "payMethod": "Przelew tradycyjny"
+      },
+      "deliveryPrice": 9
     }
   ]
 }

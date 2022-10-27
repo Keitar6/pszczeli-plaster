@@ -3,7 +3,7 @@ import { GENERAL_PROPS_ACTION_TYPES } from "../../../store/generalPropReducer/ge
 import * as Refresh from "../../../utils/reusableFunctions/refresh.function";
 import { preload } from "../../../utils/testsMocking/mockPreload";
 import { renderWithProviders } from "../../../utils/testsMocking/mockStoreProvider";
-import { NaviPath } from "../shopNavi/naviPath.component";
+import { NaviPath } from "../shopNavi/shopNavi.component";
 
 const mockDispatch = jest.fn();
 jest.mock("react-redux", () => ({

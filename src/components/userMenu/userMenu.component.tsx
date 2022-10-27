@@ -18,11 +18,13 @@ import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { selectCartCount } from "../../store/cartReducer/cart.selector";
 import { isCartEmpty } from "../../utils/reusableFunctions/isCartEmpty.function";
+import { selectCurrentUser } from "../../store/userReducer/user.selector";
 
 export const UserMenuModal = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const cartQuantity = useAppSelector(selectCartCount);
+  const currentUser = useAppSelector(selectCurrentUser);
 
   const userMenuOnClickHandler = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent> & {
@@ -66,7 +68,10 @@ export const UserMenuModal = () => {
               height="64"
             />
             <UserMenuLogoText>
-              <H2>Cześć (nazwa użytkownika)</H2>
+              <H2>
+                {" "}
+                {`Cześć ${currentUser.isAnonymous ? "Gościu" : "Panie hakeru"}`}
+              </H2>
               <TextLink>Moje konto</TextLink>
             </UserMenuLogoText>
           </UserMenuLogoContainer>

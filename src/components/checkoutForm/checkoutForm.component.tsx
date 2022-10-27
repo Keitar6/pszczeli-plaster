@@ -42,7 +42,6 @@ export const CheckoutForm = () => {
   const deliveryPrice = deliveryInfo.price ? deliveryInfo.price : 0;
 
   const addToOrderHistoryHandler = (formData: DeliveryData) => {
-    console.log(formData);
 
     dispatch(
       postOrderHistoryAsync(

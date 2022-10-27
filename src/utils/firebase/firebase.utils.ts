@@ -1,62 +1,81 @@
 import { firebaseConfiguration } from "./firebase.config";
 import { initializeApp } from "firebase/app";
-import { getAuth, signInAnonymously } from "firebase/auth";
+import { connectAuthEmulator, getAuth, signInAnonymously } from "firebase/auth";
 import {
   collection,
+  connectFirestoreEmulator,
   doc,
+  enableMultiTabIndexedDbPersistence,
   getFirestore,
-  onSnapshot,
   setDoc
 } from "firebase/firestore";
-
 import { Order } from "../../store/orderHistory/orderHistory.types";
-import { Category } from "../../store/categories/category.types";
 
-const firebaseApp = initializeApp(firebaseConfiguration.firebaseConfig);
-const userAuth = getAuth(firebaseApp);
-const fireStorage = getFirestore(firebaseApp);
+export function firebaseInit() {
+  const firebaseApp = initializeApp(firebaseConfiguration.firebaseConfig);
+  const userAuth = getAuth(firebaseApp);
+  const fireStorage = getFirestore(firebaseApp);
+  const categoriesCollection = collection(fireStorage, "categories");
+  const orderHistoryCollection = collection(fireStorage, "orderHistory");
 
-// this is how you get on the spot in the db
-const categoriesCollection = collection(fireStorage, "categories");
-const orderHistoryCollection = collection(fireStorage, "orderHistory");
-const categoriesDoc = doc(categoriesCollection, "");
-const orderHistoryDoc = doc(orderHistoryCollection, "");
+  if (location.hostname === "localhost") {
+    connectAuthEmulator(userAuth, "http://localhost:9090");
+    connectFirestoreEmulator(fireStorage, "localhost", 8080);
+  }
+  enableMultiTabIndexedDbPersistence(fireStorage);
+  return {
+    categoriesCollection,
+    orderHistoryCollection,
+    firebaseApp,
+    userAuth,
+    fireStorage
+  };
+}
+export const {
+  categoriesCollection,
+  orderHistoryCollection,
+  firebaseApp,
+  userAuth,
+  fireStorage
+} = firebaseInit();
 
-// this is how you get on the spot in the db in the real time
-// snapshots
 export type CollectionName = {
   categories: "categories";
   orderHistory: "orderHistory";
 };
+export type NewOrder = Order;
 
-export const categoriesSnaphot = onSnapshot(
-  categoriesCollection,
-  (snapshot) => {
-    console.log(snapshot);
-    return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-  }
-);
-
-export type DocToAdd = Order | Category;
-export const addToCollection = (
-  collectionName: keyof CollectionName,
-  docToAdd: DocToAdd
-) => {
-  const fullCollectionName = `${collectionName}` + "Collection";
-
-  const collectionFunction =
-    fullCollectionName === "categories"
-      ? categoriesCollection
-      : orderHistoryCollection;
-  // reference, smthing like recipe  - where is it?
-  const newDocument = doc(collectionFunction);
-  // mutation function = let me update the server
-  setDoc(newDocument, docToAdd);
-};
-
+//login functions
 export const signInAnonymous = async () => {
-  const results = await signInAnonymously(userAuth);
-  console.log(results.user);
-
-  return results.user;
+  const { user } = await signInAnonymously(userAuth);
+  console.log(user);
+  return user;
 };
+
+//admin functions
+export const addNewOrderToHistory = (newOrder: NewOrder) => {
+  console.log("New Order: ", newOrder);
+  const newDoc = doc(
+    fireStorage,
+    `orderHistory/${newOrder.time.replaceAll("/", ".")}`
+  );
+  console.log("New Doc: ", newDoc);
+
+  setDoc(newDoc, newOrder, { merge: true });
+};
+// function to create orderHistory collection and categories
+// export const addCollectionAndDocuments = async (
+//   collectionKey: string,
+//   objectsToAdd: Order[]
+// ) => {
+//   const collectionRef = collection(fireStorage, collectionKey);
+//   const batch = writeBatch(fireStorage);
+
+//   objectsToAdd.forEach((object) => {
+//     const docRef = doc(collectionRef, object.time.replaceAll("/", "."));
+//     batch.set(docRef, object);
+//   });
+
+//   await batch.commit();
+//   console.log("done");
+// };
