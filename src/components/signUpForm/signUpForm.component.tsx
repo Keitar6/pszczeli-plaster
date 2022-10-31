@@ -4,10 +4,10 @@ import {
   FormTextInputs
 } from "../../globalStyles/form/form.globalStyles";
 import { FormButtons } from "../../globalStyles/form/formButtons/formButtons.component";
-import { signDataInputMap, signInData } from "../../utils/loginPage/sign.utils";
+import { signDataInputMap, signUpData } from "../../utils/loginPage/sign.utils";
 import { CheckoutFormInput } from "../checkoutForm/checkoutFormInputs/textInput/checkoutFormInput.component";
 
-export const SignInForm = () => {
+export const SignUpForm = () => {
   const {
     register,
     handleSubmit,
@@ -17,7 +17,7 @@ export const SignInForm = () => {
   return (
     <Form className="was-validated">
       <FormTextInputs>
-        {Object.keys(signInData).map((input: string) => {
+        {Object.keys(signUpData).map((input: string) => {
           const {
             name,
             text,
@@ -40,7 +40,6 @@ export const SignInForm = () => {
               key={name}
               inputType={inputType}
               {...restArgs}
-              
             >
               {text}
             </CheckoutFormInput>
@@ -50,10 +49,8 @@ export const SignInForm = () => {
       <FormButtons
         submitHandler={handleSubmit((formData) => console.log(formData))}
       >
-        Zaloguj się
+        Zarejestruj się
       </FormButtons>
-      
-      
     </Form>
   );
 };

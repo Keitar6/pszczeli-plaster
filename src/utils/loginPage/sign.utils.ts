@@ -1,3 +1,10 @@
+export const signUpData = {
+  name: "name",
+  lastName: "lastName",
+  email: "email",
+  password: "password"
+};
+
 export const signInData = {
   email: "email",
   password: "password"
@@ -50,6 +57,24 @@ export const signDataInputMap: SignDataInputMap = {
     minLength: 8,
     pattern: signValidationPatterns.passwordPattern,
     inputType: "password",
+    width: "48%"
+  },
+  name: {
+    name: signUpData.name,
+    placeholder: "Imię",
+    text: "Imię musi mieć min 1 literę",
+    minLength: 1,
+    pattern: signValidationPatterns.namePattern,
+    inputType: "name",
+    width: "48%"
+  },
+  lastName: {
+    name: signUpData.lastName,
+    placeholder: "Nazwisko",
+    text: "Nazwisko musi mieć min 1 literę",
+    minLength: 1,
+    pattern: signValidationPatterns.lastNamePattern,
+    inputType: "surname",
     width: "48%"
   }
 };

@@ -5,16 +5,20 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
+  onAuthStateChanged,
   signInAnonymously,
   signInWithPopup,
   signOut
 } from "firebase/auth";
+import type { User } from "firebase/auth";
 import {
   collection,
   connectFirestoreEmulator,
   doc,
   enableMultiTabIndexedDbPersistence,
+  getDoc,
   getFirestore,
+  QueryDocumentSnapshot,
   setDoc,
   writeBatch
 } from "firebase/firestore";
@@ -61,23 +65,51 @@ export type CollectionName = {
 };
 export type NewOrder = Order;
 
+export type AdditionalInformation = any[];
+
+export type UserData = {
+  createdAt: Date;
+  displayName: string;
+  email: string;
+};
 //login functions
+
+export const getCurrentUser = (): Promise<User | null> => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      userAuth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
+};
+
 export const signInAnonymous = async () => {
   const { user } = await signInAnonymously(userAuth);
   console.log(user);
   return user;
 };
 
-export const signByEmailAndPassword = async (
+export const signInByEmailAndPassword = async (
+  email: string,
+  password: string
+) => {
+  const user = {};
+};
+
+export const signUpByEmailAndPassword = (
   email: string,
   password: string,
   ...additionalInfo: any[]
 ) => {
-  let user = {};
+  if (!email || !password) return;
 
   createUserWithEmailAndPassword(userAuth, email, password)
     .then((userCredential) => {
-      user = userCredential.user;
+      console.log(userCredential.user);
     })
     .catch((error) => {
       console.log("Error message: ", error.message);
@@ -88,7 +120,35 @@ export const signByEmailAndPassword = async (
 export const signInWithGooglePopUp = () =>
   signInWithPopup(userAuth, googleProvider);
 
-export const signOutUser = () => signOut(userAuth);
+export const signOutUser = async () => signOut(userAuth);
+
+export const createUserDocumentFromAuth = async (
+  userAuth: User,
+  additionalInfos = {} as AdditionalInformation
+): Promise<void | QueryDocumentSnapshot<UserData>> => {
+  if (!userAuth) return;
+
+  const userDocRef = doc(fireStorage, "users", userAuth.uid); //database, collection, unique ID
+  const userSnapshot = await getDoc(userDocRef);
+
+  if (!userSnapshot.exists()) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+    try {
+      await setDoc(userDocRef, {
+        displayName,
+        email,
+        createdAt,
+        ...additionalInfos
+      });
+    } catch (error) {
+      console.log("I just caught some error while creating users!!", error);
+    }
+  }
+  // if user data exists
+  else if (userSnapshot.exists())
+    return userSnapshot as QueryDocumentSnapshot<UserData>;
+};
 
 //admin functions
 export const addNewOrderToHistory = (newOrder: NewOrder) => {
