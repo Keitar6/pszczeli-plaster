@@ -1,5 +1,5 @@
-import { StandardFlexContainer } from "../../../global.styles";
 import styled from "styled-components";
+import { StandardFlexContainer } from "../../../global.styles";
 
 export const FormButtonsContainer = styled(StandardFlexContainer)`
   // border: 2px solid red;

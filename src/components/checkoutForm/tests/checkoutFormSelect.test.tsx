@@ -1,5 +1,5 @@
+import { FormButtons } from "../../../globalStyles/form/formButtons/formButtons.component";
 import { renderWithProviders } from "../../../utils/testsMocking/mockStoreProvider";
-import { FormButtons } from "../formButtons/formButtons.component";
 
 describe("checkoutFroms", () => {
   test("formButtons", () => {

@@ -9,9 +9,9 @@ import {
   deliveryOptions,
   paymentOptions
 } from "../../../../utils/checkoutForm/checkoutForm.utils";
-import { NonValidFormInput } from "../../checkoutForm.styles";
 import { SelectContainer, SelectContent } from "./checkoutFormSelect.styles";
 import { Select } from "./select/select.component";
+import { NonValidFormInput } from "../../../../globalStyles/form/form.globalStyles";
 
 type CheckoutFormInput = {
   idDelivery: string;

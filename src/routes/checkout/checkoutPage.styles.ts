@@ -1,4 +1,4 @@
-import { Colors, H3 } from "../../global.styles";
+import { Colors, H3, Title } from "../../global.styles";
 import styled from "styled-components";
 
 export const CheckoutContainer = styled.div`
@@ -51,52 +51,6 @@ export const CheckoutFormContainer = styled.div`
   padding: 0 1rem 0 0;
 `;
 
-export const FormTitle = styled(H3)`
-  border-bottom: 2px solid;
-  border-image-slice: 1;
+export const FormTitle = styled(Title)``;
 
-  border-image-source: linear-gradient(
-    to left,
-    ${Colors.primary},
-    ${Colors.dark}
-  );
-  padding-bottom: 0.5rem;
-  position: relative;
-
-  &::before {
-    content: "";
-    position: absolute;
-    width: 2rem;
-    height: 2rem;
-    border-left: 0.2rem solid ${Colors.primary};
-    border-top: 0.2rem solid ${Colors.dark};
-    border-radius: 0.6rem 0 00rem;
-    top: -0.5rem;
-    left: -1rem;
-  }
-`;
-
-export const SummaryTitle = styled(H3)`
-  border-bottom: 2px solid;
-  border-image-slice: 1;
-
-  border-image-source: linear-gradient(
-    to left,
-    ${Colors.primary},
-    ${Colors.dark}
-  );
-  padding-bottom: 0.5rem;
-  position: relative;
-
-  &::before {
-    content: "";
-    position: absolute;
-    width: 2rem;
-    height: 2rem;
-    border-left: 0.2rem solid ${Colors.primary};
-    border-top: 0.2rem solid ${Colors.dark};
-    border-radius: 0.6rem 0 00rem;
-    top: -0.5rem;
-    left: -1rem;
-  }
-`;
+export const SummaryTitle = styled(Title)``;

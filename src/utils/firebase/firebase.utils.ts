@@ -1,15 +1,25 @@
 import { firebaseConfiguration } from "./firebase.config";
 import { initializeApp } from "firebase/app";
-import { connectAuthEmulator, getAuth, signInAnonymously } from "firebase/auth";
+import {
+  connectAuthEmulator,
+  createUserWithEmailAndPassword,
+  getAuth,
+  GoogleAuthProvider,
+  signInAnonymously,
+  signInWithPopup,
+  signOut
+} from "firebase/auth";
 import {
   collection,
   connectFirestoreEmulator,
   doc,
   enableMultiTabIndexedDbPersistence,
   getFirestore,
-  setDoc
+  setDoc,
+  writeBatch
 } from "firebase/firestore";
 import { Order } from "../../store/orderHistory/orderHistory.types";
+import { Category } from "../../store/categories/category.types";
 
 export function firebaseInit() {
   const firebaseApp = initializeApp(firebaseConfiguration.firebaseConfig);
@@ -17,26 +27,32 @@ export function firebaseInit() {
   const fireStorage = getFirestore(firebaseApp);
   const categoriesCollection = collection(fireStorage, "categories");
   const orderHistoryCollection = collection(fireStorage, "orderHistory");
-
-  if (location.hostname === "localhost") {
-    connectAuthEmulator(userAuth, "http://localhost:9090");
-    connectFirestoreEmulator(fireStorage, "localhost", 8080);
-  }
-  enableMultiTabIndexedDbPersistence(fireStorage);
+  const googleProvider = new GoogleAuthProvider();
+  googleProvider.setCustomParameters({
+    prompt: "select_account"
+  });
+  // if (location.hostname === "localhost") {
+  //   connectAuthEmulator(userAuth, "http://localhost:9090");
+  //   connectFirestoreEmulator(fireStorage, "localhost", 8080);
+  // }
+  // enableMultiTabIndexedDbPersistence(fireStorage);
   return {
     categoriesCollection,
     orderHistoryCollection,
     firebaseApp,
     userAuth,
-    fireStorage
+    fireStorage,
+    googleProvider
   };
 }
+
 export const {
   categoriesCollection,
   orderHistoryCollection,
   firebaseApp,
   userAuth,
-  fireStorage
+  fireStorage,
+  googleProvider
 } = firebaseInit();
 
 export type CollectionName = {
@@ -52,6 +68,28 @@ export const signInAnonymous = async () => {
   return user;
 };
 
+export const signByEmailAndPassword = async (
+  email: string,
+  password: string,
+  ...additionalInfo: any[]
+) => {
+  let user = {};
+
+  createUserWithEmailAndPassword(userAuth, email, password)
+    .then((userCredential) => {
+      user = userCredential.user;
+    })
+    .catch((error) => {
+      console.log("Error message: ", error.message);
+      console.log("Error code: ", error.code);
+    });
+};
+
+export const signInWithGooglePopUp = () =>
+  signInWithPopup(userAuth, googleProvider);
+
+export const signOutUser = () => signOut(userAuth);
+
 //admin functions
 export const addNewOrderToHistory = (newOrder: NewOrder) => {
   console.log("New Order: ", newOrder);
@@ -63,16 +101,17 @@ export const addNewOrderToHistory = (newOrder: NewOrder) => {
 
   setDoc(newDoc, newOrder, { merge: true });
 };
-// function to create orderHistory collection and categories
+//function to create orderHistory collection and categories
+
 // export const addCollectionAndDocuments = async (
 //   collectionKey: string,
-//   objectsToAdd: Order[]
+//   objectsToAdd: Category[]
 // ) => {
 //   const collectionRef = collection(fireStorage, collectionKey);
 //   const batch = writeBatch(fireStorage);
 
 //   objectsToAdd.forEach((object) => {
-//     const docRef = doc(collectionRef, object.time.replaceAll("/", "."));
+//     const docRef = doc(collectionRef, object.title)   //time.replaceAll("/", "."));
 //     batch.set(docRef, object);
 //   });
 

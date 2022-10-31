@@ -18,15 +18,15 @@ import {
 } from "../../utils/checkoutForm/checkoutForm.utils";
 import { getCurrentTime } from "../../utils/reusableFunctions/getTime.function";
 import { orderCreator } from "../../utils/store/orderCreator.utils";
-import {
-  NonValidFormInput,
-  Form,
-  FormTextInputs,
-  InputCheckbox
-} from "./checkoutForm.styles";
+import { InputCheckbox } from "./checkoutForm.styles";
 import { CheckoutFormInput } from "./checkoutFormInputs/textInput/checkoutFormInput.component";
 import { CheckoutFormSelect } from "./checkoutFormInputs/selectInput/checkoutFormSelect.component";
-import { FormButtons } from "./formButtons/formButtons.component";
+import {
+  Form,
+  FormTextInputs,
+  NonValidFormInput
+} from "../../globalStyles/form/form.globalStyles";
+import { FormButtons } from "../../globalStyles/form/formButtons/formButtons.component";
 
 export const CheckoutForm = () => {
   const {
@@ -42,7 +42,6 @@ export const CheckoutForm = () => {
   const deliveryPrice = deliveryInfo.price ? deliveryInfo.price : 0;
 
   const addToOrderHistoryHandler = (formData: DeliveryData) => {
-
     dispatch(
       postOrderHistoryAsync(
         orderHistory,
@@ -113,7 +112,9 @@ export const CheckoutForm = () => {
           submitHandler={handleSubmit((formData) =>
             addToOrderHistoryHandler(formData)
           )}
-        />
+        >
+          Zamawiam
+        </FormButtons>
       </Form>
     </>
   );

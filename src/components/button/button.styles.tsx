@@ -21,19 +21,29 @@ export const BaseButton = styled.button`
     color: ${Colors.primary};
   }
 
-  &:focus {
-    transform: scale(1.05);
-    transition: all 0.6s ease;
-  }
+  // &:focus {
+  //   transform: scale(1.05);
+  //   transition: all 0.6s ease;
+  // }
 `;
 
 export const GoogleSignInButton = styled(BaseButton)`
-  background-color: ${Colors.googleButtonBCKG};
-  color: ${Colors.white};
+  background-color: none;
+  color: ${Colors.dark};
+  width: 48%;
+  padding: 1rem 1rem;
+  margin-top: 0.5rem;
+  border: 2px solid;
 
+  border-image-slice: 1;
+  border-image-source: linear-gradient(
+    to left,
+    ${Colors.dark},
+    ${Colors.primary},
+    ${Colors.dark}
+  );
   &:hover {
     background-color: ${Colors.googleButtonHover};
-    border: none;
   }
 `;
 
@@ -41,6 +51,9 @@ export const LoginButton = styled(BaseButton)`
   background-color: ${Colors.primary};
   color: ${Colors.dark};
   border: none;
+  min-width: 20rem;
+  margin: 0;
+  width: 100%;
   border-radius: 0.6rem;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.75));
 

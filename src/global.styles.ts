@@ -103,3 +103,29 @@ export const TextLink = styled.div`
     transform: scaleX(1);
   }
 `;
+
+export const Title = styled(H3)`
+  border-bottom: 2px solid;
+  border-image-slice: 1;
+
+  border-image-source: linear-gradient(
+    to left,
+    ${Colors.primary},
+    ${Colors.dark}
+  );
+  padding-bottom: 0.5rem;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    border-left: 0.2rem solid ${Colors.primary};
+    border-top: 0.2rem solid ${Colors.dark};
+    border-radius: 0.6rem 0 00rem;
+    top: -0.5rem;
+    left: -1rem;
+  }
+`;
+
