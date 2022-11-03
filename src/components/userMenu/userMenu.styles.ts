@@ -10,6 +10,7 @@ export const UserMenu = styled.div`
   bottom: 0;
   top: 0;
   z-index: 52;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,7 +25,7 @@ export const UserMenu = styled.div`
 export const UserMenuContainer = styled(StandardFlexContainer)`
   flex-direction: column;
   gap: 2.4rem;
-  max-width: 50rem;
+  width: 50%;
   padding: 1rem 2rem 3rem 2rem;
   text-align: center;
   border-radius: 1.5rem;
@@ -39,9 +40,8 @@ export const UserMenuLogoContainer = styled(StandardFlexContainer)`
 export const UserMenuLogoText = styled(StandardFlexContainer)`
   flex-direction: column;
   // border: 2px solid red;
-  align-items:start
+  align-items: start;
 `;
-
 
 export const UserMenuLinks = styled.a`
   display: inline-block;
@@ -62,6 +62,7 @@ export const UserMenuLoginButtons = styled.div`
   display: flex;
   flex-direction: row;
   background-color: transparent;
+  width:100%;
   border:none;
   gap 2rem;
 `;

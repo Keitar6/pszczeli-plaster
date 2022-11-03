@@ -11,6 +11,11 @@ export const selectCurrentUser = createSelector(
   (user) => user.currentUser
 );
 
+export const selectIsLoadingUser = createSelector(
+  [selectUserReducer],
+  (user) => user.isLoading
+);
+
 export const selectSort = createSelector(
   [selectUserReducer],
   (userReducer) => userReducer.sort

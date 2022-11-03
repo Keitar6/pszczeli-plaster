@@ -24,6 +24,7 @@ const LoginPage = () => {
         {" "}
         <SignUpTitle> Rejestracja</SignUpTitle>
         <SignUpForm />
+        
       </SignUpContainer>
 
       <SignInContainer>

@@ -23,6 +23,7 @@ type CheckoutFormInput = {
   minLength?: ValidationRule<number> | undefined;
   pattern?: ValidationRule<RegExp> | undefined;
   width?: string;
+  idPlus?: string;
 };
 
 export const CheckoutFormInput: FC<PropsWithChildren<CheckoutFormInput>> = ({
@@ -35,6 +36,7 @@ export const CheckoutFormInput: FC<PropsWithChildren<CheckoutFormInput>> = ({
   pattern,
   width,
   inputType,
+  idPlus,
   ...restArgs
 }) => {
   return (
@@ -42,7 +44,7 @@ export const CheckoutFormInput: FC<PropsWithChildren<CheckoutFormInput>> = ({
       <TextInput
         autoComplete="off"
         type={inputType}
-        id={`${id}`}
+        id={`${id}`+idPlus}
         placeholder={`${placeholder}`}
         {...register(`${id}`, {
           required: true,

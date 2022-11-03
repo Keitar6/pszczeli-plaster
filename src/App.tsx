@@ -13,12 +13,13 @@ import { ProductDetailsModal } from "./components/productDetailsModal/productDet
 import { isCartEmpty } from "./utils/reusableFunctions/isCartEmpty.function";
 import { Routing } from "./routing";
 import { useEffect } from "react";
+import { userAuth } from "./utils/firebase/firebase.utils";
+import { onAuthStateChanged } from "firebase/auth";
 import {
-  getCurrentUser,
-  signInAnonymous,
-} from "./utils/firebase/firebase.utils";
-import { setUser } from "./store/userReducer/user.actions";
-import { selectCurrentUser } from "./store/userReducer/user.selector";
+  signInAnynomousAsync,
+  signInAsync
+} from "./store/userReducer/user.thunk";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -26,10 +27,20 @@ function App() {
   const isCartMenuOpened = useAppSelector(selectIsCartMenuOpened);
   const isProductCardOpened = useAppSelector(selectIsProductCardOpened);
   const cartQuantity = useAppSelector(selectCartCount);
-  const user = useAppSelector(selectCurrentUser);
-  
+  const navigate = useNavigate();
+
   useEffect(() => {
-    !user ? dispatch(setUser(getCurrentUser())) : signInAnonymous();
+    // console.log("APP USE EFFECT USER: ", user);
+    onAuthStateChanged(userAuth, (currentUserAuth) => {
+      console.log("APP USE EFFECT USER: ", currentUserAuth);
+
+      dispatch(signInAsync(currentUserAuth));
+
+      if (currentUserAuth === null) return dispatch(signInAnynomousAsync());
+
+      if (currentUserAuth !== null && !currentUserAuth.isAnonymous)
+        navigate("/sklep");
+    });
   }, []);
 
   return (

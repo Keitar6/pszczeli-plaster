@@ -7,6 +7,7 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   signInAnonymously,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut
 } from "firebase/auth";
@@ -24,6 +25,10 @@ import {
 } from "firebase/firestore";
 import { Order } from "../../store/orderHistory/orderHistory.types";
 import { Category } from "../../store/categories/category.types";
+import {
+  AdditionalInformation,
+  UserData
+} from "../../store/userReducer/user.types";
 
 export function firebaseInit() {
   const firebaseApp = initializeApp(firebaseConfiguration.firebaseConfig);
@@ -65,15 +70,6 @@ export type CollectionName = {
 };
 export type NewOrder = Order;
 
-export type AdditionalInformation = any[];
-
-export type UserData = {
-  createdAt: Date;
-  displayName: string;
-  email: string;
-};
-//login functions
-
 export const getCurrentUser = (): Promise<User | null> => {
   return new Promise((resolve, reject) => {
     const unsubscribe = onAuthStateChanged(
@@ -87,24 +83,15 @@ export const getCurrentUser = (): Promise<User | null> => {
   });
 };
 
+//login functions
+
 export const signInAnonymous = async () => {
   const { user } = await signInAnonymously(userAuth);
   console.log(user);
   return user;
 };
 
-export const signInByEmailAndPassword = async (
-  email: string,
-  password: string
-) => {
-  const user = {};
-};
-
-export const signUpByEmailAndPassword = (
-  email: string,
-  password: string,
-  ...additionalInfo: any[]
-) => {
+export const signUpByEmailAndPassword = (email: string, password: string) => {
   if (!email || !password) return;
 
   createUserWithEmailAndPassword(userAuth, email, password)
@@ -114,13 +101,43 @@ export const signUpByEmailAndPassword = (
     .catch((error) => {
       console.log("Error message: ", error.message);
       console.log("Error code: ", error.code);
+
+      if (error.code === "auth/email-already-in-use")
+        window.alert(
+          "E-mail jest w użyciu, zaloguj się albo użyj innego mail'a "
+        );
+    });
+};
+
+export const signInByEmailAndPassword = async (
+  email: string,
+  password: string
+) => {
+  let user = {};
+  signInWithEmailAndPassword(userAuth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      user = userCredential.user;
+      console.log(user);
+      return user;
+    })
+    .catch((error) => {
+      console.log(error.code);
+      console.log(error.message);
+
+      if (error.code === "auth/wrong-password")
+        window.alert("Nieprawidłowe hasło ");
+      else if (error.code === "auth/user-not-found")
+        window.alert("Nie istnieje użytkownik z takim adresem e-mail ");
+
+      return error;
     });
 };
 
 export const signInWithGooglePopUp = () =>
   signInWithPopup(userAuth, googleProvider);
 
-export const signOutUser = async () => signOut(userAuth);
+export const signOutUser = () => signOut(userAuth);
 
 export const createUserDocumentFromAuth = async (
   userAuth: User,

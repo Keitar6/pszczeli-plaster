@@ -8,20 +8,23 @@ type FormButtonsProps = {
     e?: BaseSyntheticEvent<object, unknown, unknown> | undefined
   ) => Promise<void>;
   buttonTypeProp?: BUTTON_TYPE_CLASSES;
+  idPlus?: string;
 };
 
 export const FormButtons: FC<PropsWithChildren<FormButtonsProps>> = ({
   children,
   submitHandler,
-  buttonTypeProp
+  buttonTypeProp,
+  idPlus
 }) => {
-  const BTNType = !buttonTypeProp ? BUTTON_TYPE_CLASSES.formButton : buttonTypeProp;
-
-  return (  
+  const BTNType = !buttonTypeProp
+    ? BUTTON_TYPE_CLASSES.formButton
+    : buttonTypeProp;
+  return (
     <FormButtonsContainer>
       <Button
         data-testid="submit"
-        id="submitFormButton"
+        id={"submitForm" + `${idPlus ? idPlus : ""}`}
         type="submit"
         buttonType={BTNType}
         onClick={(e) => {

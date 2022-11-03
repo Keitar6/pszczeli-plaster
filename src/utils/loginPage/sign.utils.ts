@@ -53,7 +53,7 @@ export const signDataInputMap: SignDataInputMap = {
   password: {
     name: signInData.password,
     placeholder: "Hasło",
-    text: "Hasło musi mieć min 8 znaków i posiadać ...",
+    text: "Hasło musi mieć min 8 znaków, conajmniej jedną dużą, znak specjalny oraz cyfrę",
     minLength: 8,
     pattern: signValidationPatterns.passwordPattern,
     inputType: "password",

@@ -18,15 +18,22 @@ import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { selectCartCount } from "../../store/cartReducer/cart.selector";
 import { isCartEmpty } from "../../utils/reusableFunctions/isCartEmpty.function";
-import { selectCurrentUser } from "../../store/userReducer/user.selector";
+import {
+  selectCurrentUser,
+  selectIsLoadingUser
+} from "../../store/userReducer/user.selector";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
+import { UserData } from "../../store/userReducer/user.types";
+import { signOutAsync } from "../../store/userReducer/user.thunk";
 
 export const UserMenuModal = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const cartQuantity = useAppSelector(selectCartCount);
   const currentUser = useAppSelector(selectCurrentUser);
-  console.log(currentUser);
+  const isLoadingUser = useAppSelector(selectIsLoadingUser);
+  const isUserLogedAndNotAnonym = currentUser && !currentUser.isAnonymous;
+
   const userMenuOnClickHandler = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent> & {
       target: { id: string };
@@ -53,7 +60,7 @@ export const UserMenuModal = () => {
   };
 
   const logOutHandler = () => {
-    signOutUser();
+    dispatch(signOutAsync());
   };
 
   return (
@@ -81,31 +88,28 @@ export const UserMenuModal = () => {
               <H2>
                 {" "}
                 {`Cześć ${
-                  currentUser.isAnonymous
+                  !isUserLogedAndNotAnonym
                     ? "Gościu"
-                    : currentUser.displayName ?? "Panie Hakeru"
+                    : (currentUser !== null && currentUser.displayName) ??
+                      "Panie Hakeru"
                 }`}
               </H2>
               <TextLink>Moje konto</TextLink>
             </UserMenuLogoText>
           </UserMenuLogoContainer>
+
           <UserMenuLoginButtons>
-            {currentUser.displayName ? (
-              <Button
-                buttonType={BUTTON_TYPE_CLASSES.login}
-                onClick={logOutHandler}
-              >
-                Wyloguj się
-              </Button>
-            ) : (
-              <Button
-                buttonType={BUTTON_TYPE_CLASSES.login}
-                onClick={goToLoginHandler}
-              >
-                Przejdź do logowania
-              </Button>
-            )}
+            <Button
+              buttonType={BUTTON_TYPE_CLASSES.login}
+              onClick={
+                isUserLogedAndNotAnonym ? logOutHandler : goToLoginHandler
+              }
+              isLoading={isLoadingUser}
+            >
+              {isUserLogedAndNotAnonym ? "Wyloguj się" : "Przejdź do logowania"}
+            </Button>
           </UserMenuLoginButtons>
+
           <UserMenuFuncButtons>
             <UserMenuFuncButton
               data-testid="goToOrders"

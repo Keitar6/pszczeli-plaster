@@ -1,11 +1,20 @@
 import type { AnyAction } from "redux";
 import {
+  anonymousSignInStart,
+  emailSignInStart,
+  googleSignInStart,
   setAlphabeticSorting,
   setInputSorting,
   setPriceSorting,
-  setUser,
+  signInAndSetUser,
+  signInFailed,
+  signInSuccess,
+  signOutFailed,
+  signOutStart,
+  signOutSuccess,
   toggleSortingAscending
 } from "./user.actions";
+import { UserData } from "./user.types";
 
 export type SorTypeVariations = {
   ALPHABETIC: "alphabetic";
@@ -35,14 +44,14 @@ export type SortType = {
 };
 
 export type UserState = {
-  readonly currentUser: Record<string, unknown>;
+  readonly currentUser: UserData | null;
   readonly isLoading: boolean;
   readonly error: Error | null;
   readonly sort: SortType;
 };
 
 export const USER_INITIAL_STATE: UserState = {
-  currentUser: {},
+  currentUser: null,
   isLoading: false,
   error: null,
   sort: {
@@ -56,12 +65,6 @@ export const userReducer = (
   state = USER_INITIAL_STATE,
   action = {} as AnyAction
 ): UserState => {
-  if (setUser.match(action)) {
-    return {
-      ...state,
-      currentUser: action.payload
-    };
-  }
   if (toggleSortingAscending.match(action)) {
     return {
       ...state,
@@ -99,6 +102,72 @@ export const userReducer = (
         ...state.sort,
         inputSort: action.payload
       }
+    };
+  }
+
+  if (signOutStart.match(action)) {
+    return {
+      ...state,
+      isLoading: true
+    };
+  }
+
+  if (signOutFailed.match(action)) {
+    return {
+      ...state,
+      isLoading: false,
+      error: action.payload
+    };
+  }
+
+  if (signOutSuccess.match(action)) {
+    return {
+      ...state,
+      isLoading: false
+    };
+  }
+
+  if (googleSignInStart.match(action)) {
+    return {
+      ...state,
+      isLoading: true
+    };
+  }
+
+  if (emailSignInStart.match(action)) {
+    return {
+      ...state,
+      isLoading: true
+    };
+  }
+
+  if (anonymousSignInStart.match(action)) {
+    return {
+      ...state,
+      isLoading: true
+    };
+  }
+
+  if (signInFailed.match(action)) {
+    return {
+      ...state,
+      isLoading: false,
+      error: action.payload
+    };
+  }
+
+  if (signInAndSetUser.match(action)) {
+    return {
+      ...state,
+      isLoading: true,
+      currentUser: action.payload
+    };
+  }
+
+  if (signInSuccess.match(action)) {
+    return {
+      ...state,
+      isLoading: false
     };
   }
 

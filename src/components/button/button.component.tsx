@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, FC } from "react";
+import { ButtonHTMLAttributes, FC, PropsWithChildren } from "react";
 import {
   BaseButton,
   GoogleSignInButton,
@@ -11,7 +11,8 @@ import {
   CartFuncButton,
   LoginCheckout,
   ProductCardCartButton,
-  FormButton
+  FormButton,
+  ButtonSpiner
 } from "./button.styles";
 
 export enum BUTTON_TYPE_CLASSES {
@@ -34,7 +35,9 @@ type ButtonProps = {
   isLoading?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const getButton = (buttonType = BUTTON_TYPE_CLASSES.base): typeof BaseButton =>
+export const getButton = (
+  buttonType = BUTTON_TYPE_CLASSES.base
+): typeof BaseButton =>
   ({
     [BUTTON_TYPE_CLASSES.base]: BaseButton,
     [BUTTON_TYPE_CLASSES.google]: GoogleSignInButton,
@@ -50,9 +53,18 @@ export const getButton = (buttonType = BUTTON_TYPE_CLASSES.base): typeof BaseBut
     [BUTTON_TYPE_CLASSES.formButton]: FormButton
   }[buttonType]);
 
-const Button: FC<ButtonProps> = ({ buttonType, ...otherProps }) => {
+const Button: FC<PropsWithChildren<ButtonProps>> = ({
+  children,
+  buttonType,
+  isLoading,
+  ...otherProps
+}) => {
   const CustomButton = getButton(buttonType);
-  return <CustomButton {...otherProps}></CustomButton>;
+  return (
+    <CustomButton disabled={isLoading} {...otherProps}>
+      {isLoading ? <ButtonSpiner /> : children}
+    </CustomButton>
+  );
 };
 
 export default Button;
