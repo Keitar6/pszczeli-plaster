@@ -19,7 +19,7 @@ import { useEffect } from "react";
 import { selectOrderHistory } from "../../store/orderHistory/orderHistory.selector";
 import { fetchOrderHistoryAsync } from "../../store/orderHistory/orderHistory.action";
 import { timeSorting } from "../../utils/reusableFunctions/timeSorting.function";
-import { orderHistoryCollection } from "../../utils/firebase/firebase.utils";
+import { orderHistoryCollectionRef } from "../../utils/firebase/firebase.utils";
 import { onSnapshot } from "firebase/firestore";
 import type { Order } from "../../store/orderHistory/orderHistory.types";
 
@@ -44,7 +44,7 @@ const OrdersPage = () => {
   };
 
   useEffect(() => {
-    onSnapshot(orderHistoryCollection, (snapshot) => {
+    onSnapshot(orderHistoryCollectionRef, (snapshot) => {
       const tempCategArray = snapshot.docs.map((d) => d.data());
 
       dispatch(fetchOrderHistoryAsync(tempCategArray as Order[]));

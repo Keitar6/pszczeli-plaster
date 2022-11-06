@@ -13,10 +13,8 @@ import {
 } from "./login.styles";
 
 const LoginPage = () => {
-  const loginThroughGoogleHandler = async () => {
-    const response = signInWithGooglePopUp();
-
-    console.log(response);
+  const loginThroughGoogleHandler = () => {
+    signInWithGooglePopUp();
   };
   return (
     <LoginPageContainer>
@@ -24,7 +22,6 @@ const LoginPage = () => {
         {" "}
         <SignUpTitle> Rejestracja</SignUpTitle>
         <SignUpForm />
-        
       </SignUpContainer>
 
       <SignInContainer>

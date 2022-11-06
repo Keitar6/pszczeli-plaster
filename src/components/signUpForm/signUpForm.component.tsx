@@ -4,6 +4,7 @@ import {
   FormTextInputs
 } from "../../globalStyles/form/form.globalStyles";
 import { FormButtons } from "../../globalStyles/form/formButtons/formButtons.component";
+import { useAppDispatch } from "../../hooks/hooks";
 
 import { signUpAsync } from "../../store/userReducer/user.thunk";
 
@@ -16,11 +17,13 @@ export const SignUpForm = () => {
     handleSubmit,
     formState: { errors }
   } = useForm();
-  
+
+  const dispatch = useAppDispatch();
+
   const signUpHandler = (formData: FieldValues) => {
     const { name, lastname, email, password } = formData;
 
-    signUpAsync(email, password, { displayName: name });
+    dispatch(signUpAsync(email, password, { displayName: name }));
   };
 
   return (
@@ -58,7 +61,6 @@ export const SignUpForm = () => {
       </FormTextInputs>
       <FormButtons
         submitHandler={handleSubmit((formData) => {
-          console.log(formData);
           signUpHandler(formData);
         })}
         idPlus="regButton"

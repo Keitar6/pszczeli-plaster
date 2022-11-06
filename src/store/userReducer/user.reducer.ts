@@ -5,6 +5,7 @@ import {
   googleSignInStart,
   setAlphabeticSorting,
   setInputSorting,
+  setLoggStatus,
   setPriceSorting,
   signInAndSetUser,
   signInFailed,
@@ -43,11 +44,19 @@ export type SortType = {
   ascending: boolean;
 };
 
+export enum LOGIN_STATUS_TYPES {
+  NOT_LOGGED_IN_YET = "notLoggedInYet",
+  LOGGED_IN = "loggedIn",
+  LOGGED_OUT = "loggedOut"
+}
+export type LoginStatusType = LOGIN_STATUS_TYPES[keyof LOGIN_STATUS_TYPES];
+
 export type UserState = {
   readonly currentUser: UserData | null;
   readonly isLoading: boolean;
   readonly error: Error | null;
   readonly sort: SortType;
+  readonly loginStatus: LoginStatusType;
 };
 
 export const USER_INITIAL_STATE: UserState = {
@@ -58,7 +67,8 @@ export const USER_INITIAL_STATE: UserState = {
     sorType: "alphabetic",
     inputSort: "",
     ascending: true
-  }
+  },
+  loginStatus: "notLoggedInYet"
 };
 
 export const userReducer = (
@@ -102,6 +112,13 @@ export const userReducer = (
         ...state.sort,
         inputSort: action.payload
       }
+    };
+  }
+
+  if (setLoggStatus.match(action)) {
+    return {
+      ...state,
+      loginStatus: action.payload 
     };
   }
 

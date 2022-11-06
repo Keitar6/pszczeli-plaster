@@ -6,12 +6,14 @@ import {
   getCurrentUser,
   signInAnonymous,
   signInByEmailAndPassword,
+  signInWithGooglePopUp,
   signOutUser,
   signUpByEmailAndPassword
 } from "../../utils/firebase/firebase.utils";
 import {
   anonymousSignInStart,
   emailSignInStart,
+  googleSignInStart,
   signInAndSetUser,
   signInFailed,
   signInSuccess,
@@ -89,6 +91,23 @@ export const signInWithEmailAsync: any = //ThunkAction<
       dispatch(emailSignInStart());
       try {
         signInByEmailAndPassword(email, password);
+      } catch (error) {
+        dispatch(signInFailed(error as Error));
+        console.log(error);
+      }
+    };
+  };
+
+export const signInWithGoogleAsync: any = //ThunkAction<
+  // void,
+  // any,
+  // unknown,
+  // AnyAction>
+  () => {
+    return (dispatch: Dispatch<AnyAction>) => {
+      dispatch(googleSignInStart());
+      try {
+        signInWithGooglePopUp();
       } catch (error) {
         dispatch(signInFailed(error as Error));
         console.log(error);

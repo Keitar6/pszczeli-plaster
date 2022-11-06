@@ -16,6 +16,11 @@ export const selectIsLoadingUser = createSelector(
   (user) => user.isLoading
 );
 
+export const selectLoginStatus = createSelector(
+  [selectUserReducer],
+  (user) => user.loginStatus
+);
+
 export const selectSort = createSelector(
   [selectUserReducer],
   (userReducer) => userReducer.sort

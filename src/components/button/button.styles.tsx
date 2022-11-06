@@ -51,7 +51,7 @@ export const LoginButton = styled(BaseButton)`
   background-color: ${Colors.primary};
   color: ${Colors.dark};
   border: none;
-  min-width: 20rem;
+  // min-width: 20rem;
   margin: 0;
   width: 100%;
   border-radius: 0.6rem;

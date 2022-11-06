@@ -16,6 +16,8 @@ export const cartReducer = (
   state = CART_INITIAL_STATE,
   action = {} as AnyAction
 ): CartState => {
+  // console.log(state)
+  // console.log(action)
   if (toggleCartMenu.match(action)) {
     return { ...state, isDropdownActive: !state.isDropdownActive };
   }

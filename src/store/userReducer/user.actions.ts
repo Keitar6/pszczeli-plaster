@@ -4,9 +4,9 @@ import {
   ActionWithPayload,
   withMatch
 } from "../../utils/store/store.utils";
-import { UserState } from "./user.reducer";
+import { LoginStatusType, UserState } from "./user.reducer";
 
-import {  USER_ACTION_TYPES } from "./user.types";
+import { USER_ACTION_TYPES } from "./user.types";
 
 export type ToggleSortingAscending =
   Action<USER_ACTION_TYPES.TOGGLE_SORTING_ASCENDING>;
@@ -15,6 +15,11 @@ export type SetPriceSorting = Action<USER_ACTION_TYPES.SET_SORTING_BY_PRICE>;
 
 export type SetAlphabeticSorting =
   Action<USER_ACTION_TYPES.SET_SORTING_APLPHABETIC>;
+
+export type SetLoggStatus = ActionWithPayload<
+  USER_ACTION_TYPES.SET_LOGGED_STATUS,
+  LoginStatusType
+>;
 
 export type SetInputSorting = ActionWithPayload<
   USER_ACTION_TYPES.SET_SORTING_INPUT,
@@ -63,6 +68,14 @@ export const setPriceSorting = withMatch(
 export const setAlphabeticSorting = withMatch(
   (): SetAlphabeticSorting =>
     actionCreator(USER_ACTION_TYPES.SET_SORTING_APLPHABETIC)
+);
+
+export const setLoggStatus = withMatch(
+  (newStatus: LoginStatusType): SetLoggStatus =>
+    actionCreator(
+      USER_ACTION_TYPES.SET_LOGGED_STATUS,
+      newStatus 
+    )
 );
 
 export const setInputSorting = withMatch(

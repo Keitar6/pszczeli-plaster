@@ -1,3 +1,7 @@
+import { CartItem } from "../cartReducer/cart.types";
+import { Order } from "../orderHistory/orderHistory.types";
+import { SortType } from "./user.reducer";
+
 export type UserData = {
   createdAt: Date;
   displayName: string;
@@ -5,8 +9,18 @@ export type UserData = {
   isAnonymous: boolean;
 };
 
+export type UserFromDBData = {
+  cartItems: CartItem[];
+  orderHistory: Order[];
+  sorType?: SortType;
+};
+
 export type AdditionalInformation = {
   displayName?: string;
+  photoUrl: string | null;
+  cartItems: UserFromDBData["cartItems"];
+  orderHistory: UserFromDBData["orderHistory"];
+  sorType?: UserFromDBData["sorType"];
 };
 
 export enum USER_ACTION_TYPES {
@@ -16,6 +30,7 @@ export enum USER_ACTION_TYPES {
   SET_SORTING_APLPHABETIC = "SET_SORTING_APLPHABETIC",
   SET_SORTING_INPUT = "SET_SORTING_INPUT",
   SET_ORDER_HISTORY = "SET_ORDER_HISTORY",
+  SET_LOGGED_STATUS = "SET_LOGGED_STATUS",
 
   SIGN_OUT_START = "SIGN_OUT_START",
   SIGN_OUT_SUCCESS = "SIGN_OUT_SUCCESS",
