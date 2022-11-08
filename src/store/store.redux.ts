@@ -26,7 +26,7 @@ type ExtendedPersistConfig = PersistConfig<ReduxState> & {
 const persistConfig: ExtendedPersistConfig = {
   key: "root",
   storage: storage,
-  whitelist: ["userReducer", "categoriesReducer"],
+  whitelist: ["categoriesReducer"],
   blacklist: ["cartReducer"]
 };
 

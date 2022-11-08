@@ -1,8 +1,10 @@
+import type{ User } from "firebase/auth";
+import { type DocumentData, QuerySnapshot } from "firebase/firestore";
 import { CartItem } from "../cartReducer/cart.types";
 import { Order } from "../orderHistory/orderHistory.types";
 import { SortType } from "./user.reducer";
 
-export type UserData = {
+export type UserData = User|{
   createdAt: Date;
   displayName: string;
   email: string;

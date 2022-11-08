@@ -32,7 +32,8 @@ export const UserMenuModal = () => {
   const cartQuantity = useAppSelector(selectCartCount);
   const currentUser = useAppSelector(selectCurrentUser);
   const isLoadingUser = useAppSelector(selectIsLoadingUser);
-  const isUserLogedAndNotAnonym = currentUser && !currentUser.isAnonymous;
+  const isUserLogedAndNotAnonym = currentUser.status && !currentUser.status.isAnonymous;
+  
 
   const userMenuOnClickHandler = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent> & {
@@ -90,7 +91,7 @@ export const UserMenuModal = () => {
                 {`Cześć ${
                   !isUserLogedAndNotAnonym
                     ? "Gościu"
-                    : (currentUser !== null && currentUser.displayName) ??
+                    : (currentUser.status !== null && currentUser.status.email) ??
                       "Panie Hakeru"
                 }`}
               </H2>

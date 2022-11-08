@@ -16,11 +16,17 @@ import {
   collection,
   connectFirestoreEmulator,
   doc,
+  type DocumentData,
   enableMultiTabIndexedDbPersistence,
   getDoc,
+  getDocs,
   getFirestore,
+  query,
   QueryDocumentSnapshot,
+  QuerySnapshot,
   setDoc,
+  updateDoc,
+  where,
   writeBatch
 } from "firebase/firestore";
 import { Order } from "../../store/orderHistory/orderHistory.types";
@@ -31,7 +37,11 @@ import {
   UserFromDBData
 } from "../../store/userReducer/user.types";
 import { CartItem } from "../../store/cartReducer/cart.types";
-import { SortType } from "../../store/userReducer/user.reducer";
+import {
+  SortType,
+  UserDatabaseDataType
+} from "../../store/userReducer/user.reducer";
+import { WhichCollection } from "../../types/checkTypes/firebase.typeGuards";
 
 export function firebaseInit() {
   const firebaseApp = initializeApp(firebaseConfiguration.firebaseConfig);
@@ -76,6 +86,14 @@ export type CollectionName = {
 };
 export type NewOrder = Order;
 
+export const docsMapper = (docs: QuerySnapshot<DocumentData>) => {
+  const tempArray: any = [];
+  docs.forEach(async (doc) => {
+    tempArray.push(doc.data());
+  });
+  return tempArray;
+};
+
 export const getCurrentUser = (): Promise<User | null> => {
   return new Promise((resolve, reject) => {
     const unsubscribe = onAuthStateChanged(
@@ -87,6 +105,21 @@ export const getCurrentUser = (): Promise<User | null> => {
       reject
     );
   });
+};
+
+export const getUserCartItemsAndOrderHistory = async (userAuth: User) => {
+  const userDocRef = doc(usersCollectionRef, userAuth.uid);
+  const cartItems: CartItem[] = docsMapper(
+    await getDocs(collection(userDocRef, "cartItems"))
+  );
+  const orderHistory: Order[] = docsMapper(
+    await getDocs(collection(userDocRef, "orderHistory"))
+  );
+
+  return {
+    cartItems,
+    orderHistory
+  };
 };
 
 //login functions
@@ -151,26 +184,23 @@ export const createUserDocumentFromAuth = async (
 ) => {
   const userDocRef = doc(usersCollectionRef, userAuth.uid); //database, collection, unique ID
   const userSnapshot = await getDoc(userDocRef);
-  console.log(userSnapshot.data());
   let usersDataFromDataBase: UserFromDBData | null = null;
 
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
+    const { cartItems, orderHistory, photoUrl } = additionalInfos;
+
     const createdAt = new Date();
-    console.log({
-      displayName,
-      email,
-      createdAt,
-      ...additionalInfos
-    });
 
     try {
       await setDoc(userDocRef, {
         displayName,
         email,
         createdAt,
-        ...additionalInfos
+        photoUrl
       });
+      addCollectionToDocuments(userAuth, cartItems, "cartItems");
+      addCollectionToDocuments(userAuth, orderHistory, "orderHistory");
       return usersDataFromDataBase;
     } catch (error) {
       console.log("I just caught some error while creating users!!", error);
@@ -179,13 +209,19 @@ export const createUserDocumentFromAuth = async (
   }
   // if user data exists
   else if (userSnapshot.exists()) {
+    const { cartItems, orderHistory } = await getUserCartItemsAndOrderHistory(
+      userAuth
+    );
+    console.log("UserCartItems: ", cartItems);
+    console.log("OrderHistory: ", orderHistory);
+
     usersDataFromDataBase = {
-      cartItems: userSnapshot.data().cartItems,
-      orderHistory: userSnapshot.data().orderHistory
+      cartItems: cartItems as any,
+      orderHistory: orderHistory as any
     };
     return usersDataFromDataBase;
   }
-  return usersDataFromDataBase
+  return usersDataFromDataBase;
 };
 
 //order History functions
@@ -200,10 +236,43 @@ export const addNewOrderToHistory = (newOrder: NewOrder) => {
   setDoc(newDoc, newOrder, { merge: true });
 };
 
-// export const updateUsersCartItems = (cartItems:CartItem[])=>{
+export const updateUsersCartItems = async (
+  userAuth: User,
+  objectsToAdd: CartItem[] | Order[],
+  { cartItems, orderHistory }: UserDatabaseDataType
+) => {
+  
+  cartItems.forEach(async (cartItem: any) => {
+    console.log("cartItem from a user snapshot: ", cartItem);
+    // await updateDoc(doc(collWithCartItems, 'cartItems', matchDetails?.id, 'messages', allDoc?.id), objectsToAdd)
+  });
+};
 
+export const addCollectionToDocuments = (
+  userAuth: User,
+  objectsToAdd: CartItem[] | Order[],
+  collectionName: "orderHistory" | "cartItems"
+) => {
+  const userDocRef = doc(usersCollectionRef, userAuth.uid);
+  const collToAdd = collection(userDocRef, collectionName);
+  const batch = writeBatch(fireStorage);
+  let objectName = "";
 
-// }
+  console.log(collectionName);
+  objectsToAdd.forEach((object) => {
+    console.log(object);
+
+    WhichCollection(object, "cartItems")
+      ? (objectName = object.name)
+      : (objectName = object.time.replaceAll("/", "."));
+
+    const docRef = doc(collToAdd, objectName);
+    batch.set(docRef, object);
+  });
+
+  batch.commit();
+};
+
 //function to create orderHistory collection and categories
 
 // export const addCollectionAndDocuments = async (
@@ -214,7 +283,7 @@ export const addNewOrderToHistory = (newOrder: NewOrder) => {
 //   const batch = writeBatch(fireStorage);
 
 //   objectsToAdd.forEach((object) => {
-//     const docRef = doc(collectionRef, object.title)   //time.replaceAll("/", "."));
+//     const docRef = doc(collectionRef, object.title); //time.replaceAll("/", "."));
 //     batch.set(docRef, object);
 //   });
 

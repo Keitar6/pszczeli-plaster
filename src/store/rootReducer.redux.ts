@@ -16,6 +16,7 @@ const cartReducerConfig = {
   whitelist: ["cartItems"]
 };
 
+
 const rootReducer = combineReducers({
   userReducer,
   generalPropReducer,

@@ -16,16 +16,22 @@ import { Routing } from "./routing";
 import { useEffect } from "react";
 import {
   createUserDocumentFromAuth,
+  updateUsersCartItems,
   userAuth
 } from "./utils/firebase/firebase.utils";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, type User } from "firebase/auth";
 import { signInAsync } from "./store/userReducer/user.thunk";
 import { useNavigate } from "react-router-dom";
 import { selectOrderHistory } from "./store/orderHistory/orderHistory.selector";
 import { setCartItems } from "./store/cartReducer/cart.actions";
 import { setLoggStatus } from "./store/userReducer/user.actions";
 import { LOGIN_STATUS_TYPES } from "./store/userReducer/user.reducer";
-import { selectLoginStatus } from "./store/userReducer/user.selector";
+import {
+  selectCurrentUser,
+  selectLoginStatus,
+  selectSort
+} from "./store/userReducer/user.selector";
+import { UserFromDBData } from "./store/userReducer/user.types";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -36,54 +42,56 @@ function App() {
   const initOrderHistory = useAppSelector(selectOrderHistory);
   const cartQuantity = useAppSelector(selectCartCount);
   const logStatus = useAppSelector(selectLoginStatus);
+  const currentUser = useAppSelector(selectCurrentUser);
+  const sortType = useAppSelector(selectSort);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // console.log("APP USE EFFECT USER: ", user);
     onAuthStateChanged(userAuth, (currentUserAuth) => {
       // signed in user management
-      console.log(currentUserAuth);
-
+      let userDatabaseData: UserFromDBData | null = null;
       (async function userManagement() {
-        console.log("APP USE EFFECT USER: ", currentUserAuth);
-        console.log("APP USE EFFECT CART: ", currentCartItems);
+        console.log("BEFORE ANYTHING current user: ", currentUser);
 
-        dispatch(signInAsync(currentUserAuth));
         if (currentUserAuth !== null && !currentUserAuth.isAnonymous) {
-          dispatch(setLoggStatus(LOGIN_STATUS_TYPES.LOGGED_IN));
-          const userData = await createUserDocumentFromAuth(currentUserAuth, {
+          userDatabaseData = await createUserDocumentFromAuth(currentUserAuth, {
             photoUrl: currentUserAuth.photoURL,
             cartItems: currentCartItems,
             orderHistory: initOrderHistory
           });
-          if (userData) {
-            const { cartItems, orderHistory } = userData;
-
-            console.log(
-              "currentCartItems + cartItems after login: ",
-              cartItems,
-              " + ",
-              currentCartItems
-            );
+          // setting dbData to local variables
+          if (userDatabaseData) {
+            const { cartItems, orderHistory } = userDatabaseData;
+            console.log(cartItems);
             dispatch(setCartItems([...cartItems]));
             // dispatch(addTo(orderHistory))
           }
-          navigate("/sklep");
+
+          dispatch(setLoggStatus(LOGIN_STATUS_TYPES.LOGGED_IN));
         } else if (currentUserAuth === null) {
-          if(logStatus === LOGIN_STATUS_TYPES.LOGGED_IN){
+          console.log("current user: ", currentUser);
+          console.log("logStatus: ", logStatus);
+
+          if (
+            logStatus === LOGIN_STATUS_TYPES.LOGGED_IN &&
+            currentUser.status !== null
+          ) {
             dispatch(setLoggStatus(LOGIN_STATUS_TYPES.LOGGED_OUT));
-            
             // Update CartItems and Orders in Firestore
-            
+            updateUsersCartItems(
+              currentUser.status as User,
+              currentCartItems,
+              currentUser.userDatabaseData
+            );
           }
         }
+
+        console.log("BEFORE SETTING USER current user: ", currentUser);
+
+        dispatch(signInAsync({ status: currentUserAuth, userDatabaseData }));
       })();
     });
-
-    return () => {
-      // CartItems and OrderHistory on db update on unmount
-    };
-  }, []);
+  }, [currentUser.status, logStatus]);
 
   return (
     <>

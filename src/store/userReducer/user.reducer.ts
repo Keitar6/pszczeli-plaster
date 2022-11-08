@@ -1,4 +1,6 @@
 import type { AnyAction } from "redux";
+import { CartItem } from "../cartReducer/cart.types";
+import { Order } from "../orderHistory/orderHistory.types";
 import {
   anonymousSignInStart,
   emailSignInStart,
@@ -51,8 +53,17 @@ export enum LOGIN_STATUS_TYPES {
 }
 export type LoginStatusType = LOGIN_STATUS_TYPES[keyof LOGIN_STATUS_TYPES];
 
+export type UserDatabaseDataType = {
+  cartItems: CartItem[];
+  orderHistory: Order[];
+};
+
 export type UserState = {
-  readonly currentUser: UserData | null;
+  readonly currentUser: {
+    status: UserData | null;
+    userDatabaseData: UserDatabaseDataType;
+  };
+
   readonly isLoading: boolean;
   readonly error: Error | null;
   readonly sort: SortType;
@@ -60,7 +71,13 @@ export type UserState = {
 };
 
 export const USER_INITIAL_STATE: UserState = {
-  currentUser: null,
+  currentUser: {
+    status: null,
+    userDatabaseData: {
+      cartItems: [],
+      orderHistory: []
+    }
+  },
   isLoading: false,
   error: null,
   sort: {
@@ -118,7 +135,7 @@ export const userReducer = (
   if (setLoggStatus.match(action)) {
     return {
       ...state,
-      loginStatus: action.payload 
+      loginStatus: action.payload
     };
   }
 
