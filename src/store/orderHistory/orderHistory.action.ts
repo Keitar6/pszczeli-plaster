@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 import type { ActionCreator, AnyAction } from "redux";
 import type { ThunkAction } from "redux-thunk";
-import { addNewOrderToHistory } from "../../utils/firebase/firebase.utils";
+import { addNewOrderToHistory } from "../../utils/firebase/functions/dbManipulationFunctions.FBFunctions";
 import {
   Action,
   actionCreator,

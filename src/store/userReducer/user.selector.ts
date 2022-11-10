@@ -3,9 +3,21 @@ import { ReduxState } from "../rootReducer.redux";
 
 export const selectUserReducer = (state: ReduxState) => state.userReducer;
 
+export const selectpPreviousUser = createSelector(
+  [selectUserReducer],
+  (user) => user.previousUser
+);
 export const selectCurrentUser = createSelector(
   [selectUserReducer],
   (user) => user.currentUser
+);
+export const selectCurrentUserData = createSelector(
+  [selectUserReducer],
+  (user) => user.currentUserDBData
+);
+export const selectNextUser = createSelector(
+  [selectUserReducer],
+  (user) => user.nextUser
 );
 
 export const selectIsLoadingUser = createSelector(

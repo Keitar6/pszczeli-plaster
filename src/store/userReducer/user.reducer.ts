@@ -4,10 +4,15 @@ import { Order } from "../orderHistory/orderHistory.types";
 import {
   anonymousSignInStart,
   emailSignInStart,
+  getUsersDataFailed,
+  getUsersDataStart,
+  getUsersDataSuccess,
   googleSignInStart,
   setAlphabeticSorting,
   setInputSorting,
   setLoggStatus,
+  setNextUser,
+  setPreviousUser,
   setPriceSorting,
   signInAndSetUser,
   signInFailed,
@@ -59,11 +64,14 @@ export type UserDatabaseDataType = {
 };
 
 export type UserState = {
-  readonly currentUser: {
+  readonly previousUser: {
     status: UserData | null;
     userDatabaseData: UserDatabaseDataType;
   };
+  readonly currentUser: UserData | null;
+  readonly currentUserDBData: UserDatabaseDataType;
 
+  readonly nextUser: UserData | null;
   readonly isLoading: boolean;
   readonly error: Error | null;
   readonly sort: SortType;
@@ -71,13 +79,19 @@ export type UserState = {
 };
 
 export const USER_INITIAL_STATE: UserState = {
-  currentUser: {
+  previousUser: {
     status: null,
     userDatabaseData: {
       cartItems: [],
       orderHistory: []
     }
   },
+  currentUser: null,
+  currentUserDBData: {
+    cartItems: [],
+    orderHistory: []
+  },
+  nextUser: null,
   isLoading: false,
   error: null,
   sort: {
@@ -202,6 +216,44 @@ export const userReducer = (
     return {
       ...state,
       isLoading: false
+    };
+  }
+
+  if (getUsersDataStart.match(action)) {
+    return {
+      ...state,
+      isLoading: true
+    };
+  }
+  if (getUsersDataSuccess.match(action)) {
+    return {
+      ...state,
+      isLoading: false,
+      currentUserDBData: action.payload
+    };
+  }
+
+  if (getUsersDataFailed.match(action)) {
+    return {
+      ...state,
+      error: action.payload
+    };
+  }
+
+  if (setPreviousUser.match(action)) {
+    return {
+      ...state,
+      previousUser: {
+        status: state.currentUser,
+        userDatabaseData: state.currentUserDBData
+      }
+    };
+  }
+
+  if (setNextUser.match(action)) {
+    return {
+      ...state,
+      nextUser: action.payload
     };
   }
 

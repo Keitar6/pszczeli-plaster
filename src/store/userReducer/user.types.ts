@@ -1,15 +1,16 @@
-import type{ User } from "firebase/auth";
-import { type DocumentData, QuerySnapshot } from "firebase/firestore";
+import type { User } from "firebase/auth";
 import { CartItem } from "../cartReducer/cart.types";
 import { Order } from "../orderHistory/orderHistory.types";
 import { SortType } from "./user.reducer";
 
-export type UserData = User|{
-  createdAt: Date;
-  displayName: string;
-  email: string;
-  isAnonymous: boolean;
-};
+export type UserData =
+  | User
+  | {
+      createdAt: Date;
+      displayName: string;
+      email: string;
+      isAnonymous: boolean;
+    };
 
 export type UserFromDBData = {
   cartItems: CartItem[];
@@ -27,6 +28,8 @@ export type AdditionalInformation = {
 
 export enum USER_ACTION_TYPES {
   SIGN_IN_AND_SET_USER = "SIGN_IN_AND_SET_USER",
+  SET_PREVIOUS_USER = "SET_PREVIOUS_USER",
+  SET_NEXT_USER = "SET_NEXT_USER",
   TOGGLE_SORTING_ASCENDING = "TOGGLE_SORTING_ASCENDING",
   SET_SORTING_BY_PRICE = "SET_SORTING_BY_PRICE",
   SET_SORTING_APLPHABETIC = "SET_SORTING_APLPHABETIC",
@@ -41,6 +44,14 @@ export enum USER_ACTION_TYPES {
   SIGN_UP_START = "SIGN_UP_START",
   SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS",
   SIGN_UP_FAILED = "SIGN_UP_FAILED",
+
+  GET_USERS_DATA_START = "GET_USERS_DATA_START",
+  GET_USERS_DATA_SUCCESS = "GET_USERS_DATA_SUCCESS",
+  GET_USERS_DATA_FAILED = "GET_USERS_DATA_FAILED",
+
+  USERS_DOCUMENT_CREATION_START = "USERS_DOCUMENT_CREATION_START",
+  USERS_DOCUMENT_CREATION_SUCCESS = "USERS_DOCUMENT_CREATION_SUCCESS",
+  USERS_DOCUMENT_CREATION_FAILED = "USERS_DOCUMENT_CREATION_FAILED",
 
   ANYNOMOUS_SIGN_IN_START = "ANYNOMOUS_SIGN_IN_START",
   GOOGLE_SIGN_IN_START = "GOOGLE_SIGN_IN_START",

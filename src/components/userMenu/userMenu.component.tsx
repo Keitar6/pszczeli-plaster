@@ -32,7 +32,7 @@ export const UserMenuModal = () => {
   const cartQuantity = useAppSelector(selectCartCount);
   const currentUser = useAppSelector(selectCurrentUser);
   const isLoadingUser = useAppSelector(selectIsLoadingUser);
-  const isUserLogedAndNotAnonym = currentUser.status && !currentUser.status.isAnonymous;
+  const isUserLogedAndNotAnonym = currentUser && !currentUser.isAnonymous;
   
 
   const userMenuOnClickHandler = (
@@ -91,7 +91,7 @@ export const UserMenuModal = () => {
                 {`Cześć ${
                   !isUserLogedAndNotAnonym
                     ? "Gościu"
-                    : (currentUser.status !== null && currentUser.status.email) ??
+                    : (currentUser !== null && currentUser.email) ??
                       "Panie Hakeru"
                 }`}
               </H2>

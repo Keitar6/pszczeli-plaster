@@ -2,17 +2,24 @@ import type { User } from "firebase/auth";
 import { Dispatch } from "react";
 import type { AnyAction } from "redux";
 import {
-  createUserDocumentFromAuth,
-  getCurrentUser,
   signInAnonymous,
   signInByEmailAndPassword,
   signInWithGooglePopUp,
   signOutUser,
   signUpByEmailAndPassword
 } from "../../utils/firebase/firebase.utils";
+import { createUserDocumentFromAuth } from "../../utils/firebase/functions/dbManipulationFunctions.FBFunctions";
+import { getUserCartItemsAndOrderHistory } from "../../utils/firebase/functions/gets.FBFunctions";
+import { setCartItems } from "../cartReducer/cart.actions";
 import {
   anonymousSignInStart,
+  createUsersDocumentFailed,
+  createUsersDocumentStart,
+  createUsersDocumentSuccess,
   emailSignInStart,
+  getUsersDataFailed,
+  getUsersDataStart,
+  getUsersDataSuccess,
   googleSignInStart,
   signInAndSetUser,
   signInFailed,
@@ -24,7 +31,7 @@ import {
   signUpStart,
   signUpSuccess
 } from "./user.actions";
-import { AdditionalInformation } from "./user.types";
+import { AdditionalInformation, UserData } from "./user.types";
 
 export const signOutAsync: any = //ThunkAction<
   // void,
@@ -81,6 +88,43 @@ export const signInAsync: any = //ThunkAction<
     };
   };
 
+export const getUsersDataAsync: any = //ThunkAction<
+  // void,
+  // any,
+  // unknown,
+  // AnyAction>
+  (currentUser: User) => {
+    return async (dispatch: Dispatch<AnyAction>) => {
+      dispatch(getUsersDataStart());
+      try {
+        const userDB = await getUserCartItemsAndOrderHistory(currentUser);
+        dispatch(setCartItems(userDB.cartItems));
+        dispatch(getUsersDataSuccess(userDB));
+      } catch (error) {
+        dispatch(getUsersDataFailed(error as Error));
+        console.log(error);
+      }
+    };
+  };
+
+export const createUsersDocumentAsync: any = //ThunkAction<
+  // void,
+  // any,
+  // unknown,
+  // AnyAction>
+  (userAuth: User, additionalInfos?: AdditionalInformation) => {
+    return async (dispatch: Dispatch<AnyAction>) => {
+      dispatch(createUsersDocumentStart());
+      try {
+        await createUserDocumentFromAuth(userAuth, additionalInfos);
+        dispatch(createUsersDocumentSuccess());
+      } catch (error) {
+        dispatch(createUsersDocumentFailed(error as Error));
+        console.log(error);
+      }
+    };
+  };
+
 export const signInWithEmailAsync: any = //ThunkAction<
   // void,
   // any,
@@ -120,11 +164,16 @@ export const signUpAsync: any = //ThunkAction<
   // any,
   // unknown,
   // AnyAction>
-  (email: string, password: string, addInfo: AdditionalInformation) => {
+  (
+    currentUser: UserData | null,
+    email: string,
+    password: string,
+    addInfo: AdditionalInformation
+  ) => {
     return async (dispatch: Dispatch<AnyAction>) => {
       dispatch(signUpStart());
       try {
-        createUserDocumentFromAuth((await getCurrentUser()) as User, addInfo);
+        createUserDocumentFromAuth(currentUser as User, addInfo);
         signUpByEmailAndPassword(email, password);
         dispatch(signUpSuccess());
       } catch (error) {

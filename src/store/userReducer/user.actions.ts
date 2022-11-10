@@ -4,9 +4,13 @@ import {
   ActionWithPayload,
   withMatch
 } from "../../utils/store/store.utils";
-import { LoginStatusType, UserState } from "./user.reducer";
+import {
+  LoginStatusType,
+  UserDatabaseDataType,
+  UserState
+} from "./user.reducer";
 
-import { USER_ACTION_TYPES } from "./user.types";
+import { UserData, USER_ACTION_TYPES } from "./user.types";
 
 export type ToggleSortingAscending =
   Action<USER_ACTION_TYPES.TOGGLE_SORTING_ASCENDING>;
@@ -28,7 +32,7 @@ export type SetInputSorting = ActionWithPayload<
 
 export type SignInAndSetUser = ActionWithPayload<
   USER_ACTION_TYPES.SIGN_IN_AND_SET_USER,
-  UserState["currentUser"]
+  UserData | null
 >;
 
 export type AnonymousSignInStart =
@@ -56,6 +60,31 @@ export type SignOutFailed = ActionWithPayload<
   Error
 >;
 
+export type GetUsersDataStart = Action<USER_ACTION_TYPES.GET_USERS_DATA_START>;
+export type GetUsersDataSuccess = ActionWithPayload<
+  USER_ACTION_TYPES.GET_USERS_DATA_SUCCESS,
+  UserDatabaseDataType
+>;
+export type GetUsersDataFailed = ActionWithPayload<
+  USER_ACTION_TYPES.GET_USERS_DATA_FAILED,
+  Error
+>;
+
+export type CreateUsersDocumentStart =
+  Action<USER_ACTION_TYPES.USERS_DOCUMENT_CREATION_START>;
+export type CreateUsersDocumentSuccess =
+  Action<USER_ACTION_TYPES.USERS_DOCUMENT_CREATION_SUCCESS>;
+export type CreateUsersDocumentFailed = ActionWithPayload<
+  USER_ACTION_TYPES.USERS_DOCUMENT_CREATION_FAILED,
+  Error
+>;
+
+export type SetPreviousUser = Action<USER_ACTION_TYPES.SET_PREVIOUS_USER>;
+export type SetNextUser = ActionWithPayload<
+  USER_ACTION_TYPES.SET_NEXT_USER,
+  UserData | null
+>;
+
 export const toggleSortingAscending = withMatch(
   (): ToggleSortingAscending =>
     actionCreator(USER_ACTION_TYPES.TOGGLE_SORTING_ASCENDING)
@@ -72,10 +101,7 @@ export const setAlphabeticSorting = withMatch(
 
 export const setLoggStatus = withMatch(
   (newStatus: LoginStatusType): SetLoggStatus =>
-    actionCreator(
-      USER_ACTION_TYPES.SET_LOGGED_STATUS,
-      newStatus 
-    )
+    actionCreator(USER_ACTION_TYPES.SET_LOGGED_STATUS, newStatus)
 );
 
 export const setInputSorting = withMatch(
@@ -134,4 +160,42 @@ export const signUpSuccess = withMatch(
 export const signUpFailed = withMatch(
   (error: Error): SignUpFailed =>
     actionCreator(USER_ACTION_TYPES.SIGN_UP_FAILED, error)
+);
+
+export const getUsersDataStart = withMatch(
+  (): GetUsersDataStart => actionCreator(USER_ACTION_TYPES.GET_USERS_DATA_START)
+);
+
+export const getUsersDataSuccess = withMatch(
+  (dbItems: UserDatabaseDataType): GetUsersDataSuccess =>
+    actionCreator(USER_ACTION_TYPES.GET_USERS_DATA_SUCCESS, dbItems)
+);
+
+export const getUsersDataFailed = withMatch(
+  (error: Error): GetUsersDataFailed =>
+    actionCreator(USER_ACTION_TYPES.GET_USERS_DATA_FAILED, error)
+);
+
+export const setPreviousUser = withMatch(
+  (): SetPreviousUser => actionCreator(USER_ACTION_TYPES.SET_PREVIOUS_USER)
+);
+
+export const setNextUser = withMatch(
+  (user: UserData | null): SetNextUser =>
+    actionCreator(USER_ACTION_TYPES.SET_NEXT_USER, user)
+);
+
+export const createUsersDocumentStart = withMatch(
+  (): CreateUsersDocumentStart =>
+    actionCreator(USER_ACTION_TYPES.USERS_DOCUMENT_CREATION_START)
+);
+
+export const createUsersDocumentSuccess = withMatch(
+  (): CreateUsersDocumentSuccess =>
+    actionCreator(USER_ACTION_TYPES.USERS_DOCUMENT_CREATION_SUCCESS)
+);
+
+export const createUsersDocumentFailed = withMatch(
+  (error: Error): CreateUsersDocumentFailed =>
+    actionCreator(USER_ACTION_TYPES.USERS_DOCUMENT_CREATION_FAILED, error)
 );
