@@ -13,6 +13,11 @@ import { AdditionalInformation } from "../../../store/userReducer/user.types";
 import { WhichCollection } from "../../../types/checkTypes/firebase.typeGuards";
 import { fireStorage, NewOrder, usersCollectionRef } from "../firebase.utils";
 
+export type UpdateUsersCartItemsAndOrderHistory = {
+  currentCartItems: CartItem[];
+  currentUserOrderHistory: Order[];
+};
+
 export const createUserDocumentFromAuth = async (
   userAuth: User,
   additionalInfos = {} as AdditionalInformation
@@ -44,18 +49,6 @@ export const createUserDocumentFromAuth = async (
   }
 };
 
-//order History functions
-export const addNewOrderToHistory = (newOrder: NewOrder) => {
-  console.log("New Order: ", newOrder);
-  const newDoc = doc(
-    fireStorage,
-    `orderHistory/${newOrder.time.replaceAll("/", ".")}`
-  );
-  console.log("New Doc: ", newDoc);
-
-  setDoc(newDoc, newOrder, { merge: true });
-};
-
 export const addCollectionToDocuments = (
   userAuth: User,
   objectsToAdd: CartItem[] | Order[],
@@ -76,17 +69,37 @@ export const addCollectionToDocuments = (
   });
 
   batch.commit();
-  console.log(batch);
+};
+
+//order History functions
+export const addNewOrderToHistory = (newOrder: NewOrder) => {
+  const newDoc = doc(
+    fireStorage,
+    `orderHistory/${newOrder.time.replaceAll("/", ".")}`
+  );
+  setDoc(newDoc, newOrder, { merge: true });
+};
+
+export const modifyUserDbOrderHistory = (userAuth: User, order: Order) => {
+  const userDocRef = doc(usersCollectionRef, userAuth.uid);
+  const collToAdd = collection(userDocRef, "orderHistory");
+  let objectName = "";
+  const batch = writeBatch(fireStorage);
+
+  objectName = order.time.replaceAll("/", ".");
+  const docRef = doc(collToAdd, objectName);
+  batch.set(docRef, order);
+
+  batch.commit();
 };
 
 export const modifyUserDbCartItems = (
   userAuth: User,
   currentCartItems: CartItem[],
-  usersDbCartItems: CartItem[],
-  collectionName: "orderHistory" | "cartItems"
+  usersDbCartItems: CartItem[]
 ) => {
   const userDocRef = doc(usersCollectionRef, userAuth.uid);
-  const collToAdd = collection(userDocRef, collectionName);
+  const collToAdd = collection(userDocRef, "cartItems");
   const batch = writeBatch(fireStorage);
   let objectName = "";
 
@@ -108,11 +121,21 @@ export const modifyUserDbCartItems = (
   batch.commit();
 };
 
-export const updateUsersCartItems = async (
+export const updateUsersCartItems = (
   userAuth: User,
-  localObjects: CartItem[],
-  { cartItems, orderHistory }: UserDatabaseDataType
+  { currentCartItems }: UpdateUsersCartItemsAndOrderHistory,
+  { cartItems }: UserDatabaseDataType
 ) => {
-  modifyUserDbCartItems(userAuth, localObjects, cartItems, "cartItems");
-  addCollectionToDocuments(userAuth, localObjects, "orderHistory");
+  modifyUserDbCartItems(userAuth, currentCartItems, cartItems);
+};
+
+export const updateUsersOrderHistory = (userAuth: User, newOrder: Order) => {
+  modifyUserDbOrderHistory(userAuth, newOrder);
+};
+
+export const resetUsersCartItems = (
+  userAuth: User,
+  currentCartItems: CartItem[]
+) => {
+  modifyUserDbCartItems(userAuth, currentCartItems, []);
 };

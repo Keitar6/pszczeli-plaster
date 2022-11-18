@@ -1,9 +1,6 @@
 import type { AnyAction } from "redux";
 import {
-  fetchOrderHistoryFailed,
-  fetchOrderHistoryStart,
-  fetchOrderHistorySuccess,
-  setDelivery
+  setDelivery, setOrderHistory
 } from "./orderHistory.action";
 
 import { DeliveryType, Order } from "./orderHistory.types";
@@ -35,17 +32,10 @@ export const orderHistoryReducer = (
       delivery: action.payload
     };
 
-  if (fetchOrderHistoryStart.match(action)) {
-    return { ...state, isLoading: true };
-  }
-
-  if (fetchOrderHistorySuccess.match(action)) {
+  if (setOrderHistory.match(action)) {
     return { ...state, orderHistory: action.payload, isLoading: false };
   }
 
-  if (fetchOrderHistoryFailed.match(action)) {
-    return { ...state, error: action.payload, isLoading: false };
-  }
 
   return state;
 };

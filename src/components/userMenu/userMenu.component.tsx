@@ -56,7 +56,7 @@ export const UserMenuModal = () => {
   };
 
   const goToLoginHandler = () => {
-    navigate("/logowanie");
+    navigate("/mojeKonto");
     dispatch(toggleUserMenu());
   };
 

@@ -7,7 +7,9 @@ const Home = lazy(() => import("./routes/home/homePage.route"));
 const Shop = lazy(() => import("./routes/shopPage/shopPage.route"));
 const CheckoutPage = lazy(() => import("./routes/checkout/checkoutPage.route"));
 const OrdersPage = lazy(() => import("./routes/orders/ordersPage.route"));
-const LoginPage = lazy(() => import("./routes/login/login.route"));
+const MyAccountPage = lazy(
+  () => import("./routes/myAccount/myAccountPage.route")
+);
 
 export const Routing = () => {
   return (
@@ -20,8 +22,7 @@ export const Routing = () => {
         </Route>
         <Route path="podsumowanie" element={<CheckoutPage />} />
         <Route path="historiaZamowien" element={<OrdersPage />} />
-        <Route path="logowanie" element={<LoginPage />} />
-
+        <Route path="mojeKonto" element={<MyAccountPage />} />
       </Route>
     </Routes>
   );

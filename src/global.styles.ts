@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 
 export const Typhography = {
@@ -78,32 +79,6 @@ export const StandardFlexContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
-export const TextLink = styled.div`
-  cursor: pointer;
-  position: relative;
-  color: inherit;
-  text-decoration: inherit;
-  &::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 4px;
-    border-radius: 4px;
-    background-color: #18272f;
-    bottom: 0;
-    left: 0;
-    transform-origin: right;
-    transform: scaleX(0);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  &:hover::before {
-    transform-origin: left;
-    transform: scaleX(1);
-  }
-`;
-
 export const Title = styled(H3)`
   border-bottom: 2px solid;
   border-image-slice: 1;
@@ -129,3 +104,33 @@ export const Title = styled(H3)`
   }
 `;
 
+export const BareLink = styled(Link)`
+  cursor: pointer;
+  text-decoration: inherit;
+  color: inherit;
+`;
+
+export const TextLink = styled.div`
+  cursor: default;
+  position: relative;
+  color: inherit;
+  text-decoration: inherit;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    background-color: #18272f;
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+`;

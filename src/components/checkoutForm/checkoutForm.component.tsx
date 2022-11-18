@@ -5,11 +5,7 @@ import {
   selectCartItems,
   selectCartTotal
 } from "../../store/cartReducer/cart.selector";
-import { postOrderHistoryAsync } from "../../store/orderHistory/orderHistory.action";
-import {
-  selectDelivery,
-  selectOrderHistory
-} from "../../store/orderHistory/orderHistory.selector";
+import { selectDelivery } from "../../store/orderHistory/orderHistory.selector";
 import { DeliveryData } from "../../store/orderHistory/orderHistory.types";
 import {
   formData,
@@ -27,6 +23,12 @@ import {
   NonValidFormInput
 } from "../../globalStyles/form/form.globalStyles";
 import { FormButtons } from "../../globalStyles/form/formButtons/formButtons.component";
+import {
+  resetUsersCartItems,
+  updateUsersOrderHistory
+} from "../../utils/firebase/functions/dbManipulationFunctions.FBFunctions";
+import { selectCurrentUser } from "../../store/userReducer/user.selector";
+import { type User } from "firebase/auth";
 
 export const CheckoutForm = () => {
   const {
@@ -35,16 +37,17 @@ export const CheckoutForm = () => {
     formState: { errors }
   } = useForm();
   const dispatch = useAppDispatch();
-  const orderHistory = useAppSelector(selectOrderHistory);
   const totalPrice = useAppSelector(selectCartTotal);
   const cartItems = useAppSelector(selectCartItems);
   const deliveryInfo = useAppSelector(selectDelivery);
+
+  const currentUser = useAppSelector(selectCurrentUser);
   const deliveryPrice = deliveryInfo.price ? deliveryInfo.price : 0;
 
   const addToOrderHistoryHandler = (formData: DeliveryData) => {
-    dispatch(
-      postOrderHistoryAsync(
-        orderHistory,
+    currentUser &&
+      (updateUsersOrderHistory(
+        currentUser as User,
         orderCreator(
           orderId,
           getCurrentTime(),
@@ -53,10 +56,11 @@ export const CheckoutForm = () => {
           formData,
           deliveryPrice
         )
-      )
-    );
+      ),
+      resetUsersCartItems(currentUser as User, cartItems));
     dispatch(setCartItems([]));
   };
+
   return (
     <>
       <Form className="was-validated">

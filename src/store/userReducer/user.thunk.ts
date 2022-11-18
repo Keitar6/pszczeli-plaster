@@ -11,6 +11,7 @@ import {
 import { createUserDocumentFromAuth } from "../../utils/firebase/functions/dbManipulationFunctions.FBFunctions";
 import { getUserCartItemsAndOrderHistory } from "../../utils/firebase/functions/gets.FBFunctions";
 import { setCartItems } from "../cartReducer/cart.actions";
+import { setOrderHistory } from "../orderHistory/orderHistory.action";
 import {
   anonymousSignInStart,
   createUsersDocumentFailed,
@@ -99,6 +100,7 @@ export const getUsersDataAsync: any = //ThunkAction<
       try {
         const userDB = await getUserCartItemsAndOrderHistory(currentUser);
         dispatch(setCartItems(userDB.cartItems));
+        dispatch(setOrderHistory(userDB.orderHistory));
         dispatch(getUsersDataSuccess(userDB));
       } catch (error) {
         dispatch(getUsersDataFailed(error as Error));

@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { TextLink } from "../../../../global.styles";
+import { BareLink, TextLink } from "../../../../global.styles";
 import {
   MojeKontoContainer,
   MojeKontoLinks,
@@ -8,14 +8,17 @@ import {
 } from "./footerMyAccount.styles";
 
 export const MyAccount: FC = () => {
+
   return (
     <MojeKontoContainer>
       <MojeKontoTitle>Moje Konto</MojeKontoTitle>
       <MojeKontoLinks>
-        <TextLink as="a" href="/historiaZamowien">
-          Historia zamówień
+        <TextLink>
+          <BareLink to="/historiaZamowien">Historia zamówień</BareLink>{" "}
         </TextLink>
-        <TextLink>Ustawienia Konta</TextLink>
+        <TextLink>
+          <BareLink to="/mojeKonto">Moje Konto</BareLink>
+        </TextLink>
       </MojeKontoLinks>
     </MojeKontoContainer>
   );

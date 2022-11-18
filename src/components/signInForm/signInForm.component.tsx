@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import {
   Form,
   FormTextInputs
@@ -16,6 +17,8 @@ export const SignInForm = () => {
     formState: { errors }
   } = useForm();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   return (
     <Form className="was-validated" id="signInForm">
       <FormTextInputs>
@@ -50,7 +53,9 @@ export const SignInForm = () => {
       </FormTextInputs>
       <FormButtons
         submitHandler={handleSubmit((formData) => {
-          dispatch(signInWithEmailAsync(formData.email, formData.password));
+          dispatch(
+            signInWithEmailAsync(formData.email, formData.password)
+          )
         })}
         idPlus="logButton"
       >

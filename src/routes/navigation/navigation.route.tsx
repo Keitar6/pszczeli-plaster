@@ -23,19 +23,56 @@ import { InputBar } from "../../components/inputBar/inputBar.component";
 
 import { refresh } from "../../utils/reusableFunctions/refresh.function";
 import { toggleCartMenu } from "../../store/cartReducer/cart.actions";
-import { selectCartCount } from "../../store/cartReducer/cart.selector";
+import {
+  selectCartCount,
+  selectCartItems
+} from "../../store/cartReducer/cart.selector";
 import { isCartEmpty } from "../../utils/reusableFunctions/isCartEmpty.function";
+import { selectOrderHistory } from "../../store/orderHistory/orderHistory.selector";
+import {
+  selectCurrentUser,
+  selectCurrentUserData
+} from "../../store/userReducer/user.selector";
+import { debounce } from "lodash";
+import { updateUsersCartItems } from "../../utils/firebase/functions/dbManipulationFunctions.FBFunctions";
+import { type User } from "firebase/auth";
+import { useEffect, useMemo } from "react";
 
 const Navigation = () => {
   const isUserMenuOpened = useAppSelector(selectIsUserMenuOpened);
   const dispatch = useAppDispatch();
   const cartQuantity = useAppSelector(selectCartCount);
+  const cartItems = useAppSelector(selectCartItems);
+  const orderHistory = useAppSelector(selectOrderHistory);
+  const currentUser = useAppSelector(selectCurrentUser);
+  const userDatabaseData = useAppSelector(selectCurrentUserData);
+
+  const debounced = useMemo(
+    () =>
+      debounce(function (user, items) {
+        user !== null
+          ? updateUsersCartItems(
+              user as User,
+              {
+                currentCartItems: items,
+                currentUserOrderHistory: orderHistory
+              },
+              userDatabaseData
+            )
+          : () => console.log("DEBOUNCEEE FAILED");
+      }, 3000),
+    []
+  );
 
   const userMenuHandler = () => dispatch(toggleUserMenu());
   const logoClickHandler = () => refresh();
 
   const cartDropdownHandler = () =>
     isCartEmpty(cartQuantity) && dispatch(toggleCartMenu());
+
+  useEffect(() => {
+    debounced(currentUser, cartItems);
+  }, [cartItems]);
 
   return (
     <StructurizeComponent>

@@ -39,7 +39,9 @@ import {
   AdditionalInformation,
   UserData
 } from "./store/userReducer/user.types";
-import { updateUsersCartItems } from "./utils/firebase/functions/dbManipulationFunctions.FBFunctions";
+import { setOrderHistory } from "./store/orderHistory/orderHistory.action";
+import { useNavigate } from "react-router-dom";
+import { setCartItems } from "./store/cartReducer/cart.actions";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -49,11 +51,12 @@ function App() {
   const currentCartItems = useAppSelector(selectCartItems);
   const initOrderHistory = useAppSelector(selectOrderHistory);
   const cartQuantity = useAppSelector(selectCartCount);
-  const logStatus = useAppSelector(selectLoginStatus);
   const previousUser = useAppSelector(selectpPreviousUser);
+  const logStatus = useAppSelector(selectLoginStatus);
   const currentUser = useAppSelector(selectCurrentUser);
   const nextUser = useAppSelector(selectNextUser);
   const sortType = useAppSelector(selectSort);
+  const navigate = useNavigate();
 
   const loginHandler = (user: UserData | null) => {
     dispatch(setPreviousUser());
@@ -67,8 +70,6 @@ function App() {
     dispatch(createUsersDocumentAsync(userAuth, additionalInfos));
     dispatch(getUsersDataAsync(userAuth));
   };
-
-  console.log("CART ITEMS AFTER RENDER: ", currentCartItems);
 
   useEffect(() => {
     onAuthStateChanged(userAuth, (currentUserAuth) => {
@@ -85,8 +86,6 @@ function App() {
   }, [currentUser]);
 
   async function userManagement() {
-    console.log("BEFORE FIRST CONDITION current user: ", currentUser);
-    console.log("BEFORE FIRST CONDITION logStatus: ", logStatus);
     console.log(
       "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa"
     );
@@ -98,20 +97,18 @@ function App() {
         photoUrl: (currentUser as User).photoURL
       });
 
+      location.href === "http://localhost:3005/mojeKonto" && navigate("/");
       dispatch(setLoggStatus(LOGIN_STATUS_TYPES.LOGGED_IN));
     } else if (currentUser === null) {
       // after logout
+
       if (
         logStatus === LOGIN_STATUS_TYPES.LOGGED_IN &&
         previousUser.status !== null
       ) {
         dispatch(setLoggStatus(LOGIN_STATUS_TYPES.LOGGED_OUT));
-        // Update CartItems and Orders in Firestore
-        updateUsersCartItems(
-          previousUser.status as User,
-          currentCartItems,
-          previousUser.userDatabaseData
-        );
+        dispatch(setOrderHistory([]));
+        dispatch(setCartItems([]));
       }
     }
   }

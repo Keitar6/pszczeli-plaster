@@ -9,7 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 import { GlobalStyle } from "./global.styles";
 import Spinner from "./components/spinner/spinner.component";
 
-const container = document.getElementById("root") as HTMLElement;
+export const container = document.getElementById("root") as HTMLElement;
 const root = createRoot(container);
 root.render(
   <React.StrictMode>

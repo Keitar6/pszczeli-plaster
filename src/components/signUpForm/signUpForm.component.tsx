@@ -1,4 +1,5 @@
 import { FieldValues, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import {
   Form,
   FormTextInputs
@@ -19,11 +20,13 @@ export const SignUpForm = () => {
   } = useForm();
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate()
 
   const signUpHandler = (formData: FieldValues) => {
     const { name, lastname, email, password } = formData;
 
     dispatch(signUpAsync(email, password, { displayName: name }));
+    navigate("/", { replace: true });
   };
 
   return (

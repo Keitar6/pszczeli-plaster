@@ -1,5 +1,6 @@
 import { Colors, H3 } from "../../global.styles";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const OrdersContainer = styled.div`
   display: flex;
@@ -63,5 +64,35 @@ export const OrdersTitle = styled(H3)`
   padding-bottom: 0.5rem;
   position: relative;
 
+  }
+`;
+
+export const OrderListLink = styled(Link)`
+  cursor: pointer;
+  position: relative;
+  color: inherit;
+  text-decoration: inherit;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    background-color: #18272f;
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+
+  &:hover {
+    color: ${Colors.primary};
   }
 `;

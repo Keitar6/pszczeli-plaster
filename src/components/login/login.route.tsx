@@ -5,19 +5,19 @@ import { SignInForm } from "../../components/signInForm/signInForm.component";
 import { SignUpForm } from "../../components/signUpForm/signUpForm.component";
 import { signInWithGooglePopUp } from "../../utils/firebase/firebase.utils";
 import {
-  LoginPageContainer,
   SignInContainer,
   SignInTitle,
   SignUpContainer,
   SignUpTitle
 } from "./login.styles";
 
-const LoginPage = () => {
+const Login = () => {
   const loginThroughGoogleHandler = () => {
     signInWithGooglePopUp();
   };
+
   return (
-    <LoginPageContainer>
+    <>
       <SignUpContainer>
         {" "}
         <SignUpTitle> Rejestracja</SignUpTitle>
@@ -36,8 +36,8 @@ const LoginPage = () => {
           Zaloguj przez konto Google
         </Button>
       </SignInContainer>
-    </LoginPageContainer>
+    </>
   );
 };
 
-export default LoginPage;
+export default Login;

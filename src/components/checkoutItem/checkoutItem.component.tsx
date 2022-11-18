@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useDispatch, useSelector } from "react-redux/es/exports";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import {
   addItemToCart,
   removeItemFromCart
@@ -22,13 +22,17 @@ type CheckoutItemProps = {
 };
 
 export const CheckoutItem: FC<CheckoutItemProps> = ({ cartItem }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { name, quantity, price, image } = cartItem;
-  const cartItems = useSelector(selectCartItems);
+  const cartItems = useAppSelector(selectCartItems);
 
-  const addItemHandler = () => dispatch(addItemToCart(cartItems, cartItem));
-  const removeItemHandler = () =>
+  const addItemHandler = () => {
+    dispatch(addItemToCart(cartItems, cartItem));
+  };
+
+  const removeItemHandler = () => {
     dispatch(removeItemFromCart(cartItems, cartItem));
+  };
 
   return (
     <CheckoutItemContainer>
