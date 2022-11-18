@@ -78,3 +78,8 @@ export const UserMenuFuncButton = styled(Button)`
   flex-direction: row;
   gap: 0.5rem;
 `;
+
+export const GoToMyAccount = styled.div`
+  cursor: pointer;
+ 
+`;

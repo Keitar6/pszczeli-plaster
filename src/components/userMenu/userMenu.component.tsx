@@ -10,7 +10,8 @@ import {
   UserMenuLogoText,
   UserMenuFuncButtons,
   UserMenuFuncButton,
-  UserMenuContainer
+  UserMenuContainer,
+  GoToMyAccount
 } from "./userMenu.styles";
 
 import { toggleUserMenu } from "../../store/generalPropReducer/generalProp.actions";
@@ -22,8 +23,7 @@ import {
   selectCurrentUser,
   selectIsLoadingUser
 } from "../../store/userReducer/user.selector";
-import { signOutUser } from "../../utils/firebase/firebase.utils";
-import { UserData } from "../../store/userReducer/user.types";
+
 import { signOutAsync } from "../../store/userReducer/user.thunk";
 
 export const UserMenuModal = () => {
@@ -33,7 +33,6 @@ export const UserMenuModal = () => {
   const currentUser = useAppSelector(selectCurrentUser);
   const isLoadingUser = useAppSelector(selectIsLoadingUser);
   const isUserLogedAndNotAnonym = currentUser && !currentUser.isAnonymous;
-  
 
   const userMenuOnClickHandler = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent> & {
@@ -55,7 +54,7 @@ export const UserMenuModal = () => {
     dispatch(toggleUserMenu());
   };
 
-  const goToLoginHandler = () => {
+  const goToMyAccountHandler = () => {
     navigate("/mojeKonto");
     dispatch(toggleUserMenu());
   };
@@ -95,7 +94,13 @@ export const UserMenuModal = () => {
                       "Panie Hakeru"
                 }`}
               </H2>
-              <TextLink>Moje konto</TextLink>
+              <TextLink>
+                {" "}
+                <GoToMyAccount onClick={goToMyAccountHandler}>
+                  {" "}
+                  Moje konto
+                </GoToMyAccount>
+              </TextLink>
             </UserMenuLogoText>
           </UserMenuLogoContainer>
 
@@ -103,11 +108,13 @@ export const UserMenuModal = () => {
             <Button
               buttonType={BUTTON_TYPE_CLASSES.login}
               onClick={
-                isUserLogedAndNotAnonym ? logOutHandler : goToLoginHandler
+                isUserLogedAndNotAnonym ? logOutHandler : goToMyAccountHandler
               }
               isLoading={isLoadingUser}
             >
-              {isUserLogedAndNotAnonym ? "Wyloguj się" : "Przejdź do logowania"}
+              {isUserLogedAndNotAnonym
+                ? "Wyloguj się"
+                : "Przejdź na stronę logowania"}
             </Button>
           </UserMenuLoginButtons>
 
