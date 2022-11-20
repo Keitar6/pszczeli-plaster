@@ -10,7 +10,6 @@ import { CartItem } from "../../../store/cartReducer/cart.types";
 import { Order } from "../../../store/orderHistory/orderHistory.types";
 import { UserDatabaseDataType } from "../../../store/userReducer/user.reducer";
 import { AdditionalInformation } from "../../../store/userReducer/user.types";
-import { WhichCollection } from "../../../types/checkTypes/firebase.typeGuards";
 import { fireStorage, NewOrder, usersCollectionRef } from "../firebase.utils";
 
 export type UpdateUsersCartItemsAndOrderHistory = {
@@ -20,25 +19,27 @@ export type UpdateUsersCartItemsAndOrderHistory = {
 
 export const createUserDocumentFromAuth = async (
   userAuth: User,
-  additionalInfos = {} as AdditionalInformation
+  additionalInfos: AdditionalInformation = {}
 ) => {
   const userDocRef = doc(usersCollectionRef, userAuth.uid); //database, collection, unique ID
   const userSnapshot = await getDoc(userDocRef);
 
   if (!userSnapshot.exists()) {
-    const { displayName, email } = userAuth;
-    const { cartItems, orderHistory, photoUrl } = additionalInfos;
+    const { email } = userAuth;
+    const { displayName, name, lastName } = additionalInfos;
     const createdAt = new Date();
-
+    console.log(additionalInfos);
+    // eslint-disable-next-line no-debugger
+    debugger;
     try {
-      await setDoc(userDocRef, {
+      setDoc(userDocRef, {
         displayName,
+        name,
+        lastName,
         email,
-        createdAt,
-        photoUrl
+        createdAt
+
       });
-      addCollectionToDocuments(userAuth, cartItems, "cartItems");
-      addCollectionToDocuments(userAuth, orderHistory, "orderHistory");
     } catch (error) {
       console.log("I just caught some error while creating users!!", error);
     }
@@ -47,28 +48,6 @@ export const createUserDocumentFromAuth = async (
   else if (userSnapshot.exists()) {
     return;
   }
-};
-
-export const addCollectionToDocuments = (
-  userAuth: User,
-  objectsToAdd: CartItem[] | Order[],
-  collectionName: "orderHistory" | "cartItems"
-) => {
-  const userDocRef = doc(usersCollectionRef, userAuth.uid);
-  const collToAdd = collection(userDocRef, collectionName);
-  const batch = writeBatch(fireStorage);
-  let objectName = "";
-
-  objectsToAdd.forEach((object) => {
-    WhichCollection(object, "cartItems")
-      ? (objectName = object.name)
-      : (objectName = object.time.replaceAll("/", "."));
-
-    const docRef = doc(collToAdd, objectName);
-    batch.set(docRef, object);
-  });
-
-  batch.commit();
 };
 
 //order History functions

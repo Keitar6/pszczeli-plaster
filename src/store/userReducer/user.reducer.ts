@@ -9,6 +9,7 @@ import {
   getUsersDataSuccess,
   googleSignInStart,
   setAlphabeticSorting,
+  setCurrentUserFormData,
   setInputSorting,
   setLoggStatus,
   setNextUser,
@@ -22,7 +23,7 @@ import {
   signOutSuccess,
   toggleSortingAscending
 } from "./user.actions";
-import { UserData } from "./user.types";
+import { AdditionalInformation, UserData } from "./user.types";
 
 export type SorTypeVariations = {
   ALPHABETIC: "alphabetic";
@@ -70,6 +71,7 @@ export type UserState = {
   };
   readonly currentUser: UserData | null;
   readonly currentUserDBData: UserDatabaseDataType;
+  readonly currentUserFormData: AdditionalInformation;
 
   readonly nextUser: UserData | null;
   readonly isLoading: boolean;
@@ -90,6 +92,11 @@ export const USER_INITIAL_STATE: UserState = {
   currentUserDBData: {
     cartItems: [],
     orderHistory: []
+  },
+  currentUserFormData: {
+    displayName: "",
+    name: "",
+    lastName: "",
   },
   nextUser: null,
   isLoading: false,
@@ -254,6 +261,13 @@ export const userReducer = (
     return {
       ...state,
       nextUser: action.payload
+    };
+  }
+
+  if (setCurrentUserFormData.match(action)) {
+    return {
+      ...state,
+      currentUserFormData: action.payload
     };
   }
 

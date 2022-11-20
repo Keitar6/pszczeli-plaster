@@ -6,7 +6,6 @@ import {
 } from "./store/generalPropReducer/generalProp.selector";
 import {
   selectCartCount,
-  selectCartItems,
   selectIsCartMenuOpened
 } from "./store/cartReducer/cart.selector";
 import { CartModal } from "./components/cartModal/cart.component";
@@ -21,7 +20,6 @@ import {
   getUsersDataAsync,
   signInAsync
 } from "./store/userReducer/user.thunk";
-import { selectOrderHistory } from "./store/orderHistory/orderHistory.selector";
 import {
   setLoggStatus,
   setNextUser,
@@ -30,26 +28,25 @@ import {
 import { LOGIN_STATUS_TYPES } from "./store/userReducer/user.reducer";
 import {
   selectCurrentUser,
+  selectCurrentUserFormData,
   selectLoginStatus,
   selectNextUser,
   selectpPreviousUser,
   selectSort
 } from "./store/userReducer/user.selector";
-import {
-  AdditionalInformation,
-  UserData
-} from "./store/userReducer/user.types";
+import { UserData } from "./store/userReducer/user.types";
 import { setOrderHistory } from "./store/orderHistory/orderHistory.action";
 import { useNavigate } from "react-router-dom";
 import { setCartItems } from "./store/cartReducer/cart.actions";
+import { CART_INITIAL_STATE } from "./store/cartReducer/cart.reducer";
+import { ORDER_HISTORY_INITIAL_STATE } from "./store/orderHistory/orderHistory.reducer";
 
 function App() {
   const dispatch = useAppDispatch();
   const isUserMenuOpened = useAppSelector(selectIsUserMenuOpened);
   const isCartMenuOpened = useAppSelector(selectIsCartMenuOpened);
   const isProductCardOpened = useAppSelector(selectIsProductCardOpened);
-  const currentCartItems = useAppSelector(selectCartItems);
-  const initOrderHistory = useAppSelector(selectOrderHistory);
+  const currentUserFormData = useAppSelector(selectCurrentUserFormData);
   const cartQuantity = useAppSelector(selectCartCount);
   const previousUser = useAppSelector(selectpPreviousUser);
   const logStatus = useAppSelector(selectLoginStatus);
@@ -63,11 +60,9 @@ function App() {
     dispatch(signInAsync(user));
   };
 
-  const settingUserHandler = (
-    userAuth: User,
-    additionalInfos?: AdditionalInformation
-  ) => {
-    dispatch(createUsersDocumentAsync(userAuth, additionalInfos));
+  const settingUserHandler = (userAuth: User) => {
+    userAuth &&
+      dispatch(createUsersDocumentAsync(userAuth, { ...currentUserFormData }));
     dispatch(getUsersDataAsync(userAuth));
   };
 
@@ -86,19 +81,12 @@ function App() {
   }, [currentUser]);
 
   async function userManagement() {
-    console.log(
-      "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa"
-    );
+    if (currentUser !== null) {
+      settingUserHandler(currentUser as User);
 
-    if (currentUser !== null && !currentUser.isAnonymous) {
-      settingUserHandler(currentUser as User, {
-        cartItems: currentCartItems,
-        orderHistory: initOrderHistory,
-        photoUrl: (currentUser as User).photoURL
-      });
+      dispatch(setLoggStatus(LOGIN_STATUS_TYPES.LOGGED_IN));
 
       location.href === "http://localhost:3005/mojeKonto" && navigate("/");
-      dispatch(setLoggStatus(LOGIN_STATUS_TYPES.LOGGED_IN));
     } else if (currentUser === null) {
       // after logout
 
@@ -107,8 +95,8 @@ function App() {
         previousUser.status !== null
       ) {
         dispatch(setLoggStatus(LOGIN_STATUS_TYPES.LOGGED_OUT));
-        dispatch(setOrderHistory([]));
-        dispatch(setCartItems([]));
+        dispatch(setOrderHistory(ORDER_HISTORY_INITIAL_STATE["orderHistory"]));
+        dispatch(setCartItems(CART_INITIAL_STATE["cartItems"]));
       }
     }
   }

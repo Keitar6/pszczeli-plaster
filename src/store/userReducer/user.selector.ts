@@ -15,6 +15,11 @@ export const selectCurrentUserData = createSelector(
   [selectUserReducer],
   (user) => user.currentUserDBData
 );
+
+export const selectCurrentUserFormData = createSelector(
+  [selectUserReducer],
+  (user) => user.currentUserFormData
+);
 export const selectNextUser = createSelector(
   [selectUserReducer],
   (user) => user.nextUser

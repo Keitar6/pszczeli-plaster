@@ -7,10 +7,13 @@ import {
 import {
   LoginStatusType,
   UserDatabaseDataType,
-  UserState
 } from "./user.reducer";
 
-import { UserData, USER_ACTION_TYPES } from "./user.types";
+import {
+  AdditionalInformation,
+  UserData,
+  USER_ACTION_TYPES
+} from "./user.types";
 
 export type ToggleSortingAscending =
   Action<USER_ACTION_TYPES.TOGGLE_SORTING_ASCENDING>;
@@ -83,6 +86,11 @@ export type SetPreviousUser = Action<USER_ACTION_TYPES.SET_PREVIOUS_USER>;
 export type SetNextUser = ActionWithPayload<
   USER_ACTION_TYPES.SET_NEXT_USER,
   UserData | null
+>;
+
+export type SetCurrentUserFormData = ActionWithPayload<
+  USER_ACTION_TYPES.SET_CURRENT_USER_FORM_DATA,
+  AdditionalInformation
 >;
 
 export const toggleSortingAscending = withMatch(
@@ -198,4 +206,8 @@ export const createUsersDocumentSuccess = withMatch(
 export const createUsersDocumentFailed = withMatch(
   (error: Error): CreateUsersDocumentFailed =>
     actionCreator(USER_ACTION_TYPES.USERS_DOCUMENT_CREATION_FAILED, error)
+);
+export const setCurrentUserFormData = withMatch(
+  (formData: AdditionalInformation): SetCurrentUserFormData =>
+    actionCreator(USER_ACTION_TYPES.SET_CURRENT_USER_FORM_DATA, formData)
 );

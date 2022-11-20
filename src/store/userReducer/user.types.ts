@@ -20,10 +20,8 @@ export type UserFromDBData = {
 
 export type AdditionalInformation = {
   displayName?: string;
-  photoUrl: string | null;
-  cartItems: UserFromDBData["cartItems"];
-  orderHistory: UserFromDBData["orderHistory"];
-  sorType?: UserFromDBData["sorType"];
+  name?: string;
+  lastName?: string;
 };
 
 export enum USER_ACTION_TYPES {
@@ -36,6 +34,7 @@ export enum USER_ACTION_TYPES {
   SET_SORTING_INPUT = "SET_SORTING_INPUT",
   SET_ORDER_HISTORY = "SET_ORDER_HISTORY",
   SET_LOGGED_STATUS = "SET_LOGGED_STATUS",
+  SET_CURRENT_USER_FORM_DATA = "SET_CURRENT_USER_FORM_DATA",
 
   SIGN_OUT_START = "SIGN_OUT_START",
   SIGN_OUT_SUCCESS = "SIGN_OUT_SUCCESS",

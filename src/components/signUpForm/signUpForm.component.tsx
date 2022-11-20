@@ -6,6 +6,7 @@ import {
 } from "../../globalStyles/form/form.globalStyles";
 import { FormButtons } from "../../globalStyles/form/formButtons/formButtons.component";
 import { useAppDispatch } from "../../hooks/hooks";
+import { setCurrentUserFormData } from "../../store/userReducer/user.actions";
 
 import { signUpAsync } from "../../store/userReducer/user.thunk";
 
@@ -20,12 +21,16 @@ export const SignUpForm = () => {
   } = useForm();
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const signUpHandler = (formData: FieldValues) => {
-    const { name, lastname, email, password } = formData;
-
-    dispatch(signUpAsync(email, password, { displayName: name }));
+    const { name, lastName, email, password } = formData;
+    const formDataWithDisplayName = {
+      displayName: name + lastName,
+      ...formData
+    };
+    dispatch(setCurrentUserFormData(formDataWithDisplayName));
+    dispatch(signUpAsync(email, password));
     navigate("/", { replace: true });
   };
 

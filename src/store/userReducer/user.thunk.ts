@@ -116,6 +116,7 @@ export const createUsersDocumentAsync: any = //ThunkAction<
   // AnyAction>
   (userAuth: User, additionalInfos?: AdditionalInformation) => {
     return async (dispatch: Dispatch<AnyAction>) => {
+
       dispatch(createUsersDocumentStart());
       try {
         await createUserDocumentFromAuth(userAuth, additionalInfos);
@@ -167,15 +168,12 @@ export const signUpAsync: any = //ThunkAction<
   // unknown,
   // AnyAction>
   (
-    currentUser: UserData | null,
     email: string,
     password: string,
-    addInfo: AdditionalInformation
   ) => {
     return async (dispatch: Dispatch<AnyAction>) => {
       dispatch(signUpStart());
       try {
-        createUserDocumentFromAuth(currentUser as User, addInfo);
         signUpByEmailAndPassword(email, password);
         dispatch(signUpSuccess());
       } catch (error) {
