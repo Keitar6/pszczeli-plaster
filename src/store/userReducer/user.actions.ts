@@ -4,10 +4,7 @@ import {
   ActionWithPayload,
   withMatch
 } from "../../utils/store/store.utils";
-import {
-  LoginStatusType,
-  UserDatabaseDataType,
-} from "./user.reducer";
+import { LoginStatusType, UserDatabaseDataType } from "./user.reducer";
 
 import {
   AdditionalInformation,
@@ -92,6 +89,9 @@ export type SetCurrentUserFormData = ActionWithPayload<
   USER_ACTION_TYPES.SET_CURRENT_USER_FORM_DATA,
   AdditionalInformation
 >;
+
+export type ToggleProfileEditingMode =
+  Action<USER_ACTION_TYPES.TOGGLE_PROFILE_EDITING>;
 
 export const toggleSortingAscending = withMatch(
   (): ToggleSortingAscending =>
@@ -207,7 +207,13 @@ export const createUsersDocumentFailed = withMatch(
   (error: Error): CreateUsersDocumentFailed =>
     actionCreator(USER_ACTION_TYPES.USERS_DOCUMENT_CREATION_FAILED, error)
 );
+
 export const setCurrentUserFormData = withMatch(
   (formData: AdditionalInformation): SetCurrentUserFormData =>
     actionCreator(USER_ACTION_TYPES.SET_CURRENT_USER_FORM_DATA, formData)
+);
+
+export const toggleProfileEditingMode = withMatch(
+  (): ToggleProfileEditingMode =>
+    actionCreator(USER_ACTION_TYPES.TOGGLE_PROFILE_EDITING)
 );

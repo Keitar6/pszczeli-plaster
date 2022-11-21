@@ -19,26 +19,26 @@ export type UpdateUsersCartItemsAndOrderHistory = {
 
 export const createUserDocumentFromAuth = async (
   userAuth: User,
-  additionalInfos: AdditionalInformation = {}
+  additionalInfos: AdditionalInformation = { deliveryData: {} }
 ) => {
   const userDocRef = doc(usersCollectionRef, userAuth.uid); //database, collection, unique ID
   const userSnapshot = await getDoc(userDocRef);
 
   if (!userSnapshot.exists()) {
     const { email } = userAuth;
-    const { displayName, name, lastName } = additionalInfos;
+    const { displayName, name, lastName, deliveryData } = additionalInfos;
     const createdAt = new Date();
     console.log(additionalInfos);
     // eslint-disable-next-line no-debugger
     debugger;
     try {
       setDoc(userDocRef, {
+        createdAt,
         displayName,
         name,
         lastName,
         email,
-        createdAt
-
+        deliveryData
       });
     } catch (error) {
       console.log("I just caught some error while creating users!!", error);

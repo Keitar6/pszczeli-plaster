@@ -21,6 +21,7 @@ import {
   signOutFailed,
   signOutStart,
   signOutSuccess,
+  toggleProfileEditingMode,
   toggleSortingAscending
 } from "./user.actions";
 import { AdditionalInformation, UserData } from "./user.types";
@@ -72,6 +73,7 @@ export type UserState = {
   readonly currentUser: UserData | null;
   readonly currentUserDBData: UserDatabaseDataType;
   readonly currentUserFormData: AdditionalInformation;
+  readonly isProfileEditingModeOn: boolean;
 
   readonly nextUser: UserData | null;
   readonly isLoading: boolean;
@@ -97,7 +99,21 @@ export const USER_INITIAL_STATE: UserState = {
     displayName: "",
     name: "",
     lastName: "",
+    deliveryData: {
+      name: "---",
+      lastName: "---",
+      email: "---",
+      deliveryMethod: "---",
+      city: "---",
+      homeAdress: "---",
+      street: "---",
+      zip: "---",
+      payMethod: "---",
+      terms: "---"
+    }
   },
+  isProfileEditingModeOn: false,
+
   nextUser: null,
   isLoading: false,
   error: null,
@@ -268,6 +284,13 @@ export const userReducer = (
     return {
       ...state,
       currentUserFormData: action.payload
+    };
+  }
+
+  if (toggleProfileEditingMode.match(action)) {
+    return {
+      ...state,
+      isProfileEditingModeOn: !state.isProfileEditingModeOn
     };
   }
 

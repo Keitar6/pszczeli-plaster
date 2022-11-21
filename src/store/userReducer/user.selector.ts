@@ -39,3 +39,8 @@ export const selectSort = createSelector(
   [selectUserReducer],
   (userReducer) => userReducer.sort
 );
+
+export const selectIsProfileEditingModeOn = createSelector(
+  [selectUserReducer],
+  (userReducer) => userReducer.isProfileEditingModeOn
+);

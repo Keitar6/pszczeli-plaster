@@ -5,8 +5,9 @@ import {
   FormTextInputs
 } from "../../globalStyles/form/form.globalStyles";
 import { FormButtons } from "../../globalStyles/form/formButtons/formButtons.component";
-import { useAppDispatch } from "../../hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { setCurrentUserFormData } from "../../store/userReducer/user.actions";
+import { selectCurrentUserFormData } from "../../store/userReducer/user.selector";
 
 import { signUpAsync } from "../../store/userReducer/user.thunk";
 
@@ -20,6 +21,7 @@ export const SignUpForm = () => {
     formState: { errors }
   } = useForm();
 
+  const initProfileData = useAppSelector(selectCurrentUserFormData);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -27,6 +29,7 @@ export const SignUpForm = () => {
     const { name, lastName, email, password } = formData;
     const formDataWithDisplayName = {
       displayName: name + lastName,
+      deliveryData: initProfileData.deliveryData,
       ...formData
     };
     dispatch(setCurrentUserFormData(formDataWithDisplayName));

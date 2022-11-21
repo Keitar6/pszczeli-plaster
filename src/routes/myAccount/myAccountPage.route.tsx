@@ -1,4 +1,5 @@
 import Login from "../../components/login/login.route";
+import { ProfileDetails } from "../../components/profileDetails/profileDetails.component";
 import { useAppSelector } from "../../hooks/hooks";
 import { selectCurrentUser } from "../../store/userReducer/user.selector";
 
@@ -12,7 +13,11 @@ const MyAccountPage = () => {
         <LoginPageContainer>
           <Login />
         </LoginPageContainer>
-      ) : null}
+      ) : (
+        <ProfileDetails
+          name={currentUser.displayName ? currentUser.displayName : ""}
+        />
+      )}
     </>
   );
 };

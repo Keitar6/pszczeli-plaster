@@ -61,6 +61,10 @@ function App() {
   };
 
   const settingUserHandler = (userAuth: User) => {
+    console.log(currentUserFormData);
+    // eslint-disable-next-line no-debugger
+    debugger;
+
     userAuth &&
       dispatch(createUsersDocumentAsync(userAuth, { ...currentUserFormData }));
     dispatch(getUsersDataAsync(userAuth));

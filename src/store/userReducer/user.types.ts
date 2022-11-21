@@ -1,6 +1,6 @@
 import type { User } from "firebase/auth";
 import { CartItem } from "../cartReducer/cart.types";
-import { Order } from "../orderHistory/orderHistory.types";
+import { DeliveryData, Order } from "../orderHistory/orderHistory.types";
 import { SortType } from "./user.reducer";
 
 export type UserData =
@@ -22,6 +22,7 @@ export type AdditionalInformation = {
   displayName?: string;
   name?: string;
   lastName?: string;
+  deliveryData: DeliveryData;
 };
 
 export enum USER_ACTION_TYPES {
@@ -35,6 +36,7 @@ export enum USER_ACTION_TYPES {
   SET_ORDER_HISTORY = "SET_ORDER_HISTORY",
   SET_LOGGED_STATUS = "SET_LOGGED_STATUS",
   SET_CURRENT_USER_FORM_DATA = "SET_CURRENT_USER_FORM_DATA",
+  TOGGLE_PROFILE_EDITING = "TOGGLE_PROFILE_EDITING",
 
   SIGN_OUT_START = "SIGN_OUT_START",
   SIGN_OUT_SUCCESS = "SIGN_OUT_SUCCESS",
