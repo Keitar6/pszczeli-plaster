@@ -9,8 +9,14 @@ import {
 import { CartItem } from "../../../store/cartReducer/cart.types";
 import { Order } from "../../../store/orderHistory/orderHistory.types";
 import { UserDatabaseDataType } from "../../../store/userReducer/user.reducer";
-import { AdditionalInformation } from "../../../store/userReducer/user.types";
+import {
+  AdditionalInformation,
+  ProfileDetailsType,
+  UserInfoFromDB
+} from "../../../store/userReducer/user.types";
+import { reverseProfileDetailsCreator } from "../../reusableFunctions/profileDetailsCreator.Functions";
 import { fireStorage, NewOrder, usersCollectionRef } from "../firebase.utils";
+import { getUserProfileRef } from "./gets.FBFunctions";
 
 export type UpdateUsersCartItemsAndOrderHistory = {
   currentCartItems: CartItem[];
@@ -117,4 +123,21 @@ export const resetUsersCartItems = (
   currentCartItems: CartItem[]
 ) => {
   modifyUserDbCartItems(userAuth, currentCartItems, []);
+};
+
+export const updateProfileInformationInDoc = async (
+  userAuth: User,
+  updatedProfile: ProfileDetailsType,
+  initProfile: UserInfoFromDB
+) => {
+  const userDoc = await getUserProfileRef(userAuth);
+  const profileAfterUpdate = reverseProfileDetailsCreator(
+    updatedProfile,
+    initProfile
+  );
+  try {
+    setDoc(userDoc, profileAfterUpdate);
+  } catch (error) {
+    console.log("ERROR IN UPDATING PROFILE", error);
+  }
 };

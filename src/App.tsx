@@ -36,7 +36,6 @@ import {
 } from "./store/userReducer/user.selector";
 import { UserData } from "./store/userReducer/user.types";
 import { setOrderHistory } from "./store/orderHistory/orderHistory.action";
-import { useNavigate } from "react-router-dom";
 import { setCartItems } from "./store/cartReducer/cart.actions";
 import { CART_INITIAL_STATE } from "./store/cartReducer/cart.reducer";
 import { ORDER_HISTORY_INITIAL_STATE } from "./store/orderHistory/orderHistory.reducer";
@@ -53,7 +52,6 @@ function App() {
   const currentUser = useAppSelector(selectCurrentUser);
   const nextUser = useAppSelector(selectNextUser);
   const sortType = useAppSelector(selectSort);
-  const navigate = useNavigate();
 
   const loginHandler = (user: UserData | null) => {
     dispatch(setPreviousUser());
@@ -83,10 +81,7 @@ function App() {
   async function userManagement() {
     if (currentUser !== null) {
       settingUserHandler(currentUser as User);
-
       dispatch(setLoggStatus(LOGIN_STATUS_TYPES.LOGGED_IN));
-
-      location.href === "http://localhost:3005/mojeKonto" && navigate("/");
     } else if (currentUser === null) {
       // after logout
 

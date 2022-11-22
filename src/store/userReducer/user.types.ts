@@ -29,7 +29,7 @@ export type AdditionalInformation = {
 
 export type UserInfoFromDB = AdditionalInformation;
 
-export type ProfileDetails = {
+export type ProfileDetailsType = {
   displayName?: string;
   name: string;
   lastName: string;

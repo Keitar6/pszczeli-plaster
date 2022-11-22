@@ -25,6 +25,7 @@ type CheckoutFormInput = {
   width?: string;
   disabledText?: boolean;
   idPlus?: string;
+  initValue?: string;
 };
 
 export const CheckoutFormInput: FC<PropsWithChildren<CheckoutFormInput>> = ({
@@ -39,6 +40,7 @@ export const CheckoutFormInput: FC<PropsWithChildren<CheckoutFormInput>> = ({
   inputType,
   idPlus,
   disabledText,
+  initValue,
   ...restArgs
 }) => {
   return (
@@ -49,6 +51,7 @@ export const CheckoutFormInput: FC<PropsWithChildren<CheckoutFormInput>> = ({
         id={`${id}` + idPlus}
         placeholder={`${placeholder}`}
         disabled={disabledText}
+        defaultValue={initValue!=='---'?initValue:''}
         {...register(`${id}`, {
           required: true,
           minLength: minLength,
@@ -56,7 +59,7 @@ export const CheckoutFormInput: FC<PropsWithChildren<CheckoutFormInput>> = ({
           ...restArgs
         })}
       />
-      <InputLabel htmlFor={`${id}`}>{placeholder}</InputLabel>
+      <InputLabel htmlFor={`${id}`}>{id}</InputLabel>
       {errorName && <NonValidFormInput>{children}</NonValidFormInput>}
     </InputContainer>
   );

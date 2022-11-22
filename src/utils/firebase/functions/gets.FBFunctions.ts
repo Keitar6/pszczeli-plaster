@@ -20,8 +20,15 @@ export const getUserCartItemsAndOrderHistory = async (userAuth: User) => {
   };
 };
 
-export const getUserProfileData = async (userAuth: User) => {
+export const getUserProfileRef = async (userAuth: User) => {
   const userDocRef = doc(usersCollectionRef, userAuth.uid);
-  const userDoc =  await getDoc(userDocRef);
-  return userDoc.data();
+  return userDocRef;
+};
+export const getUserProfileDoc = async (userAuth: User) => {
+  const userDocRef = doc(usersCollectionRef, userAuth.uid);
+  const userDoc = await getDoc(userDocRef);
+  return userDoc;
+};
+export const getUserProfileData = async (userAuth: User) => {
+  return (await getUserProfileDoc(userAuth)).data();
 };

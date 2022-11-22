@@ -7,7 +7,6 @@ import {
 import { LoginStatusType, UserDatabaseDataType } from "./user.reducer";
 
 import {
-  ProfileDetails,
   UserData,
   UserInfoFromDB,
   USER_ACTION_TYPES
