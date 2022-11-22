@@ -1,8 +1,7 @@
+import { USER_INITIAL_STATE } from "../../store/userReducer/user.reducer";
 import { mockCartItems } from "./mockCartItem";
 
-export const deliveryData = {
-  dobryDelivery: "bardzoDobryDelivery"
-};
+export const deliveryData = USER_INITIAL_STATE.currentUserFormData.deliveryData
 
 export const mockOrder = {
   id: "adgadg",

@@ -28,9 +28,11 @@ export const SignUpForm = () => {
   const signUpHandler = (formData: FieldValues) => {
     const { name, lastName, email, password } = formData;
     const formDataWithDisplayName = {
-      displayName: name + lastName,
-      deliveryData: initProfileData.deliveryData,
-      ...formData
+      ...initProfileData,
+      displayName: name + " " + lastName,
+      name,
+      lastName,
+      email
     };
     dispatch(setCurrentUserFormData(formDataWithDisplayName));
     dispatch(signUpAsync(email, password));

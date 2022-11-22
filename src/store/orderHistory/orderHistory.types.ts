@@ -1,7 +1,13 @@
 import { CartItem } from "../../store/cartReducer/cart.types";
 
 export type DeliveryData = {
-  [key: string]: string | boolean;
+  payMethod: string;
+  deliveryMethod: string;
+  city: string;
+  homeAdress: string;
+  street: string;
+  zip: string;
+  terms: boolean;
 };
 
 export type OrderItem = CartItem;
@@ -29,7 +35,7 @@ export type DeliveryType = {
 };
 export enum ORDER_HISTORY_ACTION_TYPES {
   SET_DELIVERY = "SET_DELIVERY",
-  SET_ORDER_HISTORY = "SET_ORDER_HISTORY",
+  SET_ORDER_HISTORY = "SET_ORDER_HISTORY"
 }
 
 export type PathType = string;

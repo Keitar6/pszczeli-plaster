@@ -114,7 +114,7 @@ export const CheckoutForm = () => {
         </div>
         <FormButtons
           submitHandler={handleSubmit((formData) =>
-            addToOrderHistoryHandler(formData)
+            addToOrderHistoryHandler(formData as DeliveryData)
           )}
         >
           Zamawiam

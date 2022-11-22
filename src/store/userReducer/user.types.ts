@@ -1,4 +1,5 @@
 import type { User } from "firebase/auth";
+import { formData } from "../../utils/checkoutForm/checkoutForm.utils";
 import { CartItem } from "../cartReducer/cart.types";
 import { DeliveryData, Order } from "../orderHistory/orderHistory.types";
 import { SortType } from "./user.reducer";
@@ -19,10 +20,25 @@ export type UserFromDBData = {
 };
 
 export type AdditionalInformation = {
-  displayName?: string;
-  name?: string;
-  lastName?: string;
+  displayName: string;
+  name: string;
+  lastName: string;
+  email: string;
   deliveryData: DeliveryData;
+};
+
+export type UserInfoFromDB = AdditionalInformation;
+
+export type ProfileDetails = {
+  displayName?: string;
+  name: string;
+  lastName: string;
+  email: string;
+  city: string;
+  homeAdress: string;
+  street: string;
+  zip: string;
+  terms: boolean;
 };
 
 export enum USER_ACTION_TYPES {

@@ -14,6 +14,7 @@ import {
   getUserCartItemsAndOrderHistory,
   getUserProfileData
 } from "../../utils/firebase/functions/gets.FBFunctions";
+import { profileDetailsCreator } from "../../utils/reusableFunctions/profileDetailsCreator.Functions";
 import { setCartItems } from "../cartReducer/cart.actions";
 import { setOrderHistory } from "../orderHistory/orderHistory.action";
 import {
@@ -38,7 +39,7 @@ import {
   signUpSuccess
 } from "./user.actions";
 import { selectCurrentUserFormData } from "./user.selector";
-import { AdditionalInformation, UserData } from "./user.types";
+import { AdditionalInformation, UserData, UserInfoFromDB } from "./user.types";
 
 export const signOutAsync: any = //ThunkAction<
   // void,
@@ -108,7 +109,7 @@ export const getUsersDataAsync: any = //ThunkAction<
         const userDoc = await getUserProfileData(currentUser);
         dispatch(setCartItems(userDB.cartItems));
         dispatch(setOrderHistory(userDB.orderHistory));
-        userDoc && dispatch(setCurrentUserFormData(userDoc.data()));
+        userDoc && dispatch(setCurrentUserFormData(userDoc as UserInfoFromDB));
         dispatch(getUsersDataSuccess(userDB));
       } catch (error) {
         dispatch(getUsersDataFailed(error as Error));
@@ -122,7 +123,7 @@ export const createUsersDocumentAsync: any = //ThunkAction<
   // any,
   // unknown,
   // AnyAction>
-  (userAuth: User, additionalInfos?: AdditionalInformation) => {
+  (userAuth: User, additionalInfos: AdditionalInformation) => {
     return async (dispatch: Dispatch<AnyAction>) => {
       dispatch(createUsersDocumentStart());
       try {

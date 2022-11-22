@@ -14,14 +14,16 @@ import {
   selectIsProfileEditingModeOn
 } from "../../store/userReducer/user.selector";
 import { formDataInputMap } from "../../utils/checkoutForm/checkoutForm.utils";
+import { objectByStringFinder } from "../../utils/reusableFunctions/inObjectFinder.function";
+import { profileDetailsCreator } from "../../utils/reusableFunctions/profileDetailsCreator.Functions";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { CheckoutFormInput } from "../checkoutForm/checkoutFormInputs/textInput/checkoutFormInput.component";
 import { ProfileDetailsContainer } from "./profileDetails.styles";
 
 export const ProfileDetails = ({ name }: { name: string }) => {
   const isEditingModeOn = useAppSelector(selectIsProfileEditingModeOn);
-  const usersProfileData = useAppSelector(selectCurrentUserFormData);
-
+  const usersProfileDBData = useAppSelector(selectCurrentUserFormData);
+  const userFormData = profileDetailsCreator(usersProfileDBData);
   const dispatch = useAppDispatch();
   const {
     register,
@@ -59,23 +61,23 @@ export const ProfileDetails = ({ name }: { name: string }) => {
         <FormTextInputs>
           {Object.keys(formDataInputMap).map((input) => {
             const {
-              name,
-              text,
               placeholder,
               minLength = 2,
               pattern,
+              text,
               ...restArgs
             } = formDataInputMap[input];
+            const formValue = objectByStringFinder(userFormData, input);
             return (
               <CheckoutFormInput
-                id={name}
+                id={input}
                 register={register}
                 pattern={pattern}
                 minLength={minLength}
-                placeholder={placeholder}
-                errorName={errors[name]}
-                key={name}
-                disabledText={true}
+                placeholder={formValue}
+                errorName={errors[input]}
+                key={formValue}
+                disabledText={!isEditingModeOn}
                 {...restArgs}
               >
                 {text}

@@ -1,4 +1,5 @@
 import { Order } from "../../../store/orderHistory/orderHistory.types";
+import { USER_INITIAL_STATE } from "../../../store/userReducer/user.reducer";
 import { timeSorting } from "../timeSorting.function";
 
 describe("Reusable Functions --> Time sorting", () => {
@@ -8,7 +9,7 @@ describe("Reusable Functions --> Time sorting", () => {
       time: "3/9/2022 @ 10:40:00",
       price: 10,
       itemsBought: [],
-      deliveryData: {},
+      deliveryData: USER_INITIAL_STATE.currentUserFormData.deliveryData,
       deliveryPrice: 9
     },
     {
@@ -16,7 +17,7 @@ describe("Reusable Functions --> Time sorting", () => {
       time: "3/9/2022 @ 10:50:00",
       price: 10,
       itemsBought: [],
-      deliveryData: {},
+      deliveryData: USER_INITIAL_STATE.currentUserFormData.deliveryData,
       deliveryPrice: 9
     },
     {
@@ -24,7 +25,7 @@ describe("Reusable Functions --> Time sorting", () => {
       time: "4/9/2022 @ 10:30:00",
       price: 10,
       itemsBought: [],
-      deliveryData: {},
+      deliveryData: USER_INITIAL_STATE.currentUserFormData.deliveryData,
       deliveryPrice: 9
     }
   ];
@@ -34,7 +35,7 @@ describe("Reusable Functions --> Time sorting", () => {
       time: "4/9/2022 @ 10:30:00",
       price: 10,
       itemsBought: [],
-      deliveryData: {},
+      deliveryData: USER_INITIAL_STATE.currentUserFormData.deliveryData,
       deliveryPrice: 9
     },
     {
@@ -42,7 +43,7 @@ describe("Reusable Functions --> Time sorting", () => {
       time: "3/9/2022 @ 10:50:00",
       price: 10,
       itemsBought: [],
-      deliveryData: {},
+      deliveryData: USER_INITIAL_STATE.currentUserFormData.deliveryData,
       deliveryPrice: 9
     },
     {
@@ -50,7 +51,7 @@ describe("Reusable Functions --> Time sorting", () => {
       time: "3/9/2022 @ 10:40:00",
       price: 10,
       itemsBought: [],
-      deliveryData: {},
+      deliveryData: USER_INITIAL_STATE.currentUserFormData.deliveryData,
       deliveryPrice: 9
     }
   ];

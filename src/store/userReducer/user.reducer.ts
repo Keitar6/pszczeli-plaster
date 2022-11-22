@@ -24,7 +24,7 @@ import {
   toggleProfileEditingMode,
   toggleSortingAscending
 } from "./user.actions";
-import { AdditionalInformation, UserData } from "./user.types";
+import { UserData, UserInfoFromDB } from "./user.types";
 
 export type SorTypeVariations = {
   ALPHABETIC: "alphabetic";
@@ -72,7 +72,7 @@ export type UserState = {
   };
   readonly currentUser: UserData | null;
   readonly currentUserDBData: UserDatabaseDataType;
-  readonly currentUserFormData: AdditionalInformation;
+  readonly currentUserFormData: UserInfoFromDB;
   readonly isProfileEditingModeOn: boolean;
 
   readonly nextUser: UserData | null;
@@ -96,20 +96,18 @@ export const USER_INITIAL_STATE: UserState = {
     orderHistory: []
   },
   currentUserFormData: {
-    displayName: "",
-    name: "",
+    displayName: "---",
+    name: "---",
     lastName: "",
+    email: "---",
     deliveryData: {
-      name: "---",
-      lastName: "---",
-      email: "---",
       deliveryMethod: "---",
       city: "---",
       homeAdress: "---",
       street: "---",
       zip: "---",
       payMethod: "---",
-      terms: "---"
+      terms: false
     }
   },
   isProfileEditingModeOn: false,

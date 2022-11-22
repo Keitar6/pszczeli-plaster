@@ -19,7 +19,7 @@ export type UpdateUsersCartItemsAndOrderHistory = {
 
 export const createUserDocumentFromAuth = async (
   userAuth: User,
-  additionalInfos: AdditionalInformation = { deliveryData: {} }
+  additionalInfos: AdditionalInformation
 ) => {
   const userDocRef = doc(usersCollectionRef, userAuth.uid); //database, collection, unique ID
   const userSnapshot = await getDoc(userDocRef);

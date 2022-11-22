@@ -7,8 +7,9 @@ import {
 import { LoginStatusType, UserDatabaseDataType } from "./user.reducer";
 
 import {
-  AdditionalInformation,
+  ProfileDetails,
   UserData,
+  UserInfoFromDB,
   USER_ACTION_TYPES
 } from "./user.types";
 
@@ -87,7 +88,7 @@ export type SetNextUser = ActionWithPayload<
 
 export type SetCurrentUserFormData = ActionWithPayload<
   USER_ACTION_TYPES.SET_CURRENT_USER_FORM_DATA,
-  AdditionalInformation
+  UserInfoFromDB
 >;
 
 export type ToggleProfileEditingMode =
@@ -209,7 +210,7 @@ export const createUsersDocumentFailed = withMatch(
 );
 
 export const setCurrentUserFormData = withMatch(
-  (formData: AdditionalInformation): SetCurrentUserFormData =>
+  (formData: UserInfoFromDB): SetCurrentUserFormData =>
     actionCreator(USER_ACTION_TYPES.SET_CURRENT_USER_FORM_DATA, formData)
 );
 

@@ -17,6 +17,8 @@ import {
   AdresInfo,
   Info
 } from "./orderItem.styles";
+import { selectCurrentUserFormData } from "../../store/userReducer/user.selector";
+import { useAppSelector } from "../../hooks/hooks";
 
 type OrderItemProps = {
   orderItem: Order;
@@ -25,17 +27,9 @@ type OrderItemProps = {
 export const OrderItem: FC<OrderItemProps> = ({ orderItem }) => {
   const { id, time, price, itemsBought, deliveryData, deliveryPrice } =
     orderItem;
-  const {
-    name,
-    lastName,
-    email,
-    city,
-    street,
-    homeAdress,
-    zip,
-    deliveryMethod,
-    payMethod
-  } = deliveryData;
+  const { name, lastName, email } = useAppSelector(selectCurrentUserFormData);
+  const { city, street, homeAdress, zip, deliveryMethod, payMethod } =
+    deliveryData;
 
   const [info, setInfo] = useState(false);
 
