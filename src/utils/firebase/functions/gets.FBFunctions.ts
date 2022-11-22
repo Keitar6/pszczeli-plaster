@@ -1,5 +1,5 @@
 import { type User } from "firebase/auth";
-import { collection, doc, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { CartItem } from "../../../store/cartReducer/cart.types";
 import { Order } from "../../../store/orderHistory/orderHistory.types";
 import { usersCollectionRef } from "../firebase.utils";
@@ -18,4 +18,10 @@ export const getUserCartItemsAndOrderHistory = async (userAuth: User) => {
     cartItems,
     orderHistory
   };
+};
+
+export const getUserProfileData = async (userAuth: User) => {
+  const userDocRef = doc(usersCollectionRef, userAuth.uid);
+  const userDoc =  await getDoc(userDocRef);
+  return userDoc.data();
 };

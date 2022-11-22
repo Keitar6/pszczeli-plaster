@@ -1,3 +1,4 @@
+import { current } from "@reduxjs/toolkit";
 import type { User } from "firebase/auth";
 import { Dispatch } from "react";
 import type { AnyAction } from "redux";
@@ -9,7 +10,10 @@ import {
   signUpByEmailAndPassword
 } from "../../utils/firebase/firebase.utils";
 import { createUserDocumentFromAuth } from "../../utils/firebase/functions/dbManipulationFunctions.FBFunctions";
-import { getUserCartItemsAndOrderHistory } from "../../utils/firebase/functions/gets.FBFunctions";
+import {
+  getUserCartItemsAndOrderHistory,
+  getUserProfileData
+} from "../../utils/firebase/functions/gets.FBFunctions";
 import { setCartItems } from "../cartReducer/cart.actions";
 import { setOrderHistory } from "../orderHistory/orderHistory.action";
 import {
@@ -22,6 +26,7 @@ import {
   getUsersDataStart,
   getUsersDataSuccess,
   googleSignInStart,
+  setCurrentUserFormData,
   signInAndSetUser,
   signInFailed,
   signInSuccess,
@@ -32,6 +37,7 @@ import {
   signUpStart,
   signUpSuccess
 } from "./user.actions";
+import { selectCurrentUserFormData } from "./user.selector";
 import { AdditionalInformation, UserData } from "./user.types";
 
 export const signOutAsync: any = //ThunkAction<
@@ -99,8 +105,10 @@ export const getUsersDataAsync: any = //ThunkAction<
       dispatch(getUsersDataStart());
       try {
         const userDB = await getUserCartItemsAndOrderHistory(currentUser);
+        const userDoc = await getUserProfileData(currentUser);
         dispatch(setCartItems(userDB.cartItems));
         dispatch(setOrderHistory(userDB.orderHistory));
+        userDoc && dispatch(setCurrentUserFormData(userDoc.data()));
         dispatch(getUsersDataSuccess(userDB));
       } catch (error) {
         dispatch(getUsersDataFailed(error as Error));
@@ -116,7 +124,6 @@ export const createUsersDocumentAsync: any = //ThunkAction<
   // AnyAction>
   (userAuth: User, additionalInfos?: AdditionalInformation) => {
     return async (dispatch: Dispatch<AnyAction>) => {
-
       dispatch(createUsersDocumentStart());
       try {
         await createUserDocumentFromAuth(userAuth, additionalInfos);
@@ -167,10 +174,7 @@ export const signUpAsync: any = //ThunkAction<
   // any,
   // unknown,
   // AnyAction>
-  (
-    email: string,
-    password: string,
-  ) => {
+  (email: string, password: string) => {
     return async (dispatch: Dispatch<AnyAction>) => {
       dispatch(signUpStart());
       try {
