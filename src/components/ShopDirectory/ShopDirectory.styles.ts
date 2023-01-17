@@ -26,7 +26,7 @@ export const ShopDirectoryContentHeader = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  padding: 0 0 0.6rem 0rem;
+  padding: 0;
   max-height: 3.3rem;
   flex: 1 1 10%;
   H1 {

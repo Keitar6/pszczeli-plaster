@@ -16,7 +16,8 @@ import {
   ProductCardModalButtons,
   ProductConsumerDetails,
   ProductModalIcon,
-  ProductModalIconButton
+  ProductModalIconButton,
+  ProductCardModalButton
 } from "./productDetailsModal.styles";
 import { toggleProductCard } from "../../store/generalPropReducer/generalProp.actions";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
@@ -104,13 +105,13 @@ export const ProductDetailsModal = () => {
                   <PLarge> {`Cena: ${price}zł`}</PLarge>
                 </ProductConsumerDetails>
                 <ProductCardModalButtons>
-                  <Button
+                  <ProductCardModalButton
                     data-testid="addProduct"
                     buttonType={BUTTON_TYPE_CLASSES.productCardCartButton}
                     onClick={() => addProductHandler()}
                   >
                     Dodaj do koszyka{" "}
-                  </Button>
+                  </ProductCardModalButton>
                   <ProductModalIconButton
                     onClick={() =>
                       isCartEmpty(cartQuantity) && navigateToCartHandler()

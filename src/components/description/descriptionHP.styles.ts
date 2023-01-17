@@ -28,4 +28,5 @@ export const Description = styled.div`
 export const DescriptionHPContainer = styled(StandardFlexContainer)`
   flex-direction: column;
   padding: 1rem 1rem;
+  max-width: 70rem;
 `;

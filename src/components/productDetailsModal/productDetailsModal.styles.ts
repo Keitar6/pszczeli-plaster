@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
 import styled from "styled-components";
 import { Colors, H4, StandardFlexContainer } from "../../global.styles";
+import Button from "../button/button.component";
 
 export const ProductCardDetails = styled.div`
   background-color: rgba(0, 0, 0, 0.9);
@@ -135,9 +136,10 @@ export const ProductCardModalButtons = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  // border: 2px solid red;
   margin: 0;
   padding: 0;
+  border: 1px solid ${Colors.dark};
+  border-radius: 0.6rem 0.5rem 0.5rem 0.6rem;
 `;
 export const ProductModalIcon = styled(Icon)`
   // border: 2px solid red;
@@ -150,14 +152,20 @@ export const ProductModalIcon = styled(Icon)`
   }
 `;
 export const ProductModalIconButton = styled.button`
+  // display: inline-flex;
   border: none;
-  width: 30%;
+
+  flex: 1 1 30%;
   height: 3.6rem;
   border-radius: 0 0.4rem 0.4rem 0;
   background-color: ${Colors.dark};
   cursor: pointer;
-
   // &:hover {
   //   background-color: ${Colors.primary};
   // }
+`;
+export const ProductCardModalButton = styled(Button)`
+  flex: 1 1 70%;
+  border: none;
+  border-right: 1px solid ${Colors.dark};
 `;
