@@ -6,6 +6,7 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  
 `;
 
 export const FormTextInputs = styled.div`
@@ -15,6 +16,7 @@ export const FormTextInputs = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.75));
 `;
 
 export const NonValidFormInput = styled.p`

@@ -67,6 +67,7 @@ export const CartModal = () => {
               <H2>Koszyk</H2>
             </CartLogoText>
           </CartLogoContainer>
+          
           <div data-testid="cartMapElements">
             {cartItems.map((cartItem: CartItem) => {
               return <CartCard key={cartItem.id} cartItem={cartItem} />;

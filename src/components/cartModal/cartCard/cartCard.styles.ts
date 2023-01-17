@@ -6,16 +6,17 @@ export const CartItemContainer = styled.div`
   display: flex;
   height: 5rem;
   //   margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem 0;
   border-bottom: 1px solid ${Colors.darkRGBA};
 `;
 export const Image = styled.img`
-  width: 25%;
-  flex-basis: 20%;
+  width: 7rem;
+  padding-right: 0.5rem;
+  border-right: 1px solid ${Colors.darkRGBA};
 `;
 
 export const ItemDetails = styled.div`
-  width: 75%;
+  width: 80%;
   flex-basis: auto;
   display: flex;
   flex-direction: row;
