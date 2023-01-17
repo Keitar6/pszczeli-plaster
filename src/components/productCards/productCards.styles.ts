@@ -9,6 +9,9 @@ export const ProductCards = styled(StandardFlexContainer)`
 
 export const ProductCardsContent = styled(StandardFlexContainer)`
   width: 100%;
-  justify-content: flex-start;
+  justify-content: start;
+  align-items: start;
   gap: 0.5rem;
+  // border: 1px solid blue;
+  flex: 1 1 60%;
 `;

@@ -24,6 +24,7 @@ export const NavigationContainer = styled.nav`
   position: sticky;
   top: 0;
   z-index: 50;
+  
 `;
 
 export const StructurizeComponent = styled.div`
@@ -31,6 +32,7 @@ export const StructurizeComponent = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
+  
 `;
 
 export const IconsContainer = styled.div`

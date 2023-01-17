@@ -18,7 +18,11 @@ export const ShopInsidePath = styled(Link)`
 export const NaviPathText = styled.div`
   display: inline-flex;
   flex-direction: row;
+  align-items: center;
+
   padding: 0.8rem 0 0.5rem 0rem;
-  margin: 0rem 0 0rem 0.8rem;
+  margin: 0rem 0.8rem;
   border-bottom: 1px solid ${Colors.darkRGBA};
+  // border: 2px solid red;
+  flex-basis: 10%;
 `;

@@ -6,9 +6,10 @@ export const OrdersContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-around;
-  padding: 2rem 2rem;
+  // align-items: center;
+  justify-content: start;
+  padding: 1rem 2rem;
+  height: 100%;
   // border: 2px solid red;
 `;
 

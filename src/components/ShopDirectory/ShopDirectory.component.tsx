@@ -18,7 +18,8 @@ import {
   ShopDirectoryContent,
   ShopDirectoryContentHeader,
   ShopMenuItem,
-  ShopMenuItems
+  ShopMenuItems,
+  ShopDirectoryButton
 } from "./shopDirectory.styles";
 
 import { ShopSorting } from "./shopSorting/shopSorting.component";
@@ -27,9 +28,7 @@ import {
   incrementViewLimiter,
   resetViewLimiter
 } from "../../store/generalPropReducer/generalProp.actions";
-import Button, {
-  BUTTON_TYPE_CLASSES
-} from "../button/button.component";
+import { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { ProductCardsContainer } from "../productCards/productCards.component";
 import { setInputSorting } from "../../store/userReducer/user.actions";
 
@@ -88,20 +87,20 @@ const ShopDirectory: FC = () => {
 
         {path === "sklep"
           ? allItemsMap.length > viewLimiter && (
-              <Button
+              <ShopDirectoryButton
                 onClick={moreProductsHandler}
                 buttonType={BUTTON_TYPE_CLASSES.base}
               >
                 Więcej produktów
-              </Button>
+              </ShopDirectoryButton>
             )
           : categoriesMap[path.toLowerCase()].length > viewLimiter && (
-              <Button
+              <ShopDirectoryButton
                 onClick={moreProductsHandler}
                 buttonType={BUTTON_TYPE_CLASSES.base}
               >
                 Więcej produktów
-              </Button>
+              </ShopDirectoryButton>
             )}
       </ShopDirectoryContent>
     </ShopDirectoryContainer>

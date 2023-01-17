@@ -4,8 +4,9 @@ import { Colors, StandardFlexContainer } from "../../global.styles";
 export const ProductCardComponent = styled(StandardFlexContainer)`
   border: 0.2rem solid ${Colors.primary};
   flex-direction: column;
-  margin: 1rem 1rem;
-  max-width: 15rem;
+  margin: 1rem;
+  flex-wrap: nowrap;
+  max-height: 15rem;
 `;
 
 export const ProductCardImageContainer = styled(StandardFlexContainer)`
