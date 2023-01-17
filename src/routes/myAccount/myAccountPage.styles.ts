@@ -6,4 +6,6 @@ export const LoginPageContainer = styled(StandardFlexContainer)`
   justify-content: space-around;
   flex-direction: row;
   align-items: start;
+  flex-basis: 100%;
+  padding: 2rem 0rem;
 `;

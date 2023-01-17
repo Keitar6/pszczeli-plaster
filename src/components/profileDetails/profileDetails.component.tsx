@@ -2,7 +2,6 @@ import { type User } from "firebase/auth";
 import { FieldValues, useForm } from "react-hook-form";
 import { Title } from "../../global.styles";
 import {
-  Form,
   FormTextInputs
 } from "../../globalStyles/form/form.globalStyles";
 import { FormButtons } from "../../globalStyles/form/formButtons/formButtons.component";
@@ -24,7 +23,7 @@ import {
 import { refresh } from "../../utils/reusableFunctions/refresh.function";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { CheckoutFormInput } from "../checkoutForm/checkoutFormInputs/textInput/checkoutFormInput.component";
-import { ProfileDetailsContainer } from "./profileDetails.styles";
+import { ProfileDetailsContainer,ProfileDetailsForm } from "./profileDetails.styles";
 
 export const ProfileDetails = ({ name }: { name: string }) => {
   const isEditingModeOn = useAppSelector(selectIsProfileEditingModeOn);
@@ -43,9 +42,6 @@ export const ProfileDetails = ({ name }: { name: string }) => {
       formData as ProfileDetailsType
     );
 
-    console.log(formData, formDataWithNoEmailAndPassword, usersProfileDBData);
-    // eslint-disable-next-line no-debugger
-    debugger;
     currentUser &&
       updateProfileInformationInDoc(
         currentUser as User,
@@ -67,7 +63,7 @@ export const ProfileDetails = ({ name }: { name: string }) => {
     <ProfileDetailsContainer>
       <Title>Szczegóły konta {name}</Title>
 
-      <Form>
+      <ProfileDetailsForm>
         <FormTextInputs>
           {Object.keys(formDataInputMap).map((input) => {
             const {
@@ -125,7 +121,7 @@ export const ProfileDetails = ({ name }: { name: string }) => {
             Edytuj dane
           </Button>
         )}
-      </Form>
+      </ProfileDetailsForm>
     </ProfileDetailsContainer>
   );
 };

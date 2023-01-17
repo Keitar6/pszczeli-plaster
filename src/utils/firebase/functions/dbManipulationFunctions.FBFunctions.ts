@@ -34,9 +34,7 @@ export const createUserDocumentFromAuth = async (
     const { email } = userAuth;
     const { displayName, name, lastName, deliveryData } = additionalInfos;
     const createdAt = new Date();
-    console.log(additionalInfos);
-    // eslint-disable-next-line no-debugger
-    debugger;
+
     try {
       setDoc(userDocRef, {
         createdAt,
