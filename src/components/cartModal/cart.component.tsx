@@ -6,9 +6,9 @@ import {
   Cart,
   CartLogoContainer,
   CartLogoText,
-  CartContainer,
   CartGoToCheckout,
-  CartMotionWrapper
+  CartMotionWrapper,
+  CartItemsMotionWrapper
 } from "./cart.styles";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
@@ -72,8 +72,19 @@ export const CartModal = () => {
           </CartLogoContainer>
 
           <div data-testid="cartMapElements">
-            {cartItems.map((cartItem: CartItem) => {
-              return <CartCard key={cartItem.id} cartItem={cartItem} />;
+            {cartItems.map((cartItem: CartItem, index: number) => {
+              const transTime = 1 + (index !== 0 ? index / 4 : 0);
+              return (
+                <CartItemsMotionWrapper
+                  transition={{ duration: transTime }}
+                  initial={{ x: "100vh" }}
+                  animate={{ x: 0 }}
+                  exit={{ opacity: 0 }}
+                  key={cartItem.id}
+                >
+                  <CartCard cartItem={cartItem} />
+                </CartItemsMotionWrapper>
+              );
             })}
           </div>
           <CartGoToCheckout>

@@ -60,12 +60,11 @@ export const CartGoToCheckout = styled(StandardFlexContainer)`
   // align-items: end;
   // border: 2px solid red;
 `;
-
 export const CartMotionWrapper = styled(motion.div).attrs({
   key: "CartModal",
-  transition: { duration: 1 },
+  transition: { duration: 0.5 },
   initial: { x: "100vh" },
-  animate: { x: 0 },
+  animate: { x: 0 }
   // exit: { opacity: 0 }
 })`
   display: inline-flex;
@@ -86,3 +85,5 @@ export const CartMotionWrapper = styled(motion.div).attrs({
   overflow: scroll;
   // border: 1px solid red;
 `;
+
+export const CartItemsMotionWrapper = styled(motion.div)``;
