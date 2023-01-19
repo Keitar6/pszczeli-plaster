@@ -7,7 +7,8 @@ import {
   CartLogoContainer,
   CartLogoText,
   CartContainer,
-  CartGoToCheckout
+  CartGoToCheckout,
+  CartMotionWrapper
 } from "./cart.styles";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
@@ -22,6 +23,8 @@ import Button, {
 } from "../../components/button/button.component";
 import { useNavigate } from "react-router-dom";
 import { CartItem } from "../../store/cartReducer/cart.types";
+
+import { motion } from "framer-motion";
 
 export const CartModal = () => {
   const dispatch = useAppDispatch();
@@ -55,7 +58,7 @@ export const CartModal = () => {
           );
         }}
       >
-        <CartContainer>
+        <CartMotionWrapper>
           <CartLogoContainer>
             <Icon
               icon="fluent-emoji-high-contrast:polar-bear"
@@ -81,7 +84,7 @@ export const CartModal = () => {
             >{`${"Do kasy"}`}</Button>
             {`W sumie: ${cartTotal}zł`}
           </CartGoToCheckout>
-        </CartContainer>
+        </CartMotionWrapper>
       </Cart>
     </Modal>
   );

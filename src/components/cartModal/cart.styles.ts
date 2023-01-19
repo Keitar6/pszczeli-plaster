@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { Colors, StandardFlexContainer } from "../../global.styles";
+import { motion } from "framer-motion";
 
 const slideIn = keyframes`
 {
@@ -38,7 +39,8 @@ export const CartContainer = styled(StandardFlexContainer)`
   height: 100%;
 
   overflow: scroll;
-  `;
+  border: 1px solid red;
+`;
 
 export const CartLogoContainer = styled(StandardFlexContainer)`
   flex-direction: row;
@@ -57,4 +59,30 @@ export const CartGoToCheckout = styled(StandardFlexContainer)`
   justify-content: space-between;
   // align-items: end;
   // border: 2px solid red;
+`;
+
+export const CartMotionWrapper = styled(motion.div).attrs({
+  key: "CartModal",
+  transition: { duration: 1 },
+  initial: { x: "100vh" },
+  animate: { x: 0 },
+  // exit: { opacity: 0 }
+})`
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 2.4rem;
+  max-width: 70%;
+  padding: 1rem 2rem 3rem 2rem;
+  justify-content: start;
+
+  background: ${Colors.light};
+  height: 100%;
+
+  overflow: scroll;
+  // border: 1px solid red;
 `;
