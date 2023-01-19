@@ -28,6 +28,7 @@ export const Cart = styled.div`
 
 export const CartContainer = styled(StandardFlexContainer)`
   flex-direction: column;
+  flex-wrap: nowrap;
   gap: 2.4rem;
   max-width: 70%;
   padding: 1rem 2rem 3rem 2rem;
@@ -36,10 +37,8 @@ export const CartContainer = styled(StandardFlexContainer)`
   background: ${Colors.light};
   height: 100%;
 
-  animation: ${slideIn} 0.5s forwards;
-
-  
-`;
+  overflow: scroll;
+  `;
 
 export const CartLogoContainer = styled(StandardFlexContainer)`
   flex-direction: row;
@@ -58,5 +57,4 @@ export const CartGoToCheckout = styled(StandardFlexContainer)`
   justify-content: space-between;
   // align-items: end;
   // border: 2px solid red;
-
 `;

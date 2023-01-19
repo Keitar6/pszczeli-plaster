@@ -33,7 +33,27 @@ export const GlobalStyle = createGlobalStyle`
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+
+ &::-webkit-scrollbar {
+    width: 0rem;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.00);
+  }
+  &::-webkit-scrollbar-thumb {
+    backgroundColor: ${Colors.primary};
+    visibility: hidden;
+    borderRadius: 5rem;
+    transition: all 0.5s ease-out;
+  }
 }
+
+
+*::-webkit-scrollbar-thumb:hover: {
+  visibility: visible;
+  transition: all 0.5s ease-out;
+}
+
 body {
 	font-family: ${Typhography.fontType};
 	color:${Colors.dark};

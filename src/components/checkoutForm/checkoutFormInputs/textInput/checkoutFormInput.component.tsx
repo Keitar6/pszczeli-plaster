@@ -14,6 +14,9 @@ import {
   TextInput
 } from "./checkoutFormInput.styles";
 
+import { selectCurrentUserFormData } from "../../../../store/userReducer/user.selector"; 
+import { useAppSelector } from "../../../../hooks/hooks";
+
 type CheckoutFormInput = {
   id: string;
   placeholder: string;
@@ -43,6 +46,8 @@ export const CheckoutFormInput: FC<PropsWithChildren<CheckoutFormInput>> = ({
   initValue,
   ...restArgs
 }) => {
+  const currentUserFormData = useAppSelector(selectCurrentUserFormData);
+
   return (
     <InputContainer width={`${width && width}`}>
       <TextInput

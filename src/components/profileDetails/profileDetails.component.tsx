@@ -28,8 +28,8 @@ import { ProfileDetailsContainer,ProfileDetailsForm } from "./profileDetails.sty
 export const ProfileDetails = ({ name }: { name: string }) => {
   const isEditingModeOn = useAppSelector(selectIsProfileEditingModeOn);
   const usersProfileDBData = useAppSelector(selectCurrentUserFormData);
-  const currentUser = useAppSelector(selectCurrentUser);
   const userFormData = profileDetailsCreator(usersProfileDBData);
+  const currentUser = useAppSelector(selectCurrentUser);
   const dispatch = useAppDispatch();
   const {
     register,

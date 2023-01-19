@@ -20,14 +20,11 @@ export function firebaseInit() {
   const orderHistoryCollectionRef = collection(fireStorage, "orderHistory");
   const usersCollectionRef = collection(fireStorage, "users");
   const googleProvider = new GoogleAuthProvider();
+
   googleProvider.setCustomParameters({
     prompt: "select_account"
   });
-  // if (location.hostname === "localhost") {
-  //   connectAuthEmulator(userAuth, "http://localhost:9090");
-  //   connectFirestoreEmulator(fireStorage, "localhost", 8080);
-  // }
-  // enableMultiTabIndexedDbPersistence(fireStorage);
+
   return {
     categoriesCollectionRef,
     orderHistoryCollectionRef,
@@ -37,6 +34,7 @@ export function firebaseInit() {
     fireStorage,
     googleProvider
   };
+  
 }
 
 export const {
@@ -53,6 +51,7 @@ export type CollectionName = {
   categories: "categories";
   orderHistory: "orderHistory";
 };
+
 export type NewOrder = Order;
 
 //login functions

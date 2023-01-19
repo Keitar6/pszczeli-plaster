@@ -27,8 +27,9 @@ import {
   resetUsersCartItems,
   updateUsersOrderHistory
 } from "../../utils/firebase/functions/dbManipulationFunctions.FBFunctions";
-import { selectCurrentUser } from "../../store/userReducer/user.selector";
+import { selectCurrentUser, selectCurrentUserFormData } from "../../store/userReducer/user.selector";
 import { type User } from "firebase/auth";
+import { profileDetailsCreator } from "../../utils/reusableFunctions/profileDetailsCreator.Functions";
 
 export const CheckoutForm = () => {
   const {
@@ -41,7 +42,11 @@ export const CheckoutForm = () => {
   const cartItems = useAppSelector(selectCartItems);
   const deliveryInfo = useAppSelector(selectDelivery);
 
+  const usersProfileDBData = useAppSelector(selectCurrentUserFormData);
+  const userFormData = profileDetailsCreator(usersProfileDBData);
+  
   const currentUser = useAppSelector(selectCurrentUser);
+
   const deliveryPrice = deliveryInfo.price ? deliveryInfo.price : 0;
 
   const addToOrderHistoryHandler = (formData: DeliveryData) => {
@@ -60,7 +65,7 @@ export const CheckoutForm = () => {
       resetUsersCartItems(currentUser as User, cartItems));
     dispatch(setCartItems([]));
   };
-
+console.log(userFormData)
   return (
     <>
       <Form className="was-validated">

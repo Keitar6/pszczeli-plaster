@@ -5,7 +5,7 @@ import { Form } from "../../globalStyles/form/form.globalStyles";
 export const ProfileDetailsContainer = styled(StandardFlexContainer)`
   flex-direction: column;
   justify-content: start;
-  padding-top: 2rem;
+  padding: 2rem 0rem;
   gap: 2rem;
   // max-width: 15rem;
   flex: 1 1 100%;

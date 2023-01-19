@@ -6,6 +6,7 @@ import { selectCurrentUser } from "../../store/userReducer/user.selector";
 import { LoginPageContainer } from "./myAccountPage.styles";
 
 const MyAccountPage = () => {
+
   const currentUser = useAppSelector(selectCurrentUser);
   return (
     <>
