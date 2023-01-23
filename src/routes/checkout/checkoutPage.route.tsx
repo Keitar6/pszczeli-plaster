@@ -24,6 +24,9 @@ import { useEffect } from "react";
 import { isCartEmpty } from "../../utils/reusableFunctions/isCartEmpty.function";
 import { useNavigate } from "react-router-dom";
 
+import { motion } from "framer-motion";
+import { CheckoutVariants } from "../../utils/framer-motion/variants.utils";
+
 const CheckoutPage = () => {
   const cartItems = useAppSelector(selectCartItems);
   const totalCost = useAppSelector(selectCartTotal);
@@ -63,11 +66,17 @@ const CheckoutPage = () => {
           <HeaderBlock>{`${checkoutHeaders.price}`}</HeaderBlock>
           <HeaderBlock>{`${checkoutHeaders.remove}`}</HeaderBlock>
         </CheckoutHeader>
-        {cartItems.map((currentItem) => (
-          <CheckoutItem
+        {cartItems.map((currentItem, index: number) => (
+          <motion.div
             key={currentItem.id}
-            cartItem={currentItem}
-          ></CheckoutItem>
+            variants={CheckoutVariants}
+            custom={index}
+            initial="enter"
+            animate="visible"
+            exit="exit"
+          >
+            <CheckoutItem cartItem={currentItem} />
+          </motion.div>
         ))}
         <PLarge>{`${checkoutHeaders.deliveryPrice}: ${deliveryPrice}zł`}</PLarge>
         <PLarge>{`${checkoutHeaders.productsPrice}: ${totalCost}zł`}</PLarge>
