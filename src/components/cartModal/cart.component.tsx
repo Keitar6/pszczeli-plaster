@@ -25,7 +25,10 @@ import { useNavigate } from "react-router-dom";
 import { CartItem } from "../../store/cartReducer/cart.types";
 
 import { AnimatePresence } from "framer-motion";
-import { CartVariants } from "../../utils/framer-motion/variants.utils";
+import {
+  CartVariants,
+  CartItemsVariants
+} from "../../utils/framer-motion/variants.utils";
 
 export const CartModal = () => {
   const dispatch = useAppDispatch();
@@ -81,14 +84,14 @@ export const CartModal = () => {
 
             <div data-testid="cartMapElements">
               {cartItems.map((cartItem: CartItem, index: number) => {
-                const transTime = 1 + (index !== 0 ? index / 4 : 0);
                 return (
                   <CartItemsMotionWrapper
-                    transition={{ duration: transTime }}
-                    initial={{ x: "100vh" }}
-                    animate={{ x: 0 }}
-                    exit={{ opacity: 0 }}
                     key={cartItem.id}
+                    variants={CartItemsVariants}
+                    custom={index}
+                    initial="enter"
+                    animate="visible"
+                    exit="exit"
                   >
                     <CartCard cartItem={cartItem} />
                   </CartItemsMotionWrapper>

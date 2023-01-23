@@ -41,3 +41,12 @@ export const CartVariants: Variants = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
   exit: { x: window.innerWidth }
 };
+
+export const CartItemsVariants: Variants = {
+  enter: { opacity: 0, x: "100vh" },
+  visible: (index: number) => {
+    const transTime = 1 + (index !== 0 ? index / 5 : 0);
+    return { opacity: 1, x: 0, transition: { duration: transTime } };
+  },
+  exit: { x: window.innerWidth }
+};
