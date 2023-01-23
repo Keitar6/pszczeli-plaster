@@ -5,9 +5,8 @@ import { Icon } from "@iconify/react";
 import { CategoriesContainer } from "./categories.styles";
 import { useAppSelector } from "../../hooks/hooks";
 
-import { motion,Variant } from "framer-motion";
-
-
+import { AnimatePresence, motion } from "framer-motion";
+import { HPCategoriesVariants } from "../../utils/framer-motion/variants.utils";
 
 export const CategoriesHP = () => {
   const categories = useAppSelector(selectCategories);
@@ -16,18 +15,24 @@ export const CategoriesHP = () => {
       {categories &&
         categories.map((category, index) => {
           return (
-            <motion.div key={index}
-            initial
-            >
-              <CategoryCard key={category.title} category={category}>
-                <Icon
-                  icon={category.icon}
-                  color="#ffb703"
-                  width="96"
-                  height="96"
-                />
-              </CategoryCard>
-            </motion.div>
+            <AnimatePresence key={index} custom={index}>
+              <motion.div
+                variants={HPCategoriesVariants}
+                initial='enter'
+                animate="visible"
+                exit="exit"
+                custom={index}
+              >
+                <CategoryCard key={category.title} category={category}>
+                  <Icon
+                    icon={category.icon}
+                    color="#ffb703"
+                    width="96"
+                    height="96"
+                  />
+                </CategoryCard>
+              </motion.div>
+            </AnimatePresence>
           );
         }, {})}
     </CategoriesContainer>
