@@ -12,7 +12,9 @@ import {
   selectViewLimiter
 } from "../../store/generalPropReducer/generalProp.selector";
 import { ProductCards, ProductCardsContent } from "./productCards.styles";
-
+import { motion } from "framer-motion";
+import { ShopMenuProductCardVariants } from "../../utils/framer-motion/variants.utils";
+import { viewLimiterInit } from "../../store/generalPropReducer/generalProp.reducer";
 export const ProductCardsContainer = () => {
   const categories = useAppSelector(selectCategories);
   const sort = useAppSelector(selectSort);
@@ -38,14 +40,22 @@ export const ProductCardsContainer = () => {
           ? categories.map((category) => {
               if (category.title === path) {
                 return categoriesSorting(category.items).map(
-                  ({ id, name, image, price }) => (
-                    <ProductCard
+                  ({ id, name, image, price }, index: number) => (
+                    <motion.div
                       key={id}
-                      id={id}
-                      name={name}
-                      image={image}
-                      price={price}
-                    />
+                      variants={ShopMenuProductCardVariants}
+                      custom={{ viewLimiterInit, viewLimiter, index }}
+                      initial="enter"
+                      animate="visible"
+                      exit="exit"
+                    >
+                      <ProductCard
+                        id={id}
+                        name={name}
+                        image={image}
+                        price={price}
+                      />
+                    </motion.div>
                   )
                 );
               }

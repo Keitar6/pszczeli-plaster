@@ -20,7 +20,7 @@ export type GeneralPropsState = {
   readonly productCardModal: ProductCardModal;
   readonly viewLimiter: number;
 };
-
+export const viewLimiterInit = 2;
 export const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
   path: "sklep",
   isUserMenuOpened: false,
@@ -35,7 +35,7 @@ export const GENERAL_PROPS_INITIAL_STATE: GeneralPropsState = {
       dodatki: false
     }
   },
-  viewLimiter: 2
+  viewLimiter: viewLimiterInit
 };
 
 export const generalPropReducer = (

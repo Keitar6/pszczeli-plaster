@@ -50,3 +50,30 @@ export const CartItemsVariants: Variants = {
   },
   exit: { x: window.innerWidth }
 };
+
+export const ShopMenuProductCardVariants: Variants = {
+  enter: { opacity: 0, x: "100vh" },
+  visible: ({
+    viewLimiterInit,
+    viewLimiter,
+    index
+  }: {
+    viewLimiterInit: number;
+    viewLimiter: number;
+    index: number;
+  }) => {
+    let transTime = 0.8;
+    const periodStart = viewLimiter === viewLimiterInit ? 0 : viewLimiter;
+    if (index < viewLimiterInit) {
+      transTime = transTime + index / 5;
+    } else {
+      transTime = transTime + (index - periodStart) / 5;
+    }
+    return {
+      opacity: 1,
+      x: 0,
+      transition: { duration: transTime }
+    };
+  },
+  exit: { x: window.innerWidth }
+};
