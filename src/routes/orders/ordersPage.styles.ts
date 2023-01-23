@@ -1,6 +1,9 @@
 import { Colors, H3 } from "../../global.styles";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
+import { StandardFlexMixin } from "../../global.styles";
 
 export const OrdersContainer = styled.div`
   display: flex;
@@ -96,4 +99,10 @@ export const OrderListLink = styled(Link)`
   &:hover {
     color: ${Colors.primary};
   }
+`;
+
+export const OrderItemWrapper = styled(motion.div)`
+  ${StandardFlexMixin};
+
+  width: 100%;
 `;

@@ -86,3 +86,30 @@ export const ShopMenuProductCardVariants: Variants = {
   },
   exit: { opacity: 0, transition: { duration: 1 } }
 };
+
+export const OrdersHisoryVariants: Variants = {
+  enter: { opacity: 0, y: "20vh" },
+  visible: ({
+    viewLimiterInit,
+    viewLimiter,
+    index
+  }: {
+    viewLimiterInit: number;
+    viewLimiter: number;
+    index: number;
+  }) => {
+    let transTime = 0.5;
+    const periodStart = viewLimiter === viewLimiterInit ? 0 : viewLimiter;
+    if (index < viewLimiterInit) {
+      transTime = transTime + index / 5;
+    } else {
+      transTime = transTime + (index - periodStart) / 5;
+    }
+    return {
+      opacity: 1,
+      y: 0,
+      transition: { duration: transTime }
+    };
+  },
+  exit: { opacity: 0, transition: { duration: 1 } }
+};

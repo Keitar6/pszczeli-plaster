@@ -7,7 +7,8 @@ import {
   OrdersTitle,
   OrdersContent,
   OrderItemsContainer,
-  OrderListLink
+  OrderListLink,
+  OrderItemWrapper
 } from "./ordersPage.styles";
 
 import { OrderItem } from "../../components/orderItem/orderItem.component";
@@ -21,10 +22,16 @@ import { timeSorting } from "../../utils/reusableFunctions/timeSorting.function"
 import { selectLoginStatus } from "../../store/userReducer/user.selector";
 import { LOGIN_STATUS_TYPES } from "../../store/userReducer/user.reducer";
 
+import { motion } from "framer-motion";
+import { OrdersHisoryVariants } from "../../utils/framer-motion/variants.utils";
+
+import { viewLimiterInit } from "../../store/generalPropReducer/generalProp.reducer";
+
 const OrdersPage = () => {
   const dispatch = useAppDispatch();
   const ordersHistory = useAppSelector(selectOrderHistory);
   const viewLimiter = useAppSelector(selectViewLimiter);
+
   const isLoggedIn = useAppSelector(selectLoginStatus);
   const tempOrdersHistory = ordersHistory
     ? [...timeSorting(ordersHistory)].splice(0, viewLimiter)
@@ -56,12 +63,18 @@ const OrdersPage = () => {
             </OrdersHeader>
             <OrderItemsContainer>
               {tempOrdersHistory
-                ? tempOrdersHistory.map((currentOrder) => {
+                ? tempOrdersHistory.map((currentOrder, index: number) => {
                     return (
-                      <OrderItem
+                      <OrderItemWrapper
                         key={currentOrder.id}
-                        orderItem={currentOrder}
-                      ></OrderItem>
+                        variants={OrdersHisoryVariants}
+                        custom={{ viewLimiterInit, viewLimiter, index }}
+                        initial="enter"
+                        animate="visible"
+                        exit="exit"
+                      >
+                        <OrderItem orderItem={currentOrder} />
+                      </OrderItemWrapper>
                     );
                   })
                 : null}
@@ -71,8 +84,8 @@ const OrdersPage = () => {
           "Zrób conajmniej jedno zamówienie żeby widzieć historię zamówień"
         ) : (
           <div>
-            <OrderListLink to={"/mojeKonto"}>Zaloguj się </OrderListLink>żeby widzieć swoją
-            historię zamówień
+            <OrderListLink to={"/mojeKonto"}>Zaloguj się </OrderListLink>żeby
+            widzieć swoją historię zamówień
           </div>
         )}
       </OrdersContent>
