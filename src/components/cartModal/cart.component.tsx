@@ -7,7 +7,7 @@ import {
   CartLogoContainer,
   CartLogoText,
   CartGoToCheckout,
-  CartMotionWrapper,
+  CartWrapperMotion,
   CartItemsMotionWrapper
 } from "./cart.styles";
 
@@ -24,7 +24,8 @@ import Button, {
 import { useNavigate } from "react-router-dom";
 import { CartItem } from "../../store/cartReducer/cart.types";
 
-import { motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import { CartVariants } from "../../utils/framer-motion/variants.utils";
 
 export const CartModal = () => {
   const dispatch = useAppDispatch();
@@ -58,44 +59,52 @@ export const CartModal = () => {
           );
         }}
       >
-        <CartMotionWrapper>
-          <CartLogoContainer>
-            <Icon
-              icon="fluent-emoji-high-contrast:polar-bear"
-              color="#ffb703"
-              width="64"
-              height="64"
-            />
-            <CartLogoText>
-              <H2>Koszyk</H2>
-            </CartLogoText>
-          </CartLogoContainer>
+        <AnimatePresence custom={CartVariants}>
+          <CartWrapperMotion
+            key="CartModalMotion"
+            variants={CartVariants}
+            initial="enter"
+            animate="visible"
+            exit="exit"
+          >
+            <CartLogoContainer>
+              <Icon
+                icon="fluent-emoji-high-contrast:polar-bear"
+                color="#ffb703"
+                width="64"
+                height="64"
+              />
+              <CartLogoText>
+                <H2>Koszyk</H2>
+              </CartLogoText>
+            </CartLogoContainer>
 
-          <div data-testid="cartMapElements">
-            {cartItems.map((cartItem: CartItem, index: number) => {
-              const transTime = 1 + (index !== 0 ? index / 4 : 0);
-              return (
-                <CartItemsMotionWrapper
-                  transition={{ duration: transTime }}
-                  initial={{ x: "100vh" }}
-                  animate={{ x: 0 }}
-                  exit={{ opacity: 0 }}
-                  key={cartItem.id}
-                >
-                  <CartCard cartItem={cartItem} />
-                </CartItemsMotionWrapper>
-              );
-            })}
-          </div>
-          <CartGoToCheckout>
-            <Button
-              data-testid="goToCheckout"
-              onClick={goToCheckoutHandler}
-              buttonType={BUTTON_TYPE_CLASSES.cartFuncButton}
-            >{`${"Do kasy"}`}</Button>
-            {`W sumie: ${cartTotal}zł`}
-          </CartGoToCheckout>
-        </CartMotionWrapper>
+            <div data-testid="cartMapElements">
+              {cartItems.map((cartItem: CartItem, index: number) => {
+                const transTime = 1 + (index !== 0 ? index / 4 : 0);
+                return (
+                  <CartItemsMotionWrapper
+                    transition={{ duration: transTime }}
+                    initial={{ x: "100vh" }}
+                    animate={{ x: 0 }}
+                    exit={{ opacity: 0 }}
+                    key={cartItem.id}
+                  >
+                    <CartCard cartItem={cartItem} />
+                  </CartItemsMotionWrapper>
+                );
+              })}
+            </div>
+            <CartGoToCheckout>
+              <Button
+                data-testid="goToCheckout"
+                onClick={goToCheckoutHandler}
+                buttonType={BUTTON_TYPE_CLASSES.cartFuncButton}
+              >{`${"Do kasy"}`}</Button>
+              {`W sumie: ${cartTotal}zł`}
+            </CartGoToCheckout>
+          </CartWrapperMotion>
+        </AnimatePresence>
       </Cart>
     </Modal>
   );

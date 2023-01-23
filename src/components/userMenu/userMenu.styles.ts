@@ -1,6 +1,14 @@
 import styled from "styled-components";
-import { Colors, StandardFlexContainer } from "../../global.styles";
+import {
+  Colors,
+  StandardFlexContainer,
+  StandardFlexMixin
+} from "../../global.styles";
 import Button from "../button/button.component";
+
+import { motion } from "framer-motion";
+
+import { UserMenuVariants } from "../../utils/framer-motion/variants.utils";
 
 export const UserMenu = styled.div`
   background-color: rgba(0, 0, 0, 0.9);
@@ -22,10 +30,12 @@ export const UserMenu = styled.div`
   }
 `;
 
-export const UserMenuContainer = styled(StandardFlexContainer)`
+export const UserMenuContainerMotion = styled(motion.div)`
+  ${StandardFlexMixin}
   flex-direction: column;
   gap: 2.4rem;
   width: 50%;
+  max-width: 40rem;
   padding: 1rem 2rem 3rem 2rem;
   text-align: center;
   border-radius: 1.5rem;
@@ -81,5 +91,4 @@ export const UserMenuFuncButton = styled(Button)`
 
 export const GoToMyAccount = styled.div`
   cursor: pointer;
- 
 `;

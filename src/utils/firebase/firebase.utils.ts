@@ -40,7 +40,9 @@ export function firebaseInit() {
 export const {
   categoriesCollectionRef,
   orderHistoryCollectionRef,
+
   usersCollectionRef,
+  
   firebaseApp,
   userAuth,
   fireStorage,

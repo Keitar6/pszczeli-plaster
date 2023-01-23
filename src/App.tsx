@@ -39,6 +39,7 @@ import { setOrderHistory } from "./store/orderHistory/orderHistory.action";
 import { setCartItems } from "./store/cartReducer/cart.actions";
 import { CART_INITIAL_STATE } from "./store/cartReducer/cart.reducer";
 import { ORDER_HISTORY_INITIAL_STATE } from "./store/orderHistory/orderHistory.reducer";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -100,7 +101,9 @@ function App() {
     <>
       <div id="modal" data-testid="modal"></div>
       {isUserMenuOpened ? (
-        <UserMenuModal />
+        
+          <UserMenuModal />
+       
       ) : isCartMenuOpened && isCartEmpty(cartQuantity) ? (
         <CartModal />
       ) : isProductCardOpened ? (

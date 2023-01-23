@@ -10,7 +10,7 @@ import {
   UserMenuLogoText,
   UserMenuFuncButtons,
   UserMenuFuncButton,
-  UserMenuContainer,
+  UserMenuContainerMotion,
   GoToMyAccount
 } from "./userMenu.styles";
 
@@ -25,6 +25,8 @@ import {
 } from "../../store/userReducer/user.selector";
 
 import { signOutAsync } from "../../store/userReducer/user.thunk";
+import { AnimatePresence } from "framer-motion";
+import { UserMenuVariants } from "../../utils/framer-motion/variants.utils";
 
 export const UserMenuModal = () => {
   const dispatch = useAppDispatch();
@@ -76,97 +78,105 @@ export const UserMenuModal = () => {
           );
         }}
       >
-        <UserMenuContainer>
-          <UserMenuLogoContainer>
-            <Icon
-              icon="fluent-emoji-high-contrast:polar-bear"
-              color="#ffb703"
-              width="64"
-              height="64"
-            />
-            <UserMenuLogoText>
-              <H2>
-                {" "}
-                {`Cześć ${
-                  !isUserLogedAndNotAnonym
-                    ? "Gościu"
-                    : (currentUser !== null && currentUser.email) ??
-                      "Panie Hakeru"
-                }`}
-              </H2>
-              <TextLink>
-                {" "}
-                <GoToMyAccount onClick={goToMyAccountHandler}>
+        <AnimatePresence custom={UserMenuVariants}>
+          <UserMenuContainerMotion
+            key="UserMenuMotion"
+            variants={UserMenuVariants}
+            initial="enter"
+            animate="visible"
+            exit="exit"
+          >
+            <UserMenuLogoContainer>
+              <Icon
+                icon="fluent-emoji-high-contrast:polar-bear"
+                color="#ffb703"
+                width="64"
+                height="64"
+              />
+              <UserMenuLogoText>
+                <H2>
                   {" "}
-                  Moje konto
-                </GoToMyAccount>
-              </TextLink>
-            </UserMenuLogoText>
-          </UserMenuLogoContainer>
+                  {`Cześć ${
+                    !isUserLogedAndNotAnonym
+                      ? "Gościu"
+                      : (currentUser !== null && currentUser.email) ??
+                        "Panie Hakeru"
+                  }`}
+                </H2>
+                <TextLink>
+                  {" "}
+                  <GoToMyAccount onClick={goToMyAccountHandler}>
+                    {" "}
+                    Moje konto
+                  </GoToMyAccount>
+                </TextLink>
+              </UserMenuLogoText>
+            </UserMenuLogoContainer>
 
-          <UserMenuLoginButtons>
-            <Button
-              buttonType={BUTTON_TYPE_CLASSES.login}
-              onClick={
-                isUserLogedAndNotAnonym ? logOutHandler : goToMyAccountHandler
-              }
-              isLoading={isLoadingUser}
-            >
-              {isUserLogedAndNotAnonym
-                ? "Wyloguj się"
-                : "Przejdź na stronę logowania"}
-            </Button>
-          </UserMenuLoginButtons>
+            <UserMenuLoginButtons>
+              <Button
+                buttonType={BUTTON_TYPE_CLASSES.login}
+                onClick={
+                  isUserLogedAndNotAnonym ? logOutHandler : goToMyAccountHandler
+                }
+                isLoading={isLoadingUser}
+              >
+                {isUserLogedAndNotAnonym
+                  ? "Wyloguj się"
+                  : "Przejdź na stronę logowania"}
+              </Button>
+            </UserMenuLoginButtons>
 
-          <UserMenuFuncButtons>
-            <UserMenuFuncButton
-              data-testid="goToOrders"
-              onClick={goToOrdersHandler}
-              buttonType={BUTTON_TYPE_CLASSES.base}
-            >
-              <Icon
-                icon="icon-park-outline:history-query"
-                color="#ffb703"
-                width="32"
-                height="32"
-              />
-              Historia Zamówień
-            </UserMenuFuncButton>
-            <UserMenuFuncButton
-              data-testid="goToCheckout"
-              onClick={goToCheckoutHandler}
-              buttonType={BUTTON_TYPE_CLASSES.base}
-            >
-              <Icon
-                icon="eva:shopping-cart-outline"
-                color="#ffb703"
-                width="32"
-                height="32"
-              />
-              {isCartEmpty(cartQuantity)
-                ? "Podsumowanie"
-                : "Wprowadź elementy do koszyka"}
-            </UserMenuFuncButton>
-            <UserMenuFuncButton buttonType={BUTTON_TYPE_CLASSES.base}>
-              <Icon
-                icon="ic:outline-favorite-border"
-                color="#ffb703"
-                width="32"
-                height="32"
-              />
-              Ulubione
-            </UserMenuFuncButton>
-            <UserMenuFuncButton buttonType={BUTTON_TYPE_CLASSES.base}>
-              <Icon
-                icon="bytesize:work"
-                color="#ffb703"
-                width="32"
-                height="32"
-              />
-              Zostań jednym z nas
-            </UserMenuFuncButton>
-          </UserMenuFuncButtons>
-        </UserMenuContainer>
+            <UserMenuFuncButtons>
+              <UserMenuFuncButton
+                data-testid="goToOrders"
+                onClick={goToOrdersHandler}
+                buttonType={BUTTON_TYPE_CLASSES.base}
+              >
+                <Icon
+                  icon="icon-park-outline:history-query"
+                  color="#ffb703"
+                  width="32"
+                  height="32"
+                />
+                Historia Zamówień
+              </UserMenuFuncButton>
+              <UserMenuFuncButton
+                data-testid="goToCheckout"
+                onClick={goToCheckoutHandler}
+                buttonType={BUTTON_TYPE_CLASSES.base}
+              >
+                <Icon
+                  icon="eva:shopping-cart-outline"
+                  color="#ffb703"
+                  width="32"
+                  height="32"
+                />
+                {isCartEmpty(cartQuantity)
+                  ? "Podsumowanie"
+                  : "Wprowadź elementy do koszyka"}
+              </UserMenuFuncButton>
+              <UserMenuFuncButton buttonType={BUTTON_TYPE_CLASSES.base}>
+                <Icon
+                  icon="ic:outline-favorite-border"
+                  color="#ffb703"
+                  width="32"
+                  height="32"
+                />
+                Ulubione
+              </UserMenuFuncButton>
+              <UserMenuFuncButton buttonType={BUTTON_TYPE_CLASSES.base}>
+                <Icon
+                  icon="bytesize:work"
+                  color="#ffb703"
+                  width="32"
+                  height="32"
+                />
+                Zostań jednym z nas
+              </UserMenuFuncButton>
+            </UserMenuFuncButtons>
+          </UserMenuContainerMotion>
+        </AnimatePresence>
       </UserMenu>
     </Modal>
   );

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, css } from "styled-components";
 
 export const Typhography = {
   fontType: '"Tapestry", "Dancing Script", cursive',
@@ -99,6 +99,12 @@ export const StandardFlexContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
+export const StandardFlexMixin = css`
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+`;
 export const Title = styled(H3)`
   border-bottom: 2px solid;
   border-image-slice: 1;
@@ -135,7 +141,7 @@ export const TextLink = styled.div`
   position: relative;
   color: inherit;
   text-decoration: inherit;
-  padding-bottom:0.3rem;
+  padding-bottom: 0.3rem;
   &::before {
     content: "";
     position: absolute;
