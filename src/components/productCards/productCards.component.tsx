@@ -12,9 +12,10 @@ import {
   selectViewLimiter
 } from "../../store/generalPropReducer/generalProp.selector";
 import { ProductCards, ProductCardsContent } from "./productCards.styles";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ShopMenuProductCardVariants } from "../../utils/framer-motion/variants.utils";
 import { viewLimiterInit } from "../../store/generalPropReducer/generalProp.reducer";
+
 export const ProductCardsContainer = () => {
   const categories = useAppSelector(selectCategories);
   const sort = useAppSelector(selectSort);
@@ -41,42 +42,44 @@ export const ProductCardsContainer = () => {
               if (category.title === path) {
                 return categoriesSorting(category.items).map(
                   ({ id, name, image, price }, index: number) => (
-                    <motion.div
-                      key={id}
-                      variants={ShopMenuProductCardVariants}
-                      custom={{ viewLimiterInit, viewLimiter, index }}
-                      initial="enter"
-                      animate="visible"
-                      exit="exit"
-                    >
-                      <ProductCard
-                        id={id}
-                        name={name}
-                        image={image}
-                        price={price}
-                      />
-                    </motion.div>
+                    <AnimatePresence key={id}>
+                      <motion.div
+                        variants={ShopMenuProductCardVariants}
+                        custom={{ viewLimiterInit, viewLimiter, index }}
+                        initial="enter"
+                        animate="visible"
+                        exit="exit"
+                      >
+                        <ProductCard
+                          id={id}
+                          name={name}
+                          image={image}
+                          price={price}
+                        />
+                      </motion.div>
+                    </AnimatePresence>
                   )
                 );
               }
             })
           : shopHPSorting().map(({ id, name, image, price }, index: number) => {
               return (
-                <motion.div
-                  key={id}
-                  variants={ShopMenuProductCardVariants}
-                  custom={{ viewLimiterInit, viewLimiter, index }}
-                  initial="enter"
-                  animate="visible"
-                  exit="exit"
-                >
-                  <ProductCard
-                    id={id}
-                    name={name}
-                    image={image}
-                    price={price}
-                  />
-                </motion.div>
+                <AnimatePresence key={id}>
+                  <motion.div
+                    variants={ShopMenuProductCardVariants}
+                    custom={{ viewLimiterInit, viewLimiter, index }}
+                    initial="enter"
+                    animate="visible"
+                    exit="exit"
+                  >
+                    <ProductCard
+                      id={id}
+                      name={name}
+                      image={image}
+                      price={price}
+                    />
+                  </motion.div>
+                </AnimatePresence>
               );
             })}
       </ProductCards>

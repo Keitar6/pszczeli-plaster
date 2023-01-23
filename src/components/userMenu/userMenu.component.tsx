@@ -21,6 +21,8 @@ import { selectCartCount } from "../../store/cartReducer/cart.selector";
 import { isCartEmpty } from "../../utils/reusableFunctions/isCartEmpty.function";
 import {
   selectCurrentUser,
+  selectCurrentUserData,
+  selectCurrentUserFormData,
   selectIsLoadingUser
 } from "../../store/userReducer/user.selector";
 
@@ -33,6 +35,7 @@ export const UserMenuModal = () => {
   const navigate = useNavigate();
   const cartQuantity = useAppSelector(selectCartCount);
   const currentUser = useAppSelector(selectCurrentUser);
+  const userData = useAppSelector(selectCurrentUserFormData);
   const isLoadingUser = useAppSelector(selectIsLoadingUser);
   const isUserLogedAndNotAnonym = currentUser && !currentUser.isAnonymous;
 
@@ -99,8 +102,9 @@ export const UserMenuModal = () => {
                   {`Cześć ${
                     !isUserLogedAndNotAnonym
                       ? "Gościu"
-                      : (currentUser !== null && currentUser.email) ??
-                        "Panie Hakeru"
+                      : currentUser !== null
+                      ? userData.displayName
+                      : userData.email
                   }`}
                 </H2>
                 <TextLink>

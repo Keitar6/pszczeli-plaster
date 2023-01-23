@@ -3,7 +3,7 @@ import { Variants } from "framer-motion";
 export const HPCategoriesVariants: Variants = {
   enter: (index: number) => {
     const xValue = index < 2 ? { x: "-100vh" } : { x: "100vh" };
-    const yValue = index > 2 ? { y: "-100vh" } : { y: "100vh" };
+    const yValue = index > 2 ? { y: "100vh" } : { y: "-100vh" };
     const value = index === 2 ? yValue : xValue;
 
     return { opacity: 0, ...value };
@@ -34,6 +34,15 @@ export const UserMenuVariants: Variants = {
   },
   visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
   exit: { opacity: 0, x: "-100vh" }
+};
+
+export const ProductDescriptionVariants: Variants = {
+  enter: () => {
+    const xValue = "100vh";
+    return { opacity: 0, y: xValue };
+  },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+  exit: { opacity: 0, y: "-100vh" }
 };
 
 export const CartVariants: Variants = {
@@ -75,5 +84,5 @@ export const ShopMenuProductCardVariants: Variants = {
       transition: { duration: transTime }
     };
   },
-  exit: { x: window.innerWidth }
+  exit: { opacity: 0, transition: { duration: 1 } }
 };
