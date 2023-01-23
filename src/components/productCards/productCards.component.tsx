@@ -60,15 +60,23 @@ export const ProductCardsContainer = () => {
                 );
               }
             })
-          : shopHPSorting().map(({ id, name, image, price }) => {
+          : shopHPSorting().map(({ id, name, image, price }, index: number) => {
               return (
-                <ProductCard
+                <motion.div
                   key={id}
-                  id={id}
-                  name={name}
-                  image={image}
-                  price={price}
-                />
+                  variants={ShopMenuProductCardVariants}
+                  custom={{ viewLimiterInit, viewLimiter, index }}
+                  initial="enter"
+                  animate="visible"
+                  exit="exit"
+                >
+                  <ProductCard
+                    id={id}
+                    name={name}
+                    image={image}
+                    price={price}
+                  />
+                </motion.div>
               );
             })}
       </ProductCards>
