@@ -1,9 +1,8 @@
 import { type User } from "firebase/auth";
+import { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { Title } from "../../global.styles";
-import {
-  FormTextInputs
-} from "../../globalStyles/form/form.globalStyles";
+import { FormTextInputs } from "../../globalStyles/form/form.globalStyles";
 import { FormButtons } from "../../globalStyles/form/formButtons/formButtons.component";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { toggleProfileEditingMode } from "../../store/userReducer/user.actions";
@@ -23,7 +22,10 @@ import {
 import { refresh } from "../../utils/reusableFunctions/refresh.function";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { CheckoutFormInput } from "../checkoutForm/checkoutFormInputs/textInput/checkoutFormInput.component";
-import { ProfileDetailsContainer,ProfileDetailsForm } from "./profileDetails.styles";
+import {
+  ProfileDetailsContainer,
+  ProfileDetailsForm
+} from "./profileDetails.styles";
 
 export const ProfileDetails = ({ name }: { name: string }) => {
   const isEditingModeOn = useAppSelector(selectIsProfileEditingModeOn);
@@ -34,6 +36,7 @@ export const ProfileDetails = ({ name }: { name: string }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm();
 
@@ -58,6 +61,10 @@ export const ProfileDetails = ({ name }: { name: string }) => {
   const resetChangesHandler = () => {
     dispatch(toggleProfileEditingMode());
   };
+
+  useEffect(() => {
+    reset(userFormData);
+  }, [userFormData.email]);
 
   return (
     <ProfileDetailsContainer>

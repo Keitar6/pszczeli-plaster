@@ -122,3 +122,9 @@ export const OrdersHisoryVariants: Variants = {
   },
   exit: { opacity: 0, transition: { duration: 1 } }
 };
+
+export const VanishingPageVariants: Variants = {
+  enter: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 1 } },
+  exit: { opacity: 0, transition: { duration: 1 } }
+};

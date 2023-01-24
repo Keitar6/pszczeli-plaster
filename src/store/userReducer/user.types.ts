@@ -1,5 +1,4 @@
 import type { User } from "firebase/auth";
-import { formData } from "../../utils/checkoutForm/checkoutForm.utils";
 import { CartItem } from "../cartReducer/cart.types";
 import { DeliveryData, Order } from "../orderHistory/orderHistory.types";
 import { SortType } from "./user.reducer";
@@ -29,7 +28,7 @@ export type AdditionalInformation = {
 
 export type UserInfoFromDB = AdditionalInformation;
 
-export type ProfileDetailsType = {
+export type ProfileDetailsTypeHelper = {
   displayName?: string;
   name: string;
   lastName: string;
@@ -40,6 +39,13 @@ export type ProfileDetailsType = {
   zip: string;
   terms: boolean;
 };
+
+export type ProfileDetailsType = {
+  // readonly [key in keyof ProfileDetailsTypeHelper]: ProfileDetailsTypeHelper[key];
+  readonly [key: string]: any;
+};
+
+export type MapType = { [key: string]: string };
 
 export enum USER_ACTION_TYPES {
   SIGN_IN_AND_SET_USER = "SIGN_IN_AND_SET_USER",

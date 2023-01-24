@@ -27,14 +27,20 @@ import {
   resetUsersCartItems,
   updateUsersOrderHistory
 } from "../../utils/firebase/functions/dbManipulationFunctions.FBFunctions";
-import { selectCurrentUser, selectCurrentUserFormData } from "../../store/userReducer/user.selector";
+import {
+  selectCurrentUser,
+  selectCurrentUserFormData
+} from "../../store/userReducer/user.selector";
 import { type User } from "firebase/auth";
 import { profileDetailsCreator } from "../../utils/reusableFunctions/profileDetailsCreator.Functions";
+import { MapType } from "../../store/userReducer/user.types";
+import { useEffect } from "react";
 
 export const CheckoutForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm();
   const dispatch = useAppDispatch();
@@ -44,7 +50,7 @@ export const CheckoutForm = () => {
 
   const usersProfileDBData = useAppSelector(selectCurrentUserFormData);
   const userFormData = profileDetailsCreator(usersProfileDBData);
-  
+
   const currentUser = useAppSelector(selectCurrentUser);
 
   const deliveryPrice = deliveryInfo.price ? deliveryInfo.price : 0;
@@ -65,7 +71,9 @@ export const CheckoutForm = () => {
       resetUsersCartItems(currentUser as User, cartItems));
     dispatch(setCartItems([]));
   };
-console.log(userFormData)
+  useEffect(() => {
+    reset(userFormData);
+  }, [userFormData.email]);
   return (
     <>
       <Form className="was-validated">
@@ -90,6 +98,7 @@ console.log(userFormData)
                 errorName={errors[name]}
                 width={width}
                 key={name}
+                initValue={userFormData[name]}
                 {...restArgs}
               >
                 {text}

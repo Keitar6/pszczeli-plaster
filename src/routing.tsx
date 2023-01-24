@@ -1,3 +1,4 @@
+import { AnimatePresence } from "framer-motion";
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import { NaviPath } from "./components/shopDirectory/shopNavi/shopNavi.component";
@@ -13,17 +14,19 @@ const MyAccountPage = lazy(
 
 export const Routing = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Navigation />}>
-        <Route index element={<Home />} />
-        <Route path="sklep" element={<NaviPath />}>
-          <Route index element={<Shop />} />
-          <Route path="/sklep/:id" element={<Shop />} />
+    <AnimatePresence>
+      <Routes>
+        <Route path="/" element={<Navigation />}>
+          <Route index element={<Home />} />
+          <Route path="sklep" element={<NaviPath />}>
+            <Route index element={<Shop />} />
+            <Route path="/sklep/:id" element={<Shop />} />
+          </Route>
+          <Route path="podsumowanie" element={<CheckoutPage />} />
+          <Route path="historiaZamowien" element={<OrdersPage />} />
+          <Route path="mojeKonto" element={<MyAccountPage />} />
         </Route>
-        <Route path="podsumowanie" element={<CheckoutPage />} />
-        <Route path="historiaZamowien" element={<OrdersPage />} />
-        <Route path="mojeKonto" element={<MyAccountPage />} />
-      </Route>
-    </Routes>
+      </Routes>
+    </AnimatePresence>
   );
 };
