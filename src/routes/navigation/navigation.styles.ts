@@ -13,7 +13,6 @@ export enum naviIcons {
 
 export const NavigationContainer = styled.nav`
   display: flex;
-  // flex: 1 1 0;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -24,7 +23,6 @@ export const NavigationContainer = styled.nav`
   position: sticky;
   top: 0;
   z-index: 50;
-  
 `;
 
 export const StructurizeComponent = styled.div`
@@ -32,7 +30,6 @@ export const StructurizeComponent = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
-  
 `;
 
 export const IconsContainer = styled.div`
@@ -41,10 +38,9 @@ export const IconsContainer = styled.div`
   flex-direction: row;
   gap: 1rem;
   align-items: center;
-  justify-content: center;
+  justify-content: end;
   z-index: 10;
   width: 30%;
-  // border: 2px solid red;
 
   @media (max-width: 1050px) {
     & {
@@ -66,7 +62,6 @@ export const ModalsTogglersIconsContainer = styled.div`
 
   @media (max-width: 1000px) {
     & {
-      // border: 2px solid red;
       gap: 0;
     }
   }
@@ -78,7 +73,6 @@ export const BrandName = styled.h1`
   right: 0;
   text-align: center;
   width: 40%;
-  // border: 2px solid red;
 `;
 
 export const Logo = styled(Link)`
@@ -93,7 +87,6 @@ export const LogoContainer = styled.div`
   margin-left: 1rem;
   padding: 0.1rem 0.4rem;
   width: 30%;
-  // border: 2px solid red;
 `;
 
 export const HamburgerIcon = styled(Hamburger)``;

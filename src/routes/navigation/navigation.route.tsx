@@ -84,7 +84,7 @@ const Navigation = () => {
         </LogoContainer>
         <BrandName>Pszczeli Plaster</BrandName>
         <IconsContainer>
-          <InputBar whereTo="sklep" />
+          
           <ModalsTogglersIconsContainer>
             <div
               onClick={cartDropdownHandler}
