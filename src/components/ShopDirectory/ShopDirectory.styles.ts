@@ -67,6 +67,6 @@ export const ShopMenuItem = styled(Link)`
 `;
 export const ShopDirectoryButton = styled(Button)`
   flex: 0 0 5%;
-  width: 100%;
-  border-radius: 0.5rem;
+  width: 30%;
+  margin-bottom: 0.5rem;
 `;

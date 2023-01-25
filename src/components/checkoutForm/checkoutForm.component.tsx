@@ -98,7 +98,7 @@ export const CheckoutForm = () => {
                 errorName={errors[name]}
                 width={width}
                 key={name}
-                initValue={userFormData[name]}
+                initValue={userFormData[name] ? userFormData[name] : null}
                 {...restArgs}
               >
                 {text}
