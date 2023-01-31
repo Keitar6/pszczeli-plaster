@@ -3,7 +3,6 @@ import { FC, useState } from "react";
 import { Order } from "../../store/orderHistory/orderHistory.types";
 
 import {
-  OrderItemContainer,
   OrderItemHeader,
   OrderItemContent,
   OrderItemInfoHeader,
@@ -20,7 +19,8 @@ import {
 import { selectCurrentUserFormData } from "../../store/userReducer/user.selector";
 import { useAppSelector } from "../../hooks/hooks";
 
-import { motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import { OrderItemContainer } from "./orderContainer/orderContainer.component";
 import { OrdersHistoryOpenVariants } from "../../utils/framer-motion/variants.utils";
 
 type OrderItemProps = {
@@ -37,21 +37,16 @@ export const OrderItem: FC<OrderItemProps> = ({ orderItem }) => {
   const [info, setInfo] = useState(false);
 
   return (
-    <OrderItemContainer>
-      <OrderItemContent>
-        <OrderItemHeader onClick={() => setInfo(!info)}>
-          <Id>{id}</Id>
-          <Time>{time}</Time>
+    <AnimatePresence>
+      <OrderItemContainer ifOpened={info}>
+        <OrderItemContent onClick={() => setInfo(!info)}>
+          <OrderItemHeader>
+            <Id>{id}</Id>
+            <Time>{time}</Time>
 
-          <Total>{`${price ? price + "zł" : "Błąd"}`}</Total>
-        </OrderItemHeader>
-        {info ? (
-          <motion.div
-            variants={OrdersHistoryOpenVariants}
-            initial="enter"
-            animate="visible"
-            exit="exit"
-          >
+            <Total>{`${price ? price + "zł" : "Błąd"}`}</Total>
+          </OrderItemHeader>
+          {info ? (
             <OrderItemInfoHeader>
               <UserInfo>
                 <H4>{`Użytkownik`}</H4>
@@ -83,13 +78,13 @@ export const OrderItem: FC<OrderItemProps> = ({ orderItem }) => {
                 <Info>{`Kod pocztowy: ${zip} `}</Info>
               </AdresInfo>
             </OrderItemInfoHeader>
-          </motion.div>
-        ) : (
-          <OrderDescription>
-            Kliknij aby zobaczyć szczegóły zamówienia
-          </OrderDescription>
-        )}
-      </OrderItemContent>
-    </OrderItemContainer>
+          ) : (
+            <OrderDescription>
+              Kliknij aby zobaczyć szczegóły zamówienia
+            </OrderDescription>
+          )}
+        </OrderItemContent>
+      </OrderItemContainer>
+    </AnimatePresence>
   );
 };

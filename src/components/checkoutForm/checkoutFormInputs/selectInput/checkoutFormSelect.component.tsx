@@ -36,7 +36,6 @@ export const CheckoutFormSelect: FC<PropsWithChildren<CheckoutFormInput>> = ({
 }) => {
   const dispatch = useAppDispatch();
   const deliveryPriceHandler = (deliveryType: string) => {
-    console.log(deliveryType);
     dispatch(
       setDelivery(deliveryType.replace(/\s+/g, "") as DeliveryType["type"])
     );

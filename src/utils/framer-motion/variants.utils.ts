@@ -116,16 +116,16 @@ export const OrdersHistoryVariants: Variants = {
   exit: { opacity: 0, transition: { duration: 1 } }
 };
 export const OrdersHistoryOpenVariants: Variants = {
-  enter: { scaleY: 1, y: "20vh" },
-  visible: () => {
-    const transTime = 0.5;
+  enter: { scaleY: 1 },
+  visible: (ifOpened: boolean) => {
+    const transTime = 0.3;
 
     return {
-      scaleY: 2,
+      height: ifOpened ? "100%" : 100,
       transition: { duration: transTime }
     };
   },
-  exit: { scaleY: 1, transition: { duration: 0.5 } }
+  exit: { height: 1, transition: { duration: 0.5 } }
 };
 export const VanishingPageVariants: Variants = {
   enter: { opacity: 0 },

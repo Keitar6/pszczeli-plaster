@@ -34,7 +34,6 @@ export const ProductCard: FC<PropsWithChildren<ProductCardProps>> = (
   const productDetailsHandler = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
-    console.log(event.target);
 
     dispatch(
       showProductCardDetails(

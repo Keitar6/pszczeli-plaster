@@ -46,10 +46,11 @@ const Navigation = () => {
   const orderHistory = useAppSelector(selectOrderHistory);
   const currentUser = useAppSelector(selectCurrentUser);
   const userDatabaseData = useAppSelector(selectCurrentUserData);
-  console.log(userDatabaseData);
+
   const debounced = useMemo(
     () =>
       debounce(function (user, items) {
+
         user !== null
           ? updateUsersCartItems(
               user as User,
@@ -61,7 +62,7 @@ const Navigation = () => {
             )
           : () => console.log("DEBOUNCEEE FAILED");
       }, 2000),
-    []
+    [userDatabaseData]
   );
 
   const userMenuHandler = () => dispatch(toggleUserMenu());

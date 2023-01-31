@@ -1,26 +1,15 @@
-import { Colors } from "../../global.styles";
 import styled from "styled-components";
+import { OrderItemContainerMotion } from "./orderContainer/orderContainer.styles";
 
-export const OrderItemContainer = styled.div`
-  width: 100%;
-  display: flex;
-  min-height: 3rem;
-  border-bottom: 1px solid ${Colors.darkRGBA};
-  padding: 0.2rem 0 0.3rem 0;
-  font-size: 1.25rem;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-  gap: 2rem;
-`;
 
-export const OrderItemContent = styled(OrderItemContainer)`
+export const OrderItemContent = styled(OrderItemContainerMotion)`
   border: none;
   cursor: pointer;
   gap: 0;
+  // border: 2px solid red;
 `;
 
-export const OrderItemHeader = styled(OrderItemContainer)`
+export const OrderItemHeader = styled(OrderItemContainerMotion)`
   flex-direction: row;
   border: none;
   cursor: pointer;

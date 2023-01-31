@@ -59,7 +59,6 @@ export type NewOrder = Order;
 
 export const signInAnonymous = async () => {
   const { user } = await signInAnonymously(userAuth);
-  console.log(user);
   return user;
 };
 

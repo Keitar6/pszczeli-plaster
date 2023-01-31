@@ -35,7 +35,6 @@ export const CheckoutItem: FC<CheckoutItemProps> = ({ cartItem }) => {
   };
 
   const removeItemHandler = () => {
-    console.log(removeItemFromCart(cartItems, cartItem, true))
     dispatch(removeItemFromCart(cartItems, cartItem, true));
   };
 

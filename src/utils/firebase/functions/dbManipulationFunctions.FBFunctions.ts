@@ -48,13 +48,11 @@ export const createUserDocumentFromAuth = async (
       console.log("I just caught some error while creating users!!", error);
     }
   }
-  // if user data exists
   else if (userSnapshot.exists()) {
     return;
   }
 };
 
-//order History functions
 export const addNewOrderToHistory = (newOrder: NewOrder) => {
   const newDoc = doc(
     fireStorage,
@@ -110,6 +108,7 @@ export const updateUsersCartItems = (
   { currentCartItems }: UpdateUsersCartItemsAndOrderHistory,
   { cartItems }: UserDatabaseDataType
 ) => {
+  console.log(currentCartItems, cartItems)
   modifyUserDbCartItems(userAuth, currentCartItems, cartItems);
 };
 

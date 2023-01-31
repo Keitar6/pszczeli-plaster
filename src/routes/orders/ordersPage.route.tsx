@@ -36,7 +36,6 @@ const OrdersPage = () => {
   const tempOrdersHistory = ordersHistory
     ? [...timeSorting(ordersHistory)].splice(0, viewLimiter)
     : [];
-  console.log(isLoggedIn);
   const ordersHeaders = {
     title: "historia zamówień",
     id: "#id",

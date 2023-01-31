@@ -67,7 +67,6 @@ export const getUsersDataAsync: any = (currentUser: User) => {
     dispatch(getUsersDataStart());
     try {
       const userDB = await getUserCartItemsAndOrderHistory(currentUser);
-      console.log(userDB);
       const userDoc = await getUserProfileData(currentUser);
       dispatch(setCartItems(userDB.cartItems));
       dispatch(setOrderHistory(userDB.orderHistory));
