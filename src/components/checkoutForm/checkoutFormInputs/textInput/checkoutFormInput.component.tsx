@@ -8,6 +8,7 @@ import {
 import type { FieldValues } from "react-hook-form/dist/types/fields";
 import type { UseFormRegister } from "react-hook-form/dist/types/form";
 import { NonValidFormInput } from "../../../../globalStyles/form/form.globalStyles";
+import { PLFormData } from "../../../../utils/checkoutForm/checkoutForm.utils";
 import {
   InputContainer,
   InputLabel,
@@ -51,7 +52,7 @@ export const CheckoutFormInput: FC<PropsWithChildren<CheckoutFormInput>> = ({
         id={`${id}` + idPlus}
         placeholder={`${placeholder}`}
         disabled={disabledText}
-        value={initValue !== "---" ? initValue : ""}
+        value={initValue !== "---" ? initValue : " "}
         {...register(`${id}`, {
           required: true,
           minLength: minLength,
@@ -59,7 +60,7 @@ export const CheckoutFormInput: FC<PropsWithChildren<CheckoutFormInput>> = ({
           ...restArgs
         })}
       />
-      <InputLabel htmlFor={`${id}`}>{id}</InputLabel>
+      <InputLabel htmlFor={`${id}`}>{PLFormData[id]}</InputLabel>
       {errorName && <NonValidFormInput>{children}</NonValidFormInput>}
     </InputContainer>
   );

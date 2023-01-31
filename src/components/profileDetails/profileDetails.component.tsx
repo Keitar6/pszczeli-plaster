@@ -54,6 +54,20 @@ export const ProfileDetails = ({ name }: { name: string }) => {
     dispatch(toggleProfileEditingMode());
   };
 
+  // const resetProfileDataHandler = () => {
+  //   const formDataWithNoEmailAndPassword = profileDetailsWithNoEmailAndPassword(
+  //     formData as ProfileDetailsType
+  //   );
+
+  //   currentUser &&
+  //     updateProfileInformationInDoc(
+  //       currentUser as User,
+  //       formDataWithNoEmailAndPassword,
+  //       usersProfileDBData
+  //     );
+  //   dispatch(toggleProfileEditingMode());
+  // };
+
   const startProfileEditingHandler = () => {
     dispatch(toggleProfileEditingMode());
   };
@@ -80,6 +94,7 @@ export const ProfileDetails = ({ name }: { name: string }) => {
               ...restArgs
             } = formDataInputMap[input];
             const formValue = objectByStringFinder(userFormData, input);
+
             return (
               <CheckoutFormInput
                 {...restArgs}
@@ -91,7 +106,7 @@ export const ProfileDetails = ({ name }: { name: string }) => {
                 errorName={errors[input]}
                 key={input}
                 disabledText={!isEditingModeOn}
-                initValue={formValue}
+                // initValue={formValue}
               >
                 {text}
               </CheckoutFormInput>
@@ -112,7 +127,8 @@ export const ProfileDetails = ({ name }: { name: string }) => {
               buttonType={BUTTON_TYPE_CLASSES.formButton}
               onClick={() => {
                 resetChangesHandler();
-                refresh("mojeKonto");
+                // refresh("mojeKonto");
+                // changeProfileDataHandler()
               }}
             >
               Cofnij zmiany

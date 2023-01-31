@@ -18,6 +18,19 @@ export type FormData = {
   [key: string]: string;
 };
 
+export const PLFormData: FormData = {
+  name: "Imię",
+  lastName: "Nazwisko",
+  email: "E-mail",
+  deliveryMethod: "deliveryMethod",
+  city: "Miasto",
+  homeAdress: "Adres",
+  street: "Ulica",
+  zip: "Zip",
+  payMethod: "payMethod",
+  terms: "terms"
+};
+
 export const formData: FormData = {
   name: "name",
   lastName: "lastName",
