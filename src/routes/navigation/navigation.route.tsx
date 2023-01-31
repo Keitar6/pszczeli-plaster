@@ -46,7 +46,7 @@ const Navigation = () => {
   const orderHistory = useAppSelector(selectOrderHistory);
   const currentUser = useAppSelector(selectCurrentUser);
   const userDatabaseData = useAppSelector(selectCurrentUserData);
-
+  console.log(userDatabaseData);
   const debounced = useMemo(
     () =>
       debounce(function (user, items) {
@@ -60,7 +60,7 @@ const Navigation = () => {
               userDatabaseData
             )
           : () => console.log("DEBOUNCEEE FAILED");
-      }, 3000),
+      }, 2000),
     []
   );
 
@@ -84,7 +84,6 @@ const Navigation = () => {
         </LogoContainer>
         <BrandName>Pszczeli Plaster</BrandName>
         <IconsContainer>
-          
           <ModalsTogglersIconsContainer>
             <div
               onClick={cartDropdownHandler}

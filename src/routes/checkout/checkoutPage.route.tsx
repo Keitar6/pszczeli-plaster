@@ -25,7 +25,7 @@ import { isCartEmpty } from "../../utils/reusableFunctions/isCartEmpty.function"
 import { useNavigate } from "react-router-dom";
 
 import { motion } from "framer-motion";
-import { CheckoutVariants } from "../../utils/framer-motion/variants.utils";
+import { CheckoutVariants, ShoppingPageVariants } from "../../utils/framer-motion/variants.utils";
 
 const CheckoutPage = () => {
   const cartItems = useAppSelector(selectCartItems);
@@ -52,39 +52,46 @@ const CheckoutPage = () => {
   }, [cartQuantity]);
 
   return (
-    <CheckoutContainer>
-      <CheckoutFormContainer>
-        <FormTitle>{`${checkoutHeaders.formularz.toUpperCase()}`}</FormTitle>
-        <CheckoutForm />
-      </CheckoutFormContainer>
-      <CheckoutSummaryContainer>
-        <SummaryTitle>{`${checkoutHeaders.summary.toUpperCase()}`}</SummaryTitle>
-        <CheckoutHeader>
-          <HeaderBlock>{`${checkoutHeaders.product}`}</HeaderBlock>
-          <HeaderBlock>{`${checkoutHeaders.description}`}</HeaderBlock>
-          <HeaderBlock>{`${checkoutHeaders.quantity}`}</HeaderBlock>
-          <HeaderBlock>{`${checkoutHeaders.price}`}</HeaderBlock>
-          <HeaderBlock>{`${checkoutHeaders.remove}`}</HeaderBlock>
-        </CheckoutHeader>
-        {cartItems.map((currentItem, index: number) => (
-          <motion.div
-            key={currentItem.id}
-            variants={CheckoutVariants}
-            custom={index}
-            initial="enter"
-            animate="visible"
-            exit="exit"
-          >
-            <CheckoutItem cartItem={currentItem} />
-          </motion.div>
-        ))}
-        <PLarge>{`${checkoutHeaders.deliveryPrice}: ${deliveryPrice}zł`}</PLarge>
-        <PLarge>{`${checkoutHeaders.productsPrice}: ${totalCost}zł`}</PLarge>
-        <Total>{`${checkoutHeaders.wSumie}: ${
-          totalCost + deliveryPrice
-        }zł`}</Total>
-      </CheckoutSummaryContainer>
-    </CheckoutContainer>
+    <motion.div
+      variants={ShoppingPageVariants}
+      initial="enter"
+      animate="visible"
+      exit="exit"
+    >
+      <CheckoutContainer>
+        <CheckoutFormContainer>
+          <FormTitle>{`${checkoutHeaders.formularz.toUpperCase()}`}</FormTitle>
+          <CheckoutForm />
+        </CheckoutFormContainer>
+        <CheckoutSummaryContainer>
+          <SummaryTitle>{`${checkoutHeaders.summary.toUpperCase()}`}</SummaryTitle>
+          <CheckoutHeader>
+            <HeaderBlock>{`${checkoutHeaders.product}`}</HeaderBlock>
+            <HeaderBlock>{`${checkoutHeaders.description}`}</HeaderBlock>
+            <HeaderBlock>{`${checkoutHeaders.quantity}`}</HeaderBlock>
+            <HeaderBlock>{`${checkoutHeaders.price}`}</HeaderBlock>
+            <HeaderBlock>{`${checkoutHeaders.remove}`}</HeaderBlock>
+          </CheckoutHeader>
+          {cartItems.map((currentItem, index: number) => (
+            <motion.div
+              key={currentItem.id}
+              variants={CheckoutVariants}
+              custom={index}
+              initial="enter"
+              animate="visible"
+              exit="exit"
+            >
+              <CheckoutItem cartItem={currentItem} />
+            </motion.div>
+          ))}
+          <PLarge>{`${checkoutHeaders.deliveryPrice}: ${deliveryPrice}zł`}</PLarge>
+          <PLarge>{`${checkoutHeaders.productsPrice}: ${totalCost}zł`}</PLarge>
+          <Total>{`${checkoutHeaders.wSumie}: ${
+            totalCost + deliveryPrice
+          }zł`}</Total>
+        </CheckoutSummaryContainer>
+      </CheckoutContainer>
+    </motion.div>
   );
 };
 export default CheckoutPage;

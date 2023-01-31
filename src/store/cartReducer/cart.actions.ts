@@ -28,22 +28,22 @@ export const addCartItem = (
 export const removeCartItem = (
   cartItems: CartItem[] = [],
   productToRemove: CartItem,
-  ifAll: string
+  ifAll: boolean
 ): CartItem[] => {
   const tempCartItems = [...cartItems];
   let updatedCartItemsRemove = [];
   let productId = 0;
 
-  if (productToRemove && ifAll !== "all" && productToRemove.quantity !== 1)
+  if (productToRemove && ifAll === false && productToRemove.quantity !== 1)
     updatedCartItemsRemove = tempCartItems.map((cartItem) =>
       cartItem.id === productToRemove.id
         ? { ...cartItem, quantity: cartItem.quantity - 1 }
         : cartItem
     );
-  else if (ifAll === "all") {
+  else if (ifAll === true) {
     productId = tempCartItems.indexOf(productToRemove);
     tempCartItems.splice(productId, 1);
-    updatedCartItemsRemove = [...tempCartItems];
+    updatedCartItemsRemove = tempCartItems;
   } else updatedCartItemsRemove = [...cartItems];
 
   return updatedCartItemsRemove;
@@ -73,7 +73,7 @@ export const addItemToCart = withMatch(
 );
 
 export const removeItemFromCart = withMatch(
-  (cartItems: CartItem[]=[], productToRemove: CartItem, ifAll = "") => {
+  (cartItems: CartItem[] = [], productToRemove: CartItem, ifAll = false) => {
     const updatedCartItems = removeCartItem(cartItems, productToRemove, ifAll);
 
     return setCartItems(updatedCartItems);

@@ -20,6 +20,9 @@ import {
 import { selectCurrentUserFormData } from "../../store/userReducer/user.selector";
 import { useAppSelector } from "../../hooks/hooks";
 
+import { motion } from "framer-motion";
+import { OrdersHistoryOpenVariants } from "../../utils/framer-motion/variants.utils";
+
 type OrderItemProps = {
   orderItem: Order;
 };
@@ -43,7 +46,12 @@ export const OrderItem: FC<OrderItemProps> = ({ orderItem }) => {
           <Total>{`${price ? price + "zł" : "Błąd"}`}</Total>
         </OrderItemHeader>
         {info ? (
-          <>
+          <motion.div
+            variants={OrdersHistoryOpenVariants}
+            initial="enter"
+            animate="visible"
+            exit="exit"
+          >
             <OrderItemInfoHeader>
               <UserInfo>
                 <H4>{`Użytkownik`}</H4>
@@ -75,7 +83,7 @@ export const OrderItem: FC<OrderItemProps> = ({ orderItem }) => {
                 <Info>{`Kod pocztowy: ${zip} `}</Info>
               </AdresInfo>
             </OrderItemInfoHeader>
-          </>
+          </motion.div>
         ) : (
           <OrderDescription>
             Kliknij aby zobaczyć szczegóły zamówienia

@@ -8,7 +8,7 @@ import { onSnapshot } from "firebase/firestore";
 import { Category } from "../../store/categories/category.types";
 
 import { motion } from "framer-motion";
-import { VanishingPageVariants } from "../../utils/framer-motion/variants.utils";
+import { HomePageVariants } from "../../utils/framer-motion/variants.utils";
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
@@ -23,7 +23,7 @@ const HomePage = () => {
   return (
     <>
       <motion.div
-        variants={VanishingPageVariants}
+        variants={HomePageVariants}
         initial="entry"
         animate="visible"
         exit="exit"

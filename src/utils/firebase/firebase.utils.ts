@@ -34,7 +34,6 @@ export function firebaseInit() {
     fireStorage,
     googleProvider
   };
-  
 }
 
 export const {
@@ -42,7 +41,7 @@ export const {
   orderHistoryCollectionRef,
 
   usersCollectionRef,
-  
+
   firebaseApp,
   userAuth,
   fireStorage,

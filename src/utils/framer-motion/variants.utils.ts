@@ -26,7 +26,6 @@ export const HPCategoriesVariants: Variants = {
     return { opacity: 0, ...value };
   }
 };
-
 export const UserMenuVariants: Variants = {
   enter: () => {
     const xValue = Math.floor(Math.random() * 2) === 1 ? "100vh" : "-100vh";
@@ -35,7 +34,6 @@ export const UserMenuVariants: Variants = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
   exit: { opacity: 0, x: "-100vh" }
 };
-
 export const ProductDescriptionVariants: Variants = {
   enter: () => {
     const xValue = "100vh";
@@ -44,13 +42,11 @@ export const ProductDescriptionVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
   exit: { opacity: 0, y: "-100vh" }
 };
-
 export const CartVariants: Variants = {
   enter: { opacity: 0, x: "100vh" },
   visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
   exit: { x: window.innerWidth }
 };
-
 export const CartItemsVariants: Variants = {
   enter: { opacity: 0, x: "100vh" },
   visible: (index: number) => {
@@ -59,7 +55,6 @@ export const CartItemsVariants: Variants = {
   },
   exit: { x: window.innerWidth }
 };
-
 export const CheckoutVariants: Variants = {
   enter: { opacity: 0, x: "100vh" },
   visible: (index: number) => {
@@ -68,7 +63,6 @@ export const CheckoutVariants: Variants = {
   },
   exit: { x: window.innerWidth }
 };
-
 export const ShopMenuProductCardVariants: Variants = {
   enter: { opacity: 0, x: "100vh" },
   visible: ({
@@ -95,8 +89,7 @@ export const ShopMenuProductCardVariants: Variants = {
   },
   exit: { opacity: 0, transition: { duration: 1 } }
 };
-
-export const OrdersHisoryVariants: Variants = {
+export const OrdersHistoryVariants: Variants = {
   enter: { opacity: 0, y: "20vh" },
   visible: ({
     viewLimiterInit,
@@ -122,8 +115,37 @@ export const OrdersHisoryVariants: Variants = {
   },
   exit: { opacity: 0, transition: { duration: 1 } }
 };
+export const OrdersHistoryOpenVariants: Variants = {
+  enter: { scaleY: 1, y: "20vh" },
+  visible: () => {
+    const transTime = 0.5;
 
+    return {
+      scaleY: 2,
+      transition: { duration: transTime }
+    };
+  },
+  exit: { scaleY: 1, transition: { duration: 0.5 } }
+};
 export const VanishingPageVariants: Variants = {
+  enter: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 1 } },
+  exit: { opacity: 0, transition: { duration: 1 } }
+};
+
+export const ShoppingPageVariants: Variants = {
+  enter: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 1 } },
+  exit: { opacity: 0, transition: { duration: 1 } }
+};
+
+export const HomePageVariants: Variants = {
+  enter: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 1 } },
+  exit: { opacity: 0, transition: { duration: 1 } }
+};
+
+export const CheckoutPageVariants: Variants = {
   enter: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 1 } },
   exit: { opacity: 0, transition: { duration: 1 } }

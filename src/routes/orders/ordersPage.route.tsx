@@ -23,7 +23,7 @@ import { selectLoginStatus } from "../../store/userReducer/user.selector";
 import { LOGIN_STATUS_TYPES } from "../../store/userReducer/user.reducer";
 
 import { motion } from "framer-motion";
-import { OrdersHisoryVariants } from "../../utils/framer-motion/variants.utils";
+import { OrdersHistoryVariants } from "../../utils/framer-motion/variants.utils";
 
 import { viewLimiterInit } from "../../store/generalPropReducer/generalProp.reducer";
 
@@ -67,7 +67,7 @@ const OrdersPage = () => {
                     return (
                       <OrderItemWrapper
                         key={currentOrder.id}
-                        variants={OrdersHisoryVariants}
+                        variants={OrdersHistoryVariants}
                         custom={{ viewLimiterInit, viewLimiter, index }}
                         initial="enter"
                         animate="visible"

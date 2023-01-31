@@ -30,8 +30,13 @@ export const CheckoutItem: FC<CheckoutItemProps> = ({ cartItem }) => {
     dispatch(addItemToCart(cartItems, cartItem));
   };
 
-  const removeItemHandler = () => {
+  const removeOneItemHandler = () => {
     dispatch(removeItemFromCart(cartItems, cartItem));
+  };
+
+  const removeItemHandler = () => {
+    console.log(removeItemFromCart(cartItems, cartItem, true))
+    dispatch(removeItemFromCart(cartItems, cartItem, true));
   };
 
   return (
@@ -39,15 +44,12 @@ export const CheckoutItem: FC<CheckoutItemProps> = ({ cartItem }) => {
       <Image src={`/dataBaseImages/${image}`} alt={`Obraz: ${name}`} />
       <Span>{name}</Span>
       <Quantity>
-        <Arrow onClick={removeItemHandler}>&#10094;</Arrow>
+        <Arrow onClick={removeOneItemHandler}>&#10094;</Arrow>
         <Value>{quantity}</Value>
         <Arrow onClick={addItemHandler}>&#10095;</Arrow>
       </Quantity>
       <Span>{`${quantity * price}zł`}</Span>
-      <RemoveButton
-        className="remove-button"
-        onClick={() => dispatch(removeItemFromCart(cartItems, cartItem, "all"))}
-      >
+      <RemoveButton className="remove-button" onClick={removeItemHandler}>
         &#10005;
       </RemoveButton>
     </CheckoutItemContainer>

@@ -86,7 +86,8 @@ export const modifyUserDbCartItems = (
   const batch = writeBatch(fireStorage);
   let objectName = "";
 
-  //check if usersDB data have still the same objects
+  console.log(currentCartItems, usersDbCartItems);
+
   usersDbCartItems.forEach((dbCartItem) => {
     if (!currentCartItems.includes(dbCartItem)) {
       objectName = dbCartItem.name;
