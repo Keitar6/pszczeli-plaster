@@ -132,20 +132,34 @@ export const VanishingPageVariants: Variants = {
   visible: { opacity: 1, transition: { duration: 1 } },
   exit: { opacity: 0, transition: { duration: 1 } }
 };
-
 export const ShoppingPageVariants: Variants = {
   enter: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 1 } },
   exit: { opacity: 0, transition: { duration: 1 } }
 };
-
 export const HomePageVariants: Variants = {
   enter: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 1 } },
   exit: { opacity: 0, transition: { duration: 1 } }
 };
-
 export const CheckoutPageVariants: Variants = {
+  enter: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 1 } },
+  exit: { opacity: 0, transition: { duration: 1 } }
+};
+export const OrderPageVariants: Variants = {
+  enter: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 1 } },
+  exit: { opacity: 0, transition: { duration: 1 } }
+};
+
+export const NavbarAndFooterVariants: Variants = {
+  enter: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 1 } },
+  exit: { opacity: 0, transition: { duration: 1 } }
+};
+
+export const MyAccountVariants: Variants = {
   enter: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 1 } },
   exit: { opacity: 0, transition: { duration: 1 } }

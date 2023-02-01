@@ -10,5 +10,6 @@ export const OrderItemContainerMotion = styled(motion.div)`
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
+  margin-bottom: 0.5rem;
   gap: 2rem;
 `;

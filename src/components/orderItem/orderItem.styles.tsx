@@ -13,6 +13,7 @@ export const OrderItemHeader = styled(OrderItemContainerMotion)`
   flex-direction: row;
   border: none;
   cursor: pointer;
+  
 `;
 
 export const OrderItemInfoHeader = styled(OrderItemHeader)`
@@ -21,6 +22,7 @@ export const OrderItemInfoHeader = styled(OrderItemHeader)`
   padding: 0;
   min-height: 0rem;
   font-size: 1rem;
+  
 `;
 
 export const OrderItemInfo = styled(OrderItemHeader)`

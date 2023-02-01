@@ -11,15 +11,15 @@ import {
   selectCurrentUserFormData,
   selectIsProfileEditingModeOn
 } from "../../store/userReducer/user.selector";
+import { getUsersDataAsync } from "../../store/userReducer/user.thunk";
 import { type ProfileDetailsType } from "../../store/userReducer/user.types";
 import { formDataInputMap } from "../../utils/checkoutForm/checkoutForm.utils";
 import { updateProfileInformationInDoc } from "../../utils/firebase/functions/dbManipulationFunctions.FBFunctions";
-import { objectByStringFinder } from "../../utils/reusableFunctions/inObjectFinder.function";
+import { MyAccountVariants } from "../../utils/framer-motion/variants.utils";
 import {
   profileDetailsCreator,
   profileDetailsWithNoEmailAndPassword
 } from "../../utils/reusableFunctions/profileDetailsCreator.Functions";
-import { refresh } from "../../utils/reusableFunctions/refresh.function";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { CheckoutFormInput } from "../checkoutForm/checkoutFormInputs/textInput/checkoutFormInput.component";
 import {
@@ -41,32 +41,19 @@ export const ProfileDetails = ({ name }: { name: string }) => {
   } = useForm();
 
   const changeProfileDataHandler = (formData: FieldValues) => {
+    console.log("SIABADYSZ");
     const formDataWithNoEmailAndPassword = profileDetailsWithNoEmailAndPassword(
       formData as ProfileDetailsType
     );
 
-    currentUser &&
-      updateProfileInformationInDoc(
-        currentUser as User,
-        formDataWithNoEmailAndPassword,
-        usersProfileDBData
-      );
+    updateProfileInformationInDoc(
+      currentUser as User,
+      formDataWithNoEmailAndPassword,
+      usersProfileDBData
+    ).then(() => dispatch(getUsersDataAsync(currentUser)));
+
     dispatch(toggleProfileEditingMode());
   };
-
-  // const resetProfileDataHandler = () => {
-  //   const formDataWithNoEmailAndPassword = profileDetailsWithNoEmailAndPassword(
-  //     formData as ProfileDetailsType
-  //   );
-
-  //   currentUser &&
-  //     updateProfileInformationInDoc(
-  //       currentUser as User,
-  //       formDataWithNoEmailAndPassword,
-  //       usersProfileDBData
-  //     );
-  //   dispatch(toggleProfileEditingMode());
-  // };
 
   const startProfileEditingHandler = () => {
     dispatch(toggleProfileEditingMode());
@@ -81,7 +68,12 @@ export const ProfileDetails = ({ name }: { name: string }) => {
   }, [userFormData.email]);
 
   return (
-    <ProfileDetailsContainer>
+    <ProfileDetailsContainer
+      variants={MyAccountVariants}
+      initial="enter"
+      animate="visible"
+      exit="exit"
+    >
       <Title>Szczegóły konta {name}</Title>
 
       <ProfileDetailsForm>
@@ -93,7 +85,6 @@ export const ProfileDetails = ({ name }: { name: string }) => {
               text,
               ...restArgs
             } = formDataInputMap[input];
-            const formValue = objectByStringFinder(userFormData, input);
 
             return (
               <CheckoutFormInput
@@ -106,7 +97,6 @@ export const ProfileDetails = ({ name }: { name: string }) => {
                 errorName={errors[input]}
                 key={input}
                 disabledText={!isEditingModeOn}
-                // initValue={formValue}
               >
                 {text}
               </CheckoutFormInput>
@@ -127,8 +117,6 @@ export const ProfileDetails = ({ name }: { name: string }) => {
               buttonType={BUTTON_TYPE_CLASSES.formButton}
               onClick={() => {
                 resetChangesHandler();
-                // refresh("mojeKonto");
-                // changeProfileDataHandler()
               }}
             >
               Cofnij zmiany

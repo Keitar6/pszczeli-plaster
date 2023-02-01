@@ -25,7 +25,10 @@ import { isCartEmpty } from "../../utils/reusableFunctions/isCartEmpty.function"
 import { useNavigate } from "react-router-dom";
 
 import { motion } from "framer-motion";
-import { CheckoutVariants, ShoppingPageVariants } from "../../utils/framer-motion/variants.utils";
+import {
+  CheckoutVariants,
+  ShoppingPageVariants
+} from "../../utils/framer-motion/variants.utils";
 
 const CheckoutPage = () => {
   const cartItems = useAppSelector(selectCartItems);

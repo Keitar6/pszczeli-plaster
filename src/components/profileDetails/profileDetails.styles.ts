@@ -1,13 +1,14 @@
 import styled from "styled-components";
-import { StandardFlexContainer } from "../../global.styles";
 import { Form } from "../../globalStyles/form/form.globalStyles";
+import { motion } from "framer-motion";
+import { StandardFlexMixin } from "../../global.styles";
 
-export const ProfileDetailsContainer = styled(StandardFlexContainer)`
+export const ProfileDetailsContainer = styled(motion.div)`
+  ${StandardFlexMixin}
   flex-direction: column;
   justify-content: start;
   padding: 2rem 0rem;
   gap: 2rem;
-  // max-width: 15rem;
   flex: 1 1 100%;
 `;
 export const ProfileDetailsForm = styled(Form)`

@@ -33,7 +33,6 @@ import {
 } from "../../store/userReducer/user.selector";
 import { type User } from "firebase/auth";
 import { profileDetailsCreator } from "../../utils/reusableFunctions/profileDetailsCreator.Functions";
-import { MapType } from "../../store/userReducer/user.types";
 import { useEffect } from "react";
 
 export const CheckoutForm = () => {
@@ -74,6 +73,7 @@ export const CheckoutForm = () => {
   useEffect(() => {
     reset(userFormData);
   }, [userFormData.email]);
+
   return (
     <>
       <Form className="was-validated">

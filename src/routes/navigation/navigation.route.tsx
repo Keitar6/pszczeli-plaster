@@ -36,6 +36,9 @@ import { debounce } from "lodash";
 import { updateUsersCartItems } from "../../utils/firebase/functions/dbManipulationFunctions.FBFunctions";
 import { type User } from "firebase/auth";
 import { useEffect, useMemo } from "react";
+import { NavbarAndFooterVariants } from "../../utils/framer-motion/variants.utils";
+
+import { motion } from "framer-motion";
 
 const Navigation = () => {
   const isUserMenuOpened = useAppSelector(selectIsUserMenuOpened);
@@ -75,39 +78,53 @@ const Navigation = () => {
 
   return (
     <StructurizeComponent>
-      <NavigationContainer>
-        <LogoContainer>
-          <Logo to="/" onClick={logoClickHandler} data-testid="logoClick">
-            <Icon icon={naviIcons.honeyBee} width="42" height="42" />
-          </Logo>
-        </LogoContainer>
-        <BrandName>Pszczeli Plaster</BrandName>
-        <IconsContainer>
-          <ModalsTogglersIconsContainer>
-            <div
-              onClick={cartDropdownHandler}
-              role="presentation"
-              data-testid="cartDropdown"
-            >
-              <CartIcon />
-            </div>
-            <div
-              onClick={userMenuHandler}
-              role="presentation"
-              data-testid="userMenu"
-            >
-              <HamburgerIcon
-                label="Show user menu"
-                rounded
-                toggled={isUserMenuOpened}
-              />
-            </div>
-          </ModalsTogglersIconsContainer>
-        </IconsContainer>
-      </NavigationContainer>
-      <Outlet />
+      <motion.div
+        variants={NavbarAndFooterVariants}
+        initial="enter"
+        animate="visible"
+        exit="exit"
+      >
+        <NavigationContainer>
+          <LogoContainer>
+            <Logo to="/" onClick={logoClickHandler} data-testid="logoClick">
+              <Icon icon={naviIcons.honeyBee} width="42" height="42" />
+            </Logo>
+          </LogoContainer>
+          <BrandName>Pszczeli Plaster</BrandName>
+          <IconsContainer>
+            <ModalsTogglersIconsContainer>
+              <div
+                onClick={cartDropdownHandler}
+                role="presentation"
+                data-testid="cartDropdown"
+              >
+                <CartIcon />
+              </div>
+              <div
+                onClick={userMenuHandler}
+                role="presentation"
+                data-testid="userMenu"
+              >
+                <HamburgerIcon
+                  label="Show user menu"
+                  rounded
+                  toggled={isUserMenuOpened}
+                />
+              </div>
+            </ModalsTogglersIconsContainer>
+          </IconsContainer>
+        </NavigationContainer>
+      </motion.div>
 
-      <Footer />
+      <Outlet />
+      <motion.div
+        variants={NavbarAndFooterVariants}
+        initial="enter"
+        animate="visible"
+        exit="exit"
+      >
+        <Footer />
+      </motion.div>
     </StructurizeComponent>
   );
 };

@@ -45,6 +45,7 @@ export const OrdersHeader = styled.div`
   justify-content: space-between;
   border-bottom: 1px solid ${Colors.dark};
   // border: 2px solid red;
+  margin-bottom: 0.5rem;
 `;
 
 export const HeaderBlock = styled.div`

@@ -7,9 +7,6 @@ import { categoriesCollectionRef } from "../../utils/firebase/firebase.utils";
 import { onSnapshot } from "firebase/firestore";
 import { Category } from "../../store/categories/category.types";
 
-import { motion } from "framer-motion";
-import { HomePageVariants } from "../../utils/framer-motion/variants.utils";
-
 const HomePage = () => {
   const dispatch = useAppDispatch();
 
@@ -22,15 +19,10 @@ const HomePage = () => {
 
   return (
     <>
-      <motion.div
-        variants={HomePageVariants}
-        initial="entry"
-        animate="visible"
-        exit="exit"
-      >
+      
         <Outlet />
         <Directory />
-      </motion.div>
+  
     </>
   );
 };

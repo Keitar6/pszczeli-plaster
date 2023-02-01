@@ -77,13 +77,11 @@ function App() {
     userManagement();
   }, [currentUser]);
 
-  async function userManagement() {
+  function userManagement() {
     if (currentUser !== null) {
       settingUserHandler(currentUser as User);
       dispatch(setLoggStatus(LOGIN_STATUS_TYPES.LOGGED_IN));
     } else if (currentUser === null) {
-      // after logout
-
       if (
         logStatus === LOGIN_STATUS_TYPES.LOGGED_IN &&
         previousUser.status !== null
@@ -99,9 +97,7 @@ function App() {
     <>
       <div id="modal" data-testid="modal"></div>
       {isUserMenuOpened ? (
-        
-          <UserMenuModal />
-       
+        <UserMenuModal />
       ) : isCartMenuOpened && isCartEmpty(cartQuantity) ? (
         <CartModal />
       ) : isProductCardOpened ? (
