@@ -2,8 +2,6 @@ import type { AnyAction } from "redux";
 import { CartItem } from "../cartReducer/cart.types";
 import { Order } from "../orderHistory/orderHistory.types";
 import {
-  anonymousSignInStart,
-  emailSignInStart,
   getUsersDataFailed,
   getUsersDataStart,
   getUsersDataSuccess,
@@ -113,7 +111,7 @@ export const USER_INITIAL_STATE: UserState = {
   isProfileEditingModeOn: false,
 
   nextUser: null,
-  isLoading: false,
+  isLoading: true,
   error: null,
   sort: {
     sorType: "alphabetic",
@@ -202,21 +200,6 @@ export const userReducer = (
       isLoading: true
     };
   }
-
-  if (emailSignInStart.match(action)) {
-    return {
-      ...state,
-      isLoading: true
-    };
-  }
-
-  if (anonymousSignInStart.match(action)) {
-    return {
-      ...state,
-      isLoading: true
-    };
-  }
-
   if (signInFailed.match(action)) {
     return {
       ...state,

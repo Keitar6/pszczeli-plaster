@@ -51,7 +51,7 @@ export const signOutAsync: any = () => {
 };
 
 export const signInAsync: any = (currentUser: User) => {
-  return (dispatch: Dispatch<AnyAction>) => {
+  return async (dispatch: Dispatch<AnyAction>) => {
     try {
       dispatch(signInAndSetUser(currentUser));
       dispatch(signInSuccess());

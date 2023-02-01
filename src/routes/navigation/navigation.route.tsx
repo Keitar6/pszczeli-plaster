@@ -19,7 +19,6 @@ import { Footer } from "../../components/footer/footer.component";
 
 import { toggleUserMenu } from "../../store/generalPropReducer/generalProp.actions";
 import { selectIsUserMenuOpened } from "../../store/generalPropReducer/generalProp.selector";
-import { InputBar } from "../../components/inputBar/inputBar.component";
 
 import { refresh } from "../../utils/reusableFunctions/refresh.function";
 import { toggleCartMenu } from "../../store/cartReducer/cart.actions";
@@ -50,7 +49,6 @@ const Navigation = () => {
   const debounced = useMemo(
     () =>
       debounce(function (user, items) {
-
         user !== null
           ? updateUsersCartItems(
               user as User,
@@ -108,6 +106,7 @@ const Navigation = () => {
         </IconsContainer>
       </NavigationContainer>
       <Outlet />
+
       <Footer />
     </StructurizeComponent>
   );

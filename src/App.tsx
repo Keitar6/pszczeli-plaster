@@ -39,7 +39,6 @@ import { setOrderHistory } from "./store/orderHistory/orderHistory.action";
 import { setCartItems } from "./store/cartReducer/cart.actions";
 import { CART_INITIAL_STATE } from "./store/cartReducer/cart.reducer";
 import { ORDER_HISTORY_INITIAL_STATE } from "./store/orderHistory/orderHistory.reducer";
-import { AnimatePresence } from "framer-motion";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -52,7 +51,6 @@ function App() {
   const logStatus = useAppSelector(selectLoginStatus);
   const currentUser = useAppSelector(selectCurrentUser);
   const nextUser = useAppSelector(selectNextUser);
-  const sortType = useAppSelector(selectSort);
 
   const loginHandler = (user: UserData | null) => {
     dispatch(setPreviousUser());

@@ -21,7 +21,6 @@ import { useAppSelector } from "../../hooks/hooks";
 
 import { AnimatePresence } from "framer-motion";
 import { OrderItemContainer } from "./orderContainer/orderContainer.component";
-import { OrdersHistoryOpenVariants } from "../../utils/framer-motion/variants.utils";
 
 type OrderItemProps = {
   orderItem: Order;

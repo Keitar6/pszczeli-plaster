@@ -121,7 +121,7 @@ export const OrdersHistoryOpenVariants: Variants = {
     const transTime = 0.3;
 
     return {
-      height: ifOpened ? "100%" : 100,
+      height: ifOpened ? "100%" : 80,
       transition: { duration: transTime }
     };
   },
