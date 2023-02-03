@@ -1,9 +1,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <p>
+  <a href ='https://www.pszczeli-plaster.statkiewiczmateusz.pl/'>
     <img src="https://api.iconify.design/noto/honeybee.svg" alt="Logo" width="80" height="80">
-  </p>
+  </a>
   <h3 align="center">Pszczeli Plaster</h3>
 </div>
 
