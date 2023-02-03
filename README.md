@@ -40,26 +40,21 @@
 
 [![Pszczeli Plaster Screen Shot][product-screenshot]](https://www.pszczeli-plaster.statkiewiczmateusz.pl)
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+I present to you the design of an ecommerce shop where you can buy honey related products and of course honey itself! I didn't have any 'real' database so I used firebase, where I just put some sample items. This project was created as a training project in my current company's internal training program called React Academy. In the project i have learned a lot, i am sure that there some minor bugs that i have not seen so please let me know so i can become better developer! Thanks in advance!
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
+Here are some functionalities:
+* You can buy things anonymousli
+* You can create your account by either google or email and password
+* You can see a history of your orders :smile:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built With
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 * [![React][React.js]][React-url]
+* [![Typescript][Typescript.js]][Typescript-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
