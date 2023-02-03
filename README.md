@@ -30,9 +30,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="">
+  <p>
     <img src="https://api.iconify.design/noto/honeybee.svg" alt="Logo" width="80" height="80">
-  </a>
+  </p>
 
   <h3 align="center">Pszczeli Plaster</h3>
 
