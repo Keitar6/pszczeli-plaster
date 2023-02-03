@@ -37,8 +37,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Pszczeli Plaster Screen Shot][product-screenshot]](https://www.pszczeli-plaster.statkiewiczmateusz.pl)
 [![Pszczeli-HP.png](https://i.postimg.cc/YSdtTcBV/Pszczeli-HP.png)](https://postimg.cc/xkbrb4Cy)
+
 I present to you the design of an ecommerce shop where you can buy honey related products and of course honey itself! I didn't have any 'real' database so I used firebase, where I just put some sample items. This project was created as a training project in my current company's internal training program called React Academy. In the project i have learned a lot, i am sure that there some minor bugs that i have not seen so please let me know so i can become better developer! Thanks in advance!
 
 Here are some functionalities:
