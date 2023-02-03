@@ -31,7 +31,7 @@
 <br />
 <div align="center">
   <a href="">
-    <img src="[images/logo.png](https://code.iconify.design/iconify-icon/1.0.3/iconify-icon.min.js)" alt="Logo" width="80" height="80">
+    <img src="https://api.iconify.design/noto/honeybee.svg" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Pszczeli Plaster</h3>
