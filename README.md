@@ -37,9 +37,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-
-  [![Pszczeli-HP.png](https://i.postimg.cc/VNmjDtzg/Pszczeli-HP.png)](https://postimg.cc/w14yB7yR)
-  
 <p align="center">
   <img src="https://i.postimg.cc/VNmjDtzg/Pszczeli-HP.png" alt="Sublime's custom image"/>
 </p>
