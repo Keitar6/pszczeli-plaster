@@ -64,7 +64,8 @@ This section should list any major frameworks/libraries used to bootstrap your p
 To get a local copy up and running follow these simple example steps.
 
 1. Enter place wheere you want to have your local repo.
-2. Clone this repo ```sh
+2. Clone this repo 
+  ```sh
   git clone https://github.com/Keitar6/pszczeli-plaster.git
   ```
 3. Go to Instalation section
