@@ -30,8 +30,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a src="https://code.iconify.design/iconify-icon/1.0.3/iconify-icon.min.js">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="">
+    <img src="[images/logo.png](https://code.iconify.design/iconify-icon/1.0.3/iconify-icon.min.js)" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Pszczeli Plaster</h3>
